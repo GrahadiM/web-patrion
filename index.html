@@ -352,33 +352,26 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative py-16 md:py-24 overflow-hidden">
-        <div class="absolute inset-0 bg-fantasy-gradient opacity-90"></div>
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3')] bg-cover bg-center mix-blend-overlay opacity-20"></div>
-        
-        <div class="container mx-auto px-4 text-center relative z-10">
-            <div class="floating inline-block mb-6">
-                <div class="w-32 h-32 rounded-full bg-gradient-to-br from-fantasy-blue to-fantasy-purple flex items-center justify-center mx-auto glow">
-                    <span class="fantasy-font text-fantasy-gold text-4xl font-bold">P</span>
-                </div>
-            </div>
-            
-            <h1 class="fantasy-font text-4xl md:text-6xl font-bold mb-4 text-white">Patrion <span class="gold-text">KUNNA</span></h1>
-            <div class="flex justify-center items-center mb-6">
-                <span class="element-badge text-fire border-fire/50 mr-2">Api 🔥</span>
-                <span class="text-gray-300 mx-2">|</span>
-                <span class="ml-2 text-gray-300">Jawa</span>
-            </div>
-            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-gray-200">Karakter utama dengan kekuatan api yang membara, mewakili semangat dan budaya Jawa yang kaya dalam dunia fantasi PATRION.</p>
-            <button class="bg-gold-gradient hover:opacity-90 text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
-                Mulai Petualangan
+    <section class="relative w-full h-screen overflow-hidden mt-[-70px]" id="hero">
+        <!-- Background Gambar -->
+        <div class="absolute inset-0">
+            <img src="assets/banner.png" alt="Banner Patrion" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Overlay hitam transparan -->
+        <!-- <div class="absolute inset-0 bg-black/50"></div> -->
+
+        <!-- Tombol Play -->
+        <div class="absolute inset-0 flex justify-center" style="top: 15%;">
+            <button id="openVideo" class="relative group">
+                <img src="assets/logo-believe.png" alt="Play Button" class="w-40 mx-auto drop-shadow-[0_0_15px_rgba(255,215,0,0.8)] transition-transform duration-300 group-hover:scale-110">
             </button>
         </div>
     </section>
 
     <!-- Karakter Section -->
     <section class="py-16 relative" id="characters">
-        <div class="absolute inset-0 bg-fantasy-dark opacity-95"></div>
+        <div class="absolute inset-0 bg-fantasy-dark opacity-30"></div>
         <div class="container mx-auto px-4 relative z-10">
             <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">KARAKTER PATRION</h2>
             <p class="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
@@ -622,6 +615,27 @@
         </div>
     </footer>
 
+    <!-- Popup Video -->
+    <div id="videoModal" class="fixed inset-0 bg-black/80 flex justify-center items-center hidden z-50">
+        <div class="relative w-[90%] md:w-[60%] shadow-2xl">
+            
+            <!-- Tombol Close (di luar video) -->
+            <button id="closeVideo"
+                class="absolute -top-10 right-0 md:-top-10 md:-right-10 bg-red-600 hover:bg-red-700 text-white
+                    text-md md:text-xl w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full
+                    backdrop-blur-sm transition-all transform hover:scale-125 shadow-lg z-50">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Video -->
+            <video id="patrionVideo" class="w-full h-auto" controls playsinline>
+                <source src="assets/video/patrion.mp4" type="video/mp4">
+                Browser kamu tidak mendukung pemutaran video.
+            </video>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
     <script>
         // Mobile menu toggle
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
