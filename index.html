@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PATRION - Dunia Fantasi Nusantara</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -206,6 +206,7 @@
     </style>
 </head>
 <body class="relative">
+
     <!-- Background dengan partikel dan efek cahaya -->
     <canvas id="particle-canvas"></canvas>
     <div class="aurora"></div>
@@ -375,31 +376,59 @@
 
     <!-- Hero Section -->
     <section class="relative w-full h-screen overflow-hidden mt-[-70px]" id="hero">
-        <!-- Background Gambar -->
         <div class="absolute inset-0">
-            <img src="assets/images/banner.png" alt="Banner Patrion" class="w-full h-full object-cover">
+            <img src="assets/images/banner.png" alt="Banner Patrion" class="w-full h-full object-cover" loading="eager">
+        </div>
+        
+        <!-- Tambahkan overlay gradient untuk readability -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/70 to-black/30"></div>
+
+        <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+            <div class="mb-8 floating">
+                <img src="assets/images/logo-believe.png" alt="PATRION" class="w-80 md:w-96 mx-auto drop-shadow-[0_0_20px_rgba(255,215,0,0.8)]">
+            </div>
+            
+            <h1 class="fantasy-font text-4xl md:text-6xl font-bold text-white mb-4">
+                Jelajahi <span class="gold-text">Dunia Fantasi</span> Nusantara
+            </h1>
+            
+            <p class="text-xl text-gray-200 mb-8 max-w-xl">
+                Temukan kekuatan elemen, petualangan epik, dan misteri tersembunyi dalam dunia PATRION
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button class="bg-gold-gradient hover:opacity-90 text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg"
+                        onclick="
+                            const wahana = document.getElementById('wahana');
+                            const wahanaY = wahana.getBoundingClientRect().top + window.scrollY - 20;
+                            window.scrollTo({ top: wahanaY, behavior: 'smooth' });
+                        "
+                    style="cursor: pointer;"
+                >
+                    Mulai Petualangan
+                </button>
+                <button id="openVideo" class="border-2 border-fantasy-gold text-fantasy-gold hover:bg-fantasy-gold hover:text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
+                    <i class="fas fa-play mr-2"></i>Tonton Trailer
+                </button>
+            </div>
         </div>
 
-        <!-- Overlay hitam transparan -->
-        <!-- <div class="absolute inset-0 bg-black/50"></div> -->
-
-        <!-- Tombol Play -->
-        <div class="absolute inset-0 flex justify-center" style="top: 10%;">
-            <button id="openVideo" class="relative group">
-                <!-- Gambar utama -->
-                <img src="assets/images/logo-believe.png" alt="Play Background" class="w-96 mx-auto drop-shadow-[0_0_15px_rgba(255,215,0,0.8)] transition-transform duration-300 group-hover:scale-110">
-
-                <!-- Tombol Play di tengah -->
-                <div class="absolute inset-0 flex justify-center items-center pointer-events-none mt-[-40px]">
-                    <div class="w-16 h-16 flex items-center justify-center bg-white rounded-full transition-all duration-300 group-hover:bg-gray-800">
-                        <img src="assets/images/play.png" alt="Play Icon" class="w-8 h-8 transition-all duration-300 group-hover:invert">
-                    </div>
-                </div>
-            </button>
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            onclick="
+                const characters = document.getElementById('characters');
+                const charactersY = characters.getBoundingClientRect().top + window.scrollY - 20;
+                window.scrollTo({ top: charactersY, behavior: 'smooth' });
+            "
+            style="cursor: pointer;">
+            <div class="animate-bounce">
+                <!-- <i class="fas fa-chevron-down text-fantasy-gold text-2xl"></i> -->
+                <i class="fas fa-angle-double-down text-fantasy-gold text-2xl"></i>
+            </div>
         </div>
     </section>
 
-    <!-- Karakter Section -->
+    <!-- Characters Section -->
     <section class="py-16 relative" id="characters">
         <div class="absolute inset-0 bg-fantasy-dark opacity-30"></div>
         <div class="container mx-auto px-4 relative z-10">
@@ -763,7 +792,7 @@
         </div>
     </section>
 
-    <!-- Section Wahana Patrion -->
+    <!-- Wahana Section -->
     <section class="py-16 relative overflow-hidden" id="wahana">
         <div class="absolute inset-0 bg-fantasy-dark opacity-95"></div>
         <div class="container mx-auto px-4 relative z-10">
@@ -900,7 +929,7 @@
     </section>
 
     <!-- News Section -->
-    <section class="py-16 relative overflow-hidden">
+    <section class="py-16 relative overflow-hidden" id="news">
         <div class="absolute inset-0 bg-fantasy-gradient opacity-90"></div>
         <div class="container mx-auto px-4 relative z-10 mb-5">
             <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">Berita PATRION</h2>
@@ -934,34 +963,64 @@
     </section>
 
     <!-- Footer -->
-    <footer class="glass-effect py-10 border-t border-fantasy-gold/20 text-center">
-        <div class="container mx-auto px-4 flex flex-col items-center">
-            
-            <!-- Logo -->
-            <div class="mb-6 flex justify-center">
-                <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="w-full h-12">
-                <div class="flex items-center">
+    <footer class="glass-effect py-12 border-t border-fantasy-gold/20">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="h-12 mb-4">
+                    <p class="text-gray-400 text-sm">
+                        Dunia fantasi Nusantara dengan kekuatan elemen dan petualangan epik.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-fantasy-gold mb-4">Eksplorasi</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#characters" class="text-gray-400 hover:text-fantasy-gold transition-colors">Karakter</a>
+                        <a href="#games" class="text-gray-400 hover:text-fantasy-gold transition-colors">Game</a>
+                        <a href="#wahana" class="text-gray-400 hover:text-fantasy-gold transition-colors">Wahana</a>
+                        <a href="#news" class="text-gray-400 hover:text-fantasy-gold transition-colors">Berita</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-fantasy-gold mb-4">Bantuan</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">Pusat Bantuan</a>
+                        <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">Komunitas</a>
+                        <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">Kontak</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-fantasy-gold mb-4">Terhubung</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <p>Email: info@patrion.com</p>
+                        <p>Support: support@patrion.com</p>
+                    </div>
                 </div>
             </div>
-
-            <!-- Menu tambahan -->
-            <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
-                <a href="index.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Komisk</a>
-                <a href="index.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Privasi</a>
-                <a href="index.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Ketentuan</a>
+            
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    "Karakter", "Artefak" dan "Alam Semesta Patrion" adalah merek dagang dari <span class="text-fantasy-gold">PATRION</span>.
+                    © 2024 PATRION. All Rights Reserved.
+                </p>
             </div>
-
-            <!-- Kutipan merek dagang -->
-            <p class="text-gray-400 text-sm max-w-2xl mb-4 px-4">
-                "Karakter", "Artefak" dan "Alam Semestar Patrion" adalah merek dagang dan/atau merek dagang terdaftar dari <span class="text-fantasy-gold font-semibold">PATRION</span>.  
-                Semua merek dagang lainnya adalah milik dari pemiliknya masing-masing.
-            </p>
-
-            <!-- Kalimat kutipan singkat -->
-            <p class="text-fantasy-gold font-medium mb-2">PATRION - Dunia Fantasi Nusantara</p>
-
-            <!-- Hak cipta -->
-            <p class="text-white text-sm">Copyright © PATRION. All Rights Reserved.</p>
         </div>
     </footer>
 
