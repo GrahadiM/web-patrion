@@ -1,3 +1,4 @@
+// popup video
 const openBtn = document.getElementById('openVideo');
 const modal = document.getElementById('videoModal');
 const closeBtn = document.getElementById('closeVideo');
