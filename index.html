@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PATRION - Dunia Fantasi Nusantara</title>
+    <title>PATRION - Dunia Fantasi Nusantara | Game & Wahana Petualangan</title>
+    <meta name="description" content="Jelajahi dunia fantasi PATRION dengan karakter elemen unik, game seru, dan wahana petualangan epik. Temukan kekuatan api, air, angin, tanah, petir, alam, cahaya, dan kegelapan.">
+    <meta name="keywords" content="PATRION, game fantasi, karakter elemen, wahana petualangan, dunia nusantara, fantasy game">
+    <meta name="author" content="PATRION Studio">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="PATRION - Dunia Fantasi Nusantara">
+    <meta property="og:description" content="Jelajahi dunia fantasi dengan karakter elemen dan petualangan epik">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://patrion.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PATRION - Dunia Fantasi Nusantara">
+    <meta name="twitter:description" content="Jelajahi dunia fantasi dengan karakter elemen dan petualangan epik">
+    <meta name="twitter:image" content="assets/images/og-image.jpg">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="assets/images/banner.png" as="image">
+    <link rel="preload" href="assets/images/logo-patrion.png" as="image">
+    <link rel="preload" href="assets/images/logo-believe.png" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
+    <!-- CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -424,6 +458,31 @@
             <div class="animate-bounce">
                 <!-- <i class="fas fa-chevron-down text-fantasy-gold text-2xl"></i> -->
                 <i class="fas fa-angle-double-down text-fantasy-gold text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-12 bg-fantasy-gradient relative" aria-labelledby="stats-heading">
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 id="stats-heading" class="sr-only">Statistik PATRION</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="fade-in">
+                    <div class="text-3xl md:text-4xl font-bold text-fantasy-gold mb-2 counter" data-count="8">0</div>
+                    <div class="text-gray-300 text-sm md:text-base">Karakter</div>
+                </div>
+                <div class="fade-in">
+                    <div class="text-3xl md:text-4xl font-bold text-fantasy-gold mb-2 counter" data-count="0">0</div>
+                    <div class="text-gray-300 text-sm md:text-base">Game</div>
+                </div>
+                <div class="fade-in">
+                    <div class="text-3xl md:text-4xl font-bold text-fantasy-gold mb-2 counter" data-count="4">0</div>
+                    <div class="text-gray-300 text-sm md:text-base">Wahana</div>
+                </div>
+                <div class="fade-in">
+                    <div class="text-3xl md:text-4xl font-bold text-fantasy-gold mb-2 counter" data-count="100000">0</div>
+                    <div class="text-gray-300 text-sm md:text-base">Pemain Aktif</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1094,6 +1153,38 @@
                 modal.classList.add('hidden');
             }
         });
+
+        // Statistics counter animation
+        function animateCounter() {
+            const counters = document.querySelectorAll('.counter[data-count]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = +counter.dataset.count;
+                        const duration = 2000;
+                        const step = target / (duration / 16);
+                        let current = 0;
+                        
+                        const timer = setInterval(() => {
+                            current += step;
+                            if (current >= target) {
+                                counter.textContent = target.toLocaleString();
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.floor(current).toLocaleString();
+                            }
+                        }, 16);
+                        
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        animateCounter();
 
         // Particle background effect
         document.addEventListener('DOMContentLoaded', function() {
