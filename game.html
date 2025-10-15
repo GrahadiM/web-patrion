@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Builder PVE - 8 Patron</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-900 text-white">
+    <!-- Game Container -->
+    <div class="max-w-6xl mx-auto p-6">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-yellow-400 mb-2">PATRON TEAM BUILDER</h1>
+            <p class="text-gray-300">Bangun tim terbaik dari 8 Patron dan hadapi tantangan!</p>
+        </div>
+
+        <!-- Game Stats -->
+        <div class="grid grid-cols-3 gap-4 mb-8">
+            <div class="bg-blue-800 p-4 rounded-lg text-center">
+                <div class="text-2xl font-bold">Level 1</div>
+                <div class="text-sm text-gray-300">Stage Progress</div>
+            </div>
+            <div class="bg-green-800 p-4 rounded-lg text-center">
+                <div class="text-2xl font-bold" id="playerScore">100</div>
+                <div class="text-sm text-gray-300">Player HP</div>
+            </div>
+            <div class="bg-red-800 p-4 rounded-lg text-center">
+                <div class="text-2xl font-bold" id="enemyScore">100</div>
+                <div class="text-sm text-gray-300">Enemy HP</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Left: Character Pool -->
+            <div class="bg-gray-800 p-6 rounded-xl">
+                <h2 class="text-xl font-bold text-blue-400 mb-4 flex items-center">
+                    <i class="fas fa-users mr-2"></i>Available Patrons
+                </h2>
+                <div class="grid grid-cols-2 gap-4" id="characterPool">
+                    <!-- Character 1 - Warrior -->
+                    <div class="character-card bg-red-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-red-600"
+                        data-char="warrior" onclick="selectCharacter('warrior')">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 bg-red-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white text-2xl"></i>
+                            </div>
+                            <div class="font-bold text-white">Warrior</div>
+                            <div class="text-xs text-gray-300 mt-1">HP: 120 | ATK: 80</div>
+                            <div class="text-xs text-yellow-300">Tank • High Defense</div>
+                        </div>
+                    </div>
+
+                    <!-- Character 2 - Mage -->
+                    <div class="character-card bg-purple-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-purple-600"
+                        data-char="mage" onclick="selectCharacter('mage')">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 bg-purple-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i class="fas fa-hat-wizard text-white text-2xl"></i>
+                            </div>
+                            <div class="font-bold text-white">Mage</div>
+                            <div class="text-xs text-gray-300 mt-1">HP: 70 | ATK: 110</div>
+                            <div class="text-xs text-yellow-300">Magic • AoE Damage</div>
+                        </div>
+                    </div>
+
+                    <!-- Character 3 - Archer -->
+                    <div class="character-card bg-green-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-green-600"
+                        data-char="archer" onclick="selectCharacter('archer')">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 bg-green-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i class="fas fa-bow-arrow text-white text-2xl"></i>
+                            </div>
+                            <div class="font-bold text-white">Archer</div>
+                            <div class="text-xs text-gray-300 mt-1">HP: 80 | ATK: 95</div>
+                            <div class="text-xs text-yellow-300">Ranged • Critical</div>
+                        </div>
+                    </div>
+
+                    <!-- Character 4 - Healer -->
+                    <div class="character-card bg-blue-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-blue-600"
+                        data-char="healer" onclick="selectCharacter('healer')">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 bg-blue-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i class="fas fa-plus-circle text-white text-2xl"></i>
+                            </div>
+                            <div class="font-bold text-white">Healer</div>
+                            <div class="text-xs text-gray-300 mt-1">HP: 90 | ATK: 60</div>
+                            <div class="text-xs text-yellow-300">Support • Healing</div>
+                        </div>
+                    </div>
+
+                    <!-- Character 5 - Rogue -->
+                    <div class="character-card bg-gray-700 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-gray-500"
+                        data-char="rogue" onclick="selectCharacter('rogue')">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 bg-gray-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i class="fas fa-user-secret text-white text-2xl"></i>
+                            </div>
+                            <div class="font-bold text-white">Rogue</div>
+                            <div class="text-xs text-gray-300 mt-1">HP: 75 | ATK: 100</div>
+                            <div class="text-xs text-yellow-300">Stealth • High Crit</div>
+                        </div>
+                    </div>
+
+                    <!-- Character 6 - Knight -->
+                    <div class="character-card bg-yellow-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-yellow-600"
+                        data-char="knight" onclick="selectCharacter('knight')">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 bg-yellow-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i class="fas fa-helmet-battle text-white text-2xl"></i>
+                            </div>
+                            <div class="font-bold text-white">Knight</div>
+                            <div class="text-xs text-gray-300 mt-1">HP: 110 | ATK: 85</div>
+                            <div class="text-xs text-yellow-300">Defense • Taunt</div>
+                        </div>
+                    </div>
+
+                    <!-- Character 7 - Sorcerer -->
+                    <div class="character-card bg-pink-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-pink-600"
+                        data-char="sorcerer" onclick="selectCharacter('sorcerer')">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 bg-pink-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i class="fas fa-wand-magic text-white text-2xl"></i>
+                            </div>
+                            <div class="font-bold text-white">Sorcerer</div>
+                            <div class="text-xs text-gray-300 mt-1">HP: 65 | ATK: 105</div>
+                            <div class="text-xs text-yellow-300">Control • Debuff</div>
+                        </div>
+                    </div>
+
+                    <!-- Character 8 - Paladin -->
+                    <div class="character-card bg-indigo-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-indigo-600"
+                        data-char="paladin" onclick="selectCharacter('paladin')">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 bg-indigo-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i class="fas fa-praying-hands text-white text-2xl"></i>
+                            </div>
+                            <div class="font-bold text-white">Paladin</div>
+                            <div class="text-xs text-gray-300 mt-1">HP: 100 | ATK: 75</div>
+                            <div class="text-xs text-yellow-300">Hybrid • Buffs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle: Player Team & Battle -->
+            <div class="bg-gray-800 p-6 rounded-xl">
+                <h2 class="text-xl font-bold text-green-400 mb-4 flex items-center">
+                    <i class="fas fa-user-circle mr-2"></i>Your Team (4/4)
+                </h2>
+
+                <!-- Player Team Slots -->
+                <div class="grid grid-cols-2 gap-4 mb-6" id="playerTeam">
+                    <div
+                        class="team-slot bg-gray-700 border-2 border-dashed border-gray-500 rounded-lg p-4 text-center min-h-32 flex items-center justify-center">
+                        <div class="text-gray-400">Drag character here</div>
+                    </div>
+                    <div
+                        class="team-slot bg-gray-700 border-2 border-dashed border-gray-500 rounded-lg p-4 text-center min-h-32 flex items-center justify-center">
+                        <div class="text-gray-400">Drag character here</div>
+                    </div>
+                    <div
+                        class="team-slot bg-gray-700 border-2 border-dashed border-gray-500 rounded-lg p-4 text-center min-h-32 flex items-center justify-center">
+                        <div class="text-gray-400">Drag character here</div>
+                    </div>
+                    <div
+                        class="team-slot bg-gray-700 border-2 border-dashed border-gray-500 rounded-lg p-4 text-center min-h-32 flex items-center justify-center">
+                        <div class="text-gray-400">Drag character here</div>
+                    </div>
+                </div>
+
+                <!-- Battle Arena -->
+                <div class="battle-arena bg-gray-900 p-4 rounded-lg mb-4">
+                    <div class="text-center mb-4">
+                        <div class="text-lg font-bold text-yellow-300">BATTLE ARENA</div>
+                        <div class="text-sm text-gray-400">Stage 1: Forest Encounter</div>
+                    </div>
+
+                    <!-- Enemy Team -->
+                    <div class="enemy-team mb-4">
+                        <div class="text-red-400 font-bold mb-2">Enemy Team:</div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div class="enemy-character bg-red-800 p-2 rounded text-center">
+                                <div class="text-xs">Goblin</div>
+                                <div class="text-xs text-red-300">HP: 50</div>
+                            </div>
+                            <div class="enemy-character bg-red-800 p-2 rounded text-center">
+                                <div class="text-xs">Orc</div>
+                                <div class="text-xs text-red-300">HP: 80</div>
+                            </div>
+                            <div class="enemy-character bg-red-800 p-2 rounded text-center">
+                                <div class="text-xs">Wolf</div>
+                                <div class="text-xs text-red-300">HP: 40</div>
+                            </div>
+                            <div class="enemy-character bg-red-800 p-2 rounded text-center">
+                                <div class="text-xs">Shaman</div>
+                                <div class="text-xs text-red-300">HP: 60</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Battle Log -->
+                    <div class="battle-log bg-black bg-opacity-50 p-3 rounded h-32 overflow-y-auto">
+                        <div class="text-sm text-gray-300 text-center">Battle log will appear here...</div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="grid grid-cols-2 gap-4">
+                    <button
+                        class="bg-green-600 hover:bg-green-700 py-3 rounded-lg font-bold transition disabled:opacity-50"
+                        id="startBattle" onclick="startBattle()" disabled>
+                        <i class="fas fa-play mr-2"></i>Start Battle
+                    </button>
+                    <button class="bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-bold transition"
+                        onclick="resetTeam()">
+                        <i class="fas fa-redo mr-2"></i>Reset Team
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right: Team Stats & Synergy -->
+            <div class="bg-gray-800 p-6 rounded-xl">
+                <h2 class="text-xl font-bold text-purple-400 mb-4 flex items-center">
+                    <i class="fas fa-chart-bar mr-2"></i>Team Analysis
+                </h2>
+
+                <!-- Team Stats -->
+                <div class="team-stats bg-gray-700 p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-white mb-2">Team Composition</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Total HP:</span>
+                            <span class="text-white font-bold" id="totalHP">0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Total Attack:</span>
+                            <span class="text-white font-bold" id="totalAttack">0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Team Cost:</span>
+                            <span class="text-white font-bold">4/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Synergy Bonus -->
+                <div class="synergy-bonus bg-gray-700 p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-white mb-2">Synergy Bonus</h3>
+                    <div class="text-sm text-gray-300" id="synergyText">
+                        No synergy bonuses active
+                    </div>
+                </div>
+
+                <!-- Recommended Teams -->
+                <div class="recommended-teams bg-gray-700 p-4 rounded-lg">
+                    <h3 class="font-bold text-white mb-2">Recommended Compositions</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="text-green-300">• Balanced: Warrior + Mage + Archer + Healer</div>
+                        <div class="text-blue-300">• Aggressive: Mage + Rogue + Sorcerer + Archer</div>
+                        <div class="text-yellow-300">• Defensive: Warrior + Knight + Paladin + Healer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        let playerTeam = [];
+        let selectedCharacter = null;
+        const maxTeamSize = 4;
+
+        // Character Data
+        const characters = {
+            warrior: { name: 'Warrior', hp: 120, attack: 80, type: 'tank', color: 'red' },
+            mage: { name: 'Mage', hp: 70, attack: 110, type: 'magic', color: 'purple' },
+            archer: { name: 'Archer', hp: 80, attack: 95, type: 'ranged', color: 'green' },
+            healer: { name: 'Healer', hp: 90, attack: 60, type: 'support', color: 'blue' },
+            rogue: { name: 'Rogue', hp: 75, attack: 100, type: 'assassin', color: 'gray' },
+            knight: { name: 'Knight', hp: 110, attack: 85, type: 'tank', color: 'yellow' },
+            sorcerer: { name: 'Sorcerer', hp: 65, attack: 105, type: 'magic', color: 'pink' },
+            paladin: { name: 'Paladin', hp: 100, attack: 75, type: 'support', color: 'indigo' }
+        };
+
+        // Select Character
+        function selectCharacter(charId) {
+            if (playerTeam.length >= maxTeamSize) {
+                addToBattleLog('Team is full! Remove someone first.');
+                return;
+            }
+
+            if (playerTeam.includes(charId)) {
+                addToBattleLog(`${characters[charId].name} is already in your team!`);
+                return;
+            }
+
+            playerTeam.push(charId);
+            updateTeamDisplay();
+            updateTeamStats();
+            addToBattleLog(`Added ${characters[charId].name} to your team!`);
+        }
+
+        // Update Team Display
+        function updateTeamDisplay() {
+            const teamSlots = document.querySelectorAll('.team-slot');
+
+            teamSlots.forEach((slot, index) => {
+                if (index < playerTeam.length) {
+                    const charId = playerTeam[index];
+                    const char = characters[charId];
+                    slot.innerHTML = `
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-${char.color}-500 rounded-full mx-auto mb-1 flex items-center justify-center">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div class="font-bold text-white text-sm">${char.name}</div>
+                            <div class="text-xs text-gray-300">HP: ${char.hp}</div>
+                            <button onclick="removeFromTeam(${index})" class="text-xs text-red-400 hover:text-red-300 mt-1">
+                                Remove
+                            </button>
+                        </div>
+                    `;
+                    slot.classList.remove('border-dashed', 'border-gray-500');
+                    slot.classList.add('border-solid', `border-${char.color}-500`);
+                } else {
+                    slot.innerHTML = '<div class="text-gray-400">Drag character here</div>';
+                    slot.classList.add('border-dashed', 'border-gray-500');
+                    slot.classList.remove('border-solid');
+                }
+            });
+
+            // Enable/disable start battle button
+            document.getElementById('startBattle').disabled = playerTeam.length !== maxTeamSize;
+        }
+
+        // Remove from Team
+        function removeFromTeam(index) {
+            const removedChar = characters[playerTeam[index]].name;
+            playerTeam.splice(index, 1);
+            updateTeamDisplay();
+            updateTeamStats();
+            addToBattleLog(`Removed ${removedChar} from your team.`);
+        }
+
+        // Update Team Stats
+        function updateTeamStats() {
+            let totalHP = 0;
+            let totalAttack = 0;
+
+            playerTeam.forEach(charId => {
+                totalHP += characters[charId].hp;
+                totalAttack += characters[charId].attack;
+            });
+
+            document.getElementById('totalHP').textContent = totalHP;
+            document.getElementById('totalAttack').textContent = totalAttack;
+
+            // Update synergy text
+            updateSynergyBonus();
+        }
+
+        // Update Synergy Bonus
+        function updateSynergyBonus() {
+            const types = playerTeam.map(charId => characters[charId].type);
+            const uniqueTypes = [...new Set(types)];
+
+            let synergyText = 'No synergy bonuses active';
+
+            if (uniqueTypes.length === 2) {
+                synergyText = '⚡ Balanced Composition: +10% HP';
+            } else if (types.filter(t => t === 'tank').length >= 2) {
+                synergyText = '🛡️ Defensive Wall: +15% Defense';
+            } else if (types.filter(t => t === 'magic').length >= 2) {
+                synergyText = '🔮 Arcane Power: +20% Magic Damage';
+            }
+
+            document.getElementById('synergyText').textContent = synergyText;
+        }
+
+        // Start Battle
+        function startBattle() {
+            if (playerTeam.length !== maxTeamSize) {
+                addToBattleLog('Need 4 characters to start battle!');
+                return;
+            }
+
+            addToBattleLog('=== BATTLE STARTED ===');
+            addToBattleLog('Your team engages the enemy!');
+
+            // Simple battle simulation
+            let playerTotalHP = playerTeam.reduce((sum, charId) => sum + characters[charId].hp, 0);
+            let playerTotalAttack = playerTeam.reduce((sum, charId) => sum + characters[charId].attack, 0);
+
+            const enemyHP = 230; // Total enemy HP
+            const enemyAttack = 180; // Total enemy attack
+
+            // Battle rounds simulation
+            setTimeout(() => {
+                const playerDamage = Math.floor(playerTotalAttack * (0.8 + Math.random() * 0.4));
+                const enemyDamage = Math.floor(enemyAttack * (0.7 + Math.random() * 0.6));
+
+                addToBattleLog(`Your team deals ${playerDamage} damage to enemies!`);
+                addToBattleLog(`Enemies deal ${enemyDamage} damage to your team!`);
+
+                playerTotalHP -= enemyDamage;
+                const remainingEnemyHP = Math.max(0, enemyHP - playerDamage);
+
+                document.getElementById('playerScore').textContent = Math.max(0, playerTotalHP);
+                document.getElementById('enemyScore').textContent = remainingEnemyHP;
+
+                setTimeout(() => {
+                    if (playerTotalHP > 0 && remainingEnemyHP <= 0) {
+                        addToBattleLog('🎉 VICTORY! You defeated all enemies!');
+                        addToBattleLog('Level Complete! Ready for next stage...');
+                    } else if (playerTotalHP <= 0) {
+                        addToBattleLog('💀 DEFEAT! Your team was overwhelmed...');
+                    } else {
+                        addToBattleLog('Battle continues...');
+                    }
+                }, 1000);
+
+            }, 1500);
+        }
+
+        // Reset Team
+        function resetTeam() {
+            playerTeam = [];
+            updateTeamDisplay();
+            updateTeamStats();
+            addToBattleLog('Team has been reset.');
+            document.getElementById('playerScore').textContent = '100';
+            document.getElementById('enemyScore').textContent = '100';
+        }
+
+        // Add to Battle Log
+        function addToBattleLog(message) {
+            const battleLog = document.querySelector('.battle-log');
+            const logEntry = document.createElement('div');
+            logEntry.className = 'text-sm text-gray-300 mb-1';
+            logEntry.textContent = `• ${message}`;
+            battleLog.appendChild(logEntry);
+            battleLog.scrollTop = battleLog.scrollHeight;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            updateTeamDisplay();
+            updateTeamStats();
+        });
+    </script>
+</body>
+
+</html>
