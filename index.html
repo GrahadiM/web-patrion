@@ -4,14 +4,14 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PATRION - Dunia Fantasi Nusantara | Game & Wahana Petualangan</title>
+    <title>PATRION - Dunia Fantasi Nusantara</title>
     <meta name="author" content="PATRION, Abdurrahman GM">
-    <meta name="keywords" content="PATRION, game fantasi, karakter elemen, wahana petualangan, dunia nusantara, fantasy game">
-    <meta name="description" content="Jelajahi dunia fantasi PATRION dengan karakter elemen unik, game seru, dan wahana petualangan epik. Temukan kekuatan api, air, angin, tanah, petir, alam, cahaya, dan kegelapan.">
+    <meta name="keywords" content="PATRION, Dunia Fantasi, Karakter, Artefak, Alam Semesta Patrion, Game, Wahana, Komik, Novel, Petualangan">
+    <meta name="description" content="Jelajahi dunia fantasi PATRION dengan karakter unik, game seru, dan wahana petualangan epik.">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="PATRION - Dunia Fantasi Nusantara">
-    <meta property="og:description" content="Jelajahi dunia fantasi dengan karakter elemen dan petualangan epik">
+    <meta property="og:description" content="Jelajahi dunia fantasi dengan karakter unik dan petualangan epik">
     <meta property="og:image" content="assets/images/og-image.jpg">
     <meta property="og:url" content="https://patrion.com">
     <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="PATRION - Dunia Fantasi Nusantara">
-    <meta name="twitter:description" content="Jelajahi dunia fantasi dengan karakter elemen dan petualangan epik">
+    <meta name="twitter:description" content="Jelajahi dunia fantasi dengan karakter unik dan petualangan epik">
     <meta name="twitter:image" content="assets/images/og-image.jpg">
     
     <!-- Favicon -->
@@ -38,9 +38,10 @@
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     
-    <!-- CSS -->
+    <!-- CSS & Swiper -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         tailwind.config = {
@@ -95,19 +96,6 @@
         
         .character-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(123, 97, 255, 0.3);
-            border: 1px solid rgba(251, 191, 36, 0.3);
-        }
-        
-        .game-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(251, 191, 36, 0.1);
-        }
-        
-        .game-card:hover {
-            transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(123, 97, 255, 0.3);
             border: 1px solid rgba(251, 191, 36, 0.3);
         }
@@ -237,6 +225,64 @@
         .fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
+
+        /* Custom Swiper Styles */
+        .swiper {
+            width: 100%;
+            padding: 20px 0 40px !important;
+        }
+
+        .swiper-slide {
+            height: auto !important;
+            display: flex !important;
+            justify-content: center;
+        }
+
+        .swiper-pagination-bullet {
+            background-color: rgba(251, 191, 36, 0.5) !important;
+            width: 12px !important;
+            height: 12px !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #fbbf24 !important;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: #fbbf24 !important;
+            background-color: rgba(15, 23, 42, 0.7);
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 18px !important;
+            font-weight: bold;
+        }
+
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background-color: rgba(251, 191, 36, 0.2);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .swiper-button-next, .swiper-button-prev {
+                display: none !important;
+            }
+        }
+
+        /* Custom untuk karakter card */
+        .character-slide {
+            height: 450px !important;
+        }
+
+        .character-image {
+            height: 280px;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body class="relative">
@@ -260,7 +306,7 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-8">
                     <a href="index.html" class="nav-link text-white hover:text-fantasy-gold transition-colors">BERANDA</a>
-                    <a href="#news" class="nav-link text-white hover:text-fantasy-gold transition-colors">BERITA</a>
+                    <a href="#program" class="nav-link text-white hover:text-fantasy-gold transition-colors">PROGRAM</a>
                     
                     <!-- Karakter Dropdown -->
                     <div class="relative group">
@@ -312,10 +358,10 @@
                         </a>
                         <div class="absolute left-[-80%] mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-fantasy-gold/20">
                             <div class="py-2">
-                                <a href="#wahana" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">DUNIA</a>
+                                <a href="#wahana" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">WAHANA</a>
                                 <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">KOMIK</a>
                                 <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">NOVEL</a>
-                                <a href="#games" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">GAME</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">GAME</a>
                             </div>
                         </div>
                     </div>
@@ -345,7 +391,7 @@
             <div id="mobile-menu" class="md:hidden mt-4 hidden glass-effect rounded-lg p-4 border border-fantasy-gold/20">
                 <div class="flex flex-col space-y-3">
                     <a href="index.html" class="hover:text-fantasy-gold transition-colors py-2">BERANDA</a>
-                    <a href="#news" class="hover:text-fantasy-gold transition-colors py-2">BERITA</a>
+                    <a href="#program" class="hover:text-fantasy-gold transition-colors py-2">PROGRAM</a>
                     
                     <div class="py-2">
                         <a href="#characters" class="hover:text-fantasy-gold transition-colors font-semibold">KARAKTER</a>
@@ -388,10 +434,10 @@
                     <div class="py-2">
                         <a href="javascript:void(0);" class="hover:text-fantasy-gold transition-colors font-semibold">INFORMASI</a>
                         <div class="mt-2 ml-4 flex flex-col space-y-2">
-                            <a href="#wahana" class="text-sm hover:text-fantasy-gold">DUNIA</a>
+                            <a href="#wahana" class="text-sm hover:text-fantasy-gold">WAHANA</a>
                             <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">KOMIK</a>
                             <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">NOVEL</a>
-                            <a href="#games" class="text-sm hover:text-fantasy-gold">GAME</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">GAME</a>
                         </div>
                     </div>
                     
@@ -456,33 +502,7 @@
             "
             style="cursor: pointer;">
             <div class="animate-bounce">
-                <!-- <i class="fas fa-chevron-down text-fantasy-gold text-2xl"></i> -->
                 <i class="fas fa-angle-double-down text-fantasy-gold text-2xl"></i>
-            </div>
-        </div>
-    </section>
-
-    <!-- Statistics Section -->
-    <section class="py-12 bg-fantasy-gradient relative" aria-labelledby="stats-heading">
-        <div class="container mx-auto px-4 relative z-10">
-            <h2 id="stats-heading" class="sr-only">Statistik PATRION</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div class="fade-in">
-                    <div class="text-3xl md:text-4xl font-bold text-fantasy-gold mb-2 counter" data-count="8">0</div>
-                    <div class="text-gray-300 text-sm md:text-base">Karakter</div>
-                </div>
-                <div class="fade-in">
-                    <div class="text-3xl md:text-4xl font-bold text-fantasy-gold mb-2 counter" data-count="0">0</div>
-                    <div class="text-gray-300 text-sm md:text-base">Game</div>
-                </div>
-                <div class="fade-in">
-                    <div class="text-3xl md:text-4xl font-bold text-fantasy-gold mb-2 counter" data-count="4">0</div>
-                    <div class="text-gray-300 text-sm md:text-base">Wahana</div>
-                </div>
-                <div class="fade-in">
-                    <div class="text-3xl md:text-4xl font-bold text-fantasy-gold mb-2 counter" data-count="0">0</div>
-                    <div class="text-gray-300 text-sm md:text-base">Pemain Aktif</div>
-                </div>
             </div>
         </div>
     </section>
@@ -491,361 +511,275 @@
     <section class="py-16 relative" id="characters">
         <div class="absolute inset-0 bg-fantasy-dark opacity-30"></div>
         <div class="container mx-auto px-4 relative z-10">
-            <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">KARAKTER PATRION</h2>
-            <p class="text-gray-300 text-center mb-12 max-w-xl mx-auto">
-                Jelajahi wahana fantasi Nusantara dan temukan para Patrion bersama dengan kekuatan, artefak dan kisah yang unik
-            </p>
+            <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">KARAKTER</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                <!-- KUNNA -->
-                <div id="kunna" class="character-card rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.03] transition-transform duration-500 floating hover:shadow-fantasy-red" id="kunnan">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="assets/images/characters/chara-01.png" alt="Patrion KUNNA" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge text-fire border-fire/50">Api</span>
+            <!-- Swiper Characters -->
+            <div class="swiper characters-swiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 - KUNNA -->
+                    <div class="swiper-slide character-slide">
+                        <div class="character-card rounded-xl overflow-hidden shadow-lg w-full mx-auto h-full">
+                            <div class="relative w-full h-4/5 overflow-hidden">
+                                <img src="assets/images/characters/chara-01.png" alt="PATRION KUNNA" class="w-full h-full object-cover character-image hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="p-4 bg-black/50 backdrop-blur-sm flex justify-center items-center h-1/5">
+                                <h3 class="text-lg font-bold text-white fantasy-font">PATRION KUNNA</h3>
+                            </div>
                         </div>
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/30 px-2 py-1 rounded">Jawa</div>
                     </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion KUNNA</h3>
-                        <p class="text-gray-400 text-sm mb-4">Penguasa api yang membara, mewakili semangat dan budaya Jawa dengan kekuatan destruktif namun terkendali.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-fire font-semibold">🔥 Elemen Api</span>
-                            <button class="text-fire hover:text-red-400 transition-colors">
-                            <i class="fas fa-arrow-right"></i>
-                            </button>
+
+                    <!-- Slide 2 - WABU -->
+                    <div class="swiper-slide character-slide">
+                        <div class="character-card rounded-xl overflow-hidden shadow-lg w-full mx-auto h-full">
+                            <div class="relative w-full h-4/5 overflow-hidden">
+                                <img src="assets/images/characters/chara-02.png" alt="PATRION WABU" class="w-full h-full object-cover character-image hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="p-4 bg-black/50 backdrop-blur-sm flex justify-center items-center h-1/5">
+                                <h3 class="text-lg font-bold text-white fantasy-font">PATRION WABU</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 - ASTA -->
+                    <div class="swiper-slide character-slide">
+                        <div class="character-card rounded-xl overflow-hidden shadow-lg w-full mx-auto h-full">
+                            <div class="relative w-full h-4/5 overflow-hidden">
+                                <img src="assets/images/characters/chara-03.png" alt="PATRION ASTA" class="w-full h-full object-cover character-image hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="p-4 bg-black/50 backdrop-blur-sm flex justify-center items-center h-1/5">
+                                <h3 class="text-lg font-bold text-white fantasy-font">PATRION ASTA</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 - TARAN -->
+                    <div class="swiper-slide character-slide">
+                        <div class="character-card rounded-xl overflow-hidden shadow-lg w-full mx-auto h-full">
+                            <div class="relative w-full h-4/5 overflow-hidden">
+                                <img src="assets/images/characters/chara-04.png" alt="PATRION TARAN" class="w-full h-full object-cover character-image hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="p-4 bg-black/50 backdrop-blur-sm flex justify-center items-center h-1/5">
+                                <h3 class="text-lg font-bold text-white fantasy-font">PATRION TARAN</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 - SANU -->
+                    <div class="swiper-slide character-slide">
+                        <div class="character-card rounded-xl overflow-hidden shadow-lg w-full mx-auto h-full">
+                            <div class="relative w-full h-4/5 overflow-hidden">
+                                <img src="assets/images/characters/chara-05.png" alt="PATRION SANU" class="w-full h-full object-cover character-image hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="p-4 bg-black/50 backdrop-blur-sm flex justify-center items-center h-1/5">
+                                <h3 class="text-lg font-bold text-white fantasy-font">PATRION SANU</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6 - KABI -->
+                    <div class="swiper-slide character-slide">
+                        <div class="character-card rounded-xl overflow-hidden shadow-lg w-full mx-auto h-full">
+                            <div class="relative w-full h-4/5 overflow-hidden">
+                                <img src="assets/images/characters/chara-06.png" alt="PATRION KABI" class="w-full h-full object-cover character-image hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="p-4 bg-black/50 backdrop-blur-sm flex justify-center items-center h-1/5">
+                                <h3 class="text-lg font-bold text-white fantasy-font">PATRION KABI</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7 - ARUN -->
+                    <div class="swiper-slide character-slide">
+                        <div class="character-card rounded-xl overflow-hidden shadow-lg w-full mx-auto h-full">
+                            <div class="relative w-full h-4/5 overflow-hidden">
+                                <img src="assets/images/characters/chara-07.png" alt="PATRION ARUN" class="w-full h-full object-cover character-image hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="p-4 bg-black/50 backdrop-blur-sm flex justify-center items-center h-1/5">
+                                <h3 class="text-lg font-bold text-white fantasy-font">PATRION ARUN</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8 - ANTIS -->
+                    <div class="swiper-slide character-slide">
+                        <div class="character-card rounded-xl overflow-hidden shadow-lg w-full mx-auto h-full">
+                            <div class="relative w-full h-4/5 overflow-hidden">
+                                <img src="assets/images/characters/chara-08.png" alt="PATRION ANTIS" class="w-full h-full object-cover character-image hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="p-4 bg-black/50 backdrop-blur-sm flex justify-center items-center h-1/5">
+                                <h3 class="text-lg font-bold text-white fantasy-font">PATRION ANTIS</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- WABU -->
-                <div id="wabu" class="character-card rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.03] transition-transform duration-500 floating" id="wabu">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="assets/images/characters/chara-02.png" alt="Patrion WABU" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge text-wind border-wind/50">Angin</span>
-                        </div>
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/30 px-2 py-1 rounded">Jakarta</div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion WABU</h3>
-                        <p class="text-gray-400 text-sm mb-4">Pengendali angin yang lincah dan bebas, mencerminkan kecepatan, kreativitas, serta semangat modern ibu kota Jakarta.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-wind font-semibold">🌪️ Elemen Angin</span>
-                            <button class="text-wind hover:text-gray-400 transition-colors">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ASTA -->
-                <div id="asta" class="character-card rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.03] transition-transform duration-500 floating" id="asta">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="assets/images/characters/chara-03.png" alt="Patrion ASTA" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge text-water border-water/50">Air</span>
-                        </div>
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/30 px-2 py-1 rounded">Bali</div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion ASTA</h3>
-                        <p class="text-gray-400 text-sm mb-4">Penjaga air yang tenang dan penuh harmoni, terinspirasi dari keharmonisan budaya dan spiritualitas Bali.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-water font-semibold">💧 Elemen Air</span>
-                            <button class="text-water hover:text-blue-400 transition-colors">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TARAN -->
-                <div id="taran" class="character-card rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.03] transition-transform duration-500 floating" id="taran">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="assets/images/characters/chara-04.png" alt="Patrion TARAN" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge text-earth border-earth/50">Tanah</span>
-                        </div>
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/30 px-2 py-1 rounded">Sumatera</div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion TARAN</h3>
-                        <p class="text-gray-400 text-sm mb-4">Penguasa tanah yang kokoh dan bijaksana, melambangkan kekuatan alam serta keteguhan budaya Sumatera.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-earth font-semibold">🌍 Elemen Tanah</span>
-                            <button class="text-earth hover:text-yellow-400 transition-colors">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SANU -->
-                <div id="sanu" class="character-card rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.03] transition-transform duration-500 floating" id="sanu">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="assets/images/characters/chara-05.png" alt="Patrion SANU" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge text-thunder border-thunder/50">Petir</span>
-                        </div>
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/30 px-2 py-1 rounded">Sulawesi</div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion SANU</h3>
-                        <p class="text-gray-400 text-sm mb-4">Pengendali petir yang energik dan tak terduga, mewakili semangat keberanian dan kecepatan dari tanah Sulawesi.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-thunder font-semibold">⚡ Elemen Petir</span>
-                            <button class="text-thunder hover:text-purple-400 transition-colors">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- KABI -->
-                <div id="kabi" class="character-card rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.03] transition-transform duration-500 floating" id="kabi">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="assets/images/characters/chara-06.png" alt="Patrion KABI" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge text-nature border-nature/50">Alam</span>
-                        </div>
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/30 px-2 py-1 rounded">Papua</div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion KABI</h3>
-                        <p class="text-gray-400 text-sm mb-4">Penjaga alam dan hutan yang bijaksana, terinspirasi dari kekayaan alam dan budaya Papua.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-nature font-semibold">🌿 Elemen Alam</span>
-                            <button class="text-nature hover:text-green-400 transition-colors">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ARUN -->
-                <div id="arun" class="character-card rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.03] transition-transform duration-500 floating" id="arun">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="assets/images/characters/chara-07.png" alt="Patrion ARUN" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge text-light border-light/50 text-gray-800">Cahaya</span>
-                        </div>
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/30 px-2 py-1 rounded">Kalimantan</div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion ARUN</h3>
-                        <p class="text-gray-400 text-sm mb-4">Pembawa cahaya dan harapan, melambangkan kejernihan hati dan kebijaksanaan dari hutan Kalimantan.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-light font-semibold">☀️ Elemen Cahaya</span>
-                            <button class="text-light hover:text-yellow-200 transition-colors">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ANTIS -->
-                <div id="antis" class="character-card rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.03] transition-transform duration-500 floating" id="antis">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="assets/images/characters/chara-08.png" alt="Patrion ANTIS" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge text-dark border-dark/50">Kegelapan</span>
-                        </div>
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/30 px-2 py-1 rounded">Atlantis</div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion ANTIS</h3>
-                        <p class="text-gray-400 text-sm mb-4">Penguasa kegelapan yang misterius, lahir dari peradaban Atlantis yang hilang dan menyimpan rahasia masa lalu.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-dark font-semibold">🌑 Elemen Kegelapan</span>
-                            <button class="text-dark hover:text-gray-400 transition-colors">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+                
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
 
             <!-- Tombol Lihat Semua -->
             <div class="text-center mt-12">
-                <a href="karakter.html" class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
-                    🔎 Lihat Semua Karakter
+                <a href="characters.html" class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+                    🔎 Lihat Semua
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Section Game -->
-    <section class="py-16 relative overflow-hidden" id="games">
+    <!-- Program Section -->
+    <section class="py-16 relative overflow-hidden" id="program">
         <div class="absolute inset-0 bg-fantasy-gradient opacity-90"></div>
-        <div class="container mx-auto px-4 relative z-10">
-            <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">GAME PATRION</h2>
-            <p class="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
-                Jelajahi berbagai pengalaman gaming dengan dunia Patrion melalui berbagai platform dan genre
-            </p>
+        <div class="container mx-auto px-4 relative z-10 mb-5">
+            <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">PROGRAM HOLISTIK</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Game 1 -->
-                <div class="game-card rounded-xl overflow-hidden fade-in" onclick="window.open('game-tcg.html', '_blank');">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="assets/images/games/game-1.jpg" alt="Patrion: Card Battle" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge bg-green-600/80 border-fantasy-gold/50">Strategy</span>
+            <!-- Swiper Program -->
+            <div class="swiper program-swiper mb-12">
+                <div class="swiper-wrapper">
+                    <!-- Program 1 -->
+                    <div class="swiper-slide">
+                        <div class="glass-effect rounded-xl overflow-hidden w-full border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
+                            <div class="relative h-4/5 overflow-hidden">
+                                <img src="assets/images/semesta/Thumbnail-Patrion Movie.png" alt="Film Cinema - Drama Live Action" class="w-full h-full object-cover">
+                                <!-- <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div> -->
+                                <div class="absolute top-4 left-4">
+                                    <span class="element-badge bg-red-600/80 border-fantasy-gold/50">FILM & ANIMATION</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex justify-center items-center h-1/5">
+                                <h3 class="fantasy-font text-lg text-white">Film Cinema - Drama Live Action</h3>
+                            </div>
                         </div>
                     </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion: Card Battle</h3>
-                        <p class="text-gray-400 text-sm mb-4">Game kartu strategi dengan karakter Patrion. Kumpulkan kartu, bangun deck, dan taklukkan musuh dengan kombinasi elemen.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex space-x-2">
-                                <span class="text-xs bg-fantasy-purple/50 px-2 py-1 rounded">Mobile</span>
-                                <span class="text-xs bg-fantasy-blue/50 px-2 py-1 rounded">PC</span>
+
+                    <!-- Program 2 -->
+                    <div class="swiper-slide">
+                        <div class="glass-effect rounded-xl overflow-hidden w-full border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
+                            <div class="relative h-4/5 overflow-hidden">
+                                <img src="assets/images/semesta/Thumbnail-Animasi 3D.png" alt="Animasi 3D" class="w-full h-full object-cover">
+                                <!-- <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div> -->
+                                <div class="absolute top-4 left-4">
+                                    <span class="element-badge bg-green-600/80 border-fantasy-gold/50">OTT</span>
+                                </div>
                             </div>
-                            <button class="text-fantasy-gold hover:text-yellow-300 transition-colors">
-                                <i class="fas fa-download"></i>
-                            </button>
+                            <div class="p-4 flex justify-center items-center h-1/5">
+                                <h3 class="fantasy-font text-lg text-white">Animasi 3D</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 3 -->
+                    <div class="swiper-slide">
+                        <div class="glass-effect rounded-xl overflow-hidden w-full border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
+                            <div class="relative h-4/5 overflow-hidden">
+                                <img src="assets/images/semesta/Thumbnail-Kunna Bercerita.png" alt="Kunna Bercerita" class="w-full h-full object-cover">
+                                <!-- <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div> -->
+                                <div class="absolute top-4 left-4">
+                                    <span class="element-badge bg-blue-600/80 border-fantasy-gold/50">DIGITAL</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex justify-center items-center h-1/5">
+                                <h3 class="fantasy-font text-lg text-white">Kunna Bercerita</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 4 -->
+                    <div class="swiper-slide">
+                        <div class="glass-effect rounded-xl overflow-hidden w-full border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
+                            <div class="relative h-4/5 overflow-hidden">
+                                <img src="assets/images/semesta/Thumbnail-Travel Show.png" alt="Travel Show" class="w-full h-full object-cover">
+                                <!-- <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div> -->
+                                <div class="absolute top-4 left-4">
+                                    <span class="element-badge bg-purple-600/80 border-fantasy-gold/50">TV</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex justify-center items-center h-1/5">
+                                <h3 class="fantasy-font text-lg text-white">Travel Show</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 5 -->
+                    <div class="swiper-slide">
+                        <div class="glass-effect rounded-xl overflow-hidden w-full border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
+                            <div class="relative h-4/5 overflow-hidden">
+                                <img src="assets/images/semesta/Thumbnail-Filler.png" alt="Filler" class="w-full h-full object-cover">
+                                <!-- <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div> -->
+                                <div class="absolute top-4 left-4">
+                                    <span class="element-badge bg-yellow-600/80 border-fantasy-gold/50">OTT</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex justify-center items-center h-1/5">
+                                <h3 class="fantasy-font text-lg text-white">Filler</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 6 -->
+                    <div class="swiper-slide">
+                        <div class="glass-effect rounded-xl overflow-hidden w-full border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
+                            <div class="relative h-4/5 overflow-hidden">
+                                <img src="assets/images/semesta/Thumbnail-Motion Graphics 2d.png" alt="Motion Graphic 2D" class="w-full h-full object-cover">
+                                <!-- <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div> -->
+                                <div class="absolute top-4 left-4">
+                                    <span class="element-badge bg-yellow-600/80 border-fantasy-gold/50">DIGITAL</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex justify-center items-center h-1/5">
+                                <h3 class="fantasy-font text-lg text-white">Motion Graphic 2D</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 7 -->
+                    <div class="swiper-slide">
+                        <div class="glass-effect rounded-xl overflow-hidden w-full border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
+                            <div class="relative h-4/5 overflow-hidden">
+                                <img src="assets/images/semesta/Thumbnail-Podcast Patrionia.png" alt="Podcast Patronia" class="w-full h-full object-cover">
+                                <!-- <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div> -->
+                                <div class="absolute top-4 left-4">
+                                    <span class="element-badge bg-yellow-600/80 border-fantasy-gold/50">DIGITAL</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex justify-center items-center h-1/5">
+                                <h3 class="fantasy-font text-lg text-white">Podcast Patronia</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 8 -->
+                    <div class="swiper-slide">
+                        <div class="glass-effect rounded-xl overflow-hidden w-full border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
+                            <div class="relative h-4/5 overflow-hidden">
+                                <img src="assets/images/semesta/Thumbnail-Motion Comics.png" alt="Motion Comics" class="w-full h-full object-cover">
+                                <!-- <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div> -->
+                                <div class="absolute top-4 left-4">
+                                    <span class="element-badge bg-yellow-600/80 border-fantasy-gold/50">DIGITAL</span>
+                                </div>
+                            </div>
+                            <div class="p-4 flex justify-center items-center h-1/5">
+                                <h3 class="fantasy-font text-lg text-white">Motion Comics</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Game 2 -->
-                <div class="game-card rounded-xl overflow-hidden fade-in">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="assets/images/games/game-2.jpg" alt="Patrion: Arena Champions" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge bg-red-600/80 border-fantasy-gold/50">Action</span>
-                        </div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion: Arena Champions</h3>
-                        <p class="text-gray-400 text-sm mb-4">Game pertarungan real-time dengan karakter Patrion. Bentuk strategi dan taklukkan arena dengan kekuatan elemen.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex space-x-2">
-                                <span class="text-xs bg-fantasy-blue/50 px-2 py-1 rounded">PC</span>
-                                <span class="text-xs bg-green-600/50 px-2 py-1 rounded">Xbox</span>
-                                <span class="text-xs bg-blue-600/50 px-2 py-1 rounded">PS5</span>
-                            </div>
-                            <button class="text-fantasy-gold hover:text-yellow-300 transition-colors">
-                                <i class="fas fa-download"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Game 3 -->
-                <div class="game-card rounded-xl overflow-hidden fade-in">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="assets/images/games/game-3.jpg" alt="Patrion: Puzzle Elements" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge bg-yellow-600/80 border-fantasy-gold/50">Puzzle</span>
-                        </div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion: Puzzle Elements</h3>
-                        <p class="text-gray-400 text-sm mb-4">Game puzzle strategis dengan tema elemen Patrion. Selesaikan tantangan dan buka cerita tersembunyi setiap karakter.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex space-x-2">
-                                <span class="text-xs bg-fantasy-purple/50 px-2 py-1 rounded">Mobile</span>
-                                <span class="text-xs bg-fantasy-blue/50 px-2 py-1 rounded">Tablet</span>
-                            </div>
-                            <button class="text-fantasy-gold hover:text-yellow-300 transition-colors">
-                                <i class="fas fa-download"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Game 4 -->
-                <div class="game-card rounded-xl overflow-hidden fade-in">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="assets/images/games/game-4.jpg" alt="Patrion: VR Experience" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge bg-purple-600/80 border-fantasy-gold/50">VR</span>
-                        </div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion: VR Experience</h3>
-                        <p class="text-gray-400 text-sm mb-4">Pengalaman virtual reality yang imersif. Rasakan kekuatan elemen dan jelajahi dunia Patrion secara langsung.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex space-x-2">
-                                <span class="text-xs bg-purple-600/50 px-2 py-1 rounded">VR</span>
-                                <span class="text-xs bg-fantasy-blue/50 px-2 py-1 rounded">PC</span>
-                            </div>
-                            <button class="text-fantasy-gold hover:text-yellow-300 transition-colors">
-                                <i class="fas fa-download"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Game 5 -->
-                <div class="game-card rounded-xl overflow-hidden fade-in">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="assets/images/games/game-5.jpg" alt="Patrion: Elemental Quest" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge bg-fantasy-purple/80 border-fantasy-gold/50">RPG</span>
-                        </div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion: Elemental Quest</h3>
-                        <p class="text-gray-400 text-sm mb-4">Game RPG petualangan epik di dunia Patrion. Kumpulkan karakter, tingkatkan kemampuan, dan jelajahi misteri elemen.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex space-x-2">
-                                <span class="text-xs bg-fantasy-blue/50 px-2 py-1 rounded">PC</span>
-                                <span class="text-xs bg-fantasy-purple/50 px-2 py-1 rounded">Mobile</span>
-                            </div>
-                            <button class="text-fantasy-gold hover:text-yellow-300 transition-colors">
-                                <i class="fas fa-download"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Game 6 -->
-                <div class="game-card rounded-xl overflow-hidden fade-in">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="assets/images/games/game-6.jpg" alt="Patrion: Racing Elements" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute top-4 left-4">
-                            <span class="element-badge bg-blue-600/80 border-fantasy-gold/50">Racing</span>
-                        </div>
-                    </div>
-                    <div class="p-6 bg-black/50 backdrop-blur-sm">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">Patrion: Racing Elements</h3>
-                        <p class="text-gray-400 text-sm mb-4">Game balap dengan kekuatan elemen. Gunakan kemampuan karakter untuk memenangkan perlombaan di berbagai trek.</p>
-                        <div class="flex justify-between items-center">
-                            <div class="flex space-x-2">
-                                <span class="text-xs bg-green-600/50 px-2 py-1 rounded">Xbox</span>
-                                <span class="text-xs bg-blue-600/50 px-2 py-1 rounded">PS5</span>
-                                <span class="text-xs bg-fantasy-blue/50 px-2 py-1 rounded">PC</span>
-                            </div>
-                            <button class="text-fantasy-gold hover:text-yellow-300 transition-colors">
-                                <i class="fas fa-download"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
 
-            <!-- Tombol Lihat Semua Game -->
+            <!-- Tombol Lihat Semua -->
             <div class="text-center mt-12">
-                <a href="games.html" class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
-                    🎮 Lihat Semua Game
+                <a href="semesta.html" class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+                    🔎 Lihat Semua
                 </a>
             </div>
         </div>
@@ -856,167 +790,10 @@
         <div class="absolute inset-0 bg-fantasy-dark opacity-95"></div>
         <div class="container mx-auto px-4 relative z-10">
             <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">WAHANA PATRION</h2>
-            <p class="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
-                Jelajahi peta dunia Patrion yang penuh dengan misteri, petualangan, dan keajaiban elemen
-            </p>
 
-            <div class="glass-effect rounded-2xl p-8 border border-fantasy-gold/20 mb-12">
-                <div class="flex flex-col lg:flex-row items-center">
-                    <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
-                        <h3 class="fantasy-font text-2xl gold-text font-semibold mb-4">Peta Dunia Patrion</h3>
-                        <p class="text-gray-300 mb-6">
-                            Dunia Patrion terbagi menjadi delapan wilayah utama, masing-masing dikuasai oleh Patrion dengan elemen yang berbeda. 
-                            Setiap wilayah memiliki budaya, landscape, dan tantangan unik yang mencerminkan kekuatan elemen penguasanya.
-                        </p>
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-fire mr-2"></div>
-                                <span class="text-sm text-gray-300">Jawa - Wilayah Api</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-wind mr-2"></div>
-                                <span class="text-sm text-gray-300">Jakarta - Wilayah Angin</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-water mr-2"></div>
-                                <span class="text-sm text-gray-300">Bali - Wilayah Air</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-earth mr-2"></div>
-                                <span class="text-sm text-gray-300">Sumatera - Wilayah Tanah</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-thunder mr-2"></div>
-                                <span class="text-sm text-gray-300">Sulawesi - Wilayah Petir</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-nature mr-2"></div>
-                                <span class="text-sm text-gray-300">Papua - Wilayah Alam</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-light mr-2"></div>
-                                <span class="text-sm text-gray-300">Kalimantan - Wilayah Cahaya</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-dark mr-2"></div>
-                                <span class="text-sm text-gray-300">Atlantis - Wilayah Kegelapan</span>
-                            </div>
-                        </div>
-                        <button class="bg-gold-gradient hover:opacity-90 text-fantasy-dark font-bold py-2 px-6 rounded transition-all transform hover:scale-105">
-                            Jelajahi Peta
-                        </button>
-                    </div>
-                    <div class="lg:w-1/2">
-                        <div class="relative rounded-xl overflow-hidden border-2 border-fantasy-gold/30 shadow-2xl">
-                            <img src="assets/images/wahana_patrion.png" alt="Peta Wahana Patrion" class="w-full h-auto transition-transform duration-700 hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Wahana 1 -->
-                <div class="glass-effect rounded-xl p-6 border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-fire flex items-center justify-center mr-4">
-                            <span class="text-white text-xl">🔥</span>
-                        </div>
-                        <h3 class="fantasy-font text-xl text-white">Gunung Api KUNNA</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">Wahana petualangan di jantung wilayah api. Hadapi tantangan lava dan teka-teki api untuk membuktikan keberanianmu.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-fire text-sm font-semibold">Tingkat Kesulitan: Sedang</span>
-                        <button class="text-fire hover:text-red-400 transition-colors">
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Wahana 2 -->
-                <div class="glass-effect rounded-xl p-6 border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-water flex items-center justify-center mr-4">
-                            <span class="text-white text-xl">💧</span>
-                        </div>
-                        <h3 class="fantasy-font text-xl text-white">Istana Air ASTA</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">Jelajahi istana bawah air yang penuh dengan misteri dan keindahan. Selesaikan puzzle air untuk membuka rahasia tersembunyi.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-water text-sm font-semibold">Tingkat Kesulitan: Mudah</span>
-                        <button class="text-water hover:text-blue-400 transition-colors">
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Wahana 3 -->
-                <div class="glass-effect rounded-xl p-6 border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-thunder flex items-center justify-center mr-4">
-                            <span class="text-white text-xl">⚡</span>
-                        </div>
-                        <h3 class="fantasy-font text-xl text-white">Menara Petir SANU</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">Naik ke puncak menara yang diselimuti petir. Uji refleks dan kecepatanmu dalam menghadapi tantangan berbahaya.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-thunder text-sm font-semibold">Tingkat Kesulitan: Sulit</span>
-                        <button class="text-thunder hover:text-purple-400 transition-colors">
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Wahana 4 -->
-                <div class="glass-effect rounded-xl p-6 border border-fantasy-gold/20 hover:border-fantasy-gold/50 transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-nature flex items-center justify-center mr-4">
-                            <span class="text-white text-xl">🌿</span>
-                        </div>
-                        <h3 class="fantasy-font text-xl text-white">Hutan Alam KABI</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">Jelajahi hutan purba yang penuh dengan kehidupan dan misteri. Temukan jalan melalui labirin alam yang selalu berubah.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-nature text-sm font-semibold">Tingkat Kesulitan: Sedang</span>
-                        <button class="text-nature hover:text-green-400 transition-colors">
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- News Section -->
-    <section class="py-16 relative overflow-hidden" id="news">
-        <div class="absolute inset-0 bg-fantasy-gradient opacity-90"></div>
-        <div class="container mx-auto px-4 relative z-10 mb-5">
-            <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">Berita PATRION</h2>
-
-            <div class="flex flex-col md:flex-row items-center glass-effect rounded-2xl p-8 border border-fantasy-gold/20 mb-8">
-                <div class="md:w-3/5 mb-8 md:mb-0 md:pr-8">
-                    <h2 class="fantasy-font text-3xl font-bold mb-4 text-white">WAHANA PATRION</h2>
-                    <h3 class="fantasy-font text-2xl gold-text font-semibold mb-4">Patrion KUNNA - Festival Api Patrion</h3>
-                    <p class="text-gray-300 mb-6">Jelajahi petualangan epik di wahana Patrion. Temukan rahasia tersembunyi, hadapi tantangan baru bersama para Patrion, dan kumpulkan hadiah eksklusif dalam event terbatas pada Festival Api Patrion.</p>
-                    <button class="bg-gold-gradient hover:opacity-90 text-fantasy-dark font-bold py-2 px-6 rounded transition-all transform hover:scale-105">
-                        Lihat Selengkapnya
-                    </button>
-                </div>
-                <div class="md:w-2/5 bg-gradient-to-br from-fantasy-purple to-fantasy-blue h-64 rounded-lg flex items-center justify-center border border-fantasy-gold/30 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-[url('assets/images/wahana_patrion.png')] bg-cover bg-center opacity-20"></div>
-                    <div class="text-center relative z-10">
-                        <i class="fas fa-map-marked-alt text-4xl text-fantasy-gold mb-2"></i>
-                        <span class="gold-text block fantasy-font text-xl">PETA DUNIA PATRION</span>
-                        <p class="text-gray-300 text-sm mt-2">Jelajahi wilayah dan temukan harta karun tersembunyi</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tombol Lihat Semua -->
-            <div class="text-center mt-12">
-                <a href="berita.html" class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
-                    🔎 Lihat Semua Berita
-                </a>
+            <!-- Full Wahana Image -->
+            <div class="rounded-2xl overflow-hidden border-2 border-fantasy-gold/80 shadow-2xl">
+                <img src="assets/images/wahana_patrion.png" alt="Peta Wahana Patrion" class="w-full h-full object-cover">
             </div>
         </div>
     </section>
@@ -1038,7 +815,7 @@
                         <a href="#characters" class="text-gray-400 hover:text-fantasy-gold transition-colors">Karakter</a>
                         <a href="#games" class="text-gray-400 hover:text-fantasy-gold transition-colors">Game</a>
                         <a href="#wahana" class="text-gray-400 hover:text-fantasy-gold transition-colors">Wahana</a>
-                        <a href="#news" class="text-gray-400 hover:text-fantasy-gold transition-colors">Berita</a>
+                        <a href="#program" class="text-gray-400 hover:text-fantasy-gold transition-colors">Program</a>
                     </div>
                 </div>
                 
@@ -1100,6 +877,9 @@
         </div>
     </div>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <script>
         // Mobile menu toggle
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
@@ -1107,7 +887,7 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Smooth scroll untuk navigasi karakter
+        // Smooth scroll untuk navigasi
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1150,38 +930,6 @@
                 modal.classList.add('hidden');
             }
         });
-
-        // Statistics counter animation
-        function animateCounter() {
-            const counters = document.querySelectorAll('.counter[data-count]');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const counter = entry.target;
-                        const target = +counter.dataset.count;
-                        const duration = 2000;
-                        const step = target / (duration / 16);
-                        let current = 0;
-                        
-                        const timer = setInterval(() => {
-                            current += step;
-                            if (current >= target) {
-                                counter.textContent = target.toLocaleString();
-                                clearInterval(timer);
-                            } else {
-                                counter.textContent = Math.floor(current).toLocaleString();
-                            }
-                        }, 16);
-                        
-                        observer.unobserve(counter);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            counters.forEach(counter => observer.observe(counter));
-        }
-
-        animateCounter();
 
         // Particle background effect
         document.addEventListener('DOMContentLoaded', function() {
@@ -1241,23 +989,67 @@
                 canvas.height = window.innerHeight;
             });
 
-            // Animasi fade in untuk game cards
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+            // Initialize Swiper sliders
+            const swiperConfig = {
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                speed: 800,
+                grabCursor: true,
+                spaceBetween: 20,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 15
+                    },
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 25
+                    }
+                }
             };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                    }
-                });
-            }, observerOptions);
+            // Characters Swiper - 4 slides di desktop
+            const charactersSwiper = new Swiper('.characters-swiper', {
+                ...swiperConfig,
+                autoplay: {
+                    delay: 2500,
+                },
+            });
 
-            // Observe semua game cards
-            document.querySelectorAll('.game-card').forEach(card => {
-                observer.observe(card);
+            // Program Swiper
+            const programSwiper = new Swiper('.program-swiper', {
+                ...swiperConfig,
+                autoplay: {
+                    delay: 4000,
+                },
+            });
+
+            // Pause autoplay on hover untuk semua swiper
+            const allSwipers = [charactersSwiper, programSwiper];
+            allSwipers.forEach(swiper => {
+                if (swiper && swiper.el) {
+                    swiper.el.addEventListener('mouseenter', () => {
+                        swiper.autoplay.stop();
+                    });
+                    swiper.el.addEventListener('mouseleave', () => {
+                        swiper.autoplay.start();
+                    });
+                }
             });
         });
     </script>
