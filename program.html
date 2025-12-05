@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Holistik - PATRION Universe</title>
+    <meta name="description" content="Jelajahi seluruh program multimedia PATRION - dari film cinema, animasi 3D, hingga konten digital eksklusif">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Program Holistik - PATRION Universe">
+    <meta property="og:description" content="Ekosistem konten multimedia terintegrasi dari dunia PATRION">
+    <meta property="og:image" content="assets/images/program-og.jpg">
+    <meta property="og:url" content="https://patrion.com/program">
+    
+    <!-- CSS & Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --fantasy-dark: #0f172a;
+            --fantasy-gold: #fbbf24;
+            --fantasy-purple: #5b21b6;
+            --fantasy-blue: #1e3a8a;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        .fantasy-font {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .gold-text {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 191, 36, 0.1);
+        }
+        
+        .program-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(251, 191, 36, 0.15);
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(251, 191, 36, 0.4);
+            box-shadow: 0 20px 40px rgba(123, 97, 255, 0.3);
+        }
+        
+        .platform-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .platform-cinema { background: rgba(220, 38, 38, 0.2); border: 1px solid rgba(220, 38, 38, 0.4); }
+        .platform-ott { background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); }
+        .platform-digital { background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.4); }
+        .platform-tv { background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); }
+        
+        .status-badge {
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .status-upcoming { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .status-released { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .status-production { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #0f172a;
+            border-color: #fbbf24;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: #fbbf24;
+            border-radius: 50%;
+            border: 3px solid #0f172a;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 12px;
+            width: 2px;
+            height: calc(100% + 2rem);
+            background: rgba(251, 191, 36, 0.3);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            border-radius: 3px;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border-radius: 5px;
+        }
+        
+        /* Video thumbnail hover effect */
+        .video-thumbnail {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .video-thumbnail::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(251, 191, 36, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #0f172a;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .video-thumbnail:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .video-thumbnail:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.8);
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#fbbf24',
+                        'fantasy-blue': '#1e3a8a',
+                        'fantasy-purple': '#5b21b6',
+                        'fantasy-dark': '#0f172a',
+                        'fantasy-gold': '#fbbf24',
+                    },
+                    backgroundImage: {
+                        'fantasy-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #5b21b6 50%, #0f172a 100%)',
+                        'gold-gradient': 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="relative bg-black">
+
+    <!-- Header Navigation -->
+    <header class="glass-effect sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="h-10">
+                        <span class="fantasy-font text-white text-xl ml-2">PROGRAM</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-white hover:text-fantasy-gold transition-colors">BERANDA</a>
+                    <a href="#program-list" class="text-white hover:text-fantasy-gold transition-colors">PROGRAM</a>
+                    <a href="#roadmap" class="text-white hover:text-fantasy-gold transition-colors">ROADMAP</a>
+                    <a href="#production" class="text-white hover:text-fantasy-gold transition-colors">PRODUCTION</a>
+                    <a href="characters.html" class="text-white hover:text-fantasy-gold transition-colors">KARAKTER</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden mt-4 hidden glass-effect rounded-lg p-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="hover:text-fantasy-gold transition-colors py-2">BERANDA</a>
+                    <a href="#program-list" class="hover:text-fantasy-gold transition-colors py-2">PROGRAM</a>
+                    <a href="#roadmap" class="hover:text-fantasy-gold transition-colors py-2">ROADMAP</a>
+                    <a href="#production" class="hover:text-fantasy-gold transition-colors py-2">PRODUCTION</a>
+                    <a href="characters.html" class="hover:text-fantasy-gold transition-colors py-2">KARAKTER</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-20 overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-fantasy-purple/20 via-fantasy-blue/10 to-transparent"></div>
+            <div class="absolute top-0 right-0 w-96 h-96 bg-fantasy-gold/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-fantasy-purple/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="fantasy-font text-5xl md:text-6xl font-bold text-white mb-6">
+                    <span class="gold-text">Program Holistik</span> PATRION
+                </h1>
+                
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    Selamat datang di ekosistem konten multimedia terintegrasi dari alam semesta PATRION. 
+                    Jelajahi berbagai platform dan format yang menghidupkan dunia fantasi Nusantara.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToSection('program-list')" 
+                            class="bg-gold-gradient hover:opacity-90 text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-play-circle mr-2"></i> Jelajahi Program
+                    </button>
+                    <button onclick="scrollToSection('trailers')"
+                            class="border-2 border-fantasy-gold text-fantasy-gold hover:bg-fantasy-gold hover:text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all">
+                        <i class="fas fa-film mr-2"></i> Tonton Trailer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Stats -->
+    <section class="py-12 glass-effect">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-fantasy-gold mb-2">8+</div>
+                    <div class="text-gray-400">Program Aktif</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-fantasy-gold mb-2">4</div>
+                    <div class="text-gray-400">Platform</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-fantasy-gold mb-2">120+</div>
+                    <div class="text-gray-400">Episode</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-fantasy-gold mb-2">5M+</div>
+                    <div class="text-gray-400">Total Views</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Filters -->
+    <section class="py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-3 justify-center mb-8">
+                <button class="filter-btn active text-white py-2 px-6 rounded-full" data-filter="all">
+                    Semua Program
+                </button>
+                <button class="filter-btn text-white py-2 px-6 rounded-full" data-filter="cinema">
+                    <i class="fas fa-film mr-2"></i> Cinema
+                </button>
+                <button class="filter-btn text-white py-2 px-6 rounded-full" data-filter="ott">
+                    <i class="fas fa-tv mr-2"></i> OTT/Streaming
+                </button>
+                <button class="filter-btn text-white py-2 px-6 rounded-full" data-filter="digital">
+                    <i class="fas fa-globe mr-2"></i> Digital
+                </button>
+                <button class="filter-btn text-white py-2 px-6 rounded-full" data-filter="tv">
+                    <i class="fas fa-satellite-dish mr-2"></i> TV
+                </button>
+            </div>
+            
+            <!-- Sort Options -->
+            <div class="flex justify-end mb-6">
+                <select id="sortSelect" class="glass-effect text-white py-2 px-4 rounded-lg border border-fantasy-gold/20">
+                    <option value="release">Urutkan: Release Date</option>
+                    <option value="popularity">Popularitas</option>
+                    <option value="az">A-Z</option>
+                    <option value="za">Z-A</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program List -->
+    <section id="program-list" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="fantasy-font text-3xl font-bold text-white mb-12 text-center">Semua Program</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 program-container">
+                <!-- Program cards akan diisi oleh JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Trailers -->
+    <section id="trailers" class="py-16 relative">
+        <div class="absolute inset-0 bg-fantasy-gradient opacity-20"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="fantasy-font text-3xl font-bold text-white mb-12 text-center">Trailer Eksklusif</h2>
+            
+            <div class="swiper trailers-swiper">
+                <div class="swiper-wrapper">
+                    <!-- Trailer slides will be populated by JS -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Release Roadmap -->
+    <section id="roadmap" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="fantasy-font text-3xl font-bold text-white mb-12 text-center">Roadmap Release 2024-2025</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="timeline">
+                    <!-- Timeline items will be populated by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Production Studios -->
+    <section id="production" class="py-16 glass-effect">
+        <div class="container mx-auto px-4">
+            <h2 class="fantasy-font text-3xl font-bold text-white mb-12 text-center">Studio Produksi</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-xl bg-fantasy-dark/50">
+                    <div class="text-fantasy-gold text-4xl mb-4">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="fantasy-font text-xl text-white mb-2">Patrion Animation Studio</h3>
+                    <p class="text-gray-400">Spesialisasi dalam animasi 3D dan visual effects untuk seluruh konten PATRION.</p>
+                </div>
+                
+                <div class="text-center p-6 rounded-xl bg-fantasy-dark/50">
+                    <div class="text-fantasy-gold text-4xl mb-4">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="fantasy-font text-xl text-white mb-2">Nusantara Cinema</h3>
+                    <p class="text-gray-400">Produksi film live action dengan teknologi cinematic terbaru.</p>
+                </div>
+                
+                <div class="text-center p-6 rounded-xl bg-fantasy-dark/50">
+                    <div class="text-fantasy-gold text-4xl mb-4">
+                        <i class="fas fa-podcast"></i>
+                    </div>
+                    <h3 class="fantasy-font text-xl text-white mb-2">Digital Media Hub</h3>
+                    <p class="text-gray-400">Produksi konten digital, podcast, dan motion graphics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-fantasy-gold/20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <img src="assets/images/logo-patrion.png" alt="PATRION" class="h-10">
+                    <p class="text-gray-400 text-sm mt-2">© 2024 PATRION Universe. All rights reserved.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">
+                        <i class="fab fa-spotify text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 bg-black/90 hidden z-50 flex items-center justify-center">
+        <div class="relative w-[90%] max-w-4xl">
+            <button id="closeModal" class="absolute -top-12 right-0 text-white text-2xl hover:text-fantasy-gold">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="aspect-video bg-black rounded-lg overflow-hidden">
+                <video id="modalVideo" class="w-full h-full" controls></video>
+            </div>
+            <div id="videoInfo" class="mt-4 text-white hidden">
+                <h3 class="text-xl font-bold" id="videoTitle"></h3>
+                <p class="text-gray-300" id="videoDesc"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Program Data
+        const programs = [
+            {
+                id: 1,
+                title: "Film Cinema - Drama Live Action",
+                description: "Film epik live action yang mengangkat mitologi Nusantara dengan teknologi visual effects terkini.",
+                image: "assets/images/semesta/Thumbnail-Patrion Movie.png",
+                platform: "cinema",
+                status: "upcoming",
+                releaseDate: "Q4 2024",
+                duration: "120 menit",
+                rating: "PG-13",
+                director: "Abdurrahman GM",
+                budget: "$15M",
+                trailer: "assets/video/trailer-cinema.mp4",
+                episodes: 1,
+                views: "0"
+            },
+            {
+                id: 2,
+                title: "Animasi 3D Series",
+                description: "Serial animasi 3D dengan teknologi CGI terbaru, mengikuti petualangan karakter PATRION.",
+                image: "assets/images/semesta/Thumbnail-Animasi 3D.png",
+                platform: "ott",
+                status: "released",
+                releaseDate: "Q3 2024",
+                duration: "22 menit/episode",
+                rating: "PG",
+                director: "Siti Nurhaliza",
+                budget: "$8M",
+                trailer: "assets/video/trailer-animasi.mp4",
+                episodes: 24,
+                views: "2.5M"
+            },
+            {
+                id: 3,
+                title: "Kunna Bercerita",
+                description: "Konten storytelling digital dengan karakter Kunna sebagai narator cerita-cerita fantasi.",
+                image: "assets/images/semesta/Thumbnail-Kunna Bercerita.png",
+                platform: "digital",
+                status: "released",
+                releaseDate: "Q2 2024",
+                duration: "10-15 menit",
+                rating: "G",
+                director: "Budi Santoso",
+                budget: "$500K",
+                trailer: "assets/video/trailer-kunna.mp4",
+                episodes: 36,
+                views: "1.2M"
+            },
+            {
+                id: 4,
+                title: "Travel Show: Jelajah Patrion",
+                description: "Program perjalanan eksplorasi lokasi-lokasi inspirasi dunia PATRION di seluruh Nusantara.",
+                image: "assets/images/semesta/Thumbnail-Travel Show.png",
+                platform: "tv",
+                status: "production",
+                releaseDate: "Q1 2025",
+                duration: "45 menit",
+                rating: "PG",
+                director: "Ahmad Rizki",
+                budget: "$3M",
+                trailer: "assets/video/trailer-travel.mp4",
+                episodes: 12,
+                views: "0"
+            },
+            {
+                id: 5,
+                title: "Filler Series",
+                description: "Konten pendek dan komedi yang melengkapi cerita utama dengan gaya lebih ringan.",
+                image: "assets/images/semesta/Thumbnail-Filler.png",
+                platform: "ott",
+                status: "released",
+                releaseDate: "Q3 2024",
+                duration: "5-8 menit",
+                rating: "PG",
+                director: "Dewi Lestari",
+                budget: "$1.2M",
+                trailer: "assets/video/trailer-filler.mp4",
+                episodes: 48,
+                views: "800K"
+            },
+            {
+                id: 6,
+                title: "Motion Graphic 2D",
+                description: "Konten edukatif dengan animasi motion graphic 2D yang menjelaskan lore dunia PATRION.",
+                image: "assets/images/semesta/Thumbnail-Motion Graphics 2d.png",
+                platform: "digital",
+                status: "released",
+                releaseDate: "Q2 2024",
+                duration: "3-5 menit",
+                rating: "G",
+                director: "Citra Kirana",
+                budget: "$300K",
+                trailer: "assets/video/trailer-motion.mp4",
+                episodes: 24,
+                views: "500K"
+            },
+            {
+                id: 7,
+                title: "Podcast Patrionia",
+                description: "Audio series dengan diskusi mendalam tentang karakter, cerita, dan produksi PATRION.",
+                image: "assets/images/semesta/Thumbnail-Podcast Patrionia.png",
+                platform: "digital",
+                status: "released",
+                releaseDate: "Q1 2024",
+                duration: "60-90 menit",
+                rating: "PG-13",
+                director: "Rizky Febian",
+                budget: "$200K",
+                trailer: "assets/video/trailer-podcast.mp4",
+                episodes: 52,
+                views: "300K"
+            },
+            {
+                id: 8,
+                title: "Motion Comics",
+                description: "Adaptasi komik dengan animasi terbatas, memberikan pengalaman membaca yang dinamis.",
+                image: "assets/images/semesta/Thumbnail-Motion Comics.png",
+                platform: "digital",
+                status: "production",
+                releaseDate: "Q4 2024",
+                duration: "15-20 menit",
+                rating: "PG",
+                director: "Eko Sutrisno",
+                budget: "$750K",
+                trailer: "assets/video/trailer-comics.mp4",
+                episodes: 18,
+                views: "0"
+            }
+        ];
+
+        // Timeline Data
+        const timelineData = [
+            { quarter: "Q1 2024", title: "Launch: Podcast Patrionia", status: "completed", progress: 100 },
+            { quarter: "Q2 2024", title: "Release: Kunna Bercerita & Motion Graphics", status: "completed", progress: 100 },
+            { quarter: "Q3 2024", title: "Launch: Animasi 3D Season 1 & Filler Series", status: "completed", progress: 100 },
+            { quarter: "Q4 2024", title: "Release: Film Cinema & Motion Comics", status: "in-progress", progress: 65 },
+            { quarter: "Q1 2025", title: "Launch: Travel Show & Animasi 3D Season 2", status: "upcoming", progress: 15 },
+            { quarter: "Q2 2025", title: "Production: AR Experience & Mobile Game", status: "upcoming", progress: 0 }
+        ];
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeProgramPage();
+            setupEventListeners();
+            initializeTrailersSwiper();
+        });
+
+        function initializeProgramPage() {
+            renderProgramCards(programs);
+            renderTimeline();
+            updateStats();
+        }
+
+        function renderProgramCards(programsToRender) {
+            const container = document.querySelector('.program-container');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            programsToRender.forEach(program => {
+                const card = createProgramCard(program);
+                container.appendChild(card);
+            });
+            
+            // Add animation
+            const cards = container.querySelectorAll('.program-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('fade-in-up');
+            });
+        }
+
+        function createProgramCard(program) {
+            const card = document.createElement('div');
+            card.className = `program-card rounded-xl overflow-hidden cursor-pointer program-${program.platform}`;
+            card.dataset.id = program.id;
+            card.dataset.platform = program.platform;
+            
+            // Status badge color
+            let statusClass = '';
+            let statusText = '';
+            switch(program.status) {
+                case 'upcoming': statusClass = 'status-upcoming'; statusText = 'Coming Soon'; break;
+                case 'released': statusClass = 'status-released'; statusText = 'Released'; break;
+                case 'production': statusClass = 'status-production'; statusText = 'In Production'; break;
+            }
+            
+            // Platform badge color
+            let platformClass = '';
+            switch(program.platform) {
+                case 'cinema': platformClass = 'platform-cinema'; break;
+                case 'ott': platformClass = 'platform-ott'; break;
+                case 'digital': platformClass = 'platform-digital'; break;
+                case 'tv': platformClass = 'platform-tv'; break;
+            }
+            
+            card.innerHTML = `
+                <div class="video-thumbnail">
+                    <img src="${program.image}" alt="${program.title}" class="w-full h-48 object-cover transition-transform duration-500">
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="${platformClass} platform-badge">${program.platform.toUpperCase()}</span>
+                        <span class="${statusClass} status-badge">${statusText}</span>
+                    </div>
+                    
+                    <h3 class="fantasy-font text-lg text-white mb-2 line-clamp-2">${program.title}</h3>
+                    <p class="text-gray-400 text-sm mb-4 line-clamp-2">${program.description}</p>
+                    
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>${program.duration}</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="far fa-eye mr-1"></i>
+                            <span>${program.views}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-4 border-t border-gray-800">
+                        <div class="flex justify-between">
+                            <button onclick="event.stopPropagation(); playTrailer(${program.id})" 
+                                    class="text-fantasy-gold hover:text-yellow-300 text-sm font-medium">
+                                <i class="fas fa-play-circle mr-1"></i> Trailer
+                            </button>
+                            <a href="program-detail.html?id=${program.id}" 
+                               class="text-white hover:text-fantasy-gold text-sm font-medium">
+                                Details <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Click event for card
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('button') && !e.target.closest('a')) {
+                    window.location.href = `program-detail.html?id=${program.id}`;
+                }
+            });
+            
+            return card;
+        }
+
+        function renderTimeline() {
+            const timelineContainer = document.querySelector('.timeline');
+            if (!timelineContainer) return;
+            
+            timelineContainer.innerHTML = '';
+            
+            timelineData.forEach(item => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                
+                timelineItem.innerHTML = `
+                    <div class="bg-fantasy-dark/50 p-6 rounded-xl">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="fantasy-font text-fantasy-gold font-bold">${item.quarter}</span>
+                            <span class="text-sm px-3 py-1 rounded-full ${item.status === 'completed' ? 'bg-green-900/30 text-green-400' : 
+                                                                       item.status === 'in-progress' ? 'bg-yellow-900/30 text-yellow-400' : 
+                                                                       'bg-blue-900/30 text-blue-400'}">
+                                ${item.status === 'completed' ? '✅ Selesai' : 
+                                  item.status === 'in-progress' ? '⏳ Dalam Proses' : '🗓️ Mendatang'}
+                            </span>
+                        </div>
+                        <h4 class="text-white font-semibold mb-3">${item.title}</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${item.progress}%"></div>
+                        </div>
+                        <div class="text-right text-sm text-gray-400 mt-1">${item.progress}%</div>
+                    </div>
+                `;
+                
+                timelineContainer.appendChild(timelineItem);
+            });
+        }
+
+        function initializeTrailersSwiper() {
+            const trailerPrograms = programs.filter(p => p.status !== 'upcoming' || p.platform === 'cinema');
+            
+            const swiperContainer = document.querySelector('.trailers-swiper .swiper-wrapper');
+            if (!swiperContainer) return;
+            
+            swiperContainer.innerHTML = '';
+            
+            trailerPrograms.slice(0, 5).forEach(program => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                
+                slide.innerHTML = `
+                    <div class="relative rounded-xl overflow-hidden">
+                        <img src="${program.image}" alt="${program.title}" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 class="fantasy-font text-white text-lg mb-2">${program.title}</h3>
+                            <button onclick="playTrailer(${program.id})" 
+                                    class="bg-fantasy-gold hover:bg-yellow-500 text-fantasy-dark font-bold py-2 px-6 rounded-full transition-all">
+                                <i class="fas fa-play mr-2"></i> Play Trailer
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                swiperContainer.appendChild(slide);
+            });
+            
+            // Initialize Swiper
+            new Swiper('.trailers-swiper', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                speed: 800,
+                grabCursor: true,
+                spaceBetween: 20,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    320: { slidesPerView: 1 },
+                    640: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 }
+                }
+            });
+        }
+
+        function setupEventListeners() {
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    filterPrograms(filter);
+                });
+            });
+            
+            // Sort select
+            const sortSelect = document.getElementById('sortSelect');
+            if (sortSelect) {
+                sortSelect.addEventListener('change', function() {
+                    sortPrograms(this.value);
+                });
+            }
+            
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Video modal
+            const videoModal = document.getElementById('videoModal');
+            const closeModal = document.getElementById('closeModal');
+            
+            if (closeModal) {
+                closeModal.addEventListener('click', () => {
+                    const video = document.getElementById('modalVideo');
+                    video.pause();
+                    videoModal.classList.add('hidden');
+                });
+            }
+            
+            // Close modal on background click
+            if (videoModal) {
+                videoModal.addEventListener('click', (e) => {
+                    if (e.target === videoModal) {
+                        const video = document.getElementById('modalVideo');
+                        video.pause();
+                        videoModal.classList.add('hidden');
+                    }
+                });
+            }
+        }
+
+        function filterPrograms(filter) {
+            let filteredPrograms;
+            
+            if (filter === 'all') {
+                filteredPrograms = programs;
+            } else {
+                filteredPrograms = programs.filter(program => program.platform === filter);
+            }
+            
+            renderProgramCards(filteredPrograms);
+        }
+
+        function sortPrograms(sortBy) {
+            let sortedPrograms = [...programs];
+            
+            switch(sortBy) {
+                case 'release':
+                    sortedPrograms.sort((a, b) => {
+                        // Simple quarter comparison (Q1 < Q2 < Q3 < Q4)
+                        const getQuarterValue = (date) => {
+                            const [q, year] = date.split(' ');
+                            const qNum = parseInt(q.substring(1));
+                            return parseInt(year) * 10 + qNum;
+                        };
+                        return getQuarterValue(a.releaseDate) - getQuarterValue(b.releaseDate);
+                    });
+                    break;
+                    
+                case 'popularity':
+                    sortedPrograms.sort((a, b) => {
+                        const viewsA = parseFloat(a.views.replace('M', '')) * 1000000 || 
+                                     parseFloat(a.views.replace('K', '')) * 1000 || 
+                                     parseInt(a.views);
+                        const viewsB = parseFloat(b.views.replace('M', '')) * 1000000 || 
+                                     parseFloat(b.views.replace('K', '')) * 1000 || 
+                                     parseInt(b.views);
+                        return viewsB - viewsA;
+                    });
+                    break;
+                    
+                case 'az':
+                    sortedPrograms.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                    
+                case 'za':
+                    sortedPrograms.sort((a, b) => b.title.localeCompare(a.title));
+                    break;
+            }
+            
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            if (activeFilter !== 'all') {
+                sortedPrograms = sortedPrograms.filter(p => p.platform === activeFilter);
+            }
+            
+            renderProgramCards(sortedPrograms);
+        }
+
+        function updateStats() {
+            // Update dynamic stats if needed
+        }
+
+        // Global functions
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function playTrailer(programId) {
+            const program = programs.find(p => p.id === programId);
+            if (!program) return;
+            
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            const videoTitle = document.getElementById('videoTitle');
+            const videoDesc = document.getElementById('videoDesc');
+            const videoInfo = document.getElementById('videoInfo');
+            
+            video.src = program.trailer;
+            videoTitle.textContent = program.title;
+            videoDesc.textContent = program.description;
+            
+            videoInfo.classList.remove('hidden');
+            modal.classList.remove('hidden');
+            
+            video.play();
+        }
+
+        // Make functions globally available
+        window.scrollToSection = scrollToSection;
+        window.playTrailer = playTrailer;
+    </script>
+</body>
+</html>
