@@ -51,101 +51,11 @@
         }
     </script>
     <link rel="stylesheet" href="assets/css/styles.css">
-    <style>        
-        .gold-text {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .red-white-text {
-            background: linear-gradient(135deg, #ff0000 0%, #ffffff 50%, #ff0000 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Glass Effect */
-        .glass-effect {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(251, 191, 36, 0.1);
-        }
-        
-        /* Navigation Styles */
-        .nav-link {
-            position: relative;
-            padding: 0.5rem 0;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #fbbf24, #f59e0b);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        /* Section Title */
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 3rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #fbbf24, #f59e0b);
-        }
-        
-        .section-title-red::after {
-            background: linear-gradient(90deg, #ff0000, #ffffff);
-        }
-        
-        /* Element badges */
-        .element-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(251, 191, 36, 0.2);
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            border-radius: 4px;
-        }
-        
+    <style>
         /* Hero Section */
         .about-hero {
             background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                        url('assets/images/about-bg.jpg');
+                        url('assets/images/banner.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -236,7 +146,7 @@
         /* Quote */
         .quote-mark {
             font-size: 4rem;
-            color: rgba(251, 191, 36, 0.3);
+            color: rgb(251, 190, 36);
             font-family: 'Cinzel', serif;
         }
         
@@ -863,7 +773,7 @@
 
     <!-- Quote Section -->
     <section class="py-20 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-fantasy-purple/20 via-fantasy-blue/20 to-fantasy-dark/20"></div>
+        <div class="absolute inset-0 bg-fantasy-gradient opacity-90"></div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-4xl mx-auto text-center">
                 <div class="quote-mark">"</div>
@@ -872,7 +782,7 @@
                     <span class="text-fantasy-gold font-semibold">gerakan kebudayaan</span> 
                     yang bertujuan membangun karakter bangsa melalui cerita-cerita heroik yang mengakar pada jati diri Indonesia.
                 </p>
-                <div class="w-24 h-1 bg-gradient-to-r from-fantasy-gold to-fantasy-purple mx-auto"></div>
+                <div class="w-24 h-1 bg-fantasy-gold mx-auto"></div>
             </div>
         </div>
     </section>

@@ -32,6 +32,13 @@ body {
     background-clip: text;
 }
 
+.red-white-text {
+    background: linear-gradient(135deg, #ff0000 0%, #ffffff 50%, #ff0000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 /* Efek glow */
 .glow {
     box-shadow: 0 0 20px rgba(123, 97, 255, 0.5);
@@ -104,6 +111,10 @@ body {
     height: 3px;
     background: linear-gradient(90deg, #fbbf24, #f59e0b);
 }
+        
+        .section-title-red::after {
+            background: linear-gradient(90deg, #ff0000, #ffffff);
+        }
 
 /* Background dengan efek partikel */
 #particle-canvas {
