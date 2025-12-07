@@ -70,155 +70,8 @@
             }
         }
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000000;
-            color: #e2e8f0;
-            overflow-x: hidden;
-        }
-        
-        .fantasy-font {
-            font-family: 'Cinzel', serif;
-        }
-        
-        .gold-text {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-link {
-            position: relative;
-            padding: 0.5rem 0;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #fbbf24, #f59e0b);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        /* Background dengan efek partikel */
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.6;
-        }
-        
-        /* Efek aurora */
-        .aurora {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(123, 97, 255, 0.1), rgba(251, 191, 36, 0.1), rgba(59, 130, 246, 0.1));
-            opacity: 0.3;
-            z-index: -1;
-            filter: blur(40px);
-        }
-        
-        /* Efek kaca/morfism */
-        .glass-effect {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(251, 191, 36, 0.1);
-        }
-        
-        /* Animasi fade in */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
+    <link rel="stylesheet" href="assets/css/styles.css">
 
-        /* Custom untuk karakter detail */
-        .character-detail-container {
-            min-height: calc(100vh - 200px);
-        }
-
-        .character-image-container {
-            height: 500px;
-            overflow: hidden;
-            border-radius: 1rem;
-            border: 2px solid rgba(251, 191, 36, 0.3);
-        }
-
-        .character-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .character-image:hover {
-            transform: scale(1.05);
-        }
-
-        .info-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(251, 191, 36, 0.1);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .info-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(251, 191, 36, 0.3);
-        }
-
-        .color-swatch {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* Character navigation */
-        .character-nav {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-        }
-
-        .character-nav::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .character-nav::-webkit-scrollbar-track {
-            background: rgba(30, 41, 59, 0.5);
-            border-radius: 3px;
-        }
-
-        .character-nav::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            border-radius: 3px;
-        }
-    </style>
 </head>
 <body class="relative">
 
@@ -232,6 +85,7 @@
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="flex items-center">
+                    <!-- Gambar logo -->
                     <a href="index.html" class="flex items-center">
                         <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="w-full h-12">
                     </a>
@@ -240,8 +94,50 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-8">
                     <a href="index.html" class="nav-link text-white hover:text-fantasy-gold transition-colors">BERANDA</a>
-                    <a href="index.html#program" class="nav-link text-white hover:text-fantasy-gold transition-colors">PROGRAM</a>
-                    <a href="characters.html" class="nav-link text-white hover:text-fantasy-gold transition-colors">KARAKTER</a>
+                    <a href="program.html" class="nav-link text-white hover:text-fantasy-gold transition-colors">PROGRAM</a>
+                    
+                    <!-- Karakter Dropdown -->
+                    <div class="relative group">
+                        <a href="characters.html" class="nav-link text-white hover:text-fantasy-gold transition-colors flex items-center">
+                            KARAKTER <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-[-60%] mt-2 w-56 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-fantasy-gold/20">
+                            <div class="py-2 grid grid-cols-2 gap-1">
+                                <a href="character-detail.html?character=kunna" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-fire mr-2"></div>
+                                    KUNNA
+                                </a>
+                                <a href="character-detail.html?character=wabu" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-wind mr-2"></div>
+                                    WABU
+                                </a>
+                                <a href="character-detail.html?character=asta" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-water mr-2"></div>
+                                    ASTA
+                                </a>
+                                <a href="character-detail.html?character=taran" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-earth mr-2"></div>
+                                    TARAN
+                                </a>
+                                <a href="character-detail.html?character=sanu" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-thunder mr-2"></div>
+                                    SANU
+                                </a>
+                                <a href="character-detail.html?character=kabi" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-nature mr-2"></div>
+                                    KABI
+                                </a>
+                                <a href="character-detail.html?character=arun" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-light mr-2"></div>
+                                    ARUN
+                                </a>
+                                <a href="character-detail.html?character=antis" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-dark mr-2"></div>
+                                    ANTIS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     
                     <!-- Informasi Dropdown -->
                     <div class="relative group">
@@ -250,7 +146,7 @@
                         </a>
                         <div class="absolute left-[-80%] mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-fantasy-gold/20">
                             <div class="py-2">
-                                <a href="index.html#wahana" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">WAHANA</a>
+                                <a href="#wahana" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">WAHANA</a>
                                 <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">KOMIK</a>
                                 <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">NOVEL</a>
                                 <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">GAME</a>
@@ -283,13 +179,50 @@
             <div id="mobile-menu" class="md:hidden mt-4 hidden glass-effect rounded-lg p-4 border border-fantasy-gold/20">
                 <div class="flex flex-col space-y-3">
                     <a href="index.html" class="hover:text-fantasy-gold transition-colors py-2">BERANDA</a>
-                    <a href="index.html#program" class="hover:text-fantasy-gold transition-colors py-2">PROGRAM</a>
-                    <a href="characters.html" class="hover:text-fantasy-gold transition-colors py-2">KARAKTER</a>
+                    <a href="program.html" class="hover:text-fantasy-gold transition-colors py-2">PROGRAM</a>
+                    
+                    <div class="py-2">
+                        <a href="characters.html" class="hover:text-fantasy-gold transition-colors font-semibold">KARAKTER</a>
+                        <div class="mt-2 ml-4 grid grid-cols-2 gap-2">
+                            <a href="character-detail.html?character=kunna" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-fire mr-2"></div>
+                                KUNNA
+                            </a>
+                            <a href="character-detail.html?character=wabu" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-wind mr-2"></div>
+                                WABU
+                            </a>
+                            <a href="character-detail.html?character=asta" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-water mr-2"></div>
+                                ASTA
+                            </a>
+                            <a href="character-detail.html?character=taran" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-earth mr-2"></div>
+                                TARAN
+                            </a>
+                            <a href="character-detail.html?character=sanu" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-thunder mr-2"></div>
+                                SANU
+                            </a>
+                            <a href="character-detail.html?character=kabi" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-nature mr-2"></div>
+                                KABI
+                            </a>
+                            <a href="character-detail.html?character=arun" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-light mr-2"></div>
+                                ARUN
+                            </a>
+                            <a href="character-detail.html?character=antis" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-dark mr-2"></div>
+                                ANTIS
+                            </a>
+                        </div>
+                    </div>
                     
                     <div class="py-2">
                         <a href="javascript:void(0);" class="hover:text-fantasy-gold transition-colors font-semibold">INFORMASI</a>
                         <div class="mt-2 ml-4 flex flex-col space-y-2">
-                            <a href="index.html#wahana" class="text-sm hover:text-fantasy-gold">WAHANA</a>
+                            <a href="#wahana" class="text-sm hover:text-fantasy-gold">WAHANA</a>
                             <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">KOMIK</a>
                             <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">NOVEL</a>
                             <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">GAME</a>
@@ -310,7 +243,7 @@
     </header>
 
     <!-- Character Navigation -->
-    <section class="py-4 bg-fantasy-dark/80">
+    <!-- <section class="py-4 bg-fantasy-dark/80">
         <div class="container mx-auto px-4">
             <div class="character-nav flex space-x-4 pb-2">
                 <a href="character-detail.html?character=kunna" class="flex-shrink-0 glass-effect hover:bg-fantasy-purple/30 px-4 py-2 rounded-full transition-all">
@@ -339,7 +272,7 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Character Detail Content -->
     <main class="character-detail-container py-16">
@@ -364,9 +297,8 @@
                 <div>
                     <h3 class="fantasy-font text-fantasy-gold mb-4">Eksplorasi</h3>
                     <div class="flex flex-col space-y-2">
-                        <a href="index.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Beranda</a>
                         <a href="characters.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Karakter</a>
-                        <a href="index.html#program" class="text-gray-400 hover:text-fantasy-gold transition-colors">Program</a>
+                        <a href="program.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Program</a>
                         <a href="index.html#wahana" class="text-gray-400 hover:text-fantasy-gold transition-colors">Wahana</a>
                     </div>
                 </div>
@@ -410,403 +342,18 @@
     </footer>
 
     <!-- Back to Characters Button -->
-    <a href="characters.html" class="fixed bottom-4 left-4 z-50 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-3 px-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+    <!-- <button onclick="window.location.href='characters.html'" class="fixed bottom-[.5rem] left-[.5rem] z-50 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-1 px-3 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
         <i class="fas fa-arrow-left mr-2"></i> Kembali
-    </a>
+    </button> -->
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-1 px-3 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-        // Particle background effect
-        document.addEventListener('DOMContentLoaded', function() {
-            const canvas = document.getElementById('particle-canvas');
-            const ctx = canvas.getContext('2d');
-            
-            // Set canvas size
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            // Particle array
-            const particles = [];
-            const particleCount = 100;
-            
-            // Create particles
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 2 + 1,
-                    speedX: (Math.random() - 0.5) * 0.5,
-                    speedY: (Math.random() - 0.5) * 0.5,
-                    color: `rgba(${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 255)}, ${Math.random() * 0.5 + 0.2})`
-                });
-            }
-            
-            // Animation loop
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Update and draw particles
-                particles.forEach(particle => {
-                    particle.x += particle.speedX;
-                    particle.y += particle.speedY;
-                    
-                    // Wrap around edges
-                    if (particle.x < 0) particle.x = canvas.width;
-                    if (particle.x > canvas.width) particle.x = 0;
-                    if (particle.y < 0) particle.y = canvas.height;
-                    if (particle.y > canvas.height) particle.y = 0;
-                    
-                    // Draw particle
-                    ctx.beginPath();
-                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                    ctx.fillStyle = particle.color;
-                    ctx.fill();
-                });
-                
-                requestAnimationFrame(animate);
-            }
-            
-            animate();
-            
-            // Resize handler
-            window.addEventListener('resize', function() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/characterDetail.js"></script>
 
-            // Data karakter berdasarkan informasi yang diberikan
-            const characters = {
-                kunna: {
-                    name: "KUNNA",
-                    region: "Jawa Tengah",
-                    fullName: "Kunna",
-                    philosophy: "Kunanti yang di Tata",
-                    height: "178 cm",
-                    weight: "77 kg",
-                    artifact: "Topeng",
-                    power: "Cahaya",
-                    island: "Jawa",
-                    origin: "Bantul",
-                    dna: "Raja Jawa",
-                    attitude: "Mewakili karakter Jawa",
-                    character: "Ramah, Santun, Sabar, Ulet, Pintar, Mengutamakan Persatuan dan Adab",
-                    colors: ["#FF6B35", "#8B4513", "#FFD700"],
-                    colorNames: ["Jingga", "Coklat Tua", "Kuning"],
-                    image: "assets/images/characters/chara-01.png",
-                    description: "KUNNA adalah karakter yang mewakili Jawa Tengah dengan filosofi 'Kunanti yang di Tata'. Dengan tinggi 178 cm dan berat 77 kg, KUNNA membawa artefak Topeng dan menguasai kekuatan Cahaya. Berasal dari Bantul, Jawa, KUNNA memiliki DNA Raja Jawa dan mewakili karakter Jawa yang ramah, santun, sabar, ulet, pintar, serta mengutamakan persatuan dan adab."
-                },
-                wabu: {
-                    name: "WABU",
-                    region: "Jakarta",
-                    fullName: "Wabu",
-                    philosophy: "Warisan Budaya",
-                    height: "177 cm",
-                    weight: "78 kg",
-                    artifact: "Kode Biner",
-                    power: "Digital",
-                    island: "Jawa",
-                    origin: "Jakarta",
-                    dna: "Multi Culture (China)",
-                    attitude: "Mewakili Karakter Betawi",
-                    character: "Ramah, Santun, Sabar, Ulet, Pintar, Mengutamakan Persatuan dan Adab",
-                    colors: ["#FFFFFF", "#000000", "#FF0000"],
-                    colorNames: ["Putih", "Hitam", "Merah"],
-                    image: "assets/images/characters/chara-02.png",
-                    description: "WABU adalah karakter yang mewakili Jakarta dengan filosofi 'Warisan Budaya'. Dengan tinggi 177 cm dan berat 78 kg, WABU membawa artefak Kode Biner dan menguasai kekuatan Digital. Berasal dari Jakarta, Jawa, WABU memiliki DNA Multi Culture (China) dan mewakili karakter Betawi yang ramah, santun, sabar, ulet, pintar, serta mengutamakan persatuan dan adab."
-                },
-                asta: {
-                    name: "ASTA",
-                    region: "Bali",
-                    fullName: "Asta",
-                    philosophy: "Anak Semesta",
-                    height: "175 cm",
-                    weight: "80 kg",
-                    artifact: "Ikat kepala",
-                    power: "Magnet",
-                    island: "Bali",
-                    origin: "Bali",
-                    dna: "Raja Bali",
-                    attitude: "Mewakili karakter Bali",
-                    character: "Ramah, Santun, Sabar, Ulet, Pintar, Mengutamakan Persatuan dan Adab",
-                    colors: ["#FF6B35", "#8B4513", "#FFD700"],
-                    colorNames: ["Jingga", "Coklat Tua", "Kuning"],
-                    image: "assets/images/characters/chara-03.png",
-                    description: "ASTA adalah karakter yang mewakili Bali dengan filosofi 'Anak Semesta'. Dengan tinggi 175 cm dan berat 80 kg, ASTA membawa artefak Ikat kepala dan menguasai kekuatan Magnet. Berasal dari Bali, ASTA memiliki DNA Raja Bali dan mewakili karakter Bali yang ramah, santun, sabar, ulet, pintar, serta mengutamakan persatuan dan adab."
-                },
-                taran: {
-                    name: "TARAN",
-                    region: "Sumatera",
-                    fullName: "Taran",
-                    philosophy: "Warisan Budaya",
-                    height: "177 cm",
-                    weight: "78 kg",
-                    artifact: "Kode Biner",
-                    power: "Digital",
-                    island: "Sumatera",
-                    origin: "Bukit Tinggi",
-                    dna: "Multi Culture (China)",
-                    attitude: "Mewakili karakter Sumatera",
-                    character: "Ramah, Santun, Sabar, Ulet, Pintar, Mengutamakan Persatuan dan Adab",
-                    colors: ["#FFFFFF", "#000000", "#FF0000"],
-                    colorNames: ["Putih", "Hitam", "Merah"],
-                    image: "assets/images/characters/chara-04.png",
-                    description: "TARAN adalah karakter yang mewakili Sumatera dengan filosofi 'Warisan Budaya'. Dengan tinggi 177 cm dan berat 78 kg, TARAN membawa artefak Kode Biner dan menguasai kekuatan Digital. Berasal dari Bukit Tinggi, Sumatera, TARAN memiliki DNA Multi Culture (China) dan mewakili karakter Sumatera yang ramah, santun, sabar, ulet, pintar, serta mengutamakan persatuan dan adab."
-                },
-                sanu: {
-                    name: "SANU",
-                    region: "Sulawesi",
-                    fullName: "Sanu",
-                    philosophy: "Warisan Budaya",
-                    height: "177 cm",
-                    weight: "78 kg",
-                    artifact: "Kode Biner",
-                    power: "Digital",
-                    island: "Sulawesi",
-                    origin: "Sulawesi",
-                    dna: "Multi Culture (China)",
-                    attitude: "Mewakili karakter Sulawesi",
-                    character: "Ramah, Santun, Sabar, Ulet, Pintar, Mengutamakan Persatuan dan Adab",
-                    colors: ["#FFFFFF", "#000000", "#FF0000"],
-                    colorNames: ["Putih", "Hitam", "Merah"],
-                    image: "assets/images/characters/chara-05.png",
-                    description: "SANU adalah karakter yang mewakili Sulawesi dengan filosofi 'Warisan Budaya'. Dengan tinggi 177 cm dan berat 78 kg, SANU membawa artefak Kode Biner dan menguasai kekuatan Digital. Berasal dari Sulawesi, SANU memiliki DNA Multi Culture (China) dan mewakili karakter Sulawesi yang ramah, santun, sabar, ulet, pintar, serta mengutamakan persatuan dan adab."
-                },
-                kabi: {
-                    name: "KABI",
-                    region: "Papua",
-                    fullName: "Kabi",
-                    philosophy: "Warisan Budaya",
-                    height: "177 cm",
-                    weight: "78 kg",
-                    artifact: "Kode Biner",
-                    power: "Digital",
-                    island: "Papua",
-                    origin: "Jayapura",
-                    dna: "Astronesia",
-                    attitude: "Mewakili karakter Papua",
-                    character: "Ramah, Santun, Sabar, Ulet, Pintar, Mengutamakan Persatuan dan Adab",
-                    colors: ["#FFFFFF", "#000000", "#FF0000"],
-                    colorNames: ["Putih", "Hitam", "Merah"],
-                    image: "assets/images/characters/chara-06.png",
-                    description: "KABI adalah karakter yang mewakili Papua dengan filosofi 'Warisan Budaya'. Dengan tinggi 177 cm dan berat 78 kg, KABI membawa artefak Kode Biner dan menguasai kekuatan Digital. Berasal dari Jayapura, Papua, KABI memiliki DNA Astronesia dan mewakili karakter Papua yang ramah, santun, sabar, ulet, pintar, serta mengutamakan persatuan dan adab."
-                },
-                arun: {
-                    name: "ARUN",
-                    region: "Kalimantan",
-                    fullName: "Arun",
-                    philosophy: "Warisan Budaya",
-                    height: "177 cm",
-                    weight: "78 kg",
-                    artifact: "Kode Biner",
-                    power: "Digital",
-                    island: "Kalimantan",
-                    origin: "Kalimantan",
-                    dna: "Multi Culture (China)",
-                    attitude: "Mewakili Karakter Betawi",
-                    character: "Ramah, Santun, Sabar, Ulet, Pintar, Mengutamakan Persatuan dan Adab",
-                    colors: ["#FFFFFF", "#000000", "#FF0000"],
-                    colorNames: ["Putih", "Hitam", "Merah"],
-                    image: "assets/images/characters/chara-07.png",
-                    description: "ARUN adalah karakter yang mewakili Kalimantan dengan filosofi 'Warisan Budaya'. Dengan tinggi 177 cm dan berat 78 kg, ARUN membawa artefak Kode Biner dan menguasai kekuatan Digital. Berasal dari Kalimantan, ARUN memiliki DNA Multi Culture (China) dan mewakili karakter Betawi yang ramah, santun, sabar, ulet, pintar, serta mengutamakan persatuan dan adab."
-                },
-                antis: {
-                    name: "ANTIS",
-                    region: "Atlantis",
-                    fullName: "Antis",
-                    philosophy: "Warisan Budaya",
-                    height: "177 cm",
-                    weight: "78 kg",
-                    artifact: "Kode Biner",
-                    power: "Digital",
-                    island: "Atlantis",
-                    origin: "Atlantis",
-                    dna: "Multi Culture (China)",
-                    attitude: "Mewakili karakter Sumatera",
-                    character: "Ramah, Santun, Sabar, Ulet, Pintar, Mengutamakan Persatuan dan Adab",
-                    colors: ["#FFFFFF", "#000000", "#FF0000"],
-                    colorNames: ["Putih", "Hitam", "Merah"],
-                    image: "assets/images/characters/chara-08.png",
-                    description: "ANTIS adalah karakter yang mewakili Atlantis dengan filosofi 'Warisan Budaya'. Dengan tinggi 177 cm dan berat 78 kg, ANTIS membawa artefak Kode Biner dan menguasai kekuatan Digital. Berasal dari Atlantis, ANTIS memiliki DNA Multi Culture (China) dan mewakili karakter Sumatera yang ramah, santun, sabar, ulet, pintar, serta mengutamakan persatuan dan adab."
-                }
-            };
-
-            // Fungsi untuk mendapatkan parameter URL
-            function getUrlParameter(name) {
-                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-                const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-                const results = regex.exec(location.search);
-                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-            }
-
-            // Fungsi untuk merender detail karakter
-            function renderCharacterDetail(characterId) {
-                const character = characters[characterId];
-                const contentElement = document.getElementById('character-content');
-                
-                if (!character) {
-                    contentElement.innerHTML = `
-                        <div class="text-center py-16">
-                            <h2 class="fantasy-font text-3xl text-white mb-4">Karakter Tidak Ditemukan</h2>
-                            <p class="text-gray-300 mb-8">Karakter yang Anda cari tidak ditemukan.</p>
-                            <a href="characters.html" class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
-                                Kembali ke Daftar Karakter
-                            </a>
-                        </div>
-                    `;
-                    return;
-                }
-
-                // Update title
-                document.title = `${character.name} - Detail Karakter PATRION`;
-
-                // Render konten karakter
-                contentElement.innerHTML = `
-                    <div class="max-w-6xl mx-auto">
-                        <!-- Header -->
-                        <div class="text-center mb-12">
-                            <h1 class="fantasy-font text-4xl md:text-5xl font-bold text-white mb-4">
-                                <span class="gold-text">${character.name}</span>
-                            </h1>
-                            <p class="text-2xl text-gray-300">${character.region}</p>
-                        </div>
-
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                            <!-- Gambar Karakter -->
-                            <div class="character-image-container">
-                                <img src="${character.image}" alt="${character.name}" class="character-image">
-                            </div>
-
-                            <!-- Informasi Karakter -->
-                            <div class="space-y-8">
-                                <!-- Deskripsi -->
-                                <div class="info-card">
-                                    <h3 class="fantasy-font text-2xl text-white mb-4">Deskripsi</h3>
-                                    <p class="text-gray-300">${character.description}</p>
-                                </div>
-
-                                <!-- Informasi Dasar -->
-                                <div class="info-card">
-                                    <h3 class="fantasy-font text-2xl text-white mb-4">Informasi Dasar</h3>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <p class="text-gray-400 text-sm">Nama Lengkap</p>
-                                            <p class="text-white font-semibold">${character.fullName}</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-400 text-sm">Filosofi</p>
-                                            <p class="text-white font-semibold">${character.philosophy}</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-400 text-sm">Tinggi</p>
-                                            <p class="text-white font-semibold">${character.height}</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-400 text-sm">Berat</p>
-                                            <p class="text-white font-semibold">${character.weight}</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-400 text-sm">Artefak</p>
-                                            <p class="text-white font-semibold">${character.artifact}</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-400 text-sm">Power</p>
-                                            <p class="text-white font-semibold">${character.power}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Asal dan DNA -->
-                                <div class="info-card">
-                                    <h3 class="fantasy-font text-2xl text-white mb-4">Asal dan DNA</h3>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <p class="text-gray-400 text-sm">Pulau</p>
-                                            <p class="text-white font-semibold">${character.island}</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-400 text-sm">Asal</p>
-                                            <p class="text-white font-semibold">${character.origin}</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-400 text-sm">DNA</p>
-                                            <p class="text-white font-semibold">${character.dna}</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-400 text-sm">Attitude</p>
-                                            <p class="text-white font-semibold">${character.attitude}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Karakter dan Warna -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <!-- Karakter -->
-                                    <div class="info-card">
-                                        <h3 class="fantasy-font text-2xl text-white mb-4">Karakter</h3>
-                                        <p class="text-gray-300">${character.character}</p>
-                                    </div>
-
-                                    <!-- Warna Identitas -->
-                                    <div class="info-card">
-                                        <h3 class="fantasy-font text-2xl text-white mb-4">Warna Identitas</h3>
-                                        <div class="flex flex-wrap gap-3">
-                                            ${character.colors.map((color, index) => `
-                                                <div class="text-center">
-                                                    <div class="color-swatch mb-1" style="background-color: ${color};"></div>
-                                                    <p class="text-xs text-gray-300">${character.colorNames[index]}</p>
-                                                </div>
-                                            `).join('')}
-                                        </div>
-                                        <div class="mt-3">
-                                            <p class="text-sm text-gray-400">${character.colorNames.join(', ')}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Navigasi Karakter Lain -->
-                        <div class="mt-16">
-                            <h3 class="fantasy-font text-2xl text-white mb-6 text-center">Karakter Lainnya</h3>
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                ${Object.entries(characters)
-                                    .filter(([id]) => id !== characterId)
-                                    .map(([id, char]) => `
-                                        <a href="character-detail.html?character=${id}" class="glass-effect hover:bg-fantasy-purple/30 p-4 rounded-lg transition-all text-center">
-                                            <div class="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden">
-                                                <img src="${char.image}" alt="${char.name}" class="w-full h-full object-cover">
-                                            </div>
-                                            <p class="text-white font-semibold">${char.name}</p>
-                                            <p class="text-gray-400 text-sm">${char.region}</p>
-                                        </a>
-                                    `).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-
-            // Ambil parameter karakter dari URL
-            const characterId = getUrlParameter('character') || 'kunna';
-            
-            // Render karakter berdasarkan parameter
-            renderCharacterDetail(characterId);
-
-            // Highlight navigasi karakter yang aktif
-            const navLinks = document.querySelectorAll('.character-nav a');
-            navLinks.forEach(link => {
-                const href = link.getAttribute('href');
-                if (href.includes(characterId)) {
-                    link.classList.add('bg-gradient-to-r', 'from-yellow-400', 'to-yellow-500', 'text-black');
-                    link.classList.remove('glass-effect');
-                }
-            });
-        });
-    </script>
 </body>
 </html>

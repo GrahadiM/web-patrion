@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang PATRION - Patriot Nusantara</title>
+    <meta name="description" content="PATRION adalah PATRIOT NUSANTARA - Ikon sosok para pahlawan yang berasal dari kepulauan Nusantara, mewakili citra Indonesia dalam setiap aspek.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Tentang PATRION - Patriot Nusantara">
+    <meta property="og:description" content="PATRION adalah PATRIOT NUSANTARA - Ikon sosok para pahlawan yang berasal dari kepulauan Nusantara">
+    <meta property="og:image" content="assets/images/about-og.jpg">
+    <meta property="og:url" content="https://patrion.com/about">
+    
+    <!-- CSS & Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#fbbf24',
+                        'fantasy-blue': '#1e3a8a',
+                        'fantasy-purple': '#5b21b6',
+                        'fantasy-dark': '#0f172a',
+                        'fantasy-gold': '#fbbf24',
+                        // Warna elemen berdasarkan karakter
+                        fire: '#dc2626',
+                        wind: '#94a3b8',
+                        water: '#3b82f6',
+                        earth: '#d97706',
+                        thunder: '#7c3aed',
+                        nature: '#16a34a',
+                        light: '#fde047',
+                        dark: '#1e293b'
+                    },
+                    backgroundImage: {
+                        'fantasy-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #5b21b6 50%, #0f172a 100%)',
+                        'gold-gradient': 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+                        'indonesia-gradient': 'linear-gradient(135deg, #ff0000 0%, #ffffff 50%, #ff0000 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>        
+        .gold-text {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .red-white-text {
+            background: linear-gradient(135deg, #ff0000 0%, #ffffff 50%, #ff0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 191, 36, 0.1);
+        }
+        
+        /* Navigation Styles */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Section Title */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+        }
+        
+        .section-title-red::after {
+            background: linear-gradient(90deg, #ff0000, #ffffff);
+        }
+        
+        /* Element badges */
+        .element-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border-radius: 4px;
+        }
+        
+        /* Hero Section */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('assets/images/about-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* Vision Mission Cards */
+        .vision-card {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(30, 41, 59, 0.8));
+            border: 2px solid rgba(220, 38, 38, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .mission-card {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(30, 41, 59, 0.8));
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .goal-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(30, 41, 59, 0.8));
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .vision-card:hover, .mission-card:hover, .goal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Number badges */
+        .number-badge {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Cinzel', serif;
+        }
+        
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #fbbf24;
+            border-radius: 50%;
+            border: 4px solid #0f172a;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 20px;
+            width: 4px;
+            height: calc(100% + 3rem);
+            background: rgba(251, 191, 36, 0.3);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        /* Map Indonesia */
+        .indonesia-map {
+            filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.3));
+            transition: all 0.5s ease;
+        }
+        
+        .indonesia-map:hover {
+            filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.5));
+            transform: scale(1.02);
+        }
+        
+        /* Quote */
+        .quote-mark {
+            font-size: 4rem;
+            color: rgba(251, 191, 36, 0.3);
+            font-family: 'Cinzel', serif;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* Stats Counter */
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Character Showcase */
+        .character-showcase {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), rgba(91, 33, 182, 0.2));
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Aurora Effect */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(123, 97, 255, 0.1), rgba(251, 191, 36, 0.1), rgba(59, 130, 246, 0.1));
+            opacity: 0.3;
+            z-index: -1;
+            filter: blur(40px);
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Background dengan partikel dan efek cahaya -->
+    <canvas id="particle-canvas"></canvas>
+    <div class="aurora"></div>
+    
+    <!-- Header & Navigation -->
+    <header class="glass-effect sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <!-- Gambar logo -->
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="w-full h-12">
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-fantasy-gold transition-colors">BERANDA</a>
+                    <a href="about.html" class="nav-link text-white hover:text-fantasy-gold transition-colors">TENTANG</a>
+                    <a href="program.html" class="nav-link text-white hover:text-fantasy-gold transition-colors">PROGRAM</a>
+                    
+                    <!-- Karakter Dropdown -->
+                    <div class="relative group">
+                        <a href="characters.html" class="nav-link text-white hover:text-fantasy-gold transition-colors flex items-center">
+                            KARAKTER <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-[-60%] mt-2 w-56 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-fantasy-gold/20">
+                            <div class="py-2 grid grid-cols-2 gap-1">
+                                <a href="character-detail.html?character=kunna" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-fire mr-2"></div>
+                                    KUNNA
+                                </a>
+                                <a href="character-detail.html?character=wabu" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-wind mr-2"></div>
+                                    WABU
+                                </a>
+                                <a href="character-detail.html?character=asta" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-water mr-2"></div>
+                                    ASTA
+                                </a>
+                                <a href="character-detail.html?character=taran" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-earth mr-2"></div>
+                                    TARAN
+                                </a>
+                                <a href="character-detail.html?character=sanu" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-thunder mr-2"></div>
+                                    SANU
+                                </a>
+                                <a href="character-detail.html?character=kabi" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-nature mr-2"></div>
+                                    KABI
+                                </a>
+                                <a href="character-detail.html?character=arun" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-light mr-2"></div>
+                                    ARUN
+                                </a>
+                                <a href="character-detail.html?character=antis" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-dark mr-2"></div>
+                                    ANTIS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Informasi Dropdown -->
+                    <div class="relative group">
+                        <a href="javascript:void(0);" class="nav-link text-white hover:text-fantasy-gold transition-colors flex items-center">
+                            INFORMASI <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-[-80%] mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-fantasy-gold/20">
+                            <div class="py-2">
+                                <a href="index.html#wahana" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">WAHANA</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">KOMIK</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">NOVEL</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">GAME</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden mt-4 hidden glass-effect rounded-lg p-4 border border-fantasy-gold/20">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="hover:text-fantasy-gold transition-colors py-2">BERANDA</a>
+                    <a href="about.html" class="hover:text-fantasy-gold transition-colors py-2">TENTANG</a>
+                    <a href="program.html" class="hover:text-fantasy-gold transition-colors py-2">PROGRAM</a>
+                    
+                    <div class="py-2">
+                        <a href="characters.html" class="hover:text-fantasy-gold transition-colors font-semibold">KARAKTER</a>
+                        <div class="mt-2 ml-4 grid grid-cols-2 gap-2">
+                            <a href="character-detail.html?character=kunna" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-fire mr-2"></div>
+                                KUNNA
+                            </a>
+                            <a href="character-detail.html?character=wabu" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-wind mr-2"></div>
+                                WABU
+                            </a>
+                            <a href="character-detail.html?character=asta" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-water mr-2"></div>
+                                ASTA
+                            </a>
+                            <a href="character-detail.html?character=taran" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-earth mr-2"></div>
+                                TARAN
+                            </a>
+                            <a href="character-detail.html?character=sanu" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-thunder mr-2"></div>
+                                SANU
+                            </a>
+                            <a href="character-detail.html?character=kabi" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-nature mr-2"></div>
+                                KABI
+                            </a>
+                            <a href="character-detail.html?character=arun" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-light mr-2"></div>
+                                ARUN
+                            </a>
+                            <a href="character-detail.html?character=antis" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-dark mr-2"></div>
+                                ANTIS
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="py-2">
+                        <a href="javascript:void(0);" class="hover:text-fantasy-gold transition-colors font-semibold">INFORMASI</a>
+                        <div class="mt-2 ml-4 flex flex-col space-y-2">
+                            <a href="index.html#wahana" class="text-sm hover:text-fantasy-gold">WAHANA</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">KOMIK</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">NOVEL</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">GAME</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero py-24 md:py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/30"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto text-center">
+                <h1 class="fantasy-font text-5xl md:text-7xl font-bold text-white mb-6">
+                    <span class="red-white-text">TENTANG</span> <span class="gold-text">PATRION</span>
+                </h1>
+                <p class="text-2xl md:text-3xl fantasy-font text-gray-300 mb-8">
+                    PATRIOT <span class="gold-text">NUSANTARA</span>
+                </p>
+                <div class="max-w-3xl mx-auto">
+                    <p class="text-xl text-gray-300 leading-relaxed">
+                        PATRION adalah ikon sosok para pahlawan yang berasal dari kepulauan Nusantara. 
+                        Dicintai, diidolakan, dan mewakili citra Indonesia dalam setiap aspek.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apa Itu Patrion -->
+    <section class="py-20 relative">
+        <div class="absolute inset-0 bg-fantasy-dark opacity-90"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in-up">
+                        <h2 class="section-title fantasy-font text-4xl font-bold text-white mb-8">
+                            Apa Itu <span class="gold-text">PATRION</span>?
+                        </h2>
+                        <div class="space-y-6">
+                            <p class="text-gray-300 text-lg leading-relaxed">
+                                <span class="fantasy-font text-fantasy-gold text-xl">PATRION</span> adalah 
+                                <span class="fantasy-font text-red-500">PATRIOT NUSANTARA</span> - ikon sosok para pahlawan yang berasal dari kepulauan Nusantara.
+                            </p>
+                            <p class="text-gray-300 text-lg leading-relaxed">
+                                Dicintai, diidolakan dan mewakili citra Indonesia dalam setiap aspek, baik dari sisi cerita, kostum, atribut, simbol, visual, audio dan nilai setiap karakternya yang mencerminkan wajah kekayaan Indonesia sesungguhnya.
+                            </p>
+                            <div class="glass-effect p-6 rounded-xl border border-fantasy-gold/20">
+                                <h3 class="fantasy-font text-xl text-fantasy-gold mb-3">Mewakili Indonesia</h3>
+                                <p class="text-gray-300">
+                                    Setiap karakter PATRION dirancang dengan penelitian mendalam terhadap budaya, sejarah, dan filosofi Nusantara, menciptakan representasi autentik dari kekayaan Indonesia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="character-showcase p-8">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center">
+                                    <img src="assets/images/characters/chara-01.png" alt="Kunna" class="w-full max-w-xs mx-auto floating">
+                                    <p class="fantasy-font text-fantasy-gold mt-4">KUNNA - Api Nusantara</p>
+                                </div>
+                                <div class="text-center">
+                                    <img src="assets/images/characters/chara-02.png" alt="Wabu" class="w-full max-w-xs mx-auto floating" style="animation-delay: 1s;">
+                                    <p class="fantasy-font text-fantasy-gold mt-4">WABU - Angin Nusantara</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kisah Perjuangan -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-red-900/10 via-black to-blue-900/10"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="section-title section-title-red fantasy-font text-4xl font-bold text-center text-white mb-16">
+                    Kisah Perjuangan <span class="red-white-text">Para PATRION</span>
+                </h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                    <div class="glass-effect p-8 rounded-xl border border-red-500/20 fade-in-up">
+                        <div class="text-red-400 text-5xl mb-4">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="fantasy-font text-2xl text-white mb-4">Membela Kedaulatan</h3>
+                        <p class="text-gray-300">
+                            Kisah perjuangan para PATRION (Patriot Nusantara) membela keutuhan dan kedaulatan Nusantara dari berbagai ancaman.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-effect p-8 rounded-xl border border-red-500/20 fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="text-red-400 text-5xl mb-4">
+                            <i class="fas fa-fist-raised"></i>
+                        </div>
+                        <h3 class="fantasy-font text-2xl text-white mb-4">Membersihkan Anasir Jahat</h3>
+                        <p class="text-gray-300">
+                            Selalu siap membersihkan anasir-anasir jahat yang ada di bumi Nusantara demi menjaga keseimbangan alam.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-effect p-8 rounded-xl border border-red-500/20 fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="text-red-400 text-5xl mb-4">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <h3 class="fantasy-font text-2xl text-white mb-4">Pasak Bumi</h3>
+                        <p class="text-gray-300">
+                            Mereka mengabdi pada Ibu Pertiwi demi menyelamatkan Nusantara yang menjadi pasak Bumi dari Planet Bumi.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-16">
+                    <div class="relative">
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-red-500 via-yellow-500 to-blue-500 opacity-20"></div>
+                        
+                        <div class="timeline-item">
+                            <div class="glass-effect p-8 rounded-xl">
+                                <h3 class="fantasy-font text-2xl text-white mb-4">Lahirnya PATRION</h3>
+                                <p class="text-gray-300">
+                                    Dari keinginan kuat untuk menciptakan superhero asli Indonesia yang tidak hanya menghibur tetapi juga mendidik dan membangun karakter bangsa.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="glass-effect p-8 rounded-xl">
+                                <h3 class="fantasy-font text-2xl text-white mb-4">Perjuangan Awal</h3>
+                                <p class="text-gray-300">
+                                    Mengembangkan karakter dengan penelitian mendalam terhadap budaya dan filosofi Nusantara, menciptakan cerita yang autentik dan bermakna.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="glass-effect p-8 rounded-xl">
+                                <h3 class="fantasy-font text-2xl text-white mb-4">Misi Besar</h3>
+                                <p class="text-gray-300">
+                                    Menjadi garda terdepan dalam membangun nasionalisme melalui media hiburan yang berkualitas dan mendidik.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kenapa Harus Patrion -->
+    <section class="py-20 relative">
+        <div class="absolute inset-0 bg-fantasy-gradient opacity-90"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="section-title fantasy-font text-4xl font-bold text-center text-white mb-16">
+                    Kenapa Harus <span class="gold-text">PATRION</span>?
+                </h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                    <div class="fade-in-up">
+                        <div class="bg-black/50 p-8 rounded-xl border border-fantasy-gold/30 h-full">
+                            <div class="flex items-center mb-6">
+                                <div class="number-badge mr-4">1</div>
+                                <h3 class="fantasy-font text-2xl text-white">Bukan Sekadar Superhero</h3>
+                            </div>
+                            <p class="text-gray-300 text-lg leading-relaxed">
+                                PATRION bukan hanya sekedar superhero asli Indonesia, namun merupakan sebuah 
+                                <span class="text-fantasy-gold font-semibold">Mega Production</span> yang mengusung konsep 
+                                <span class="text-fantasy-gold font-semibold">Holistik Entertainment</span>.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="bg-black/50 p-8 rounded-xl border border-fantasy-gold/30 h-full">
+                            <div class="flex items-center mb-6">
+                                <div class="number-badge mr-4">2</div>
+                                <h3 class="fantasy-font text-2xl text-white">Tujuan Nasional</h3>
+                            </div>
+                            <p class="text-gray-300 text-lg leading-relaxed">
+                                Untuk tujuan membangun dan memperkuat 
+                                <span class="text-red-400 font-semibold">Nasionalisme</span> bangsa Indonesia yang berskala luas, 
+                                berkesinambungan dan komprehensif.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-effect p-8 rounded-xl border border-fantasy-gold/30 fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="stat-number mb-2">50+</div>
+                            <p class="text-gray-300">Tahun Misi</p>
+                            <p class="text-sm text-gray-400">Dapat bertahan minimal selama 50 tahun</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="stat-number mb-2">Kebanggaan</div>
+                            <p class="text-gray-300">Bangsa Indonesia</p>
+                            <p class="text-sm text-gray-400">Menjadi kebanggan masyarakat Indonesia</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="stat-number mb-2">Solusi</div>
+                            <p class="text-gray-300">Untuk Indonesia</p>
+                            <p class="text-sm text-gray-400">Jawaban dari masalah besar budaya asing</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 p-8 rounded-xl bg-gradient-to-r from-red-900/30 to-blue-900/30 border border-white/10">
+                    <p class="text-xl text-center text-white italic">
+                        "Menjadi jawaban dari masalah besar yang dihadapi Indonesia saat ini untuk mereduce pengaruh budaya asing masuk sekaligus menunjukan dengan karya yang dapat memperkuat jiwa nasionalisme bangsa Indonesia."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visi Misi Tujuan -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <!-- Visi -->
+                <div class="mb-20 fade-in-up">
+                    <div class="vision-card p-8 rounded-2xl">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-r from-red-600 to-red-400 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-eye text-white text-xl"></i>
+                            </div>
+                            <h2 class="fantasy-font text-3xl text-white">VISI</h2>
+                        </div>
+                        <p class="text-2xl md:text-3xl text-center text-white leading-relaxed">
+                            MENYELAMATKAN KARAKTER BANGSA INDONESIA DAN 
+                            <span class="text-red-300">MEMPERKUAT PERSATUAN KESATUAN INDONESIA</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Misi -->
+                <div class="mb-20 fade-in-up" style="animation-delay: 0.1s;">
+                    <h2 class="section-title fantasy-font text-4xl font-bold text-center text-white mb-12">
+                        <span class="gold-text">MISI</span> PATRION
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="mission-card p-6 rounded-xl">
+                            <div class="flex items-start">
+                                <div class="number-badge flex-shrink-0 mr-4">1</div>
+                                <div>
+                                    <p class="text-gray-300 text-lg leading-relaxed">
+                                        Menjadikan program kreatif di Indonesia sebagai 
+                                        <span class="text-fantasy-gold font-semibold">raja di negeri sendiri</span>. 
+                                        Serta memiliki pesan dan kesan nasionalisme mendalam.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mission-card p-6 rounded-xl">
+                            <div class="flex items-start">
+                                <div class="number-badge flex-shrink-0 mr-4">2</div>
+                                <div>
+                                    <p class="text-gray-300 text-lg leading-relaxed">
+                                        Menunjukkan kepada dunia bahwa 
+                                        <span class="text-fantasy-gold font-semibold">karya Indonesia sangat bernilai</span> 
+                                        dan memiliki identitas nasionalisme kuat.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mission-card p-6 rounded-xl">
+                            <div class="flex items-start">
+                                <div class="number-badge flex-shrink-0 mr-4">3</div>
+                                <div>
+                                    <p class="text-gray-300 text-lg leading-relaxed">
+                                        Membangun industri kreatif yang memiliki 
+                                        <span class="text-fantasy-gold font-semibold">konten lokal dengan pasar Internasional</span>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mission-card p-6 rounded-xl">
+                            <div class="flex items-start">
+                                <div class="number-badge flex-shrink-0 mr-4">4</div>
+                                <div>
+                                    <p class="text-gray-300 text-lg leading-relaxed">
+                                        Mensinergikan 
+                                        <span class="text-fantasy-gold font-semibold">SDM berkualitas</span> 
+                                        dalam industri kreatif di Indonesia yang terintegrasi dengan bisnis global.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mission-card p-6 rounded-xl">
+                            <div class="flex items-start">
+                                <div class="number-badge flex-shrink-0 mr-4">5</div>
+                                <div>
+                                    <p class="text-gray-300 text-lg leading-relaxed">
+                                        Mempersatukan Indonesia dengan Patrion yang bisa 
+                                        <span class="text-fantasy-gold font-semibold">mengangkat harga diri bangsa</span> 
+                                        dengan karakter Indonesia yang kuat.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tujuan -->
+                <div class="fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="goal-card p-8 rounded-2xl">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-400 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-bullseye text-white text-xl"></i>
+                            </div>
+                            <h2 class="fantasy-font text-3xl text-white">TUJUAN</h2>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl text-white mb-6">
+                                Meraih kepercayaan segenap masyarakat Indonesia dalam membangun Bangsa
+                            </p>
+                            <p class="text-xl text-gray-300">
+                                Serta mewujudkan Indonesia semakin memiliki 
+                                <span class="text-blue-300 font-semibold">karakter kuat dan bermartabat</span> 
+                                di pentas dunia, khususnya dalam industri Kreatif Global.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Peta Indonesia -->
+    <section class="py-20 relative">
+        <div class="absolute inset-0 bg-gradient-to-t from-red-900/10 via-black to-white/5"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="fantasy-font text-4xl font-bold text-white mb-8">
+                    <span class="red-white-text">NUSANTARA</span> DALAM PATRION
+                </h2>
+                <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                    Setiap karakter PATRION mewakili kekayaan alam, budaya, dan filosofi dari berbagai wilayah Nusantara, 
+                    menciptakan mosaik indah dari keberagaman Indonesia.
+                </p>
+                
+                <div class="relative">
+                    <img src="assets/images/Peta_Indonesia_Merah_Putih.png" alt="Peta Indonesia" class="indonesia-map w-full max-w-2xl mx-auto">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-red-600 to-red-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <!-- <i class="fas fa-hands-holding-circle text-white text-2xl"></i> -->
+                                <i class="fas fa-seedling text-white text-2xl"></i>
+                            </div>
+                            <h3 class="fantasy-font text-xl text-white mb-2">Alam Nusantara</h3>
+                            <p class="text-gray-400">Kekayaan alam Indonesia menjadi inspirasi utama karakter dan cerita</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-yellow-600 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-theater-masks text-white text-2xl"></i>
+                            </div>
+                            <h3 class="fantasy-font text-xl text-white mb-2">Budaya Lokal</h3>
+                            <p class="text-gray-400">Setiap karakter mengangkat budaya dan tradisi lokal Indonesia</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-hands-helping text-white text-2xl"></i>
+                            </div>
+                            <h3 class="fantasy-font text-xl text-white mb-2">Persatuan</h3>
+                            <p class="text-gray-400">Mewakili semangat Bhinneka Tunggal Ika dalam setiap cerita</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-fantasy-purple/20 via-fantasy-blue/20 to-fantasy-dark/20"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="quote-mark">"</div>
+                <p class="text-2xl md:text-3xl text-white italic mb-8 leading-relaxed">
+                    PATRION bukan sekadar hiburan, melainkan 
+                    <span class="text-fantasy-gold font-semibold">gerakan kebudayaan</span> 
+                    yang bertujuan membangun karakter bangsa melalui cerita-cerita heroik yang mengakar pada jati diri Indonesia.
+                </p>
+                <div class="w-24 h-1 bg-gradient-to-r from-fantasy-gold to-fantasy-purple mx-auto"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-effect py-12 border-t border-fantasy-gold/20">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="h-12 mb-4">
+                    <p class="text-gray-400 text-sm">
+                        PATRIOT NUSANTARA - Ikon pahlawan yang mewakili citra Indonesia seutuhnya.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-fantasy-gold mb-4">Eksplorasi</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="about.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Tentang</a>
+                        <a href="characters.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Karakter</a>
+                        <a href="program.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Program</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-fantasy-gold mb-4">Bantuan</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-fantasy-gold transition-colors">FAQ</a>
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-fantasy-gold transition-colors">Komunitas</a>
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-fantasy-gold transition-colors">Kontak</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-fantasy-gold mb-4">Terhubung</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="https://www.facebook.com/patrion.universe" target="_blank" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.instagram.com/patrionofficial" target="_blank" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+                            <i class="fab fa-square-facebook"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@patrionofficial" target="_blank" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <p>Email: info@patrion.com</p>
+                        <p>Support: support@patrion.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    "PATRION", "Patriot Nusantara" dan seluruh karakter adalah merek dagang dari 
+                    <span class="text-fantasy-gold">PATRION Universe</span>.
+                    © 2024 PATRION. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-2 px-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAboutPage();
+            setupEventListeners();
+        });
+
+        function initializeAboutPage() {
+            setupMobileMenu();
+            initializeBackToTop();
+            initializeParticles();
+            initializeAnimations();
+        }
+
+        function setupEventListeners() {
+            // Mobile menu
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Smooth scroll untuk navigasi
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                            // Tutup mobile menu jika terbuka
+                            document.getElementById('mobile-menu').classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        }
+
+        // Back to Top functionality
+        function initializeBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Particle background
+        function initializeParticles() {
+            const canvas = document.getElementById('particle-canvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Particle array
+            const particles = [];
+            const particleCount = 100;
+            
+            // Create particles
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5,
+                    color: `rgba(${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 255)}, ${Math.random() * 0.5 + 0.2})`
+                });
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Update and draw particles
+                particles.forEach(particle => {
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+                    
+                    // Wrap around edges
+                    if (particle.x < 0) particle.x = canvas.width;
+                    if (particle.x > canvas.width) particle.x = 0;
+                    if (particle.y < 0) particle.y = canvas.height;
+                    if (particle.y > canvas.height) particle.y = 0;
+                    
+                    // Draw particle
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    ctx.fillStyle = particle.color;
+                    ctx.fill();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            // Resize handler
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+
+        // Initialize animations
+        function initializeAnimations() {
+            // Intersection Observer untuk animasi fade-in
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe semua elemen dengan class fade-in-up
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Setup mobile menu
+        function setupMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Smooth scroll untuk navigasi
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                            // Tutup mobile menu jika terbuka
+                            document.getElementById('mobile-menu').classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

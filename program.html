@@ -19,41 +19,41 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-    
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#fbbf24',
+                        'fantasy-blue': '#1e3a8a',
+                        'fantasy-purple': '#5b21b6',
+                        'fantasy-dark': '#0f172a',
+                        'fantasy-gold': '#fbbf24',
+                        // Warna elemen berdasarkan karakter
+                        fire: '#dc2626',
+                        wind: '#94a3b8',
+                        water: '#3b82f6',
+                        earth: '#d97706',
+                        thunder: '#7c3aed',
+                        nature: '#16a34a',
+                        light: '#fde047',
+                        dark: '#1e293b'
+                    },
+                    backgroundImage: {
+                        'fantasy-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #5b21b6 50%, #0f172a 100%)',
+                        'gold-gradient': 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/styles.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
         
-        :root {
-            --fantasy-dark: #0f172a;
-            --fantasy-gold: #fbbf24;
-            --fantasy-purple: #5b21b6;
-            --fantasy-blue: #1e3a8a;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000000;
-            color: #e2e8f0;
-            overflow-x: hidden;
-        }
-        
-        .fantasy-font {
-            font-family: 'Cinzel', serif;
-        }
-        
-        .gold-text {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .glass-effect {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(251, 191, 36, 0.1);
-        }
-        
+        /* Program Card Styles */
         .program-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             background: rgba(15, 23, 42, 0.8);
@@ -66,6 +66,7 @@
             box-shadow: 0 20px 40px rgba(123, 97, 255, 0.3);
         }
         
+        /* Platform badges */
         .platform-badge {
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
@@ -80,6 +81,7 @@
         .platform-digital { background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.4); }
         .platform-tv { background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.4); }
         
+        /* Status badges */
         .status-badge {
             padding: 0.2rem 0.6rem;
             border-radius: 9999px;
@@ -91,6 +93,7 @@
         .status-released { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
         .status-production { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
         
+        /* Filter buttons */
         .filter-btn {
             transition: all 0.3s ease;
             background: rgba(30, 41, 59, 0.5);
@@ -103,6 +106,7 @@
             border-color: #fbbf24;
         }
         
+        /* Timeline */
         .timeline-item {
             position: relative;
             padding-left: 2rem;
@@ -150,53 +154,70 @@
         }
         
         /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .floating {
-            animation: float 6s ease-in-out infinite;
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
         }
         
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            border-radius: 5px;
-        }
-        
-        /* Video thumbnail hover effect */
+        /* Video thumbnail hover effect - DIPERBARUI */
         .video-thumbnail {
             position: relative;
             overflow: hidden;
             border-radius: 12px;
         }
         
-        .video-thumbnail::after {
-            content: '▶';
+        .video-thumbnail img {
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        
+        .video-thumbnail:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.6);
+        }
+        
+        /* Trailer Card Hover Effect - BARU */
+        .trailer-slide {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .trailer-slide img {
+            transition: all 0.5s ease;
+        }
+        
+        .trailer-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, transparent 100%); */
+            background: rgba(15, 23, 42, 0.90);
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .trailer-slide:hover .trailer-info {
+            transform: translateY(0);
+        }
+        
+        .trailer-play-btn {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease 0.1s;
+        }
+        
+        .trailer-slide:hover .trailer-play-btn {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .trailer-play-overlay {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -212,94 +233,222 @@
             color: #0f172a;
             opacity: 0;
             transition: all 0.3s ease;
+            z-index: 2;
         }
         
-        .video-thumbnail:hover::after {
+        .trailer-slide:hover .trailer-play-overlay {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1.1);
         }
         
-        .video-thumbnail:hover img {
-            transform: scale(1.1);
-            filter: brightness(0.8);
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Aurora Effect */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(123, 97, 255, 0.1), rgba(251, 191, 36, 0.1), rgba(59, 130, 246, 0.1));
+            opacity: 0.3;
+            z-index: -1;
+            filter: blur(40px);
         }
     </style>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0f172a',
-                        secondary: '#1e293b',
-                        accent: '#fbbf24',
-                        'fantasy-blue': '#1e3a8a',
-                        'fantasy-purple': '#5b21b6',
-                        'fantasy-dark': '#0f172a',
-                        'fantasy-gold': '#fbbf24',
-                    },
-                    backgroundImage: {
-                        'fantasy-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #5b21b6 50%, #0f172a 100%)',
-                        'gold-gradient': 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)'
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="relative bg-black">
 
-    <!-- Header Navigation -->
+</head>
+<body class="relative">
+
+    <!-- Background dengan partikel dan efek cahaya -->
+    <canvas id="particle-canvas"></canvas>
+    <div class="aurora"></div>
+    
+    <!-- Header & Navigation -->
     <header class="glass-effect sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="flex items-center">
+                    <!-- Gambar logo -->
                     <a href="index.html" class="flex items-center">
-                        <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="h-10">
-                        <span class="fantasy-font text-white text-xl ml-2">PROGRAM</span>
+                        <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="w-full h-12">
                     </a>
                 </div>
                 
-                <!-- Navigation -->
+                <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-white hover:text-fantasy-gold transition-colors">BERANDA</a>
-                    <a href="#program-list" class="text-white hover:text-fantasy-gold transition-colors">PROGRAM</a>
-                    <a href="#roadmap" class="text-white hover:text-fantasy-gold transition-colors">ROADMAP</a>
-                    <a href="#production" class="text-white hover:text-fantasy-gold transition-colors">PRODUCTION</a>
-                    <a href="characters.html" class="text-white hover:text-fantasy-gold transition-colors">KARAKTER</a>
+                    <a href="index.html" class="nav-link text-white hover:text-fantasy-gold transition-colors">BERANDA</a>
+                    <a href="program.html" class="nav-link text-white hover:text-fantasy-gold transition-colors">PROGRAM</a>
+                    
+                    <!-- Karakter Dropdown -->
+                    <div class="relative group">
+                        <a href="characters.html" class="nav-link text-white hover:text-fantasy-gold transition-colors flex items-center">
+                            KARAKTER <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-[-60%] mt-2 w-56 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-fantasy-gold/20">
+                            <div class="py-2 grid grid-cols-2 gap-1">
+                                <a href="character-detail.html?character=kunna" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-fire mr-2"></div>
+                                    KUNNA
+                                </a>
+                                <a href="character-detail.html?character=wabu" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-wind mr-2"></div>
+                                    WABU
+                                </a>
+                                <a href="character-detail.html?character=asta" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-water mr-2"></div>
+                                    ASTA
+                                </a>
+                                <a href="character-detail.html?character=taran" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-earth mr-2"></div>
+                                    TARAN
+                                </a>
+                                <a href="character-detail.html?character=sanu" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-thunder mr-2"></div>
+                                    SANU
+                                </a>
+                                <a href="character-detail.html?character=kabi" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-nature mr-2"></div>
+                                    KABI
+                                </a>
+                                <a href="character-detail.html?character=arun" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-light mr-2"></div>
+                                    ARUN
+                                </a>
+                                <a href="character-detail.html?character=antis" class="flex items-center px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">
+                                    <div class="w-3 h-3 rounded-full bg-dark mr-2"></div>
+                                    ANTIS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Informasi Dropdown -->
+                    <div class="relative group">
+                        <a href="javascript:void(0);" class="nav-link text-white hover:text-fantasy-gold transition-colors flex items-center">
+                            INFORMASI <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-[-80%] mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-fantasy-gold/20">
+                            <div class="py-2">
+                                <a href="#wahana" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">WAHANA</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">KOMIK</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">NOVEL</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">GAME</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Lainnya Dropdown -->
+                    <div class="relative group">
+                        <a href="javascript:void(0);" class="nav-link text-white hover:text-fantasy-gold transition-colors flex items-center">
+                            LAINNYA <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-[-100%] mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-fantasy-gold/20">
+                            <div class="py-2">
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">NORMAL (Gaya realistis)</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">MICU (Gaya anime)</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">CHIBI (Gaya chibi)</a>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobileMenuBtn" class="md:hidden text-white">
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
             
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="md:hidden mt-4 hidden glass-effect rounded-lg p-4">
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden mt-4 hidden glass-effect rounded-lg p-4 border border-fantasy-gold/20">
                 <div class="flex flex-col space-y-3">
                     <a href="index.html" class="hover:text-fantasy-gold transition-colors py-2">BERANDA</a>
-                    <a href="#program-list" class="hover:text-fantasy-gold transition-colors py-2">PROGRAM</a>
-                    <a href="#roadmap" class="hover:text-fantasy-gold transition-colors py-2">ROADMAP</a>
-                    <a href="#production" class="hover:text-fantasy-gold transition-colors py-2">PRODUCTION</a>
-                    <a href="characters.html" class="hover:text-fantasy-gold transition-colors py-2">KARAKTER</a>
+                    <a href="program.html" class="hover:text-fantasy-gold transition-colors py-2">PROGRAM</a>
+                    
+                    <div class="py-2">
+                        <a href="characters.html" class="hover:text-fantasy-gold transition-colors font-semibold">KARAKTER</a>
+                        <div class="mt-2 ml-4 grid grid-cols-2 gap-2">
+                            <a href="character-detail.html?character=kunna" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-fire mr-2"></div>
+                                KUNNA
+                            </a>
+                            <a href="character-detail.html?character=wabu" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-wind mr-2"></div>
+                                WABU
+                            </a>
+                            <a href="character-detail.html?character=asta" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-water mr-2"></div>
+                                ASTA
+                            </a>
+                            <a href="character-detail.html?character=taran" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-earth mr-2"></div>
+                                TARAN
+                            </a>
+                            <a href="character-detail.html?character=sanu" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-thunder mr-2"></div>
+                                SANU
+                            </a>
+                            <a href="character-detail.html?character=kabi" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-nature mr-2"></div>
+                                KABI
+                            </a>
+                            <a href="character-detail.html?character=arun" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-light mr-2"></div>
+                                ARUN
+                            </a>
+                            <a href="character-detail.html?character=antis" class="text-sm hover:text-fantasy-gold flex items-center">
+                                <div class="w-2 h-2 rounded-full bg-dark mr-2"></div>
+                                ANTIS
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="py-2">
+                        <a href="javascript:void(0);" class="hover:text-fantasy-gold transition-colors font-semibold">INFORMASI</a>
+                        <div class="mt-2 ml-4 flex flex-col space-y-2">
+                            <a href="#wahana" class="text-sm hover:text-fantasy-gold">WAHANA</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">KOMIK</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">NOVEL</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">GAME</a>
+                        </div>
+                    </div>
+                    
+                    <div class="py-2">
+                        <a href="javascript:void(0);" class="hover:text-fantasy-gold transition-colors font-semibold">LAINNYA</a>
+                        <div class="mt-2 ml-4 flex flex-col space-y-2">
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">NORMAL (Gaya realistis)</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">MICU (Gaya anime)</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">CHIBI (Gaya chibi)</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative py-20 overflow-hidden">
-        <!-- Background Pattern -->
+    <section class="relative py-20 md:py-32 bg-fantasy-gradient overflow-hidden">
         <div class="absolute inset-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-fantasy-purple/20 via-fantasy-blue/10 to-transparent"></div>
-            <div class="absolute top-0 right-0 w-96 h-96 bg-fantasy-gold/5 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-fantasy-purple/5 rounded-full blur-3xl"></div>
+            <div class="absolute inset-0 bg-black/60"></div>
+            <div class="absolute inset-0" style="background: radial-gradient(circle at 50% 50%, rgba(123, 97, 255, 0.1) 0%, transparent 50%);"></div>
         </div>
         
         <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-4xl mx-auto text-center">
+            <div class="max-w-7xl mx-auto text-center">
                 <h1 class="fantasy-font text-5xl md:text-6xl font-bold text-white mb-6">
                     Program Holistik <span class="gold-text">PATRION</span>
                 </h1>
@@ -310,11 +459,19 @@
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="scrollToSection('program-list')" 
+                    <button onclick="
+                                const programList = document.getElementById('program-list');
+                                const programListY = programList.getBoundingClientRect().top + window.scrollY - 20;
+                                window.scrollTo({ top: programListY, behavior: 'smooth' });
+                            "
                             class="bg-gold-gradient hover:opacity-90 text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
                         <i class="fas fa-play-circle mr-2"></i> Jelajahi Program
                     </button>
-                    <button onclick="scrollToSection('trailers')"
+                    <button onclick="
+                                const trailer = document.getElementById('trailers');
+                                const trailerY = trailer.getBoundingClientRect().top + window.scrollY - 20;
+                                window.scrollTo({ top: trailerY, behavior: 'smooth' });
+                            "
                             class="border-2 border-fantasy-gold text-fantasy-gold hover:bg-fantasy-gold hover:text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all">
                         <i class="fas fa-film mr-2"></i> Tonton Trailer
                     </button>
@@ -371,7 +528,7 @@
             <!-- Sort Options -->
             <div class="flex justify-end mb-6">
                 <select id="sortSelect" class="glass-effect text-white py-2 px-4 rounded-lg border border-fantasy-gold/20">
-                    <option value="release">Urutkan: Release Date</option>
+                    <option value="release">Release Date</option>
                     <option value="popularity">Popularitas</option>
                     <option value="az">A-Z</option>
                     <option value="za">Z-A</option>
@@ -383,7 +540,7 @@
     <!-- Program List -->
     <section id="program-list" class="py-16">
         <div class="container mx-auto px-4">
-            <h2 class="fantasy-font text-3xl font-bold text-white mb-12 text-center">Semua Program</h2>
+            <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">Semua Program</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 program-container">
                 <!-- Program cards akan diisi oleh JavaScript -->
@@ -391,15 +548,15 @@
         </div>
     </section>
 
-    <!-- Featured Trailers -->
+    <!-- Featured Trailers - DIPERBARUI -->
     <section id="trailers" class="py-16 relative">
-        <div class="absolute inset-0 bg-fantasy-gradient opacity-20"></div>
+        <div class="absolute inset-0 bg-fantasy-gradient opacity-90"></div>
         <div class="container mx-auto px-4 relative z-10">
-            <h2 class="fantasy-font text-3xl font-bold text-white mb-12 text-center">Trailer Eksklusif</h2>
+            <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">Trailer Eksklusif</h2>
             
             <div class="swiper trailers-swiper">
                 <div class="swiper-wrapper">
-                    <!-- Trailer slides will be populated by JS -->
+                    <!-- Trailer slides akan diisi oleh JS -->
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-next"></div>
@@ -411,7 +568,7 @@
     <!-- Release Roadmap -->
     <section id="roadmap" class="py-16">
         <div class="container mx-auto px-4">
-            <h2 class="fantasy-font text-3xl font-bold text-white mb-12 text-center">Roadmap Release 2024-2025</h2>
+            <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">Roadmap Release 2024-2025</h2>
             
             <div class="max-w-4xl mx-auto">
                 <div class="timeline">
@@ -422,12 +579,13 @@
     </section>
 
     <!-- Production Studios -->
-    <section id="production" class="py-16 glass-effect">
-        <div class="container mx-auto px-4">
-            <h2 class="fantasy-font text-3xl font-bold text-white mb-12 text-center">Studio Produksi</h2>
+    <section id="production" class="py-16 relative overflow-hidden">
+        <div class="absolute inset-0 bg-fantasy-dark opacity-95"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="section-title fantasy-font text-3xl font-bold text-center text-white">Studio Produksi</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center p-6 rounded-xl bg-fantasy-dark/50">
+                <div class="text-center p-6 rounded-xl bg-fantasy-dark/50 border border-fantasy-gold/20 hover:border-fantasy-gold/90 hover:shadow-lg hover:scale-105 transition-all duration-300">
                     <div class="text-fantasy-gold text-4xl mb-4">
                         <i class="fas fa-video"></i>
                     </div>
@@ -435,7 +593,7 @@
                     <p class="text-gray-400">Spesialisasi dalam animasi 3D dan visual effects untuk seluruh konten PATRION.</p>
                 </div>
                 
-                <div class="text-center p-6 rounded-xl bg-fantasy-dark/50">
+                <div class="text-center p-6 rounded-xl bg-fantasy-dark/50 border border-fantasy-gold/20 hover:border-fantasy-gold/90 hover:shadow-lg hover:scale-105 transition-all duration-300">
                     <div class="text-fantasy-gold text-4xl mb-4">
                         <i class="fas fa-film"></i>
                     </div>
@@ -443,7 +601,7 @@
                     <p class="text-gray-400">Produksi film live action dengan teknologi cinematic terbaru.</p>
                 </div>
                 
-                <div class="text-center p-6 rounded-xl bg-fantasy-dark/50">
+                <div class="text-center p-6 rounded-xl bg-fantasy-dark/50 border border-fantasy-gold/20 hover:border-fantasy-gold/90 hover:shadow-lg hover:scale-105 transition-all duration-300">
                     <div class="text-fantasy-gold text-4xl mb-4">
                         <i class="fas fa-podcast"></i>
                     </div>
@@ -455,31 +613,67 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-fantasy-gold/20">
+    <footer class="glass-effect py-12 border-t border-fantasy-gold/20">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <img src="assets/images/logo-patrion.png" alt="PATRION" class="h-10">
-                    <p class="text-gray-400 text-sm mt-2">© 2024 PATRION Universe. All rights reserved.</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="h-12 mb-4">
+                    <p class="text-gray-400 text-sm">
+                        Dunia fantasi Nusantara dengan kekuatan elemen dan petualangan epik.
+                    </p>
                 </div>
                 
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">
-                        <i class="fab fa-youtube text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">
-                        <i class="fab fa-tiktok text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">
-                        <i class="fab fa-spotify text-xl"></i>
-                    </a>
+                <div>
+                    <h3 class="fantasy-font text-fantasy-gold mb-4">Eksplorasi</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="characters.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Karakter</a>
+                        <a href="program.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Program</a>
+                        <a href="index.html#wahana" class="text-gray-400 hover:text-fantasy-gold transition-colors">Wahana</a>
+                    </div>
                 </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-fantasy-gold mb-4">Bantuan</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-fantasy-gold transition-colors">Pusat Bantuan</a>
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-fantasy-gold transition-colors">Komunitas</a>
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-fantasy-gold transition-colors">Kontak</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-fantasy-gold mb-4">Terhubung</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="https://www.facebook.com/patrion.universe" target="_blank" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.instagram.com/patrionofficial" target="_blank" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+                            <i class="fab fa-square-facebook"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@patrionofficial" target="_blank" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <p>Email: info@patrion.com</p>
+                        <p>Support: support@patrion.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    "Karakter", "Artefak" dan "Alam Semesta Patrion" adalah merek dagang dari <span class="text-fantasy-gold">PATRION</span>.
+                    © 2024 PATRION. All Rights Reserved.
+                </p>
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-1 px-3 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Video Modal -->
     <div id="videoModal" class="fixed inset-0 bg-black/90 hidden z-50 flex items-center justify-center">
@@ -505,7 +699,7 @@
             {
                 id: 1,
                 title: "Film Cinema - Drama Live Action",
-                description: "Film epik live action yang mengangkat mitologi Nusantara dengan teknologi visual effects terkini.",
+                description: "Menceritakan background masing-masing patrion dari daerah mereka. Bagaimana mereka bisa menjadi patrion dengan masalah yang dihadapi mereka.",
                 image: "assets/images/semesta/Thumbnail-Patrion Movie.png",
                 platform: "cinema",
                 status: "upcoming",
@@ -514,14 +708,30 @@
                 rating: "PG-13",
                 director: "Abdurrahman GM",
                 budget: "$15M",
-                trailer: "assets/video/trailer-cinema.mp4",
+                trailer: "assets/video/program/01_Live_action.mp4",
                 episodes: 1,
                 views: "0"
             },
             {
                 id: 2,
-                title: "Animasi 3D Series",
-                description: "Serial animasi 3D dengan teknologi CGI terbaru, mengikuti petualangan karakter PATRION.",
+                title: "Film Cinema - Animation",
+                description: "Patrion dengan aksinya dan masalah yang mereka hadapi. Menghadapi musuh dan bagaimana patrion menyelesaikan masalah, menyelamatkan bumi dari penjahat yang mau menghancurkan mereka. Teaser menampilkan awal kemunculan Patrion sampai mereka bersatu dan bersama menhadapi masalah utama menyelamatkan Bumi.",
+                image: "assets/images/semesta/Thumbnail-Animasi 2D.png",
+                platform: "cinema",
+                status: "upcoming",
+                releaseDate: "Q4 2024",
+                duration: "120 menit",
+                rating: "PG-13",
+                director: "Abdurrahman GM",
+                budget: "$15M",
+                trailer: "assets/video/program/02-animasi-2d.mp4",
+                episodes: 1,
+                views: "0"
+            },
+            {
+                id: 3,
+                title: "Animasi 3D",
+                description: "Tayangan animasi anak yang menceritakan tentang para patrion dari wilayah masing-masing. Bagaimana mereka berpetualang untuk menyelesaikan persoalan yang terjadi di Nusantara.",
                 image: "assets/images/semesta/Thumbnail-Animasi 3D.png",
                 platform: "ott",
                 status: "released",
@@ -530,14 +740,14 @@
                 rating: "PG",
                 director: "Siti Nurhaliza",
                 budget: "$8M",
-                trailer: "assets/video/trailer-animasi.mp4",
+                trailer: "assets/video/program/03-animasi-3d.mp4",
                 episodes: 24,
                 views: "2.5M"
             },
             {
-                id: 3,
+                id: 4,
                 title: "Kunna Bercerita",
-                description: "Konten storytelling digital dengan karakter Kunna sebagai narator cerita-cerita fantasi.",
+                description: "Event Patrion Goes to school Kunna Bercerita.",
                 image: "assets/images/semesta/Thumbnail-Kunna Bercerita.png",
                 platform: "digital",
                 status: "released",
@@ -546,14 +756,14 @@
                 rating: "G",
                 director: "Budi Santoso",
                 budget: "$500K",
-                trailer: "assets/video/trailer-kunna.mp4",
+                trailer: "assets/video/program/04-kunna-bercerita.mp4",
                 episodes: 36,
                 views: "1.2M"
             },
             {
-                id: 4,
-                title: "Travel Show: Jelajah Patrion",
-                description: "Program perjalanan eksplorasi lokasi-lokasi inspirasi dunia PATRION di seluruh Nusantara.",
+                id: 5,
+                title: "Travel Show",
+                description: "Program yang fokus pada destinasi wisata, budaya, kuliner dan memberikan panduan serta tips perjalanan. Ada host bersama dengan salah satu Patrion yang memandu perjalanan.",
                 image: "assets/images/semesta/Thumbnail-Travel Show.png",
                 platform: "tv",
                 status: "production",
@@ -562,14 +772,14 @@
                 rating: "PG",
                 director: "Ahmad Rizki",
                 budget: "$3M",
-                trailer: "assets/video/trailer-travel.mp4",
+                trailer: "assets/video/program/05-travel-show.mp4",
                 episodes: 12,
                 views: "0"
             },
             {
-                id: 5,
-                title: "Filler Series",
-                description: "Konten pendek dan komedi yang melengkapi cerita utama dengan gaya lebih ringan.",
+                id: 6,
+                title: "Filler Value",
+                description: "Membuat cerita tentang seseorang yang punya jiwa nusantara dan cara hidupnya memiliki jiwa nasionalisme. Humanis.",
                 image: "assets/images/semesta/Thumbnail-Filler.png",
                 platform: "ott",
                 status: "released",
@@ -578,14 +788,14 @@
                 rating: "PG",
                 director: "Dewi Lestari",
                 budget: "$1.2M",
-                trailer: "assets/video/trailer-filler.mp4",
+                trailer: "assets/video/program/06-filler-value.mp4",
                 episodes: 48,
                 views: "800K"
             },
             {
-                id: 6,
-                title: "Motion Graphic 2D",
-                description: "Konten edukatif dengan animasi motion graphic 2D yang menjelaskan lore dunia PATRION.",
+                id: 7,
+                title: "Motiongraphic 2D",
+                description: "Penjelasan/edukasi tentang nusantara. Video graphic real yang menceritakan tentang info nusantara dengan narasi. Dan disampaikan dengan gaya edukasi versi patrion. Yang cepat dan mudah dimengerti.",
                 image: "assets/images/semesta/Thumbnail-Motion Graphics 2d.png",
                 platform: "digital",
                 status: "released",
@@ -594,14 +804,14 @@
                 rating: "G",
                 director: "Citra Kirana",
                 budget: "$300K",
-                trailer: "assets/video/trailer-motion.mp4",
+                trailer: "assets/video/program/07-motiongraphic-2d.mp4",
                 episodes: 24,
                 views: "500K"
             },
             {
-                id: 7,
-                title: "Podcast Patrionia",
-                description: "Audio series dengan diskusi mendalam tentang karakter, cerita, dan produksi PATRION.",
+                id: 8,
+                title: "Podcast Patronia",
+                description: "Penjelasan/edukasi tentang nusantara. Video graphic real yang menceritakan tentang info nusantara dengan narasi. Dan disampaikan dengan gaya edukasi versi patrion. Yang cepat dan mudah dimengerti.",
                 image: "assets/images/semesta/Thumbnail-Podcast Patrionia.png",
                 platform: "digital",
                 status: "released",
@@ -610,14 +820,14 @@
                 rating: "PG-13",
                 director: "Rizky Febian",
                 budget: "$200K",
-                trailer: "assets/video/trailer-podcast.mp4",
+                trailer: "assets/video/program/08-patrionia-podcast.mp4",
                 episodes: 52,
                 views: "300K"
             },
             {
-                id: 8,
-                title: "Motion Comics",
-                description: "Adaptasi komik dengan animasi terbatas, memberikan pengalaman membaca yang dinamis.",
+                id: 9,
+                title: "Motion Comic",
+                description: "Komik Patrion yang menjelaskan perjalanan Patrion dengan superheronya. Format Concept komk yang dibuat versi video untuk market anak-anak dan dewasa. Level-level patrion ada di sini seiring petualangan tokoh Patrion.",
                 image: "assets/images/semesta/Thumbnail-Motion Comics.png",
                 platform: "digital",
                 status: "production",
@@ -626,7 +836,7 @@
                 rating: "PG",
                 director: "Eko Sutrisno",
                 budget: "$750K",
-                trailer: "assets/video/trailer-comics.mp4",
+                trailer: "assets/video/program/09-motion-comic.mp4",
                 episodes: 18,
                 views: "0"
             }
@@ -647,6 +857,9 @@
             initializeProgramPage();
             setupEventListeners();
             initializeTrailersSwiper();
+            initializeBackToTop();
+            setupMobileMenu();
+            initializeParticles();
         });
 
         function initializeProgramPage() {
@@ -670,7 +883,7 @@
             const cards = container.querySelectorAll('.program-card');
             cards.forEach((card, index) => {
                 card.style.animationDelay = `${index * 0.1}s`;
-                card.classList.add('fade-in-up');
+                card.classList.add('fade-in');
             });
         }
 
@@ -700,7 +913,7 @@
             
             card.innerHTML = `
                 <div class="video-thumbnail">
-                    <img src="${program.image}" alt="${program.title}" class="w-full h-48 object-cover transition-transform duration-500">
+                    <img src="${program.image}" alt="${program.title}" class="w-full h-full object-cover">
                 </div>
                 <div class="p-4">
                     <div class="flex justify-between items-start mb-3">
@@ -709,7 +922,7 @@
                     </div>
                     
                     <h3 class="fantasy-font text-lg text-white mb-2 line-clamp-2">${program.title}</h3>
-                    <p class="text-gray-400 text-sm mb-4 line-clamp-2">${program.description}</p>
+                    <!-- <p class="text-gray-400 text-sm mb-4 line-clamp-2">${program.description}</p>
                     
                     <div class="flex items-center justify-between text-sm text-gray-500">
                         <div class="flex items-center">
@@ -720,7 +933,7 @@
                             <i class="far fa-eye mr-1"></i>
                             <span>${program.views}</span>
                         </div>
-                    </div>
+                    </div> -->
                     
                     <div class="mt-4 pt-4 border-t border-gray-800">
                         <div class="flex justify-between">
@@ -780,6 +993,7 @@
             });
         }
 
+        // DIPERBARUI: Trailer Swiper dengan hover effect
         function initializeTrailersSwiper() {
             const trailerPrograms = programs.filter(p => p.status !== 'upcoming' || p.platform === 'cinema');
             
@@ -790,27 +1004,51 @@
             
             trailerPrograms.slice(0, 5).forEach(program => {
                 const slide = document.createElement('div');
-                slide.className = 'swiper-slide';
+                slide.className = 'swiper-slide trailer-slide';
                 
                 slide.innerHTML = `
-                    <div class="relative rounded-xl overflow-hidden">
-                        <img src="${program.image}" alt="${program.title}" class="w-full h-64 object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-4">
-                            <h3 class="fantasy-font text-white text-lg mb-2">${program.title}</h3>
-                            <button onclick="playTrailer(${program.id})" 
-                                    class="bg-fantasy-gold hover:bg-yellow-500 text-fantasy-dark font-bold py-2 px-6 rounded-full transition-all">
-                                <i class="fas fa-play mr-2"></i> Play Trailer
-                            </button>
+                    <div class="relative rounded-xl overflow-hidden h-full">
+                        <img src="${program.image}" alt="${program.title}" class="w-full h-full object-cover">
+                        
+                        <!-- Play overlay icon - hanya muncul saat hover -->
+                        <!-- <div class="trailer-play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div> -->
+                        
+                        <!-- Info panel - tersembunyi default, muncul saat hover -->
+                        <div class="trailer-info">
+                            <h3 class="fantasy-font text-white text-lg mb-3">${program.title}</h3>
+                            <p class="text-gray-300 text-sm mb-4 line-clamp-2">${program.description}</p>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs px-2 py-1 rounded bg-gray-800/70 text-gray-300">
+                                        ${program.platform.toUpperCase()}
+                                    </span>
+                                    <span class="text-xs text-gray-400">
+                                        <i class="far fa-clock mr-1"></i>${program.duration}
+                                    </span>
+                                </div>
+                                <button onclick="event.stopPropagation(); playTrailer(${program.id})" 
+                                        class="trailer-play-btn bg-fantasy-gold hover:bg-yellow-500 text-fantasy-dark font-bold py-2 px-4 rounded-full transition-all text-sm">
+                                    <i class="fas fa-play mr-1"></i> Play
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
+                
+                // Click event untuk seluruh slide
+                slide.addEventListener('click', function(e) {
+                    if (!e.target.closest('button')) {
+                        playTrailer(program.id);
+                    }
+                });
                 
                 swiperContainer.appendChild(slide);
             });
             
             // Initialize Swiper
-            new Swiper('.trailers-swiper', {
+            const trailersSwiper = new Swiper('.trailers-swiper', {
                 loop: true,
                 autoplay: {
                     delay: 5000,
@@ -830,8 +1068,18 @@
                 breakpoints: {
                     320: { slidesPerView: 1 },
                     640: { slidesPerView: 2 },
-                    1024: { slidesPerView: 3 }
+                    1024: { slidesPerView: 3 },
+                    1280: { slidesPerView: 4 }
                 }
+            });
+
+            // Pause autoplay saat hover
+            trailersSwiper.el.addEventListener('mouseenter', () => {
+                trailersSwiper.autoplay.stop();
+            });
+
+            trailersSwiper.el.addEventListener('mouseleave', () => {
+                trailersSwiper.autoplay.start();
             });
         }
 
@@ -858,16 +1106,6 @@
                 });
             }
             
-            // Mobile menu
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            
-            if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-            
             // Video modal
             const videoModal = document.getElementById('videoModal');
             const closeModal = document.getElementById('closeModal');
@@ -890,6 +1128,118 @@
                     }
                 });
             }
+        }
+
+        // Back to Top functionality
+        function initializeBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Mobile menu functionality
+        function setupMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Smooth scroll untuk navigasi
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                            // Tutup mobile menu jika terbuka
+                            document.getElementById('mobile-menu').classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        }
+
+        // Particle background
+        function initializeParticles() {
+            const canvas = document.getElementById('particle-canvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Particle array
+            const particles = [];
+            const particleCount = 100;
+            
+            // Create particles
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5,
+                    color: `rgba(${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 255)}, ${Math.random() * 0.5 + 0.2})`
+                });
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Update and draw particles
+                particles.forEach(particle => {
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+                    
+                    // Wrap around edges
+                    if (particle.x < 0) particle.x = canvas.width;
+                    if (particle.x > canvas.width) particle.x = 0;
+                    if (particle.y < 0) particle.y = canvas.height;
+                    if (particle.y > canvas.height) particle.y = 0;
+                    
+                    // Draw particle
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    ctx.fillStyle = particle.color;
+                    ctx.fill();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            // Resize handler
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
         }
 
         function filterPrograms(filter) {

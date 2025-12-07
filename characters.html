@@ -70,179 +70,8 @@
             }
         }
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000000;
-            color: #e2e8f0;
-            overflow-x: hidden;
-        }
-        
-        .fantasy-font {
-            font-family: 'Cinzel', serif;
-        }
-        
-        .character-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(251, 191, 36, 0.1);
-        }
-        
-        .character-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(123, 97, 255, 0.3);
-            border: 1px solid rgba(251, 191, 36, 0.3);
-        }
-        
-        .element-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(251, 191, 36, 0.2);
-        }
-        
-        .gold-text {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-link {
-            position: relative;
-            padding: 0.5rem 0;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #fbbf24, #f59e0b);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 3rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #fbbf24, #f59e0b);
-        }
-        
-        /* Background dengan efek partikel */
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.6;
-        }
-        
-        /* Efek aurora */
-        .aurora {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(123, 97, 255, 0.1), rgba(251, 191, 36, 0.1), rgba(59, 130, 246, 0.1));
-            opacity: 0.3;
-            z-index: -1;
-            filter: blur(40px);
-        }
-        
-        /* Animasi floating */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        /* Scrollbar custom */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            border-radius: 4px;
-        }
-        
-        /* Efek kaca/morfism */
-        .glass-effect {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(251, 191, 36, 0.1);
-        }
-        
-        /* Animasi fade in */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
+    <link rel="stylesheet" href="assets/css/styles.css">
 
-        /* Filter toggle button */
-        .filter-toggle {
-            transition: all 0.3s ease;
-        }
-
-        .filter-toggle.active {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: #0f172a;
-            font-weight: bold;
-        }
-
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-        }
-    </style>
 </head>
 <body class="relative">
 
@@ -256,6 +85,7 @@
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="flex items-center">
+                    <!-- Gambar logo -->
                     <a href="index.html" class="flex items-center">
                         <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="w-full h-12">
                     </a>
@@ -264,7 +94,7 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-8">
                     <a href="index.html" class="nav-link text-white hover:text-fantasy-gold transition-colors">BERANDA</a>
-                    <a href="index.html#program" class="nav-link text-white hover:text-fantasy-gold transition-colors">PROGRAM</a>
+                    <a href="program.html" class="nav-link text-white hover:text-fantasy-gold transition-colors">PROGRAM</a>
                     
                     <!-- Karakter Dropdown -->
                     <div class="relative group">
@@ -316,7 +146,7 @@
                         </a>
                         <div class="absolute left-[-80%] mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-fantasy-gold/20">
                             <div class="py-2">
-                                <a href="index.html#wahana" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">WAHANA</a>
+                                <a href="#wahana" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">WAHANA</a>
                                 <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">KOMIK</a>
                                 <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">NOVEL</a>
                                 <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">GAME</a>
@@ -349,7 +179,7 @@
             <div id="mobile-menu" class="md:hidden mt-4 hidden glass-effect rounded-lg p-4 border border-fantasy-gold/20">
                 <div class="flex flex-col space-y-3">
                     <a href="index.html" class="hover:text-fantasy-gold transition-colors py-2">BERANDA</a>
-                    <a href="index.html#program" class="hover:text-fantasy-gold transition-colors py-2">PROGRAM</a>
+                    <a href="program.html" class="hover:text-fantasy-gold transition-colors py-2">PROGRAM</a>
                     
                     <div class="py-2">
                         <a href="characters.html" class="hover:text-fantasy-gold transition-colors font-semibold">KARAKTER</a>
@@ -392,7 +222,7 @@
                     <div class="py-2">
                         <a href="javascript:void(0);" class="hover:text-fantasy-gold transition-colors font-semibold">INFORMASI</a>
                         <div class="mt-2 ml-4 flex flex-col space-y-2">
-                            <a href="index.html#wahana" class="text-sm hover:text-fantasy-gold">WAHANA</a>
+                            <a href="#wahana" class="text-sm hover:text-fantasy-gold">WAHANA</a>
                             <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">KOMIK</a>
                             <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">NOVEL</a>
                             <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">GAME</a>
@@ -565,9 +395,8 @@
                 <div>
                     <h3 class="fantasy-font text-fantasy-gold mb-4">Eksplorasi</h3>
                     <div class="flex flex-col space-y-2">
-                        <a href="index.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Beranda</a>
                         <a href="characters.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Karakter</a>
-                        <a href="index.html#program" class="text-gray-400 hover:text-fantasy-gold transition-colors">Program</a>
+                        <a href="program.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Program</a>
                         <a href="index.html#wahana" class="text-gray-400 hover:text-fantasy-gold transition-colors">Wahana</a>
                     </div>
                 </div>
@@ -611,166 +440,12 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-3 px-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+    <button id="backToTop" class="back-to-top bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-1 px-3 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Smooth scroll untuk navigasi
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId !== '#') {
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                        // Tutup mobile menu jika terbuka
-                        document.getElementById('mobile-menu').classList.add('hidden');
-                    }
-                }
-            });
-        });
-
-        // Particle background effect
-        document.addEventListener('DOMContentLoaded', function() {
-            const canvas = document.getElementById('particle-canvas');
-            const ctx = canvas.getContext('2d');
-            
-            // Set canvas size
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            // Particle array
-            const particles = [];
-            const particleCount = 100;
-            
-            // Create particles
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 2 + 1,
-                    speedX: (Math.random() - 0.5) * 0.5,
-                    speedY: (Math.random() - 0.5) * 0.5,
-                    color: `rgba(${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 255)}, ${Math.random() * 0.5 + 0.2})`
-                });
-            }
-            
-            // Animation loop
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Update and draw particles
-                particles.forEach(particle => {
-                    particle.x += particle.speedX;
-                    particle.y += particle.speedY;
-                    
-                    // Wrap around edges
-                    if (particle.x < 0) particle.x = canvas.width;
-                    if (particle.x > canvas.width) particle.x = 0;
-                    if (particle.y < 0) particle.y = canvas.height;
-                    if (particle.y > canvas.height) particle.y = 0;
-                    
-                    // Draw particle
-                    ctx.beginPath();
-                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                    ctx.fillStyle = particle.color;
-                    ctx.fill();
-                });
-                
-                requestAnimationFrame(animate);
-            }
-            
-            animate();
-            
-            // Resize handler
-            window.addEventListener('resize', function() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
-
-            // Character filter functionality
-            const filterButtons = document.querySelectorAll('.filter-toggle');
-            const characterCards = document.querySelectorAll('.character-card');
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active', 'bg-gradient-to-r', 'from-yellow-400', 'to-yellow-500', 'text-black'));
-                    filterButtons.forEach(btn => {
-                        if (!btn.classList.contains('active')) {
-                            btn.classList.add('glass-effect');
-                        }
-                    });
-                    
-                    // Add active class to clicked button
-                    button.classList.add('active', 'bg-gradient-to-r', 'from-yellow-400', 'to-yellow-500', 'text-black');
-                    button.classList.remove('glass-effect');
-                    
-                    const element = button.getAttribute('data-element');
-                    
-                    // Show/hide character cards based on filter
-                    characterCards.forEach(card => {
-                        if (element === 'all' || card.classList.contains(`character-element-${element}`)) {
-                            card.style.display = 'block';
-                            setTimeout(() => {
-                                card.classList.add('fade-in');
-                            }, 50);
-                        } else {
-                            card.classList.remove('fade-in');
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-
-            // Back to top button
-            const backToTopButton = document.getElementById('backToTop');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTopButton.classList.add('visible');
-                } else {
-                    backToTopButton.classList.remove('visible');
-                }
-            });
-            
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Animate cards on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all character cards
-            characterCards.forEach(card => {
-                observer.observe(card);
-            });
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    
 </body>
 </html>
