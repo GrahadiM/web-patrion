@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kesalahan Server - PATRION</title>
+    <meta name="description" content="Terjadi gangguan pada elemen-elemen PATRION. Tim kami sedang memperbaiki masalah ini.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Kesalahan Server - PATRION">
+    <meta property="og:description" content="Terjadi gangguan pada elemen-elemen PATRION. Tim kami sedang memperbaiki masalah ini.">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://patrion.com/500">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <!-- Preload -->
+    <link rel="preload" href="assets/images/logo-patrion.png" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" as="style">
+    
+    <!-- CSS & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#fbbf24',
+                        'fantasy-blue': '#1e3a8a',
+                        'fantasy-purple': '#5b21b6',
+                        'fantasy-dark': '#0f172a',
+                        'fantasy-gold': '#fbbf24'
+                    },
+                    backgroundImage: {
+                        'fantasy-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #5b21b6 50%, #0f172a 100%)',
+                        'gold-gradient': 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .fantasy-font {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 191, 36, 0.1);
+        }
+        
+        .gold-text {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .error-glow {
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.7);
+        }
+        
+        .element-storm {
+            animation: elementStorm 3s ease-in-out infinite;
+        }
+        
+        @keyframes elementStorm {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -10px) rotate(90deg); }
+            50% { transform: translate(0, 20px) rotate(180deg); }
+            75% { transform: translate(-10px, -10px) rotate(270deg); }
+        }
+        
+        .pulse-ring {
+            animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulseRing {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .repair-animation {
+            animation: repair 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes repair {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body class="relative min-h-screen">
+    
+    <!-- Stormy Background -->
+    <div class="absolute inset-0 bg-fantasy-gradient opacity-90"></div>
+    <div class="absolute inset-0" style="
+        background-image: 
+            radial-gradient(circle at 20% 30%, rgba(220, 38, 38, 0.2) 0%, transparent 20%),
+            radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.2) 0%, transparent 20%),
+            radial-gradient(circle at 40% 80%, rgba(168, 85, 247, 0.2) 0%, transparent 20%);
+    "></div>
+    
+    <!-- Animated Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="element-storm absolute top-1/4 left-1/4 text-4xl">🔥</div>
+        <div class="element-storm absolute top-1/3 right-1/4 text-4xl" style="animation-delay: 0.5s;">💧</div>
+        <div class="element-storm absolute bottom-1/4 left-1/3 text-4xl" style="animation-delay: 1s;">🌪️</div>
+        <div class="element-storm absolute bottom-1/3 right-1/3 text-4xl" style="animation-delay: 1.5s;">⚡</div>
+    </div>
+    
+    <!-- Header -->
+    <header class="glass-effect sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center">
+                    <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="w-full h-12">
+                </a>
+                <a href="index.html" class="fantasy-font text-white hover:text-fantasy-gold transition-colors">
+                    <i class="fas fa-tools mr-2"></i>Kembali Saat Stabil
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 min-h-[80vh] flex items-center justify-center">
+        <div class="container mx-auto px-4 py-16 text-center">
+            
+            <!-- Error Number with Element Chaos -->
+            <div class="mb-8 relative">
+                <div class="relative inline-block">
+                    <h1 class="fantasy-font text-[120px] md:text-[180px] font-bold error-glow text-purple-500 relative z-10">
+                        500
+                    </h1>
+                    <!-- Pulsing Ring -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <div class="w-64 h-64 rounded-full border-4 border-purple-500/30 pulse-ring"></div>
+                    </div>
+                </div>
+                <div class="w-32 h-1 bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 mx-auto mb-6"></div>
+            </div>
+            
+            <!-- Error Message -->
+            <div class="glass-effect rounded-2xl p-8 md:p-12 max-w-2xl mx-auto border border-purple-500/30">
+                <div class="floating mb-6">
+                    <i class="fas fa-cogs text-6xl text-purple-400"></i>
+                </div>
+                
+                <h2 class="fantasy-font text-3xl md:text-4xl font-bold text-white mb-4">
+                    Kekacauan Elemen!
+                </h2>
+                
+                <p class="text-xl text-gray-300 mb-6">
+                    Terjadi gangguan keseimbangan pada elemen-elemen PATRION. 
+                    Tim penyihir dan teknisi kami sedang bekerja keras untuk memulihkan keseimbangan alam semesta.
+                </p>
+                
+                <!-- Element Status -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-red-900/30 border border-red-500/50 rounded-lg p-4">
+                        <i class="fas fa-fire text-2xl text-red-400 mb-2"></i>
+                        <p class="fantasy-font">Api</p>
+                        <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
+                            <div class="bg-red-500 h-2 rounded-full" style="width: 40%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Tidak Stabil</p>
+                    </div>
+                    
+                    <div class="bg-blue-900/30 border border-blue-500/50 rounded-lg p-4">
+                        <i class="fas fa-tint text-2xl text-blue-400 mb-2"></i>
+                        <p class="fantasy-font">Air</p>
+                        <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: 60%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Dalam Perbaikan</p>
+                    </div>
+                    
+                    <div class="bg-green-900/30 border border-green-500/50 rounded-lg p-4">
+                        <i class="fas fa-leaf text-2xl text-green-400 mb-2"></i>
+                        <p class="fantasy-font">Angin</p>
+                        <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 30%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Kritis</p>
+                    </div>
+                    
+                    <div class="bg-yellow-900/30 border border-yellow-500/50 rounded-lg p-4">
+                        <i class="fas fa-bolt text-2xl text-yellow-400 mb-2"></i>
+                        <p class="fantasy-font">Petir</p>
+                        <div class="w-full bg-gray-700 rounded-full h-2 mt-2">
+                            <div class="bg-yellow-500 h-2 rounded-full" style="width: 70%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Stabil</p>
+                    </div>
+                </div>
+                
+                <!-- Repair Progress -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-gray-300">Pemulihan Keseimbangan</span>
+                        <span class="fantasy-font text-fantasy-gold">45%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-4">
+                        <div class="bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 h-4 rounded-full repair-animation" style="width: 45%"></div>
+                    </div>
+                    <p class="text-sm text-gray-400 mt-2">
+                        <i class="fas fa-user-hard-hat mr-1"></i>
+                        Tim penyihir sedang bekerja...
+                    </p>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                    <button onclick="window.location.reload()" 
+                       class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white fantasy-font font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-redo-alt mr-2 repair-animation"></i>Coba Lagi
+                    </button>
+                    
+                    <a href="index.html" 
+                       class="border-2 border-fantasy-gold text-fantasy-gold hover:bg-fantasy-gold hover:text-fantasy-dark fantasy-font font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
+                        <i class="fas fa-home mr-2"></i>Beranda Alternatif
+                    </a>
+                </div>
+                
+                <!-- Contact & Status -->
+                <div class="mt-12 pt-6 border-t border-gray-700">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="text-left">
+                            <h3 class="fantasy-font text-fantasy-gold mb-3">
+                                <i class="fas fa-headset mr-2"></i>Dapatkan Bantuan
+                            </h3>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li><i class="fas fa-envelope mr-2 text-blue-400"></i>support@patrion.com</li>
+                                <li><i class="fas fa-comment-alt mr-2 text-green-400"></i>Live Chat (Tersedia)</li>
+                                <li><i class="fas fa-phone-alt mr-2 text-yellow-400"></i>+62 21 1234 5678</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="text-left">
+                            <h3 class="fantasy-font text-fantasy-gold mb-3">
+                                <i class="fas fa-server mr-2"></i>Status Layanan
+                            </h3>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li class="flex items-center">
+                                    <span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
+                                    Karakter & Cerita: <span class="ml-2 text-green-400">Online</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="w-2 h-2 rounded-full bg-red-500 mr-2"></span>
+                                    Portal Petualangan: <span class="ml-2 text-red-400">Offline</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="w-2 h-2 rounded-full bg-yellow-500 mr-2"></span>
+                                    Wahana Interaktif: <span class="ml-2 text-yellow-400">Pemeliharaan</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Repair Team Animation -->
+            <div class="mt-12 max-w-xl mx-auto">
+                <div class="flex items-center justify-center space-x-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-yellow-500 flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-hat-wizard text-2xl"></i>
+                        </div>
+                        <p class="text-sm text-gray-400">Penyihir Api</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mx-auto mb-2 repair-animation">
+                            <i class="fas fa-tools text-2xl"></i>
+                        </div>
+                        <p class="text-sm text-gray-400">Teknisi Air</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center mx-auto mb-2" style="animation-delay: 0.3s;">
+                            <i class="fas fa-magic text-2xl"></i>
+                        </div>
+                        <p class="text-sm text-gray-400">Ahli Angin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-effect py-8 border-t border-fantasy-gold/20 relative z-10">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">
+                © 2024 PATRION - Dunia Fantasi Nusantara. Semua hak dilindungi.
+                <br>
+                Error 500: Gangguan keseimbangan elemen sedang diperbaiki
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate repair progress
+            const progressBar = document.querySelector('.repair-animation');
+            const progressText = document.querySelector('.fantasy-font.text-fantasy-gold');
+            let progress = 45;
+            
+            function updateProgress() {
+                if (progress < 100) {
+                    progress += Math.random() * 5;
+                    if (progress > 100) progress = 100;
+                    
+                    progressBar.style.width = progress + '%';
+                    progressText.textContent = Math.floor(progress) + '%';
+                    
+                    // Change color based on progress
+                    if (progress < 30) {
+                        progressBar.style.background = 'linear-gradient(to right, #dc2626, #7c3aed)';
+                    } else if (progress < 70) {
+                        progressBar.style.background = 'linear-gradient(to right, #dc2626, #7c3aed, #3b82f6)';
+                    } else {
+                        progressBar.style.background = 'linear-gradient(to right, #10b981, #3b82f6, #8b5cf6)';
+                    }
+                    
+                    setTimeout(updateProgress, 1000 + Math.random() * 2000);
+                } else {
+                    progressText.innerHTML = '<i class="fas fa-check mr-1"></i>Selesai!';
+                    progressBar.style.animation = 'none';
+                }
+            }
+            
+            // Start progress simulation
+            setTimeout(updateProgress, 2000);
+            
+            // Create particle storm
+            const stormContainer = document.createElement('div');
+            stormContainer.className = 'absolute inset-0 overflow-hidden pointer-events-none';
+            document.body.appendChild(stormContainer);
+            
+            const elements = ['🔥', '💧', '🌪️', '⚡', '💎', '✨'];
+            const colors = ['text-red-400', 'text-blue-400', 'text-green-400', 'text-yellow-400', 'text-purple-400', 'text-cyan-400'];
+            
+            for(let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                const elementIndex = Math.floor(Math.random() * elements.length);
+                particle.className = `absolute text-xl ${colors[elementIndex]}`;
+                particle.textContent = elements[elementIndex];
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animation = `elementStorm ${2 + Math.random() * 3}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                
+                stormContainer.appendChild(particle);
+            }
+            
+            // Auto-refresh after 30 seconds
+            setTimeout(() => {
+                const refreshBtn = document.createElement('div');
+                refreshBtn.className = 'fixed bottom-4 right-4 bg-purple-600 hover:bg-purple-700 text-white rounded-full p-3 shadow-lg cursor-pointer z-50';
+                refreshBtn.innerHTML = '<i class="fas fa-redo-alt"></i>';
+                refreshBtn.title = 'Refresh Halaman';
+                refreshBtn.onclick = () => window.location.reload();
+                document.body.appendChild(refreshBtn);
+            }, 30000);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akses Ditolak - PATRION</title>
+    <meta name="description" content="Akses ke halaman ini ditolak. Jelajahi dunia fantasi PATRION yang lainnya.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Akses Ditolak - PATRION">
+    <meta property="og:description" content="Akses ke halaman ini ditolak. Jelajahi dunia fantasi PATRION yang lainnya.">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://patrion.com/403">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <!-- Preload -->
+    <link rel="preload" href="assets/images/logo-patrion.png" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" as="style">
+    
+    <!-- CSS & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#fbbf24',
+                        'fantasy-blue': '#1e3a8a',
+                        'fantasy-purple': '#5b21b6',
+                        'fantasy-dark': '#0f172a',
+                        'fantasy-gold': '#fbbf24'
+                    },
+                    backgroundImage: {
+                        'fantasy-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #5b21b6 50%, #0f172a 100%)',
+                        'gold-gradient': 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .fantasy-font {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 191, 36, 0.1);
+        }
+        
+        .gold-text {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .error-glow {
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.7);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen">
+    
+    <!-- Background Effect -->
+    <div class="absolute inset-0 bg-fantasy-gradient opacity-90"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);"></div>
+    
+    <!-- Header -->
+    <header class="glass-effect sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center">
+                    <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="w-full h-12">
+                </a>
+                <a href="index.html" class="fantasy-font text-white hover:text-fantasy-gold transition-colors">
+                    Kembali ke Beranda
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 min-h-[80vh] flex items-center justify-center">
+        <div class="container mx-auto px-4 py-16 text-center">
+            
+            <!-- Error Number with Animation -->
+            <div class="mb-8">
+                <h1 class="fantasy-font text-[120px] md:text-[180px] font-bold error-glow text-red-500">
+                    403
+                </h1>
+                <div class="w-32 h-1 bg-gradient-to-r from-red-500 to-yellow-500 mx-auto mb-6"></div>
+            </div>
+            
+            <!-- Error Message -->
+            <div class="glass-effect rounded-2xl p-8 md:p-12 max-w-2xl mx-auto border border-red-500/30">
+                <div class="floating mb-6">
+                    <i class="fas fa-ban text-6xl text-red-400"></i>
+                </div>
+                
+                <h2 class="fantasy-font text-3xl md:text-4xl font-bold text-white mb-4">
+                    Akses Ditolak!
+                </h2>
+                
+                <p class="text-xl text-gray-300 mb-8">
+                    Sepertinya kamu mencoba mengakses area terlarang dalam dunia PATRION. 
+                    Pintu gerbang ini dijaga oleh kekuatan elemen api yang tak tertembus.
+                </p>
+                
+                <!-- Element Symbol -->
+                <div class="flex justify-center mb-8">
+                    <div class="relative">
+                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center">
+                            <i class="fas fa-fire text-4xl text-yellow-300"></i>
+                        </div>
+                        <div class="absolute -inset-2 border-4 border-red-500/50 rounded-full animate-ping"></div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                    <a href="index.html" 
+                       class="bg-gold-gradient hover:opacity-90 text-fantasy-dark fantasy-font font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-home mr-2"></i>Kembali ke Beranda
+                    </a>
+                    
+                    <a href="characters.html" 
+                       class="border-2 border-fantasy-gold text-fantasy-gold hover:bg-fantasy-gold hover:text-fantasy-dark fantasy-font font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
+                        <i class="fas fa-users mr-2"></i>Jelajahi Karakter
+                    </a>
+                </div>
+                
+                <!-- Security Message -->
+                <div class="mt-12 pt-6 border-t border-gray-700">
+                    <p class="text-sm text-gray-400">
+                        <i class="fas fa-shield-alt mr-2 text-red-400"></i>
+                        Halaman ini dilindungi oleh kekuatan elemen PATRION. Jika kamu merasa ini kesalahan, 
+                        hubungi <a href="mailto:support@patrion.com" class="text-fantasy-gold hover:underline">Tim Support</a> kami.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Decorative Elements -->
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <div class="text-center">
+                    <div class="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-lock text-red-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-400">Akses Terbatas</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-400">Area Terlarang</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-user-shield text-blue-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-400">Dilindungi</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-magic text-purple-400"></i>
+                    </div>
+                    <p class="text-sm text-gray-400">Sihir Penjaga</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-effect py-8 border-t border-fantasy-gold/20 relative z-10">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">
+                © 2024 PATRION - Dunia Fantasi Nusantara. Semua hak dilindungi.
+                <br>
+                Error 403: Akses Ditolak
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Add some interactive effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorNumber = document.querySelector('.error-glow');
+            
+            // Pulsing effect for error number
+            setInterval(() => {
+                errorNumber.classList.toggle('error-glow');
+                setTimeout(() => {
+                    errorNumber.classList.toggle('error-glow');
+                }, 500);
+            }, 2000);
+            
+            // Floating particles simulation
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'absolute inset-0 overflow-hidden pointer-events-none';
+            document.body.appendChild(particlesContainer);
+            
+            for(let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'absolute rounded-full bg-red-500/20';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                
+                particlesContainer.appendChild(particle);
+                
+                // Animate particle
+                animateParticle(particle);
+            }
+            
+            function animateParticle(particle) {
+                let x = parseFloat(particle.style.left);
+                let y = parseFloat(particle.style.top);
+                let xSpeed = (Math.random() - 0.5) * 0.5;
+                let ySpeed = (Math.random() - 0.5) * 0.5;
+                
+                function move() {
+                    x += xSpeed;
+                    y += ySpeed;
+                    
+                    // Bounce off edges
+                    if(x <= 0 || x >= 100) xSpeed *= -1;
+                    if(y <= 0 || y >= 100) ySpeed *= -1;
+                    
+                    particle.style.left = x + 'vw';
+                    particle.style.top = y + 'vh';
+                    
+                    requestAnimationFrame(move);
+                }
+                
+                move();
+            }
+        });
+    </script>
+
+</body>
+</html>
