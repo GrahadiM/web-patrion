@@ -4,7 +4,7 @@ PATRION adalah PATRIOT NUSANTARA - ikon sosok para pahlawan yang berasal dari ke
 
 Dicintai, diidolakan dan mewakili citra Indonesia dalam setiap aspek, baik dari sisi cerita, kostum, atribut, simbol, visual, audio dan nilai setiap karakternya yang mencerminkan wajah kekayaan Indonesia sesungguhnya.
 
-## Mewakili Indonesia
+### Mewakili Indonesia
 Setiap karakter PATRION dirancang dengan penelitian mendalam terhadap budaya, sejarah, dan filosofi Nusantara, menciptakan representasi autentik dari kekayaan Indonesia.
 
 ## Visi
@@ -12,14 +12,15 @@ MENYELAMATKAN KARAKTER BANGSA INDONESIA DAN MEMPERKUAT PERSATUAN KESATUAN INDONE
 
 ## Misi
 1. Menjadikan program kreatif di Indonesia sebagai raja di negeri sendiri. Serta memiliki pesan dan kesan nasionalisme mendalam.
-
 2. Menunjukkan kepada dunia bahwa karya Indonesia sangat bernilai dan memiliki identitas nasionalisme kuat.
-
 3. Membangun industri kreatif yang memiliki konten lokal dengan pasar Internasional.
-
 4. Mensinergikan SDM berkualitas dalam industri kreatif di Indonesia yang terintegrasi dengan bisnis global.
-
 5. Mempersatukan Indonesia dengan Patrion yang bisa mengangkat harga diri bangsa dengan karakter Indonesia yang kuat.
+
+### Tujuan
+Meraih kepercayaan segenap masyarakat Indonesia dalam membangun Bangsa
+
+Serta mewujudkan Indonesia semakin memiliki karakter kuat dan bermartabat di pentas dunia, khususnya dalam industri Kreatif Global.
 
 ## Fitur
 
