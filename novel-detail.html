@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sang Penjaga Api: Warisan Nusantara - Novel PATRION</title>
+    <meta name="description" content="Baca novel Sang Penjaga Api: Warisan Nusantara karya Abdurrahman GM. Kisah epik penjaga api terakhir yang harus menyelamatkan Nusantara.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sang Penjaga Api: Warisan Nusantara - Novel PATRION">
+    <meta property="og:description" content="Kisah epik tentang penjaga api terakhir yang harus menyelamatkan Nusantara dari kegelapan.">
+    <meta property="og:image" content="assets/images/novels/novel-1.jpg">
+    <meta property="og:url" content="https://patrion.com/novel-detail.html?id=1">
+    
+    <!-- CSS & Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#7c3aed',
+                        'fantasy-blue': '#1e3a8a',
+                        'fantasy-purple': '#7c3aed',
+                        'fantasy-dark': '#0f172a',
+                        'fantasy-gold': '#fbbf24',
+                        // Warna untuk novel
+                        'novel-primary': '#7c3aed',
+                        'novel-secondary': '#a78bfa',
+                        'novel-dark': '#0f172a'
+                    },
+                    backgroundImage: {
+                        'fantasy-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #0f172a 100%)',
+                        'novel-gradient': 'linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%)',
+                        'reading-gradient': 'linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98))'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Import custom CSS */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        /* Base Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        .fantasy-font {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .novel-font {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .accent-text {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.1);
+        }
+        
+        /* Navigation Styles */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7c3aed, #a78bfa);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Genre badges */
+        .genre-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .badge-fantasy { background: rgba(124, 58, 237, 0.2); color: #c4b5fd; border: 1px solid rgba(124, 58, 237, 0.4); }
+        .badge-adventure { background: rgba(251, 191, 36, 0.2); color: #fde68a; border: 1px solid rgba(251, 191, 36, 0.4); }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            border-radius: 4px;
+        }
+        
+        /* Novel Cover */
+        .novel-cover {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(124, 58, 237, 0.3);
+        }
+        
+        /* Action buttons */
+        .action-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Chapter List */
+        .chapter-item {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(124, 58, 237, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .chapter-item:hover {
+            background: rgba(124, 58, 237, 0.1);
+            border-color: rgba(124, 58, 237, 0.3);
+        }
+        
+        .chapter-item.current {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(30, 41, 59, 0.8));
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+        
+        /* Reading Progress */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(30, 41, 59, 0.5);
+            z-index: 9999;
+        }
+        
+        .reading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #7c3aed, #a78bfa);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* Reader Content */
+        .reader-content {
+            background: rgba(15, 23, 42, 0.98);
+            min-height: 100vh;
+            font-family: 'Merriweather', serif;
+        }
+        
+        .chapter-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        /* Reader Controls */
+        .reader-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            border-radius: 50px;
+            padding: 10px 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            color: #a78bfa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(124, 58, 237, 0.3);
+            transform: scale(1.1);
+        }
+        
+        /* Comment Section */
+        .comment-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(124, 58, 237, 0.1);
+            border-radius: 12px;
+        }
+        
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Rating */
+        .rating-stars {
+            color: #fbbf24;
+        }
+        
+        /* Character Cards */
+        .character-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(124, 58, 237, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .character-card:hover {
+            border-color: rgba(124, 58, 237, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Aurora Effect */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(124, 58, 237, 0.1), rgba(219, 39, 119, 0.1), rgba(59, 130, 246, 0.1));
+            opacity: 0.3;
+            z-index: -1;
+            filter: blur(40px);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        /* Reading Settings */
+        .font-size-control {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 20px;
+            padding: 5px;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .font-size-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            color: #a78bfa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .font-size-btn.active {
+            background: rgba(124, 58, 237, 0.3);
+        }
+        
+        /* Theme Settings */
+        .theme-option {
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .theme-option:hover {
+            background: rgba(124, 58, 237, 0.1);
+        }
+        
+        .theme-option.active {
+            border-color: rgba(124, 58, 237, 0.5);
+            background: rgba(124, 58, 237, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .reader-controls {
+                padding: 8px 15px;
+                gap: 10px;
+            }
+            
+            .control-btn {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .chapter-content {
+                padding: 20px 15px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Loading */
+        .loading-spinner {
+            border: 3px solid rgba(124, 58, 237, 0.1);
+            border-top: 3px solid #7c3aed;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Background dengan efek cahaya -->
+    <div class="aurora"></div>
+    
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress">
+        <div class="reading-progress-bar" id="readingProgress"></div>
+    </div>
+    
+    <!-- Header & Navigation -->
+    <header class="glass-effect sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="w-full h-12">
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-purple-300 transition-colors">BERANDA</a>
+                    <a href="comics.html" class="nav-link text-white hover:text-purple-300 transition-colors">KOMIK</a>
+                    <a href="novels.html" class="nav-link text-purple-300 font-bold">NOVEL</a>
+                    
+                    <!-- Chapter Navigation (Visible in Reader Mode) -->
+                    <div id="chapterNav" class="flex items-center space-x-4 hidden">
+                        <button onclick="previousChapter()" class="control-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="text-white font-medium" id="currentChapter">Chapter 1</span>
+                        <button onclick="nextChapter()" class="control-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Reader Settings -->
+                    <div class="relative group">
+                        <button class="nav-link text-white hover:text-purple-300 transition-colors flex items-center" id="settingsBtn">
+                            <i class="fas fa-cog mr-2"></i> SETTINGS
+                        </button>
+                        <div class="absolute right-0 mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-purple-500/20">
+                            <div class="py-2">
+                                <div class="px-4 py-2 text-sm text-gray-400">Font Size</div>
+                                <div class="font-size-control mx-4 mb-2">
+                                    <button onclick="changeFontSize('small')" class="font-size-btn" data-size="small">A</button>
+                                    <button onclick="changeFontSize('medium')" class="font-size-btn active" data-size="medium">A</button>
+                                    <button onclick="changeFontSize('large')" class="font-size-btn" data-size="large">A</button>
+                                </div>
+                                
+                                <div class="px-4 py-2 text-sm text-gray-400">Theme</div>
+                                <button onclick="changeTheme('dark')" class="block w-full text-left px-4 py-2 hover:bg-purple-500/30 transition-colors theme-option active" data-theme="dark">
+                                    <i class="fas fa-moon mr-2"></i> Dark
+                                </button>
+                                <button onclick="changeTheme('light')" class="block w-full text-left px-4 py-2 hover:bg-purple-500/30 transition-colors theme-option" data-theme="light">
+                                    <i class="fas fa-sun mr-2"></i> Light
+                                </button>
+                                <button onclick="changeTheme('sepia')" class="block w-full text-left px-4 py-2 hover:bg-purple-500/30 transition-colors theme-option" data-theme="sepia">
+                                    <i class="fas fa-book-open mr-2"></i> Sepia
+                                </button>
+                                
+                                <div class="border-t border-gray-700 my-2"></div>
+                                <button onclick="toggleFullscreen()" class="block w-full text-left px-4 py-2 hover:bg-purple-500/30 transition-colors">
+                                    <i class="fas fa-expand mr-2"></i> Fullscreen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden mt-4 hidden glass-effect rounded-lg p-4 border border-purple-500/20">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="hover:text-purple-300 transition-colors py-2">BERANDA</a>
+                    <a href="comics.html" class="hover:text-purple-300 transition-colors py-2">KOMIK</a>
+                    <a href="novels.html" class="text-purple-300 font-bold py-2">NOVEL</a>
+                    
+                    <div id="mobileChapterNav" class="hidden">
+                        <div class="flex justify-between items-center py-2">
+                            <button onclick="previousChapter()" class="control-btn">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <span class="text-white font-medium" id="mobileCurrentChapter">Chapter 1</span>
+                            <button onclick="nextChapter()" class="control-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <div class="text-sm text-gray-400 mb-2">Font Size</div>
+                        <div class="font-size-control">
+                            <button onclick="changeFontSize('small')" class="font-size-btn" data-size="small">A</button>
+                            <button onclick="changeFontSize('medium')" class="font-size-btn active" data-size="medium">A</button>
+                            <button onclick="changeFontSize('large')" class="font-size-btn" data-size="large">A</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8" id="mainContent">
+        <!-- Novel Info Section -->
+        <section class="py-8 glass-effect rounded-xl mb-8">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-start gap-6">
+                    <div class="md:w-1/4">
+                        <div class="novel-cover">
+                            <!-- Placeholder for novel cover -->
+                            <div class="h-64 bg-gradient-to-r from-purple-900 to-purple-700 flex items-center justify-center">
+                                <span class="text-white text-2xl font-bold text-center px-4">Sang Penjaga Api</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-3/4">
+                        <div class="flex flex-wrap items-center gap-2 mb-4">
+                            <span class="badge-fantasy genre-badge">FANTASI</span>
+                            <span class="badge-adventure genre-badge">PETUALANGAN</span>
+                            <span class="text-gray-400">•</span>
+                            <span class="text-green-400">
+                                <i class="fas fa-sync-alt mr-1"></i> Ongoing
+                            </span>
+                        </div>
+                        
+                        <h1 class="fantasy-font text-3xl md:text-4xl text-white mb-2">
+                            Sang Penjaga Api: Warisan Nusantara
+                        </h1>
+                        
+                        <p class="text-gray-400 mb-4">oleh <span class="text-purple-300 font-semibold">Abdurrahman GM</span></p>
+                        
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="flex items-center">
+                                <div class="rating-stars mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-gray-300">4.8 (3.2K ratings)</span>
+                            </div>
+                            <span class="text-gray-400">•</span>
+                            <span class="text-gray-300">
+                                <i class="far fa-eye mr-1"></i> 150K views
+                            </span>
+                            <span class="text-gray-400">•</span>
+                            <span class="text-gray-300">
+                                <i class="far fa-file-alt mr-1"></i> 45 Bab
+                            </span>
+                        </div>
+                        
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Di sebuah desa terpencil di kaki Gunung Merapi, Arga hidup sebagai pemuda biasa. 
+                            Namun, takdir memanggilnya ketika api abadi di puncak gunung mulai memudar. 
+                            Arga adalah penjaga api terakhir dari garis keturunan yang telah melindungi Nusantara 
+                            selama ribuan tahun. Ketika organisasi gelap "Shadow Flame" bangkit untuk mencuri 
+                            kekuatan api suci, Arga harus memulai perjalanan berbahaya melintasi kepulauan 
+                            Nusantara untuk menemukan artefak kuno yang dapat menyelamatkan dunia dari kegelapan.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <div class="flex items-center">
+                                <i class="fas fa-calendar text-purple-300 mr-2"></i>
+                                <span class="text-gray-300">Terbit: <span class="text-white">15 Jan 2024</span></span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-sync-alt text-purple-300 mr-2"></i>
+                                <span class="text-gray-300">Update: <span class="text-white">Mingguan</span></span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-purple-300 mr-2"></i>
+                                <span class="text-gray-300">Estimasi: <span class="text-white">~2 jam/bab</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="startReading()" 
+                                    class="action-btn bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                                <i class="fas fa-book-open mr-2"></i> Baca Sekarang
+                            </button>
+                            <button onclick="toggleBookmark()" 
+                                    class="action-btn border-2 border-purple-500 text-purple-300 hover:bg-purple-500 hover:text-white font-bold py-3 px-8 rounded-full transition-all" id="bookmarkBtn">
+                                <i class="far fa-bookmark mr-2"></i> Simpan
+                            </button>
+                            <button onclick="toggleLike()" 
+                                    class="action-btn border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-bold py-3 px-8 rounded-full transition-all" id="likeBtn">
+                                <i class="far fa-heart mr-2"></i> Suka
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Left Sidebar - Chapter List -->
+            <div class="lg:col-span-1">
+                <div class="glass-effect rounded-xl p-6 sticky top-24">
+                    <h3 class="fantasy-font text-xl text-white mb-4">Daftar Bab</h3>
+                    
+                    <div class="space-y-2 max-h-[500px] overflow-y-auto pr-2" id="chapterList">
+                        <!-- Chapters will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h4 class="fantasy-font text-lg text-white mb-3">Statistik</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Total Bab</span>
+                                <span class="text-white font-semibold">45</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Total Kata</span>
+                                <span class="text-white">≈ 225K</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Pembaca Aktif</span>
+                                <span class="text-green-400">8.5K</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Waktu Baca</span>
+                                <span class="text-white">≈ 90 jam</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content - Novel Info/Reader -->
+            <div class="lg:col-span-3">
+                <!-- Reader Section (Hidden by default) -->
+                <div id="readerSection" class="hidden">
+                    <div class="reader-content" id="novelReader">
+                        <div class="chapter-content" id="chapterContent">
+                            <!-- Chapter content will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Reader Controls -->
+                    <div class="reader-controls" id="readerControls">
+                        <button onclick="previousChapter()" class="control-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        
+                        <div class="page-indicator min-w-[150px] text-center">
+                            <span id="currentChapterTitle">Chapter 1</span>
+                        </div>
+                        
+                        <button onclick="nextChapter()" class="control-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <div class="h-6 w-px bg-gray-600"></div>
+                        
+                        <button onclick="changeFontSize('small')" class="control-btn">
+                            <i class="fas fa-font"></i>
+                        </button>
+                        <button onclick="toggleTheme()" class="control-btn">
+                            <i class="fas fa-palette"></i>
+                        </button>
+                        <button onclick="toggleFullscreen()" class="control-btn">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Info Section (Default) -->
+                <div id="infoSection">
+                    <!-- Synopsis -->
+                    <div class="glass-effect rounded-xl p-6 mb-8">
+                        <h3 class="fantasy-font text-2xl text-white mb-4">Sinopsis Lengkap</h3>
+                        <div class="novel-font text-gray-300 leading-relaxed space-y-4">
+                            <p>
+                                Nusantara, sebuah wilayah yang kaya akan mitos dan legenda, menyimpan rahasia kuno 
+                                tentang kekuatan alam yang terjaga oleh para penjaga turun-temurun. Di antara mereka, 
+                                penjaga api adalah yang paling sakral, karena api melambangkan kehidupan, kehancuran, 
+                                dan pembaruan.
+                            </p>
+                            <p>
+                                Arga, seorang pemuda berusia 18 tahun, hidup biasa-biasa saja di Desa Surya di kaki 
+                                Gunung Merapi. Ia tidak tahu bahwa darah yang mengalir di nadinya membawa warisan 
+                                kuno. Semuanya berubah ketika api abadi di puncak gunung mulai memudar, dan makhluk 
+                                kegelapan muncul dari bayang-bayang.
+                            </p>
+                            <p>
+                                Dengan bimbingan kakeknya yang ternyata adalah penjaga api sebelumnya, Arga belajar 
+                                mengendalikan kekuatannya. Namun, waktu tidak berpihak padanya. Shadow Flame, 
+                                organisasi rahasia yang ingin menguasai kekuatan api untuk tujuan jahat, telah 
+                                memburu artefak-artefak kuno yang tersebar di seluruh Nusantara.
+                            </p>
+                            <p>
+                                Perjalanan Arga membawanya dari candi-candi Jawa, hutan belantara Kalimantan, 
+                                laut dalam Bali, hingga puncak gunung di Papua. Di setiap lokasi, ia harus 
+                                menghadapi ujian, menemukan sekutu, dan mengungkap kebenaran tentang asal-usul 
+                                kekuatannya.
+                            </p>
+                            <p>
+                                Novel ini tidak hanya tentang petualangan dan fantasi, tetapi juga eksplorasi 
+                                budaya Nusantara, filosofi kehidupan, dan perjuangan seorang pemuda menemukan 
+                                jati dirinya sambil memikul tanggung jawab besar.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Characters -->
+                    <div class="glass-effect rounded-xl p-6 mb-8">
+                        <h3 class="fantasy-font text-2xl text-white mb-4">Karakter Utama</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="character-card p-4">
+                                <div class="flex items-start mb-3">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-orange-600 to-red-600 mr-3 flex items-center justify-center">
+                                        <i class="fas fa-fire text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="fantasy-font text-white">ARGA SURYA</h4>
+                                        <p class="text-purple-300 text-sm">Penjaga Api Terakhir</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 text-sm">
+                                    Pemuda 18 tahun yang awalnya ragu dengan takdirnya. Lambat laun berkembang 
+                                    menjadi pemimpin yang bertanggung jawab, belajar bahwa kekuatan sejati 
+                                    berasal dari hati yang murni.
+                                </p>
+                            </div>
+                            
+                            <div class="character-card p-4">
+                                <div class="flex items-start mb-3">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 mr-3 flex items-center justify-center">
+                                        <i class="fas fa-water text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="fantasy-font text-white">KIRANA</h4>
+                                        <p class="text-blue-300 text-sm">Penjaga Air dari Bali</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 text-sm">
+                                    Gadis kuat dari Bali yang menjadi sekutu pertama Arga. Ahli dalam seni bela 
+                                    diri tradisional dan memiliki hubungan spiritual yang dalam dengan laut.
+                                </p>
+                            </div>
+                            
+                            <div class="character-card p-4">
+                                <div class="flex items-start mb-3">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-gray-700 to-gray-900 mr-3 flex items-center justify-center">
+                                        <i class="fas fa-mask text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="fantasy-font text-white">MALIK</h4>
+                                        <p class="text-gray-300 text-sm">Pemimpin Shadow Flame</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 text-sm">
+                                    Antagonis utama yang dulunya adalah penjaga api yang terpilih. Dikhianati 
+                                    oleh sistem, ia kini berusaha menghancurkan apa yang dulu ia jaga.
+                                </p>
+                            </div>
+                            
+                            <div class="character-card p-4">
+                                <div class="flex items-start mb-3">
+                                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-600 to-emerald-500 mr-3 flex items-center justify-center">
+                                        <i class="fas fa-leaf text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="fantasy-font text-white">KI SURYO</h4>
+                                        <p class="text-green-300 text-sm">Kakek Arga & Mentor</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 text-sm">
+                                    Penjaga api sebelumnya yang menyembunyikan identitasnya. Bijaksana dan sabar, 
+                                    ia membimbing Arga dengan cara yang keras namun penuh kasih.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chapter Preview -->
+                    <div class="glass-effect rounded-xl p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="fantasy-font text-2xl text-white">Preview Chapter</h3>
+                            <button onclick="startReading()" 
+                                    class="bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-bold py-2 px-6 rounded-full transition-all">
+                                <i class="fas fa-book-open mr-2"></i> Baca Semua
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-4" id="chapterPreviews">
+                            <!-- Chapter previews will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Comments Section -->
+                <div class="glass-effect rounded-xl p-6 mt-8">
+                    <h3 class="fantasy-font text-2xl text-white mb-6">Diskusi Pembaca</h3>
+                    
+                    <!-- Comment Form -->
+                    <div class="mb-8">
+                        <textarea id="commentInput" 
+                                  class="w-full glass-effect text-white py-3 px-4 rounded-lg border border-gray-700 focus:border-purple-500 focus:outline-none mb-3"
+                                  rows="3"
+                                  placeholder="Bagikan pendapat Anda tentang novel ini..."></textarea>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-gray-400 text-sm">Rating:</span>
+                                <div class="rating-stars" id="commentRating">
+                                    <i class="far fa-star" data-rating="1"></i>
+                                    <i class="far fa-star" data-rating="2"></i>
+                                    <i class="far fa-star" data-rating="3"></i>
+                                    <i class="far fa-star" data-rating="4"></i>
+                                    <i class="far fa-star" data-rating="5"></i>
+                                </div>
+                            </div>
+                            <button onclick="submitComment()" 
+                                    class="bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-bold py-2 px-6 rounded-full transition-all">
+                                <i class="fas fa-paper-plane mr-2"></i> Kirim
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Comments List -->
+                    <div class="space-y-6" id="commentsList">
+                        <!-- Comments will be populated by JavaScript -->
+                        <div class="text-center py-8 text-gray-400">
+                            <i class="fas fa-comments text-3xl mb-3"></i>
+                            <p>Jadilah yang pertama berdiskusi!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-effect py-12 border-t border-purple-500/20 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="h-12 mb-4">
+                    <p class="text-gray-400 text-sm">
+                        Platform novel digital PATRION - Petualangan literasi tanpa batas dari Nusantara.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-purple-300 mb-4">Navigasi</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="novels.html" class="text-gray-400 hover:text-purple-300 transition-colors">Semua Novel</a>
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-purple-300 transition-colors">Terpopuler</a>
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-purple-300 transition-colors">Rilis Terbaru</a>
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-purple-300 transition-colors">Rekomendasi</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-purple-300 mb-4">Bantuan</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-purple-300 transition-colors">Cara Membaca</a>
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-purple-300 transition-colors">FAQ</a>
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-purple-300 transition-colors">Komunitas</a>
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-purple-300 transition-colors">Kontak</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-purple-300 mb-4">Terhubung</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors text-xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors text-xl">
+                            <i class="fab fa-square-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors text-xl">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors text-xl">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <p>Email: novels@patrion.com</p>
+                        <p>Support: support@patrion.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    "Novel PATRION" adalah konten eksklusif dari <span class="text-purple-300">PATRION Universe</span>.
+                    © 2024 PATRION. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-bold py-2 px-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Novel Data
+        const novelDetailData = {
+            id: 1,
+            title: "Sang Penjaga Api: Warisan Nusantara",
+            author: "Abdurrahman GM",
+            chapters: [
+                { 
+                    id: 1, 
+                    title: "Prolog: Api yang Memudar", 
+                    content: `Gunung Merapi berdiri megah di bawah langit senja. Di puncaknya, api abadi yang telah menyala selama ribuan tahun mulai menunjukkan tanda-tanda kegelapan. Nyala apinya, yang biasanya setinggi manusia, kini hanya setinggi lutut. Asap hitam pekat mulai keluar dari kawah, menandakan sesuatu yang tidak beres di dalam perut gunung.
+
+Di kaki gunung, di Desa Surya yang tenang, Arga sedang duduk di beranda rumahnya. Ia menatap puncak Merapi dengan perasaan gelisah yang tidak bisa dijelaskan. Sejak kecil, ia selalu merasa memiliki ikatan khusus dengan gunung itu. Kakeknya, Ki Suryo, sering berkata bahwa darah yang mengalir di nadinya membawa warisan kuno.
+
+"Arga!" panggil Ki Suryo dari dalam rumah. Suaranya berat, penuh dengan kekhawatiran yang tidak biasa. "Kemarilah, Nak."
+
+Arga bangkit dan masuk ke dalam rumah. Ki Suryo sedang duduk di kursi kayu tua miliknya, memandang api di perapian dengan tatapan kosong. Wajahnya yang biasanya penuh kebijaksanaan kini terlihat lelah dan khawatir.
+
+"Kakek, ada apa?" tanya Arga, duduk di hadapan kakeknya.
+
+Ki Suryo menarik napas dalam-dalam. "Api di puncak mulai memudar, Arga. Ini pertanda buruk. Sang Penjaga sebelumnya telah meninggalkan dunia ini sepuluh tahun lalu, dan belum ada penggantinya."
+
+"Tapi Kakek, bukankah penjaga api itu hanya legenda?" tanya Arga ragu.
+
+Ki Suryo menatap cucunya tajam. "Legenda bagi mereka yang tidak tahu kebenaran. Tapi bagi kita, bagi keluarga kita, itu adalah warisan dan tanggung jawab."
+
+Arga terdiam. Ia selalu mendengar cerita tentang penjaga api sejak kecil, tetapi selalu menganggapnya sebagai dongeng pengantar tidur. Namun sesuatu dalam suara kakeknya kali ini membuatnya merinding.
+
+"Malam ini," lanjut Ki Suryo, "kita harus pergi ke gua rahasia di lereng gunung. Di sanalah semua akan terjawab."
+
+Sebelum Arga sempat bertanya lebih lanjut, terdengar suara ledakan dari kejauhan. Mereka berdua bergegas keluar rumah. Di kejauhan, di lereng gunung, terlihat kilatan cahaya oranye dan asap hitam yang membumbung tinggi.
+
+"Sudah dimulai," bisik Ki Suryo dengan suara parau. "Mereka sudah datang."
+
+"Siapa, Kek?" tanya Arga, jantungnya berdebar kencang.
+
+"Shadow Flame," jawab Ki Suryo singkat. "Organisasi yang ingin menguasai kekuatan api untuk diri mereka sendiri. Mereka telah menunggu saat ini selama bertahun-tahun."
+
+Ki Suryo memegang bahu Arga. "Dengarkan baik-baik, cucuku. Warisan yang kubicarakan bukan sekadar cerita. Kamu adalah penjaga api terakhir dari garis keturunan kita. Darahmu membawa kekuatan yang telah melindungi Nusantara selama ribuan tahun."
+
+Arga merasa pusing. Semua ini terlalu cepat, terlalu banyak. Ia hanya seorang pemuda desa biasa, bukan pahlawan dari legenda.
+
+"Tapi Kakek, aku tidak bisa... aku tidak tahu caranya..."
+
+"Kamu akan belajar," kata Ki Suryo tegas. "Dan kamu harus belajar cepat. Karena jika api abadi padam sepenuhnya, kegelapan akan menyelimuti Nusantara. Tidak hanya gunung ini yang akan meletus, tetapi keseimbangan seluruh alam akan terganggu."
+
+Dari kejauhan, terlihat sosok-sosok bayangan bergerak cepat menuju desa. Mereka berpakaian hitam dengan simbol api terbalik di dada mereka.
+
+"Tidak ada waktu lagi," kata Ki Suryo. "Ambil tas ini. Di dalamnya ada peta dan beberapa petunjuk. Pergilah ke Gua Pengetahuan. Aku akan menahan mereka di sini."
+
+"Tidak, Kakek! Aku tidak akan meninggalkanmu!"
+
+"Ini bukan tentang kita, Arga. Ini tentang semua yang kita cintai. Tentang Nusantara. Sekarang, pergi!"
+
+Ki Suryo mendorong Arga ke belakang rumah. Dengan berat hati, Arga berlari menuju hutan, sambil membawa tas yang diberikan kakeknya. Di belakangnya, ia mendengar suara benturan dan teriakan.
+
+Perjalanan panjangnya sebagai penjaga api telah dimulai. Dan malam itu, di bawah cahaya bulan yang tersembunyi di balik awan, Arga berjanji pada dirinya sendiri: Ia akan kembali, dan ia akan menyelamatkan kakeknya. Ia akan menjadi penjaga api yang seharusnya.
+
+Api di puncak Merapi berkedip sekali lagi, seolah mengangguk setuju, sebelum nyalanya semakin memudar, meninggalkan hanya bara yang hampir padam di tengah kegelapan yang semakin mendekat.`, 
+                    wordCount: 850,
+                    date: "2024-01-15",
+                    views: "25K"
+                },
+                { 
+                    id: 2, 
+                    title: "Chapter 1: Gua Pengetahuan", 
+                    content: "Content for chapter 2...",
+                    wordCount: 1200,
+                    date: "2024-01-22",
+                    views: "22K"
+                },
+                { 
+                    id: 3, 
+                    title: "Chapter 2: Pertemuan dengan Kirana", 
+                    content: "Content for chapter 3...",
+                    wordCount: 1100,
+                    date: "2024-01-29",
+                    views: "20K"
+                }
+            ],
+            comments: [
+                { id: 1, user: "Rizky", avatar: "R", rating: 5, date: "2 jam lalu", text: "Novelnya keren banget! Deskripsinya detail dan karakter Arga sangat relatable. Kapan update berikutnya?" },
+                { id: 2, user: "Santi", avatar: "S", rating: 4, date: "1 hari lalu", text: "Suka dengan penggambaran budaya Nusantara yang diselipkan dalam cerita. Ki Suryo karakter favoritku!" },
+                { id: 3, user: "Budi", avatar: "B", rating: 5, date: "3 hari lalu", text: "ProLognya sudah bikin penasaran. Penulis benar-benar paham cara membangun tension. Lanjutkan!" }
+            ]
+        };
+
+        // State Variables
+        let currentChapter = 1;
+        let isBookmarked = false;
+        let isLiked = false;
+        let selectedRating = 0;
+        let fontSize = 'medium';
+        let theme = 'dark';
+        let isFullscreen = false;
+        let isReadingMode = false;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeNovelPage();
+            setupEventListeners();
+            updateChapterList();
+            updateChapterPreviews();
+            loadComments();
+        });
+
+        // Initialize Novel Page
+        function initializeNovelPage() {
+            // Set current chapter from URL if available
+            const urlParams = new URLSearchParams(window.location.search);
+            const chapterParam = urlParams.get('chapter');
+            if (chapterParam) {
+                currentChapter = parseInt(chapterParam);
+            }
+            
+            // Set reading mode from URL if available
+            const readParam = urlParams.get('read');
+            if (readParam === 'true') {
+                startReading();
+            }
+            
+            updateChapterDisplay();
+            updateBookmarkButton();
+            updateLikeButton();
+            
+            // Load user preferences
+            loadUserPreferences();
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+                const menu = document.getElementById('mobile-menu');
+                menu.classList.toggle('hidden');
+            });
+
+            // Back to top button
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Reading progress
+            window.addEventListener('scroll', updateReadingProgress);
+
+            // Rating stars
+            const stars = document.querySelectorAll('#commentRating i');
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    selectedRating = parseInt(this.getAttribute('data-rating'));
+                    updateRatingStars();
+                });
+                
+                star.addEventListener('mouseover', function() {
+                    highlightStars(parseInt(this.getAttribute('data-rating')));
+                });
+                
+                star.addEventListener('mouseout', function() {
+                    updateRatingStars();
+                });
+            });
+
+            // Fullscreen change
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+            // Keyboard navigation for reader
+            document.addEventListener('keydown', handleKeyboardNavigation);
+        }
+
+        // Chapter Navigation
+        function previousChapter() {
+            if (currentChapter > 1) {
+                currentChapter--;
+                updateChapterDisplay();
+                if (isReadingMode) {
+                    loadChapter();
+                }
+            }
+        }
+
+        function nextChapter() {
+            if (currentChapter < novelDetailData.chapters.length) {
+                currentChapter++;
+                updateChapterDisplay();
+                if (isReadingMode) {
+                    loadChapter();
+                }
+            }
+        }
+
+        function goToChapter(chapterId) {
+            currentChapter = chapterId;
+            updateChapterDisplay();
+            if (isReadingMode) {
+                loadChapter();
+            } else {
+                // Scroll to chapter in list
+                const chapterElement = document.querySelector(`[data-chapter="${chapterId}"]`);
+                if (chapterElement) {
+                    chapterElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+
+        // Update Chapter Display
+        function updateChapterDisplay() {
+            const chapter = novelDetailData.chapters.find(c => c.id === currentChapter);
+            
+            if (chapter) {
+                document.getElementById('currentChapter').textContent = `Chapter ${currentChapter}`;
+                document.getElementById('mobileCurrentChapter').textContent = `Chapter ${currentChapter}`;
+                document.getElementById('currentChapterTitle').textContent = chapter.title;
+            }
+            
+            // Update chapter list highlighting
+            updateChapterList();
+            
+            // Update URL without reloading
+            updateURL();
+        }
+
+        // Update Chapter List
+        function updateChapterList() {
+            const chapterList = document.getElementById('chapterList');
+            if (!chapterList) return;
+            
+            chapterList.innerHTML = '';
+            
+            novelDetailData.chapters.forEach(chapter => {
+                const isCurrent = chapter.id === currentChapter;
+                const chapterItem = document.createElement('div');
+                chapterItem.className = `chapter-item p-4 cursor-pointer transition-all ${isCurrent ? 'current' : ''}`;
+                chapterItem.setAttribute('data-chapter', chapter.id);
+                chapterItem.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-white">${chapter.title}</span>
+                        <span class="text-xs text-gray-400">${chapter.wordCount} kata</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">${new Date(chapter.date).toLocaleDateString('id-ID')}</span>
+                        <span class="text-purple-300"><i class="far fa-eye mr-1"></i>${chapter.views}</span>
+                    </div>
+                `;
+                chapterItem.addEventListener('click', () => {
+                    if (isReadingMode) {
+                        goToChapter(chapter.id);
+                    } else {
+                        currentChapter = chapter.id;
+                        startReading();
+                    }
+                });
+                chapterList.appendChild(chapterItem);
+            });
+        }
+
+        // Update Chapter Previews
+        function updateChapterPreviews() {
+            const container = document.getElementById('chapterPreviews');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            // Show first 3 chapters as preview
+            const previewChapters = novelDetailData.chapters.slice(0, 3);
+            
+            previewChapters.forEach(chapter => {
+                const preview = document.createElement('div');
+                preview.className = 'bg-gray-800/50 rounded-lg p-4';
+                preview.innerHTML = `
+                    <div class="flex justify-between items-center mb-3">
+                        <h4 class="font-bold text-white">${chapter.title}</h4>
+                        <span class="text-xs text-gray-400">${chapter.wordCount} kata</span>
+                    </div>
+                    <p class="text-gray-300 text-sm mb-4 line-clamp-3">
+                        ${chapter.content.substring(0, 200)}...
+                    </p>
+                    <div class="flex justify-between text-sm">
+                        <button onclick="currentChapter = ${chapter.id}; startReading();" 
+                                class="text-purple-300 hover:text-purple-200 transition-colors">
+                            <i class="fas fa-book-open mr-1"></i> Baca Lengkap
+                        </button>
+                        <span class="text-gray-400">${chapter.views}</span>
+                    </div>
+                `;
+                container.appendChild(preview);
+            });
+        }
+
+        // Reading Functions
+        function startReading() {
+            isReadingMode = true;
+            
+            // Show reader section, hide info section
+            document.getElementById('readerSection').classList.remove('hidden');
+            document.getElementById('infoSection').classList.add('hidden');
+            document.getElementById('mainContent').classList.add('hidden');
+            
+            // Show chapter navigation in header
+            document.getElementById('chapterNav').classList.remove('hidden');
+            document.getElementById('mobileChapterNav').classList.remove('hidden');
+            document.getElementById('settingsBtn').classList.add('hidden');
+            
+            // Load the current chapter
+            loadChapter();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Track reading start
+            trackReadingStart();
+            
+            // Update URL
+            updateURL();
+        }
+
+        function exitReader() {
+            isReadingMode = false;
+            
+            // Show info section, hide reader section
+            document.getElementById('readerSection').classList.add('hidden');
+            document.getElementById('infoSection').classList.remove('hidden');
+            document.getElementById('mainContent').classList.remove('hidden');
+            
+            // Hide chapter navigation in header
+            document.getElementById('chapterNav').classList.add('hidden');
+            document.getElementById('mobileChapterNav').classList.add('hidden');
+            document.getElementById('settingsBtn').classList.remove('hidden');
+            
+            // Update URL
+            updateURL();
+        }
+
+        function loadChapter() {
+            const contentContainer = document.getElementById('chapterContent');
+            const chapter = novelDetailData.chapters.find(c => c.id === currentChapter);
+            
+            if (!contentContainer || !chapter) return;
+            
+            // Show loading
+            contentContainer.innerHTML = `
+                <div class="text-center py-20">
+                    <div class="loading-spinner mx-auto mb-4"></div>
+                    <p class="text-gray-400">Memuat Chapter ${currentChapter}</p>
+                </div>
+            `;
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                renderChapter(chapter);
+            }, 500);
+        }
+
+        function renderChapter(chapter) {
+            const contentContainer = document.getElementById('chapterContent');
+            
+            contentContainer.innerHTML = `
+                <div class="mb-8 text-center">
+                    <h1 class="fantasy-font text-3xl text-white mb-4">${chapter.title}</h1>
+                    <div class="flex justify-center items-center space-x-4 text-sm text-gray-400">
+                        <span><i class="far fa-calendar mr-1"></i> ${new Date(chapter.date).toLocaleDateString('id-ID')}</span>
+                        <span>•</span>
+                        <span><i class="fas fa-font mr-1"></i> ${chapter.wordCount} kata</span>
+                        <span>•</span>
+                        <span><i class="far fa-clock mr-1"></i> ≈ ${Math.ceil(chapter.wordCount / 250)} menit baca</span>
+                    </div>
+                </div>
+                
+                <div class="novel-font text-content" id="textContent">
+                    ${chapter.content.split('\n').map(paragraph => 
+                        `<p class="mb-6">${paragraph}</p>`
+                    ).join('')}
+                </div>
+                
+                <div class="mt-12 pt-8 border-t border-gray-700">
+                    <div class="flex justify-between items-center">
+                        <button onclick="previousChapter()" 
+                                class="flex items-center text-purple-300 hover:text-purple-200 transition-colors ${currentChapter === 1 ? 'opacity-50 cursor-not-allowed' : ''}">
+                            <i class="fas fa-chevron-left mr-2"></i> Chapter Sebelumnya
+                        </button>
+                        
+                        <button onclick="exitReader()" 
+                                class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fas fa-times mr-2"></i> Tutup Reader
+                        </button>
+                        
+                        <button onclick="nextChapter()" 
+                                class="flex items-center text-purple-300 hover:text-purple-200 transition-colors ${currentChapter === novelDetailData.chapters.length ? 'opacity-50 cursor-not-allowed' : ''}">
+                            Chapter Selanjutnya <i class="fas fa-chevron-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Apply current font size and theme
+            applyReadingSettings();
+            
+            // Update progress
+            updateReadingProgress();
+        }
+
+        // Reading Settings
+        function changeFontSize(size) {
+            fontSize = size;
+            
+            // Update active button
+            document.querySelectorAll('.font-size-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-size') === size) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Apply to content if in reading mode
+            if (isReadingMode) {
+                applyReadingSettings();
+            }
+            
+            // Save preference
+            saveUserPreferences();
+        }
+
+        function changeTheme(newTheme) {
+            theme = newTheme;
+            
+            // Update active button
+            document.querySelectorAll('.theme-option').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-theme') === newTheme) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Apply to content if in reading mode
+            if (isReadingMode) {
+                applyReadingSettings();
+            }
+            
+            // Save preference
+            saveUserPreferences();
+        }
+
+        function toggleTheme() {
+            const themes = ['dark', 'light', 'sepia'];
+            const currentIndex = themes.indexOf(theme);
+            const nextIndex = (currentIndex + 1) % themes.length;
+            changeTheme(themes[nextIndex]);
+        }
+
+        function applyReadingSettings() {
+            const content = document.getElementById('textContent');
+            const reader = document.getElementById('novelReader');
+            
+            if (!content || !reader) return;
+            
+            // Apply font size
+            const fontSizeMap = {
+                small: '0.95rem',
+                medium: '1.1rem',
+                large: '1.3rem'
+            };
+            content.style.fontSize = fontSizeMap[fontSize] || '1.1rem';
+            
+            // Apply theme
+            reader.className = 'reader-content';
+            if (theme === 'light') {
+                reader.classList.add('bg-white', 'text-gray-900');
+            } else if (theme === 'sepia') {
+                reader.classList.add('bg-amber-50', 'text-gray-900');
+            } else {
+                reader.classList.add('bg-gray-900', 'text-gray-100');
+            }
+        }
+
+        // Fullscreen Functions
+        function toggleFullscreen() {
+            const reader = document.getElementById('novelReader');
+            
+            if (!isFullscreen) {
+                if (reader.requestFullscreen) {
+                    reader.requestFullscreen();
+                } else if (reader.webkitRequestFullscreen) {
+                    reader.webkitRequestFullscreen();
+                } else if (reader.mozRequestFullScreen) {
+                    reader.mozRequestFullScreen();
+                } else if (reader.msRequestFullscreen) {
+                    reader.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        function handleFullscreenChange() {
+            isFullscreen = !(!document.fullscreenElement && !document.webkitFullscreenElement && 
+                            !document.mozFullScreenElement && !document.msFullscreenElement);
+            
+            // Update fullscreen button icon
+            const fullscreenBtn = document.querySelector('[onclick="toggleFullscreen()"]');
+            if (fullscreenBtn) {
+                fullscreenBtn.innerHTML = isFullscreen ? 
+                    '<i class="fas fa-compress"></i>' : 
+                    '<i class="fas fa-expand"></i>';
+            }
+        }
+
+        // User Actions
+        function toggleBookmark() {
+            isBookmarked = !isBookmarked;
+            updateBookmarkButton();
+            
+            // Save to localStorage
+            const bookmarks = JSON.parse(localStorage.getItem('patrionNovelBookmarks') || '[]');
+            if (isBookmarked) {
+                if (!bookmarks.includes(novelDetailData.id)) {
+                    bookmarks.push(novelDetailData.id);
+                }
+            } else {
+                const index = bookmarks.indexOf(novelDetailData.id);
+                if (index > -1) {
+                    bookmarks.splice(index, 1);
+                }
+            }
+            localStorage.setItem('patrionNovelBookmarks', JSON.stringify(bookmarks));
+            
+            // Show feedback
+            showNotification(isBookmarked ? 'Novel disimpan!' : 'Novel dihapus dari penyimpanan', 'success');
+        }
+
+        function updateBookmarkButton() {
+            const btn = document.getElementById('bookmarkBtn');
+            if (!btn) return;
+            
+            if (isBookmarked) {
+                btn.innerHTML = '<i class="fas fa-bookmark mr-2"></i> Tersimpan';
+                btn.classList.remove('border-purple-500', 'text-purple-300');
+                btn.classList.add('bg-purple-500', 'text-white');
+            } else {
+                btn.innerHTML = '<i class="far fa-bookmark mr-2"></i> Simpan';
+                btn.classList.remove('bg-purple-500', 'text-white');
+                btn.classList.add('border-purple-500', 'text-purple-300');
+            }
+        }
+
+        function toggleLike() {
+            isLiked = !isLiked;
+            updateLikeButton();
+            
+            // Save to localStorage
+            const likes = JSON.parse(localStorage.getItem('patrionNovelLikes') || '{}');
+            likes[novelDetailData.id] = isLiked;
+            localStorage.setItem('patrionNovelLikes', JSON.stringify(likes));
+            
+            // Show feedback
+            showNotification(isLiked ? 'Novel disukai!' : 'Like dihapus', 'success');
+        }
+
+        function updateLikeButton() {
+            const btn = document.getElementById('likeBtn');
+            if (!btn) return;
+            
+            if (isLiked) {
+                btn.innerHTML = '<i class="fas fa-heart mr-2"></i> Disukai';
+                btn.classList.remove('border-red-500', 'text-red-500');
+                btn.classList.add('bg-red-500', 'text-white');
+            } else {
+                btn.innerHTML = '<i class="far fa-heart mr-2"></i> Suka';
+                btn.classList.remove('bg-red-500', 'text-white');
+                btn.classList.add('border-red-500', 'text-red-500');
+            }
+        }
+
+        // Comments Functions
+        function loadComments() {
+            const commentsList = document.getElementById('commentsList');
+            if (!commentsList) return;
+            
+            commentsList.innerHTML = '';
+            
+            if (novelDetailData.comments.length === 0) {
+                commentsList.innerHTML = `
+                    <div class="text-center py-8 text-gray-400">
+                        <i class="fas fa-comments text-3xl mb-3"></i>
+                        <p>Jadilah yang pertama berdiskusi!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            novelDetailData.comments.forEach(comment => {
+                const commentCard = document.createElement('div');
+                commentCard.className = 'comment-card p-4';
+                commentCard.innerHTML = `
+                    <div class="flex items-start mb-3">
+                        <div class="comment-avatar mr-3">
+                            ${comment.avatar}
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-semibold text-white">${comment.user}</h4>
+                                <span class="text-xs text-gray-400">${comment.date}</span>
+                            </div>
+                            <div class="rating-stars text-sm mb-2">
+                                ${'★'.repeat(comment.rating)}${'☆'.repeat(5 - comment.rating)}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">${comment.text}</p>
+                `;
+                commentsList.appendChild(commentCard);
+            });
+        }
+
+        function updateRatingStars() {
+            const stars = document.querySelectorAll('#commentRating i');
+            stars.forEach((star, index) => {
+                if (index < selectedRating) {
+                    star.className = 'fas fa-star';
+                    star.style.color = '#fbbf24';
+                } else {
+                    star.className = 'far fa-star';
+                    star.style.color = '#fbbf24';
+                }
+            });
+        }
+
+        function highlightStars(rating) {
+            const stars = document.querySelectorAll('#commentRating i');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.className = 'fas fa-star';
+                    star.style.color = '#fbbf24';
+                } else {
+                    star.className = 'far fa-star';
+                    star.style.color = '#fbbf24';
+                }
+            });
+        }
+
+        function submitComment() {
+            const commentInput = document.getElementById('commentInput');
+            const commentText = commentInput.value.trim();
+            
+            if (!commentText) {
+                showNotification('Silakan tulis komentar terlebih dahulu', 'error');
+                return;
+            }
+            
+            if (selectedRating === 0) {
+                showNotification('Silakan beri rating untuk novel ini', 'error');
+                return;
+            }
+            
+            // In a real app, send to server
+            const newComment = {
+                id: novelDetailData.comments.length + 1,
+                user: "Anda",
+                avatar: "A",
+                rating: selectedRating,
+                date: "Baru saja",
+                text: commentText
+            };
+            
+            // Add to beginning of comments array
+            novelDetailData.comments.unshift(newComment);
+            
+            // Update UI
+            loadComments();
+            
+            // Clear form
+            commentInput.value = '';
+            selectedRating = 0;
+            updateRatingStars();
+            
+            // Show success message
+            showNotification('Komentar berhasil dikirim!', 'success');
+        }
+
+        // Progress Tracking
+        function updateReadingProgress() {
+            const progressBar = document.getElementById('readingProgress');
+            if (!progressBar) return;
+            
+            if (isReadingMode) {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = scrollTop / docHeight;
+                
+                progressBar.style.width = `${scrollPercent * 100}%`;
+                
+                // Save reading progress
+                saveReadingProgress();
+            } else {
+                progressBar.style.width = '0%';
+            }
+        }
+
+        function saveReadingProgress() {
+            const progress = {
+                novelId: novelDetailData.id,
+                chapter: currentChapter,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem(`readingProgress_novel_${novelDetailData.id}`, JSON.stringify(progress));
+        }
+
+        function trackReadingStart() {
+            console.log(`Reading started: Novel ${novelDetailData.id}, Chapter ${currentChapter}`);
+        }
+
+        // Keyboard Navigation
+        function handleKeyboardNavigation(event) {
+            if (!isReadingMode) return;
+            
+            switch(event.key) {
+                case 'ArrowLeft':
+                    previousChapter();
+                    break;
+                case 'ArrowRight':
+                    nextChapter();
+                    break;
+                case 'Escape':
+                    exitReader();
+                    break;
+                case ' ':
+                    event.preventDefault();
+                    nextChapter();
+                    break;
+                case 'f':
+                case 'F':
+                    toggleFullscreen();
+                    break;
+            }
+        }
+
+        // User Preferences
+        function loadUserPreferences() {
+            // Load bookmarks
+            const bookmarks = JSON.parse(localStorage.getItem('patrionNovelBookmarks') || '[]');
+            isBookmarked = bookmarks.includes(novelDetailData.id);
+            updateBookmarkButton();
+            
+            // Load likes
+            const likes = JSON.parse(localStorage.getItem('patrionNovelLikes') || '{}');
+            isLiked = likes[novelDetailData.id] || false;
+            updateLikeButton();
+            
+            // Load reading progress
+            const progress = JSON.parse(localStorage.getItem(`readingProgress_novel_${novelDetailData.id}`) || 'null');
+            if (progress) {
+                currentChapter = progress.chapter;
+                updateChapterDisplay();
+            }
+            
+            // Load reading settings
+            const settings = JSON.parse(localStorage.getItem('patrionReadingSettings') || '{}');
+            if (settings.fontSize) {
+                fontSize = settings.fontSize;
+                changeFontSize(fontSize);
+            }
+            if (settings.theme) {
+                theme = settings.theme;
+                changeTheme(theme);
+            }
+        }
+
+        function saveUserPreferences() {
+            const settings = {
+                fontSize: fontSize,
+                theme: theme
+            };
+            
+            localStorage.setItem('patrionReadingSettings', JSON.stringify(settings));
+        }
+
+        // URL Management
+        function updateURL() {
+            const url = new URL(window.location);
+            
+            if (isReadingMode) {
+                url.searchParams.set('read', 'true');
+                url.searchParams.set('chapter', currentChapter);
+            } else {
+                url.searchParams.delete('read');
+                url.searchParams.set('chapter', currentChapter);
+            }
+            
+            window.history.replaceState({}, '', url);
+        }
+
+        // Utility Functions
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 translate-x-full`;
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'} mr-3 
+                       ${type === 'success' ? 'text-green-400' : 'text-red-400'}"></i>
+                    <span class="text-white">${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+                notification.classList.add('translate-x-0');
+            }, 10);
+            
+            setTimeout(() => {
+                notification.classList.remove('translate-x-0');
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Share function
+        function shareNovel() {
+            if (navigator.share) {
+                navigator.share({
+                    title: novelDetailData.title,
+                    text: `Baca novel "${novelDetailData.title}" di PATRION Universe`,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                showNotification('Link berhasil disalin ke clipboard!', 'success');
+            }
+        }
+
+        // Report function
+        function reportNovel() {
+            console.log('Report novel:', novelDetailData.id);
+            showNotification('Laporan berhasil dikirim!', 'success');
+        }
+
+    </script>
+</body>
+</html>

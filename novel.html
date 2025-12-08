@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel PATRION - Koleksi Novel Digital Terbaik</title>
+    <meta name="description" content="Baca novel digital terbaik dari PATRION Universe. Petualangan, fantasi, romansa, dan cerita inspiratif dari Nusantara.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Novel PATRION - Koleksi Novel Digital Terbaik">
+    <meta property="og:description" content="Temukan novel digital berkualitas dengan cerita-cerita epik dari Nusantara">
+    <meta property="og:image" content="assets/images/novels/novel-cover-1.jpg">
+    <meta property="og:url" content="https://patrion.com/novels.html">
+    
+    <!-- CSS & Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#7c3aed', // Warna ungu untuk novel
+                        'fantasy-blue': '#1e3a8a',
+                        'fantasy-purple': '#7c3aed',
+                        'fantasy-dark': '#0f172a',
+                        'fantasy-gold': '#fbbf24',
+                        // Warna genre novel
+                        'novel-romance': '#db2777',
+                        'novel-fantasy': '#7c3aed',
+                        'novel-mystery': '#059669',
+                        'novel-historical': '#d97706',
+                        'novel-sliceoflife': '#3b82f6'
+                    },
+                    backgroundImage: {
+                        'fantasy-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #0f172a 100%)',
+                        'novel-gradient': 'linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Import custom CSS */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        /* Base Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        .fantasy-font {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .novel-font {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .accent-text {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.1);
+        }
+        
+        /* Navigation Styles */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7c3aed, #a78bfa);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Genre badges */
+        .genre-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .genre-badge:hover {
+            transform: scale(1.05);
+        }
+        
+        .badge-romance { background: rgba(219, 39, 119, 0.2); color: #f472b6; border: 1px solid rgba(219, 39, 119, 0.4); }
+        .badge-fantasy { background: rgba(124, 58, 237, 0.2); color: #c4b5fd; border: 1px solid rgba(124, 58, 237, 0.4); }
+        .badge-mystery { background: rgba(5, 150, 105, 0.2); color: #6ee7b7; border: 1px solid rgba(5, 150, 105, 0.4); }
+        .badge-historical { background: rgba(217, 119, 6, 0.2); color: #fdba74; border: 1px solid rgba(217, 119, 6, 0.4); }
+        .badge-sliceoflife { background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); }
+        .badge-adventure { background: rgba(251, 191, 36, 0.2); color: #fde68a; border: 1px solid rgba(251, 191, 36, 0.4); }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            border-radius: 4px;
+        }
+        
+        /* Novel Card */
+        .novel-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(124, 58, 237, 0.1);
+        }
+        
+        .novel-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(124, 58, 237, 0.3);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.2);
+        }
+        
+        .novel-cover {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .novel-cover img {
+            transition: transform 0.5s ease;
+        }
+        
+        .novel-card:hover .novel-cover img {
+            transform: scale(1.05);
+        }
+        
+        .novel-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .status-ongoing {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+            border: 1px solid rgba(34, 197, 94, 0.4);
+        }
+        
+        .status-completed {
+            background: rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Filter Section */
+        .filter-group {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .filter-title {
+            font-family: 'Cinzel', serif;
+            color: #c4b5fd;
+            margin-bottom: 15px;
+        }
+        
+        /* Search Box */
+        .search-box {
+            background: rgba(30, 41, 59, 0.7);
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            border-radius: 50px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus-within {
+            border-color: rgba(124, 58, 237, 0.6);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+        
+        /* Loading Animation */
+        .loading-spinner {
+            border: 3px solid rgba(124, 58, 237, 0.1);
+            border-top: 3px solid #7c3aed;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Pagination */
+        .pagination-btn {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 8px;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-btn:hover:not(.disabled) {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: rgba(124, 58, 237, 0.4);
+        }
+        
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination-btn.active {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            color: white;
+        }
+        
+        /* Featured Banner */
+        .featured-banner {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(30, 41, 59, 0.9)), 
+                        url('assets/images/novels/featured-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        /* Stats Card */
+        .stats-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(124, 58, 237, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            border-color: rgba(124, 58, 237, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Aurora Effect */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(124, 58, 237, 0.1), rgba(219, 39, 119, 0.1), rgba(59, 130, 246, 0.1));
+            opacity: 0.3;
+            z-index: -1;
+            filter: blur(40px);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .featured-banner {
+                padding: 20px;
+            }
+            
+            .stats-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="relative">
+    
+    <!-- Background dengan efek cahaya -->
+    <div class="aurora"></div>
+    
+    <!-- Header & Navigation -->
+    <header class="glass-effect sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="w-full h-12">
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-purple-300 transition-colors">BERANDA</a>
+                    <a href="comics.html" class="nav-link text-white hover:text-purple-300 transition-colors">KOMIK</a>
+                    <a href="novels.html" class="nav-link text-accent font-bold">NOVEL</a>
+                    <a href="community.html" class="nav-link text-white hover:text-purple-300 transition-colors">KOMUNITAS</a>
+                </nav>
+                
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative hidden md:block">
+                        <div class="search-box flex items-center">
+                            <i class="fas fa-search text-gray-400 mr-2"></i>
+                            <input type="text" 
+                                   placeholder="Cari novel..." 
+                                   class="bg-transparent border-none outline-none text-white w-48"
+                                   id="searchInput">
+                        </div>
+                    </div>
+                    
+                    <a href="login.html" class="text-white hover:text-purple-300 transition-colors">
+                        <i class="fas fa-user text-lg"></i>
+                    </a>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden mt-4 hidden glass-effect rounded-lg p-4 border border-purple-500/20">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="hover:text-purple-300 transition-colors py-2">BERANDA</a>
+                    <a href="comics.html" class="hover:text-purple-300 transition-colors py-2">KOMIK</a>
+                    <a href="novels.html" class="text-purple-300 font-bold py-2">NOVEL</a>
+                    <a href="community.html" class="hover:text-purple-300 transition-colors py-2">KOMUNITAS</a>
+                    
+                    <div class="pt-2">
+                        <div class="search-box flex items-center">
+                            <i class="fas fa-search text-gray-400 mr-2"></i>
+                            <input type="text" 
+                                   placeholder="Cari novel..." 
+                                   class="bg-transparent border-none outline-none text-white w-full"
+                                   id="mobileSearchInput">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="mb-12">
+            <div class="featured-banner p-8 md:p-12 mb-8">
+                <div class="max-w-2xl">
+                    <h1 class="fantasy-font text-3xl md:text-5xl text-white mb-4">
+                        Temukan <span class="accent-text">Petualangan</span> dalam Setiap Kata
+                    </h1>
+                    <p class="text-gray-300 text-lg mb-6">
+                        Jelajahi koleksi novel digital terbaik dari PATRION Universe. 
+                        Dari fantasi epik hingga romansa mengharukan, setiap cerita membawa Anda 
+                        ke dunia yang berbeda.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#featured" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-bold py-3 px-6 rounded-full transition-all">
+                            <i class="fas fa-crown mr-2"></i> Novel Unggulan
+                        </a>
+                        <a href="#trending" class="border-2 border-purple-500 text-purple-300 hover:bg-purple-500/20 font-bold py-3 px-6 rounded-full transition-all">
+                            <i class="fas fa-fire mr-2"></i> Sedang Trend
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="stats-card">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center mr-3">
+                            <i class="fas fa-book text-purple-300"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">250+</p>
+                            <p class="text-sm text-gray-400">Novel Tersedia</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-pink-300"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">50K+</p>
+                            <p class="text-sm text-gray-400">Pembaca Aktif</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mr-3">
+                            <i class="fas fa-pen-fancy text-blue-300"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">100+</p>
+                            <p class="text-sm text-gray-400">Penulis</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center mr-3">
+                            <i class="fas fa-star text-green-300"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">4.8</p>
+                            <p class="text-sm text-gray-400">Rating Rata-rata</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Left Sidebar - Filters -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-24 space-y-6">
+                    <!-- Search -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Pencarian</h3>
+                        <div class="search-box flex items-center">
+                            <i class="fas fa-search text-gray-400 mr-2"></i>
+                            <input type="text" 
+                                   placeholder="Judul, penulis, atau kata kunci..." 
+                                   class="bg-transparent border-none outline-none text-white w-full"
+                                   id="filterSearch">
+                        </div>
+                    </div>
+                    
+                    <!-- Genre Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Genre</h3>
+                        <div class="space-y-2">
+                            <button class="genre-badge badge-fantasy w-full text-left" data-genre="fantasy">
+                                Fantasi <span class="float-right text-gray-400">(85)</span>
+                            </button>
+                            <button class="genre-badge badge-romance w-full text-left" data-genre="romance">
+                                Romansa <span class="float-right text-gray-400">(72)</span>
+                            </button>
+                            <button class="genre-badge badge-mystery w-full text-left" data-genre="mystery">
+                                Misteri <span class="float-right text-gray-400">(45)</span>
+                            </button>
+                            <button class="genre-badge badge-historical w-full text-left" data-genre="historical">
+                                Sejarah <span class="float-right text-gray-400">(38)</span>
+                            </button>
+                            <button class="genre-badge badge-sliceoflife w-full text-left" data-genre="sliceoflife">
+                                Slice of Life <span class="float-right text-gray-400">(56)</span>
+                            </button>
+                            <button class="genre-badge badge-adventure w-full text-left" data-genre="adventure">
+                                Petualangan <span class="float-right text-gray-400">(63)</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Status Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Status</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="status" value="all" class="mr-2" checked>
+                                <span class="text-gray-300">Semua</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="status" value="ongoing" class="mr-2">
+                                <span class="text-gray-300">Ongoing</span>
+                                <span class="ml-auto text-green-400 text-sm">•</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="status" value="completed" class="mr-2">
+                                <span class="text-gray-300">Completed</span>
+                                <span class="ml-auto text-blue-400 text-sm">✓</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Sort Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Urutkan</h3>
+                        <select class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-purple-500">
+                            <option value="popular">Paling Populer</option>
+                            <option value="newest">Terbaru</option>
+                            <option value="rating">Rating Tertinggi</option>
+                            <option value="views">Paling Banyak Dibaca</option>
+                            <option value="chapters">Chapter Terbanyak</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Clear Filters -->
+                    <button onclick="clearFilters()" 
+                            class="w-full py-3 border border-gray-600 text-gray-400 hover:text-white hover:border-gray-500 rounded-lg transition-colors">
+                        <i class="fas fa-times mr-2"></i> Reset Filter
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="lg:col-span-3">
+                <!-- Featured Novels -->
+                <section id="featured" class="mb-12">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="fantasy-font text-2xl text-white">
+                            <i class="fas fa-crown text-yellow-400 mr-2"></i> Novel Unggulan
+                        </h2>
+                        <a href="#" class="text-purple-300 hover:text-purple-200 transition-colors">
+                            Lihat Semua <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="featuredNovels">
+                        <!-- Featured novels will be populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Trending Novels -->
+                <section id="trending" class="mb-12">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="fantasy-font text-2xl text-white">
+                            <i class="fas fa-fire text-orange-400 mr-2"></i> Sedang Trend
+                        </h2>
+                        <a href="#" class="text-purple-300 hover:text-purple-200 transition-colors">
+                            Lihat Semua <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="trendingNovels">
+                        <!-- Trending novels will be populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- All Novels -->
+                <section id="allNovels">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="fantasy-font text-2xl text-white">Semua Novel</h2>
+                        <div class="text-gray-400">
+                            Menampilkan <span id="novelCount">12</span> dari 250 novel
+                        </div>
+                    </div>
+                    
+                    <!-- Novel Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="novelGrid">
+                        <!-- All novels will be populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Loading Indicator -->
+                    <div id="loadingIndicator" class="text-center py-8 hidden">
+                        <div class="loading-spinner mx-auto mb-4"></div>
+                        <p class="text-gray-400">Memuat novel...</p>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="flex justify-center items-center space-x-2 mt-8" id="pagination">
+                        <!-- Pagination will be populated by JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-effect py-12 border-t border-purple-500/20 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="h-12 mb-4">
+                    <p class="text-gray-400 text-sm">
+                        Platform novel digital PATRION - Petualangan literasi tanpa batas dari Nusantara untuk dunia.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-purple-300 mb-4">Kategori</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors">Fantasi</a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors">Romansa</a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors">Misteri</a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors">Sejarah</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-purple-300 mb-4">Untuk Penulis</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors">Jadi Penulis</a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors">Panduan Menulis</a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors">Program Royalty</a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors">Komunitas Penulis</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-purple-300 mb-4">Terhubung</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors text-xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors text-xl">
+                            <i class="fab fa-square-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors text-xl">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-purple-300 transition-colors text-xl">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <p>Email: novels@patrion.com</p>
+                        <p>Support: support@patrion.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    "Novel PATRION" adalah konten eksklusif dari <span class="text-purple-300">PATRION Universe</span>.
+                    © 2024 PATRION. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-bold p-3 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Novel Data
+        const novelData = [
+            {
+                id: 1,
+                title: "Sang Penjaga Api: Warisan Nusantara",
+                author: "Abdurrahman GM",
+                cover: "assets/images/novels/novel-1.jpg",
+                rating: 4.8,
+                views: "150K",
+                chapters: 45,
+                status: "ongoing",
+                genres: ["fantasy", "adventure"],
+                description: "Kisah epik tentang penjaga api terakhir yang harus menyelamatkan Nusantara dari kegelapan.",
+                isFeatured: true,
+                isTrending: true
+            },
+            {
+                id: 2,
+                title: "Pelangi di Atas Candi",
+                author: "Siti Nurhaliza",
+                cover: "assets/images/novels/novel-2.jpg",
+                rating: 4.7,
+                views: "120K",
+                chapters: 30,
+                status: "completed",
+                genres: ["romance", "historical"],
+                description: "Romansa sejarah antara pelestari candi dan arkeolog muda dari Belanda.",
+                isFeatured: true,
+                isTrending: false
+            },
+            {
+                id: 3,
+                title: "Misteri Pulau Hantu",
+                author: "Budi Santoso",
+                cover: "assets/images/novels/novel-3.jpg",
+                rating: 4.5,
+                views: "95K",
+                chapters: 25,
+                status: "ongoing",
+                genres: ["mystery", "adventure"],
+                description: "Ekspedisi ke pulau terpencil yang menyimpan misteri kuno dan harta karun.",
+                isFeatured: false,
+                isTrending: true
+            },
+            {
+                id: 4,
+                title: "Dewi Laut Selatan",
+                author: "Maya Indah",
+                cover: "assets/images/novels/novel-4.jpg",
+                rating: 4.9,
+                views: "200K",
+                chapters: 50,
+                status: "ongoing",
+                genres: ["fantasy", "romance"],
+                description: "Legenda dewi laut yang jatuh cinta dengan manusia biasa.",
+                isFeatured: true,
+                isTrending: true
+            },
+            {
+                id: 5,
+                title: "Warisan Majapahit",
+                author: "Agung Prabowo",
+                cover: "assets/images/novels/novel-5.jpg",
+                rating: 4.6,
+                views: "85K",
+                chapters: 40,
+                status: "completed",
+                genres: ["historical", "adventure"],
+                description: "Pencarian artefak kerajaan Majapahit yang hilang selama berabad-abad.",
+                isFeatured: false,
+                isTrending: false
+            },
+            {
+                id: 6,
+                title: "Cinta di Kampus Tua",
+                author: "Rina Wijaya",
+                cover: "assets/images/novels/novel-6.jpg",
+                rating: 4.4,
+                views: "75K",
+                chapters: 20,
+                status: "completed",
+                genres: ["romance", "sliceoflife"],
+                description: "Kisah cinta sederhana antara mahasiswa sastra dan seni rupa.",
+                isFeatured: false,
+                isTrending: true
+            },
+            {
+                id: 7,
+                title: "Negeri Para Peri",
+                author: "Dian Kusuma",
+                cover: "assets/images/novels/novel-7.jpg",
+                rating: 4.8,
+                views: "110K",
+                chapters: 35,
+                status: "ongoing",
+                genres: ["fantasy"],
+                description: "Petualangan anak desa yang terpilih menjadi penjaga gerbang negeri peri.",
+                isFeatured: true,
+                isTrending: false
+            },
+            {
+                id: 8,
+                title: "Detektif Jakarta 1920",
+                author: "Fajar Nugroho",
+                cover: "assets/images/novels/novel-8.jpg",
+                rating: 4.7,
+                views: "90K",
+                chapters: 28,
+                status: "ongoing",
+                genres: ["mystery", "historical"],
+                description: "Kasus-kasus detektif pribumi di Batavia masa kolonial.",
+                isFeatured: false,
+                isTrending: true
+            },
+            {
+                id: 9,
+                title: "Senja di Kampung Halaman",
+                author: "Wulan Sari",
+                cover: "assets/images/novels/novel-9.jpg",
+                rating: 4.3,
+                views: "60K",
+                chapters: 15,
+                status: "completed",
+                genres: ["sliceoflife"],
+                description: "Kisah nostalgia tentang masa kecil di kampung dan nilai-nilai keluarga.",
+                isFeatured: false,
+                isTrending: false
+            },
+            {
+                id: 10,
+                title: "Pemberontakan di Bukit Barisan",
+                author: "Rizky Pratama",
+                cover: "assets/images/novels/novel-10.jpg",
+                rating: 4.9,
+                views: "180K",
+                chapters: 55,
+                status: "ongoing",
+                genres: ["historical", "adventure"],
+                description: "Epik perjuangan rakyat Sumatra melawan penjajahan Belanda.",
+                isFeatured: true,
+                isTrending: true
+            },
+            {
+                id: 11,
+                title: "Cinta Segitiga Kota Tua",
+                author: "Lina Hartati",
+                cover: "assets/images/novels/novel-11.jpg",
+                rating: 4.2,
+                views: "55K",
+                chapters: 18,
+                status: "completed",
+                genres: ["romance"],
+                description: "Kisah cinta kompleks antara tiga sahabat di kawasan kota tua.",
+                isFeatured: false,
+                isTrending: false
+            },
+            {
+                id: 12,
+                title: "Pesona Borobudur",
+                author: "Ahmad Yusuf",
+                cover: "assets/images/novels/novel-12.jpg",
+                rating: 4.6,
+                views: "80K",
+                chapters: 22,
+                status: "ongoing",
+                genres: ["historical", "mystery"],
+                description: "Misteri di balik relief Candi Borobudur yang belum terpecahkan.",
+                isFeatured: false,
+                isTrending: true
+            }
+        ];
+
+        // State Variables
+        let currentPage = 1;
+        const novelsPerPage = 9;
+        let filteredNovels = [...novelData];
+        let activeGenre = 'all';
+        let activeStatus = 'all';
+        let sortBy = 'popular';
+        let searchQuery = '';
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePage();
+            setupEventListeners();
+            renderNovels();
+            updatePagination();
+        });
+
+        // Initialize Page
+        function initializePage() {
+            // Load featured novels
+            renderFeaturedNovels();
+            
+            // Load trending novels
+            renderTrendingNovels();
+            
+            // Update novel count
+            updateNovelCount();
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+                const menu = document.getElementById('mobile-menu');
+                menu.classList.toggle('hidden');
+            });
+
+            // Search inputs
+            const searchInputs = ['searchInput', 'mobileSearchInput', 'filterSearch'];
+            searchInputs.forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    input.addEventListener('input', function() {
+                        searchQuery = this.value.toLowerCase();
+                        filterNovels();
+                    });
+                }
+            });
+
+            // Genre filters
+            document.querySelectorAll('.genre-badge').forEach(badge => {
+                badge.addEventListener('click', function() {
+                    activeGenre = this.getAttribute('data-genre');
+                    filterNovels();
+                    updateActiveGenre();
+                });
+            });
+
+            // Status filters
+            document.querySelectorAll('input[name="status"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    activeStatus = this.value;
+                    filterNovels();
+                });
+            });
+
+            // Sort filter
+            document.querySelector('select').addEventListener('change', function() {
+                sortBy = this.value;
+                sortNovels();
+                renderNovels();
+                updatePagination();
+            });
+
+            // Back to top button
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'invisible');
+                    backToTopBtn.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopBtn.classList.remove('opacity-100', 'visible');
+                    backToTopBtn.classList.add('opacity-0', 'invisible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Render Featured Novels
+        function renderFeaturedNovels() {
+            const container = document.getElementById('featuredNovels');
+            if (!container) return;
+
+            const featuredNovels = novelData.filter(novel => novel.isFeatured).slice(0, 3);
+            
+            container.innerHTML = featuredNovels.map(novel => createNovelCard(novel)).join('');
+        }
+
+        // Render Trending Novels
+        function renderTrendingNovels() {
+            const container = document.getElementById('trendingNovels');
+            if (!container) return;
+
+            const trendingNovels = novelData.filter(novel => novel.isTrending).slice(0, 3);
+            
+            container.innerHTML = trendingNovels.map(novel => createNovelCard(novel)).join('');
+        }
+
+        // Render All Novels
+        function renderNovels() {
+            const container = document.getElementById('novelGrid');
+            if (!container) return;
+
+            // Calculate start and end index
+            const startIndex = (currentPage - 1) * novelsPerPage;
+            const endIndex = startIndex + novelsPerPage;
+            const novelsToShow = filteredNovels.slice(startIndex, endIndex);
+
+            if (novelsToShow.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fas fa-book-open text-4xl text-gray-600 mb-4"></i>
+                        <h3 class="text-xl text-white mb-2">Tidak ada novel ditemukan</h3>
+                        <p class="text-gray-400">Coba ubah filter pencarian Anda</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = novelsToShow.map(novel => createNovelCard(novel)).join('');
+        }
+
+        // Create Novel Card HTML
+        function createNovelCard(novel) {
+            const statusClass = novel.status === 'ongoing' ? 'status-ongoing' : 'status-completed';
+            const statusText = novel.status === 'ongoing' ? 'Ongoing' : 'Completed';
+            
+            // Get first two genres for display
+            const displayGenres = novel.genres.slice(0, 2);
+            
+            return `
+                <div class="novel-card fade-in">
+                    <div class="novel-cover">
+                        <div class="h-48 bg-gradient-to-r from-purple-900/30 to-pink-900/30 flex items-center justify-center">
+                            <span class="text-white text-xl font-bold">${novel.title.substring(0, 20)}...</span>
+                        </div>
+                        <div class="${statusClass} novel-status">${statusText}</div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-white truncate" title="${novel.title}">${novel.title}</h3>
+                            <span class="text-yellow-400 text-sm font-semibold">
+                                <i class="fas fa-star"></i> ${novel.rating}
+                            </span>
+                        </div>
+                        
+                        <p class="text-sm text-gray-400 mb-3">oleh ${novel.author}</p>
+                        
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-2">${novel.description}</p>
+                        
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            ${displayGenres.map(genre => 
+                                `<span class="text-xs px-2 py-1 rounded ${getGenreClass(genre)}">${getGenreName(genre)}</span>`
+                            ).join('')}
+                            ${novel.genres.length > 2 ? 
+                                `<span class="text-xs px-2 py-1 rounded bg-gray-700 text-gray-300">+${novel.genres.length - 2}</span>` : 
+                                ''
+                            }
+                        </div>
+                        
+                        <div class="flex justify-between items-center text-sm text-gray-400">
+                            <span><i class="far fa-file-alt mr-1"></i> ${novel.chapters} bab</span>
+                            <span><i class="far fa-eye mr-1"></i> ${novel.views}</span>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <a href="novel-detail.html?id=${novel.id}" 
+                               class="block w-full text-center bg-gradient-to-r from-purple-600/20 to-pink-600/20 hover:from-purple-600/30 hover:to-pink-600/30 text-purple-300 hover:text-white font-semibold py-2 rounded-lg transition-all">
+                                Baca Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Filter Novels
+        function filterNovels() {
+            filteredNovels = novelData.filter(novel => {
+                // Search filter
+                const matchesSearch = searchQuery === '' || 
+                    novel.title.toLowerCase().includes(searchQuery) ||
+                    novel.author.toLowerCase().includes(searchQuery) ||
+                    novel.description.toLowerCase().includes(searchQuery);
+                
+                // Genre filter
+                const matchesGenre = activeGenre === 'all' || novel.genres.includes(activeGenre);
+                
+                // Status filter
+                const matchesStatus = activeStatus === 'all' || novel.status === activeStatus;
+                
+                return matchesSearch && matchesGenre && matchesStatus;
+            });
+            
+            // Sort novels
+            sortNovels();
+            
+            // Reset to first page
+            currentPage = 1;
+            
+            // Update UI
+            renderNovels();
+            updatePagination();
+            updateNovelCount();
+        }
+
+        // Sort Novels
+        function sortNovels() {
+            switch(sortBy) {
+                case 'newest':
+                    filteredNovels.sort((a, b) => b.id - a.id);
+                    break;
+                case 'rating':
+                    filteredNovels.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'views':
+                    // Convert views string to number (remove 'K')
+                    filteredNovels.sort((a, b) => {
+                        const viewsA = parseFloat(a.views.replace('K', '')) * 1000;
+                        const viewsB = parseFloat(b.views.replace('K', '')) * 1000;
+                        return viewsB - viewsA;
+                    });
+                    break;
+                case 'chapters':
+                    filteredNovels.sort((a, b) => b.chapters - a.chapters);
+                    break;
+                case 'popular':
+                default:
+                    // Combined score: rating * views
+                    filteredNovels.sort((a, b) => {
+                        const scoreA = a.rating * parseFloat(a.views.replace('K', '')) * 1000;
+                        const scoreB = b.rating * parseFloat(b.views.replace('K', '')) * 1000;
+                        return scoreB - scoreA;
+                    });
+                    break;
+            }
+        }
+
+        // Update Pagination
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredNovels.length / novelsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                paginationContainer.innerHTML = '';
+                return;
+            }
+            
+            let paginationHTML = '';
+            
+            // Previous button
+            paginationHTML += `
+                <button onclick="changePage(${currentPage - 1})" 
+                        class="pagination-btn ${currentPage === 1 ? 'disabled' : ''}">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            `;
+            
+            // Page numbers
+            const maxPagesToShow = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+            let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+            
+            // Adjust if we're at the end
+            if (endPage - startPage + 1 < maxPagesToShow) {
+                startPage = Math.max(1, endPage - maxPagesToShow + 1);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHTML += `
+                    <button onclick="changePage(${i})" 
+                            class="pagination-btn ${i === currentPage ? 'active' : ''}">
+                        ${i}
+                    </button>
+                `;
+            }
+            
+            // Next button
+            paginationHTML += `
+                <button onclick="changePage(${currentPage + 1})" 
+                        class="pagination-btn ${currentPage === totalPages ? 'disabled' : ''}">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            `;
+            
+            paginationContainer.innerHTML = paginationHTML;
+        }
+
+        // Change Page
+        function changePage(page) {
+            const totalPages = Math.ceil(filteredNovels.length / novelsPerPage);
+            
+            if (page < 1 || page > totalPages || page === currentPage) {
+                return;
+            }
+            
+            currentPage = page;
+            renderNovels();
+            updatePagination();
+            
+            // Scroll to novels section
+            document.getElementById('allNovels').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Update Novel Count
+        function updateNovelCount() {
+            const countElement = document.getElementById('novelCount');
+            if (countElement) {
+                countElement.textContent = filteredNovels.length;
+            }
+        }
+
+        // Update Active Genre
+        function updateActiveGenre() {
+            document.querySelectorAll('.genre-badge').forEach(badge => {
+                const genre = badge.getAttribute('data-genre');
+                if (genre === activeGenre) {
+                    badge.classList.add('ring-2', 'ring-purple-500');
+                } else {
+                    badge.classList.remove('ring-2', 'ring-purple-500');
+                }
+            });
+        }
+
+        // Clear Filters
+        function clearFilters() {
+            searchQuery = '';
+            activeGenre = 'all';
+            activeStatus = 'all';
+            sortBy = 'popular';
+            
+            // Update UI
+            document.getElementById('filterSearch').value = '';
+            document.querySelector('input[name="status"][value="all"]').checked = true;
+            document.querySelector('select').value = 'popular';
+            
+            // Reset filters
+            filterNovels();
+            updateActiveGenre();
+        }
+
+        // Utility Functions
+        function getGenreClass(genre) {
+            const genreClasses = {
+                fantasy: 'bg-purple-900/30 text-purple-300',
+                romance: 'bg-pink-900/30 text-pink-300',
+                mystery: 'bg-green-900/30 text-green-300',
+                historical: 'bg-yellow-900/30 text-yellow-300',
+                sliceoflife: 'bg-blue-900/30 text-blue-300',
+                adventure: 'bg-orange-900/30 text-orange-300'
+            };
+            return genreClasses[genre] || 'bg-gray-700 text-gray-300';
+        }
+
+        function getGenreName(genre) {
+            const genreNames = {
+                fantasy: 'Fantasi',
+                romance: 'Romansa',
+                mystery: 'Misteri',
+                historical: 'Sejarah',
+                sliceoflife: 'Slice of Life',
+                adventure: 'Petualangan'
+            };
+            return genreNames[genre] || genre;
+        }
+
+        // Load more novels (infinite scroll simulation)
+        function loadMoreNovels() {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            loadingIndicator.classList.remove('hidden');
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // In a real app, you would fetch more novels from the server
+                loadingIndicator.classList.add('hidden');
+                showNotification('Novel berhasil dimuat', 'success');
+            }, 1500);
+        }
+
+        // Show Notification
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 translate-x-full`;
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'} mr-3 
+                       ${type === 'success' ? 'text-green-400' : 'text-red-400'}"></i>
+                    <span class="text-white">${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+                notification.classList.add('translate-x-0');
+            }, 10);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('translate-x-0');
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize infinite scroll
+        window.addEventListener('scroll', function() {
+            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+            
+            if (scrollTop + clientHeight >= scrollHeight - 100) {
+                // Near bottom of page
+                if (filteredNovels.length > currentPage * novelsPerPage) {
+                    changePage(currentPage + 1);
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

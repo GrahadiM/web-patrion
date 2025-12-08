@@ -1,466 +1,1605 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Builder PVE - 8 Patron</title>
+    <title>Game PATRION - Koleksi Game Nusantara Terbaik</title>
+    <meta name="description" content="Mainkan game-game berkualitas dari PATRION Universe. Petualangan epik, RPG, action, dan game casual bertema Nusantara.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Game PATRION - Koleksi Game Nusantara Terbaik">
+    <meta property="og:description" content="Temukan game-game seru dengan cerita dan karakter dari Nusantara">
+    <meta property="og:image" content="assets/images/games/game-banner.jpg">
+    <meta property="og:url" content="https://patrion.com/games.html">
+    
+    <!-- CSS & Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-</head>
-
-<body class="bg-gray-900 text-white">
-    <!-- Game Container -->
-    <div class="max-w-6xl mx-auto p-6">
-        <!-- Header -->
-        <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-yellow-400 mb-2">PATRON TEAM BUILDER</h1>
-            <p class="text-gray-300">Bangun tim terbaik dari 8 Patron dan hadapi tantangan!</p>
-        </div>
-
-        <!-- Game Stats -->
-        <div class="grid grid-cols-3 gap-4 mb-8">
-            <div class="bg-blue-800 p-4 rounded-lg text-center">
-                <div class="text-2xl font-bold">Level 1</div>
-                <div class="text-sm text-gray-300">Stage Progress</div>
-            </div>
-            <div class="bg-green-800 p-4 rounded-lg text-center">
-                <div class="text-2xl font-bold" id="playerScore">100</div>
-                <div class="text-sm text-gray-300">Player HP</div>
-            </div>
-            <div class="bg-red-800 p-4 rounded-lg text-center">
-                <div class="text-2xl font-bold" id="enemyScore">100</div>
-                <div class="text-sm text-gray-300">Enemy HP</div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Left: Character Pool -->
-            <div class="bg-gray-800 p-6 rounded-xl">
-                <h2 class="text-xl font-bold text-blue-400 mb-4 flex items-center">
-                    <i class="fas fa-users mr-2"></i>Available Patrons
-                </h2>
-                <div class="grid grid-cols-2 gap-4" id="characterPool">
-                    <!-- Character 1 - Warrior -->
-                    <div class="character-card bg-red-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-red-600"
-                        data-char="warrior" onclick="selectCharacter('warrior')">
-                        <div class="text-center">
-                            <div
-                                class="w-16 h-16 bg-red-500 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                <i class="fas fa-shield-alt text-white text-2xl"></i>
-                            </div>
-                            <div class="font-bold text-white">Warrior</div>
-                            <div class="text-xs text-gray-300 mt-1">HP: 120 | ATK: 80</div>
-                            <div class="text-xs text-yellow-300">Tank • High Defense</div>
-                        </div>
-                    </div>
-
-                    <!-- Character 2 - Mage -->
-                    <div class="character-card bg-purple-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-purple-600"
-                        data-char="mage" onclick="selectCharacter('mage')">
-                        <div class="text-center">
-                            <div
-                                class="w-16 h-16 bg-purple-500 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                <i class="fas fa-hat-wizard text-white text-2xl"></i>
-                            </div>
-                            <div class="font-bold text-white">Mage</div>
-                            <div class="text-xs text-gray-300 mt-1">HP: 70 | ATK: 110</div>
-                            <div class="text-xs text-yellow-300">Magic • AoE Damage</div>
-                        </div>
-                    </div>
-
-                    <!-- Character 3 - Archer -->
-                    <div class="character-card bg-green-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-green-600"
-                        data-char="archer" onclick="selectCharacter('archer')">
-                        <div class="text-center">
-                            <div
-                                class="w-16 h-16 bg-green-500 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                <i class="fas fa-bow-arrow text-white text-2xl"></i>
-                            </div>
-                            <div class="font-bold text-white">Archer</div>
-                            <div class="text-xs text-gray-300 mt-1">HP: 80 | ATK: 95</div>
-                            <div class="text-xs text-yellow-300">Ranged • Critical</div>
-                        </div>
-                    </div>
-
-                    <!-- Character 4 - Healer -->
-                    <div class="character-card bg-blue-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-blue-600"
-                        data-char="healer" onclick="selectCharacter('healer')">
-                        <div class="text-center">
-                            <div
-                                class="w-16 h-16 bg-blue-500 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                <i class="fas fa-plus-circle text-white text-2xl"></i>
-                            </div>
-                            <div class="font-bold text-white">Healer</div>
-                            <div class="text-xs text-gray-300 mt-1">HP: 90 | ATK: 60</div>
-                            <div class="text-xs text-yellow-300">Support • Healing</div>
-                        </div>
-                    </div>
-
-                    <!-- Character 5 - Rogue -->
-                    <div class="character-card bg-gray-700 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-gray-500"
-                        data-char="rogue" onclick="selectCharacter('rogue')">
-                        <div class="text-center">
-                            <div
-                                class="w-16 h-16 bg-gray-500 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                <i class="fas fa-user-secret text-white text-2xl"></i>
-                            </div>
-                            <div class="font-bold text-white">Rogue</div>
-                            <div class="text-xs text-gray-300 mt-1">HP: 75 | ATK: 100</div>
-                            <div class="text-xs text-yellow-300">Stealth • High Crit</div>
-                        </div>
-                    </div>
-
-                    <!-- Character 6 - Knight -->
-                    <div class="character-card bg-yellow-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-yellow-600"
-                        data-char="knight" onclick="selectCharacter('knight')">
-                        <div class="text-center">
-                            <div
-                                class="w-16 h-16 bg-yellow-500 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                <i class="fas fa-helmet-battle text-white text-2xl"></i>
-                            </div>
-                            <div class="font-bold text-white">Knight</div>
-                            <div class="text-xs text-gray-300 mt-1">HP: 110 | ATK: 85</div>
-                            <div class="text-xs text-yellow-300">Defense • Taunt</div>
-                        </div>
-                    </div>
-
-                    <!-- Character 7 - Sorcerer -->
-                    <div class="character-card bg-pink-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-pink-600"
-                        data-char="sorcerer" onclick="selectCharacter('sorcerer')">
-                        <div class="text-center">
-                            <div
-                                class="w-16 h-16 bg-pink-500 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                <i class="fas fa-wand-magic text-white text-2xl"></i>
-                            </div>
-                            <div class="font-bold text-white">Sorcerer</div>
-                            <div class="text-xs text-gray-300 mt-1">HP: 65 | ATK: 105</div>
-                            <div class="text-xs text-yellow-300">Control • Debuff</div>
-                        </div>
-                    </div>
-
-                    <!-- Character 8 - Paladin -->
-                    <div class="character-card bg-indigo-900 p-4 rounded-lg cursor-pointer hover:scale-105 transition transform border-2 border-indigo-600"
-                        data-char="paladin" onclick="selectCharacter('paladin')">
-                        <div class="text-center">
-                            <div
-                                class="w-16 h-16 bg-indigo-500 rounded-full mx-auto mb-2 flex items-center justify-center">
-                                <i class="fas fa-praying-hands text-white text-2xl"></i>
-                            </div>
-                            <div class="font-bold text-white">Paladin</div>
-                            <div class="text-xs text-gray-300 mt-1">HP: 100 | ATK: 75</div>
-                            <div class="text-xs text-yellow-300">Hybrid • Buffs</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Middle: Player Team & Battle -->
-            <div class="bg-gray-800 p-6 rounded-xl">
-                <h2 class="text-xl font-bold text-green-400 mb-4 flex items-center">
-                    <i class="fas fa-user-circle mr-2"></i>Your Team (4/4)
-                </h2>
-
-                <!-- Player Team Slots -->
-                <div class="grid grid-cols-2 gap-4 mb-6" id="playerTeam">
-                    <div
-                        class="team-slot bg-gray-700 border-2 border-dashed border-gray-500 rounded-lg p-4 text-center min-h-32 flex items-center justify-center">
-                        <div class="text-gray-400">Drag character here</div>
-                    </div>
-                    <div
-                        class="team-slot bg-gray-700 border-2 border-dashed border-gray-500 rounded-lg p-4 text-center min-h-32 flex items-center justify-center">
-                        <div class="text-gray-400">Drag character here</div>
-                    </div>
-                    <div
-                        class="team-slot bg-gray-700 border-2 border-dashed border-gray-500 rounded-lg p-4 text-center min-h-32 flex items-center justify-center">
-                        <div class="text-gray-400">Drag character here</div>
-                    </div>
-                    <div
-                        class="team-slot bg-gray-700 border-2 border-dashed border-gray-500 rounded-lg p-4 text-center min-h-32 flex items-center justify-center">
-                        <div class="text-gray-400">Drag character here</div>
-                    </div>
-                </div>
-
-                <!-- Battle Arena -->
-                <div class="battle-arena bg-gray-900 p-4 rounded-lg mb-4">
-                    <div class="text-center mb-4">
-                        <div class="text-lg font-bold text-yellow-300">BATTLE ARENA</div>
-                        <div class="text-sm text-gray-400">Stage 1: Forest Encounter</div>
-                    </div>
-
-                    <!-- Enemy Team -->
-                    <div class="enemy-team mb-4">
-                        <div class="text-red-400 font-bold mb-2">Enemy Team:</div>
-                        <div class="grid grid-cols-4 gap-2">
-                            <div class="enemy-character bg-red-800 p-2 rounded text-center">
-                                <div class="text-xs">Goblin</div>
-                                <div class="text-xs text-red-300">HP: 50</div>
-                            </div>
-                            <div class="enemy-character bg-red-800 p-2 rounded text-center">
-                                <div class="text-xs">Orc</div>
-                                <div class="text-xs text-red-300">HP: 80</div>
-                            </div>
-                            <div class="enemy-character bg-red-800 p-2 rounded text-center">
-                                <div class="text-xs">Wolf</div>
-                                <div class="text-xs text-red-300">HP: 40</div>
-                            </div>
-                            <div class="enemy-character bg-red-800 p-2 rounded text-center">
-                                <div class="text-xs">Shaman</div>
-                                <div class="text-xs text-red-300">HP: 60</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Battle Log -->
-                    <div class="battle-log bg-black bg-opacity-50 p-3 rounded h-32 overflow-y-auto">
-                        <div class="text-sm text-gray-300 text-center">Battle log will appear here...</div>
-                    </div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="grid grid-cols-2 gap-4">
-                    <button
-                        class="bg-green-600 hover:bg-green-700 py-3 rounded-lg font-bold transition disabled:opacity-50"
-                        id="startBattle" onclick="startBattle()" disabled>
-                        <i class="fas fa-play mr-2"></i>Start Battle
-                    </button>
-                    <button class="bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-bold transition"
-                        onclick="resetTeam()">
-                        <i class="fas fa-redo mr-2"></i>Reset Team
-                    </button>
-                </div>
-            </div>
-
-            <!-- Right: Team Stats & Synergy -->
-            <div class="bg-gray-800 p-6 rounded-xl">
-                <h2 class="text-xl font-bold text-purple-400 mb-4 flex items-center">
-                    <i class="fas fa-chart-bar mr-2"></i>Team Analysis
-                </h2>
-
-                <!-- Team Stats -->
-                <div class="team-stats bg-gray-700 p-4 rounded-lg mb-4">
-                    <h3 class="font-bold text-white mb-2">Team Composition</h3>
-                    <div class="space-y-2">
-                        <div class="flex justify-between">
-                            <span class="text-gray-300">Total HP:</span>
-                            <span class="text-white font-bold" id="totalHP">0</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-300">Total Attack:</span>
-                            <span class="text-white font-bold" id="totalAttack">0</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-300">Team Cost:</span>
-                            <span class="text-white font-bold">4/4</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Synergy Bonus -->
-                <div class="synergy-bonus bg-gray-700 p-4 rounded-lg mb-4">
-                    <h3 class="font-bold text-white mb-2">Synergy Bonus</h3>
-                    <div class="text-sm text-gray-300" id="synergyText">
-                        No synergy bonuses active
-                    </div>
-                </div>
-
-                <!-- Recommended Teams -->
-                <div class="recommended-teams bg-gray-700 p-4 rounded-lg">
-                    <h3 class="font-bold text-white mb-2">Recommended Compositions</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="text-green-300">• Balanced: Warrior + Mage + Archer + Healer</div>
-                        <div class="text-blue-300">• Aggressive: Mage + Rogue + Sorcerer + Archer</div>
-                        <div class="text-yellow-300">• Defensive: Warrior + Knight + Paladin + Healer</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 
     <script>
-        // Game State
-        let playerTeam = [];
-        let selectedCharacter = null;
-        const maxTeamSize = 4;
-
-        // Character Data
-        const characters = {
-            warrior: { name: 'Warrior', hp: 120, attack: 80, type: 'tank', color: 'red' },
-            mage: { name: 'Mage', hp: 70, attack: 110, type: 'magic', color: 'purple' },
-            archer: { name: 'Archer', hp: 80, attack: 95, type: 'ranged', color: 'green' },
-            healer: { name: 'Healer', hp: 90, attack: 60, type: 'support', color: 'blue' },
-            rogue: { name: 'Rogue', hp: 75, attack: 100, type: 'assassin', color: 'gray' },
-            knight: { name: 'Knight', hp: 110, attack: 85, type: 'tank', color: 'yellow' },
-            sorcerer: { name: 'Sorcerer', hp: 65, attack: 105, type: 'magic', color: 'pink' },
-            paladin: { name: 'Paladin', hp: 100, attack: 75, type: 'support', color: 'indigo' }
-        };
-
-        // Select Character
-        function selectCharacter(charId) {
-            if (playerTeam.length >= maxTeamSize) {
-                addToBattleLog('Team is full! Remove someone first.');
-                return;
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#10b981', // Warna hijau untuk game
+                        'fantasy-blue': '#1e3a8a',
+                        'fantasy-purple': '#7c3aed',
+                        'fantasy-dark': '#0f172a',
+                        'fantasy-gold': '#fbbf24',
+                        // Warna genre game
+                        'game-rpg': '#10b981',
+                        'game-action': '#ef4444',
+                        'game-adventure': '#f59e0b',
+                        'game-strategy': '#8b5cf6',
+                        'game-casual': '#3b82f6',
+                        'game-simulation': '#06b6d4'
+                    },
+                    backgroundImage: {
+                        'fantasy-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #10b981 50%, #0f172a 100%)',
+                        'game-gradient': 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
+                        'game-card-gradient': 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)'
+                    }
+                }
             }
-
-            if (playerTeam.includes(charId)) {
-                addToBattleLog(`${characters[charId].name} is already in your team!`);
-                return;
-            }
-
-            playerTeam.push(charId);
-            updateTeamDisplay();
-            updateTeamStats();
-            addToBattleLog(`Added ${characters[charId].name} to your team!`);
         }
+    </script>
+    <style>
+        /* Import custom CSS */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        /* Base Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        .fantasy-font {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .accent-text {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+        }
+        
+        /* Navigation Styles */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Genre badges */
+        .genre-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .genre-badge:hover {
+            transform: scale(1.05);
+        }
+        
+        .badge-rpg { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .badge-action { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
+        .badge-adventure { background: rgba(245, 158, 11, 0.2); color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.4); }
+        .badge-strategy { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); }
+        .badge-casual { background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); }
+        .badge-simulation { background: rgba(6, 182, 212, 0.2); color: #67e8f9; border: 1px solid rgba(6, 182, 212, 0.4); }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            border-radius: 4px;
+        }
+        
+        /* Game Card */
+        .game-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.3);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+        }
+        
+        .game-cover {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+        
+        .game-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .game-card:hover .game-cover img {
+            transform: scale(1.05);
+        }
+        
+        .game-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: game-card-gradient;
+            padding: 20px;
+        }
+        
+        .game-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .status-free {
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+        
+        .status-premium {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fde68a;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+        
+        /* Featured Game Banner */
+        .featured-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(30, 41, 59, 0.9)), 
+                        url('assets/images/games/featured-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Platform Icons */
+        .platform-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(30, 41, 59, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .platform-icon:hover {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.4);
+            transform: scale(1.1);
+        }
+        
+        /* Stats Card */
+        .stats-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            border-color: rgba(16, 185, 129, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Filter Section */
+        .filter-group {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .filter-title {
+            font-family: 'Cinzel', serif;
+            color: #6ee7b7;
+            margin-bottom: 15px;
+        }
+        
+        /* Search Box */
+        .search-box {
+            background: rgba(30, 41, 59, 0.7);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus-within {
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+        
+        /* Loading Animation */
+        .loading-spinner {
+            border: 3px solid rgba(16, 185, 129, 0.1);
+            border-top: 3px solid #10b981;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Pagination */
+        .pagination-btn {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-btn:hover:not(.disabled) {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+        
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination-btn.active {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            color: white;
+        }
+        
+        /* Aurora Effect */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            opacity: 0.3;
+            z-index: -1;
+            filter: blur(40px);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        /* Gameplay Preview */
+        .gameplay-preview {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .gameplay-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gameplay-preview:hover::before {
+            opacity: 1;
+        }
+        
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gameplay-preview:hover .play-overlay {
+            opacity: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .featured-banner {
+                padding: 20px;
+            }
+            
+            .game-cover {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body class="relative">
+    
+    <!-- Background dengan efek cahaya -->
+    <div class="aurora"></div>
+    
+    <!-- Header & Navigation -->
+    <header class="glass-effect sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="w-full h-12">
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-green-300 transition-colors">BERANDA</a>
+                    <a href="comics.html" class="nav-link text-white hover:text-green-300 transition-colors">KOMIK</a>
+                    <a href="novels.html" class="nav-link text-white hover:text-green-300 transition-colors">NOVEL</a>
+                    <a href="games.html" class="nav-link text-accent font-bold">GAME</a>
+                    <a href="community.html" class="nav-link text-white hover:text-green-300 transition-colors">KOMUNITAS</a>
+                </nav>
+                
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative hidden md:block">
+                        <div class="search-box flex items-center">
+                            <i class="fas fa-search text-gray-400 mr-2"></i>
+                            <input type="text" 
+                                   placeholder="Cari game..." 
+                                   class="bg-transparent border-none outline-none text-white w-48"
+                                   id="searchInput">
+                        </div>
+                    </div>
+                    
+                    <a href="login.html" class="text-white hover:text-green-300 transition-colors">
+                        <i class="fas fa-user text-lg"></i>
+                    </a>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden mt-4 hidden glass-effect rounded-lg p-4 border border-green-500/20">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="hover:text-green-300 transition-colors py-2">BERANDA</a>
+                    <a href="comics.html" class="hover:text-green-300 transition-colors py-2">KOMIK</a>
+                    <a href="novels.html" class="hover:text-green-300 transition-colors py-2">NOVEL</a>
+                    <a href="games.html" class="text-green-300 font-bold py-2">GAME</a>
+                    <a href="community.html" class="hover:text-green-300 transition-colors py-2">KOMUNITAS</a>
+                    
+                    <div class="pt-2">
+                        <div class="search-box flex items-center">
+                            <i class="fas fa-search text-gray-400 mr-2"></i>
+                            <input type="text" 
+                                   placeholder="Cari game..." 
+                                   class="bg-transparent border-none outline-none text-white w-full"
+                                   id="mobileSearchInput">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-        // Update Team Display
-        function updateTeamDisplay() {
-            const teamSlots = document.querySelectorAll('.team-slot');
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="mb-12">
+            <div class="featured-banner p-8 md:p-12 mb-8">
+                <div class="max-w-2xl">
+                    <h1 class="fantasy-font text-3xl md:text-5xl text-white mb-4">
+                        Mainkan <span class="accent-text">Petualangan</span> Epik Nusantara
+                    </h1>
+                    <p class="text-gray-300 text-lg mb-6">
+                        Temukan koleksi game-game berkualitas dari PATRION Universe. 
+                        Dari RPG epik hingga game casual yang menghibur, setiap game 
+                        membawa Anda ke dunia penuh petualangan.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#featured" class="bg-gradient-to-r from-green-600 to-emerald-600 hover:opacity-90 text-white font-bold py-3 px-6 rounded-full transition-all">
+                            <i class="fas fa-gamepad mr-2"></i> Game Unggulan
+                        </a>
+                        <a href="#trending" class="border-2 border-green-500 text-green-300 hover:bg-green-500/20 font-bold py-3 px-6 rounded-full transition-all">
+                            <i class="fas fa-fire mr-2"></i> Sedang Trend
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="stats-card">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center mr-3">
+                            <i class="fas fa-gamepad text-green-300"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">50+</p>
+                            <p class="text-sm text-gray-400">Game Tersedia</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-blue-300"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">100K+</p>
+                            <p class="text-sm text-gray-400">Pemain Aktif</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center mr-3">
+                            <i class="fas fa-trophy text-purple-300"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">25+</p>
+                            <p class="text-sm text-gray-400">Penghargaan</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center mr-3">
+                            <i class="fas fa-star text-yellow-300"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">4.7</p>
+                            <p class="text-sm text-gray-400">Rating Rata-rata</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            teamSlots.forEach((slot, index) => {
-                if (index < playerTeam.length) {
-                    const charId = playerTeam[index];
-                    const char = characters[charId];
-                    slot.innerHTML = `
-                        <div class="text-center">
-                            <div class="w-12 h-12 bg-${char.color}-500 rounded-full mx-auto mb-1 flex items-center justify-center">
-                                <i class="fas fa-user text-white"></i>
-                            </div>
-                            <div class="font-bold text-white text-sm">${char.name}</div>
-                            <div class="text-xs text-gray-300">HP: ${char.hp}</div>
-                            <button onclick="removeFromTeam(${index})" class="text-xs text-red-400 hover:text-red-300 mt-1">
-                                Remove
+        <!-- Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Left Sidebar - Filters -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-24 space-y-6">
+                    <!-- Search -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Pencarian</h3>
+                        <div class="search-box flex items-center">
+                            <i class="fas fa-search text-gray-400 mr-2"></i>
+                            <input type="text" 
+                                   placeholder="Nama game, developer..." 
+                                   class="bg-transparent border-none outline-none text-white w-full"
+                                   id="filterSearch">
+                        </div>
+                    </div>
+                    
+                    <!-- Genre Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Genre Game</h3>
+                        <div class="space-y-2">
+                            <button class="genre-badge badge-rpg w-full text-left" data-genre="rpg">
+                                RPG <span class="float-right text-gray-400">(15)</span>
+                            </button>
+                            <button class="genre-badge badge-action w-full text-left" data-genre="action">
+                                Action <span class="float-right text-gray-400">(12)</span>
+                            </button>
+                            <button class="genre-badge badge-adventure w-full text-left" data-genre="adventure">
+                                Adventure <span class="float-right text-gray-400">(10)</span>
+                            </button>
+                            <button class="genre-badge badge-strategy w-full text-left" data-genre="strategy">
+                                Strategy <span class="float-right text-gray-400">(8)</span>
+                            </button>
+                            <button class="genre-badge badge-casual w-full text-left" data-genre="casual">
+                                Casual <span class="float-right text-gray-400">(20)</span>
+                            </button>
+                            <button class="genre-badge badge-simulation w-full text-left" data-genre="simulation">
+                                Simulation <span class="float-right text-gray-400">(5)</span>
                             </button>
                         </div>
-                    `;
-                    slot.classList.remove('border-dashed', 'border-gray-500');
-                    slot.classList.add('border-solid', `border-${char.color}-500`);
-                } else {
-                    slot.innerHTML = '<div class="text-gray-400">Drag character here</div>';
-                    slot.classList.add('border-dashed', 'border-gray-500');
-                    slot.classList.remove('border-solid');
+                    </div>
+                    
+                    <!-- Platform Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Platform</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" name="platform" value="web" class="mr-2" checked>
+                                <span class="text-gray-300">Web Browser</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" name="platform" value="windows" class="mr-2">
+                                <span class="text-gray-300">Windows</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" name="platform" value="android" class="mr-2">
+                                <span class="text-gray-300">Android</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" name="platform" value="ios" class="mr-2">
+                                <span class="text-gray-300">iOS</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Price Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Harga</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="price" value="all" class="mr-2" checked>
+                                <span class="text-gray-300">Semua</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="price" value="free" class="mr-2">
+                                <span class="text-gray-300">Gratis</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="price" value="premium" class="mr-2">
+                                <span class="text-gray-300">Premium</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Sort Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Urutkan</h3>
+                        <select class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-green-500">
+                            <option value="popular">Paling Populer</option>
+                            <option value="newest">Terbaru</option>
+                            <option value="rating">Rating Tertinggi</option>
+                            <option value="players">Pemain Terbanyak</option>
+                            <option value="trending">Trending</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Clear Filters -->
+                    <button onclick="clearFilters()" 
+                            class="w-full py-3 border border-gray-600 text-gray-400 hover:text-white hover:border-gray-500 rounded-lg transition-colors">
+                        <i class="fas fa-times mr-2"></i> Reset Filter
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="lg:col-span-3">
+                <!-- Featured Games -->
+                <section id="featured" class="mb-12">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="fantasy-font text-2xl text-white">
+                            <i class="fas fa-crown text-yellow-400 mr-2"></i> Game Unggulan
+                        </h2>
+                        <a href="#" class="text-green-300 hover:text-green-200 transition-colors">
+                            Lihat Semua <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="featuredGames">
+                        <!-- Featured games will be populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Trending Games -->
+                <section id="trending" class="mb-12">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="fantasy-font text-2xl text-white">
+                            <i class="fas fa-fire text-orange-400 mr-2"></i> Sedang Trend
+                        </h2>
+                        <a href="#" class="text-green-300 hover:text-green-200 transition-colors">
+                            Lihat Semua <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="trendingGames">
+                        <!-- Trending games will be populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- New Releases -->
+                <section id="newReleases" class="mb-12">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="fantasy-font text-2xl text-white">
+                            <i class="fas fa-rocket text-blue-400 mr-2"></i> Rilis Terbaru
+                        </h2>
+                        <a href="#" class="text-green-300 hover:text-green-200 transition-colors">
+                            Lihat Semua <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="newReleasesGrid">
+                        <!-- New releases will be populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- All Games -->
+                <section id="allGames">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="fantasy-font text-2xl text-white">Semua Game</h2>
+                        <div class="text-gray-400">
+                            Menampilkan <span id="gameCount">12</span> dari 50 game
+                        </div>
+                    </div>
+                    
+                    <!-- Game Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gameGrid">
+                        <!-- All games will be populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Loading Indicator -->
+                    <div id="loadingIndicator" class="text-center py-8 hidden">
+                        <div class="loading-spinner mx-auto mb-4"></div>
+                        <p class="text-gray-400">Memuat game...</p>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="flex justify-center items-center space-x-2 mt-8" id="pagination">
+                        <!-- Pagination will be populated by JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-effect py-12 border-t border-green-500/20 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="h-12 mb-4">
+                    <p class="text-gray-400 text-sm">
+                        Platform game PATRION - Petualangan gaming tanpa batas dari Nusantara untuk dunia.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-green-300 mb-4">Kategori Game</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors">RPG</a>
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors">Action</a>
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors">Adventure</a>
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors">Strategy</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-green-300 mb-4">Untuk Developer</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors">Developer Program</a>
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors">Game SDK</a>
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors">Monetization</a>
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors">Dokumentasi API</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="fantasy-font text-green-300 mb-4">Terhubung</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors text-xl">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors text-xl">
+                            <i class="fab fa-twitch"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors text-xl">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-green-300 transition-colors text-xl">
+                            <i class="fab fa-steam"></i>
+                        </a>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <p>Email: games@patrion.com</p>
+                        <p>Support: support@patrion.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    "Game PATRION" adalah konten eksklusif dari <span class="text-green-300">PATRION Universe</span>.
+                    © 2024 PATRION. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-gradient-to-r from-green-600 to-emerald-600 hover:opacity-90 text-white font-bold p-3 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Game Data
+        const gameData = [
+            {
+                id: 1,
+                title: "Guardian of Fire: Nusantara Chronicles",
+                developer: "PATRION Game Studio",
+                publisher: "PATRION Universe",
+                cover: "assets/images/games/game-1.jpg",
+                rating: 4.9,
+                players: "250K",
+                price: "free",
+                genres: ["rpg", "action", "adventure"],
+                platforms: ["web", "windows", "android", "ios"],
+                releaseDate: "2024-03-15",
+                size: "2.5 GB",
+                description: "RPG epik berdasarkan komik PATRION. Mainkan sebagai Kunna, Guardian of Fire, dalam petualangan menyelamatkan Nusantara.",
+                isFeatured: true,
+                isTrending: true,
+                isNewRelease: true
+            },
+            {
+                id: 2,
+                title: "Nusantara Legends: Kingdom Builder",
+                developer: "Sabda Alam Studio",
+                cover: "assets/images/games/game-2.jpg",
+                rating: 4.7,
+                players: "180K",
+                price: "free",
+                genres: ["strategy", "simulation"],
+                platforms: ["web", "android", "ios"],
+                releaseDate: "2024-02-28",
+                size: "1.2 GB",
+                description: "Bangun kerajaan Nusantara kuno dan hadapi tantangan dalam game strategi ini.",
+                isFeatured: true,
+                isTrending: false,
+                isNewRelease: false
+            },
+            {
+                id: 3,
+                title: "Shadow Clan: Tactical Arena",
+                developer: "Gelap Studios",
+                cover: "assets/images/games/game-3.jpg",
+                rating: 4.5,
+                players: "120K",
+                price: "premium",
+                genres: ["action", "strategy"],
+                platforms: ["windows", "android", "ios"],
+                releaseDate: "2024-01-20",
+                size: "3.1 GB",
+                description: "Game PvP taktis dengan karakter dari universe PATRION. Bentuk tim dan taklukkan arena.",
+                isFeatured: false,
+                isTrending: true,
+                isNewRelease: false
+            },
+            {
+                id: 4,
+                title: "Wayang Warriors",
+                developer: "Jawa Interactive",
+                cover: "assets/images/games/game-4.jpg",
+                rating: 4.8,
+                players: "95K",
+                price: "free",
+                genres: ["action", "adventure"],
+                platforms: ["web", "windows"],
+                releaseDate: "2024-03-01",
+                size: "1.8 GB",
+                description: "Game action dengan visual wayang yang unik. Jelajahi cerita-cerita pewayangan Nusantara.",
+                isFeatured: true,
+                isTrending: true,
+                isNewRelease: true
+            },
+            {
+                id: 5,
+                title: "Batik Craft: Master Edition",
+                developer: "Craft Nusantara",
+                cover: "assets/images/games/game-5.jpg",
+                rating: 4.6,
+                players: "85K",
+                price: "premium",
+                genres: ["simulation", "casual"],
+                platforms: ["android", "ios"],
+                releaseDate: "2024-02-10",
+                size: "850 MB",
+                description: "Game simulasi membuat batik dengan detail yang autentik. Pelajari motif-motif Nusantara.",
+                isFeatured: false,
+                isTrending: false,
+                isNewRelease: false
+            },
+            {
+                id: 6,
+                title: "Dragon of Java: Legacy",
+                developer: "Mythic Games ID",
+                cover: "assets/images/games/game-6.jpg",
+                rating: 4.9,
+                players: "210K",
+                price: "premium",
+                genres: ["rpg", "adventure"],
+                platforms: ["windows", "android", "ios"],
+                releaseDate: "2024-03-20",
+                size: "4.2 GB",
+                description: "RPG open-world dengan cerita tentang naga legendaris dari Jawa. Eksplorasi dunia yang luas.",
+                isFeatured: false,
+                isTrending: true,
+                isNewRelease: true
+            },
+            {
+                id: 7,
+                title: "Kampung Simulator",
+                developer: "Rural Games",
+                cover: "assets/images/games/game-7.jpg",
+                rating: 4.4,
+                players: "75K",
+                price: "free",
+                genres: ["simulation", "casual"],
+                platforms: ["web", "android", "ios"],
+                releaseDate: "2024-01-15",
+                size: "1.5 GB",
+                description: "Bangun dan kelola kampung tradisional Nusantara. Tanam padi, beternak, dan jaga tradisi.",
+                isFeatured: false,
+                isTrending: false,
+                isNewRelease: false
+            },
+            {
+                id: 8,
+                title: "Keris Legacy: Blade Master",
+                developer: "Blade Arts Studio",
+                cover: "assets/images/games/game-8.jpg",
+                rating: 4.7,
+                players: "110K",
+                price: "free",
+                genres: ["action", "rpg"],
+                platforms: ["windows", "android", "ios"],
+                releaseDate: "2024-02-22",
+                size: "2.3 GB",
+                description: "Game action dengan seni bela diri keris. Kumpulkan keris legendaris Nusantara.",
+                isFeatured: true,
+                isTrending: true,
+                isNewRelease: false
+            },
+            {
+                id: 9,
+                title: "Nusantara Puzzle Quest",
+                developer: "Puzzle Masters",
+                cover: "assets/images/games/game-9.jpg",
+                rating: 4.3,
+                players: "60K",
+                price: "free",
+                genres: ["casual", "puzzle"],
+                platforms: ["web", "android", "ios"],
+                releaseDate: "2024-03-10",
+                size: "350 MB",
+                description: "Game puzzle dengan tema budaya Nusantara. Selesaikan teka-teki dan pelajari budaya.",
+                isFeatured: false,
+                isTrending: false,
+                isNewRelease: true
+            },
+            {
+                id: 10,
+                title: "Elemental Guardians: Tactics",
+                developer: "PATRION Game Studio",
+                cover: "assets/images/games/game-10.jpg",
+                rating: 4.8,
+                players: "180K",
+                price: "free",
+                genres: ["strategy", "rpg"],
+                platforms: ["web", "windows", "android", "ios"],
+                releaseDate: "2024-03-25",
+                size: "2.8 GB",
+                description: "Game strategi turn-based dengan guardian elemen dari PATRION universe.",
+                isFeatured: true,
+                isTrending: true,
+                isNewRelease: true
+            },
+            {
+                id: 11,
+                title: "Borneo Jungle Runner",
+                developer: "Wildlife Games",
+                cover: "assets/images/games/game-11.jpg",
+                rating: 4.2,
+                players: "55K",
+                price: "free",
+                genres: ["action", "casual"],
+                platforms: ["android", "ios"],
+                releaseDate: "2024-02-05",
+                size: "1.1 GB",
+                description: "Game endless runner di hutan Kalimantan. Hindari rintangan dan kumpulkan item.",
+                isFeatured: false,
+                isTrending: false,
+                isNewRelease: false
+            },
+            {
+                id: 12,
+                title: "Majapahit Empire: RTS",
+                developer: "Historical Games ID",
+                cover: "assets/images/games/game-12.jpg",
+                rating: 4.9,
+                players: "150K",
+                price: "premium",
+                genres: ["strategy", "simulation"],
+                platforms: ["windows"],
+                releaseDate: "2024-03-18",
+                size: "3.5 GB",
+                description: "Real-time strategy game tentang kerajaan Majapahit. Bangun kekaisaran dan perluas wilayah.",
+                isFeatured: true,
+                isTrending: true,
+                isNewRelease: true
+            }
+        ];
+
+        // State Variables
+        let currentPage = 1;
+        const gamesPerPage = 9;
+        let filteredGames = [...gameData];
+        let activeGenre = 'all';
+        let activePlatforms = ['web'];
+        let activePrice = 'all';
+        let sortBy = 'popular';
+        let searchQuery = '';
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePage();
+            setupEventListeners();
+            renderGames();
+            updatePagination();
+        });
+
+        // Initialize Page
+        function initializePage() {
+            // Load featured games
+            renderFeaturedGames();
+            
+            // Load trending games
+            renderTrendingGames();
+            
+            // Load new releases
+            renderNewReleases();
+            
+            // Update game count
+            updateGameCount();
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+                const menu = document.getElementById('mobile-menu');
+                menu.classList.toggle('hidden');
+            });
+
+            // Search inputs
+            const searchInputs = ['searchInput', 'mobileSearchInput', 'filterSearch'];
+            searchInputs.forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    input.addEventListener('input', function() {
+                        searchQuery = this.value.toLowerCase();
+                        filterGames();
+                    });
                 }
             });
 
-            // Enable/disable start battle button
-            document.getElementById('startBattle').disabled = playerTeam.length !== maxTeamSize;
-        }
-
-        // Remove from Team
-        function removeFromTeam(index) {
-            const removedChar = characters[playerTeam[index]].name;
-            playerTeam.splice(index, 1);
-            updateTeamDisplay();
-            updateTeamStats();
-            addToBattleLog(`Removed ${removedChar} from your team.`);
-        }
-
-        // Update Team Stats
-        function updateTeamStats() {
-            let totalHP = 0;
-            let totalAttack = 0;
-
-            playerTeam.forEach(charId => {
-                totalHP += characters[charId].hp;
-                totalAttack += characters[charId].attack;
+            // Genre filters
+            document.querySelectorAll('.genre-badge').forEach(badge => {
+                badge.addEventListener('click', function() {
+                    activeGenre = this.getAttribute('data-genre');
+                    filterGames();
+                    updateActiveGenre();
+                });
             });
 
-            document.getElementById('totalHP').textContent = totalHP;
-            document.getElementById('totalAttack').textContent = totalAttack;
+            // Platform filters
+            document.querySelectorAll('input[name="platform"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    updatePlatformFilters();
+                    filterGames();
+                });
+            });
 
-            // Update synergy text
-            updateSynergyBonus();
+            // Price filters
+            document.querySelectorAll('input[name="price"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    activePrice = this.value;
+                    filterGames();
+                });
+            });
+
+            // Sort filter
+            document.querySelector('select').addEventListener('change', function() {
+                sortBy = this.value;
+                sortGames();
+                renderGames();
+                updatePagination();
+            });
+
+            // Back to top button
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'invisible');
+                    backToTopBtn.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopBtn.classList.remove('opacity-100', 'visible');
+                    backToTopBtn.classList.add('opacity-0', 'invisible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         }
 
-        // Update Synergy Bonus
-        function updateSynergyBonus() {
-            const types = playerTeam.map(charId => characters[charId].type);
-            const uniqueTypes = [...new Set(types)];
-
-            let synergyText = 'No synergy bonuses active';
-
-            if (uniqueTypes.length === 2) {
-                synergyText = '⚡ Balanced Composition: +10% HP';
-            } else if (types.filter(t => t === 'tank').length >= 2) {
-                synergyText = '🛡️ Defensive Wall: +15% Defense';
-            } else if (types.filter(t => t === 'magic').length >= 2) {
-                synergyText = '🔮 Arcane Power: +20% Magic Damage';
-            }
-
-            document.getElementById('synergyText').textContent = synergyText;
+        // Update Platform Filters
+        function updatePlatformFilters() {
+            activePlatforms = [];
+            document.querySelectorAll('input[name="platform"]:checked').forEach(checkbox => {
+                activePlatforms.push(checkbox.value);
+            });
         }
 
-        // Start Battle
-        function startBattle() {
-            if (playerTeam.length !== maxTeamSize) {
-                addToBattleLog('Need 4 characters to start battle!');
+        // Render Featured Games
+        function renderFeaturedGames() {
+            const container = document.getElementById('featuredGames');
+            if (!container) return;
+
+            const featuredGames = gameData.filter(game => game.isFeatured).slice(0, 3);
+            
+            container.innerHTML = featuredGames.map(game => createGameCard(game)).join('');
+        }
+
+        // Render Trending Games
+        function renderTrendingGames() {
+            const container = document.getElementById('trendingGames');
+            if (!container) return;
+
+            const trendingGames = gameData.filter(game => game.isTrending).slice(0, 3);
+            
+            container.innerHTML = trendingGames.map(game => createGameCard(game)).join('');
+        }
+
+        // Render New Releases
+        function renderNewReleases() {
+            const container = document.getElementById('newReleasesGrid');
+            if (!container) return;
+
+            const newGames = gameData.filter(game => game.isNewRelease).slice(0, 3);
+            
+            container.innerHTML = newGames.map(game => createGameCard(game)).join('');
+        }
+
+        // Render All Games
+        function renderGames() {
+            const container = document.getElementById('gameGrid');
+            if (!container) return;
+
+            // Calculate start and end index
+            const startIndex = (currentPage - 1) * gamesPerPage;
+            const endIndex = startIndex + gamesPerPage;
+            const gamesToShow = filteredGames.slice(startIndex, endIndex);
+
+            if (gamesToShow.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fas fa-gamepad text-4xl text-gray-600 mb-4"></i>
+                        <h3 class="text-xl text-white mb-2">Tidak ada game ditemukan</h3>
+                        <p class="text-gray-400">Coba ubah filter pencarian Anda</p>
+                    </div>
+                `;
                 return;
             }
 
-            addToBattleLog('=== BATTLE STARTED ===');
-            addToBattleLog('Your team engages the enemy!');
+            container.innerHTML = gamesToShow.map(game => createGameCard(game)).join('');
+        }
 
-            // Simple battle simulation
-            let playerTotalHP = playerTeam.reduce((sum, charId) => sum + characters[charId].hp, 0);
-            let playerTotalAttack = playerTeam.reduce((sum, charId) => sum + characters[charId].attack, 0);
+        // Create Game Card HTML
+        function createGameCard(game) {
+            const statusClass = game.price === 'free' ? 'status-free' : 'status-premium';
+            const statusText = game.price === 'free' ? 'Gratis' : 'Premium';
+            
+            // Get first two genres for display
+            const displayGenres = game.genres.slice(0, 2);
+            
+            // Platform icons
+            const platformIcons = {
+                web: 'fas fa-globe',
+                windows: 'fab fa-windows',
+                android: 'fab fa-android',
+                ios: 'fab fa-apple'
+            };
+            
+            return `
+                <div class="game-card fade-in">
+                    <div class="game-cover">
+                        <div class="h-full bg-gradient-to-r from-green-900/30 to-emerald-900/30 flex items-center justify-center">
+                            <span class="text-white text-xl font-bold text-center px-4">${game.title}</span>
+                        </div>
+                        <div class="${statusClass} game-status">${statusText}</div>
+                        <div class="game-overlay">
+                            <h3 class="font-bold text-white truncate" title="${game.title}">${game.title}</h3>
+                            <p class="text-sm text-gray-300">${game.developer}</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="flex items-center">
+                                <div class="rating-stars mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-gray-300">${game.rating}</span>
+                            </div>
+                            <span class="text-green-300">
+                                <i class="fas fa-users mr-1"></i> ${game.players}
+                            </span>
+                        </div>
+                        
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-2">${game.description}</p>
+                        
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            ${displayGenres.map(genre => 
+                                `<span class="text-xs px-2 py-1 rounded ${getGenreClass(genre)}">${getGenreName(genre)}</span>`
+                            ).join('')}
+                            ${game.genres.length > 2 ? 
+                                `<span class="text-xs px-2 py-1 rounded bg-gray-700 text-gray-300">+${game.genres.length - 2}</span>` : 
+                                ''
+                            }
+                        </div>
+                        
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex space-x-1">
+                                ${game.platforms.map(platform => `
+                                    <div class="platform-icon" title="${getPlatformName(platform)}">
+                                        <i class="${platformIcons[platform]} text-green-300"></i>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <span class="text-xs text-gray-400">${game.size}</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <a href="game-detail.html?id=${game.id}" 
+                               class="flex-1 text-center bg-gradient-to-r from-green-600/20 to-emerald-600/20 hover:from-green-600/30 hover:to-emerald-600/30 text-green-300 hover:text-white font-semibold py-2 rounded-lg transition-all">
+                                Detail
+                            </a>
+                            <button onclick="playGame(${game.id})" 
+                                    class="flex-1 text-center bg-gradient-to-r from-green-600 to-emerald-600 hover:opacity-90 text-white font-semibold py-2 rounded-lg transition-all">
+                                Mainkan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
 
-            const enemyHP = 230; // Total enemy HP
-            const enemyAttack = 180; // Total enemy attack
+        // Filter Games
+        function filterGames() {
+            filteredGames = gameData.filter(game => {
+                // Search filter
+                const matchesSearch = searchQuery === '' || 
+                    game.title.toLowerCase().includes(searchQuery) ||
+                    game.developer.toLowerCase().includes(searchQuery) ||
+                    game.description.toLowerCase().includes(searchQuery);
+                
+                // Genre filter
+                const matchesGenre = activeGenre === 'all' || game.genres.includes(activeGenre);
+                
+                // Platform filter
+                const matchesPlatform = activePlatforms.length === 0 || 
+                    activePlatforms.some(platform => game.platforms.includes(platform));
+                
+                // Price filter
+                const matchesPrice = activePrice === 'all' || game.price === activePrice;
+                
+                return matchesSearch && matchesGenre && matchesPlatform && matchesPrice;
+            });
+            
+            // Sort games
+            sortGames();
+            
+            // Reset to first page
+            currentPage = 1;
+            
+            // Update UI
+            renderGames();
+            updatePagination();
+            updateGameCount();
+        }
 
-            // Battle rounds simulation
+        // Sort Games
+        function sortGames() {
+            switch(sortBy) {
+                case 'newest':
+                    filteredGames.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+                    break;
+                case 'rating':
+                    filteredGames.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'players':
+                    // Convert players string to number (remove 'K')
+                    filteredGames.sort((a, b) => {
+                        const playersA = parseFloat(a.players.replace('K', '')) * 1000;
+                        const playersB = parseFloat(b.players.replace('K', '')) * 1000;
+                        return playersB - playersA;
+                    });
+                    break;
+                case 'trending':
+                    filteredGames.sort((a, b) => {
+                        const scoreA = (a.isTrending ? 2 : 0) + (a.isNewRelease ? 1 : 0);
+                        const scoreB = (b.isTrending ? 2 : 0) + (b.isNewRelease ? 1 : 0);
+                        return scoreB - scoreA;
+                    });
+                    break;
+                case 'popular':
+                default:
+                    // Combined score: rating * players
+                    filteredGames.sort((a, b) => {
+                        const scoreA = a.rating * parseFloat(a.players.replace('K', '')) * 1000;
+                        const scoreB = b.rating * parseFloat(b.players.replace('K', '')) * 1000;
+                        return scoreB - scoreA;
+                    });
+                    break;
+            }
+        }
+
+        // Update Pagination
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredGames.length / gamesPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                paginationContainer.innerHTML = '';
+                return;
+            }
+            
+            let paginationHTML = '';
+            
+            // Previous button
+            paginationHTML += `
+                <button onclick="changePage(${currentPage - 1})" 
+                        class="pagination-btn ${currentPage === 1 ? 'disabled' : ''}">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            `;
+            
+            // Page numbers
+            const maxPagesToShow = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+            let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+            
+            // Adjust if we're at the end
+            if (endPage - startPage + 1 < maxPagesToShow) {
+                startPage = Math.max(1, endPage - maxPagesToShow + 1);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHTML += `
+                    <button onclick="changePage(${i})" 
+                            class="pagination-btn ${i === currentPage ? 'active' : ''}">
+                        ${i}
+                    </button>
+                `;
+            }
+            
+            // Next button
+            paginationHTML += `
+                <button onclick="changePage(${currentPage + 1})" 
+                        class="pagination-btn ${currentPage === totalPages ? 'disabled' : ''}">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            `;
+            
+            paginationContainer.innerHTML = paginationHTML;
+        }
+
+        // Change Page
+        function changePage(page) {
+            const totalPages = Math.ceil(filteredGames.length / gamesPerPage);
+            
+            if (page < 1 || page > totalPages || page === currentPage) {
+                return;
+            }
+            
+            currentPage = page;
+            renderGames();
+            updatePagination();
+            
+            // Scroll to games section
+            document.getElementById('allGames').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Update Game Count
+        function updateGameCount() {
+            const countElement = document.getElementById('gameCount');
+            if (countElement) {
+                countElement.textContent = filteredGames.length;
+            }
+        }
+
+        // Update Active Genre
+        function updateActiveGenre() {
+            document.querySelectorAll('.genre-badge').forEach(badge => {
+                const genre = badge.getAttribute('data-genre');
+                if (genre === activeGenre) {
+                    badge.classList.add('ring-2', 'ring-green-500');
+                } else {
+                    badge.classList.remove('ring-2', 'ring-green-500');
+                }
+            });
+        }
+
+        // Clear Filters
+        function clearFilters() {
+            searchQuery = '';
+            activeGenre = 'all';
+            activePrice = 'all';
+            sortBy = 'popular';
+            
+            // Reset platform filters
+            document.querySelectorAll('input[name="platform"]').forEach(checkbox => {
+                checkbox.checked = checkbox.value === 'web';
+            });
+            updatePlatformFilters();
+            
+            // Update UI
+            document.getElementById('filterSearch').value = '';
+            document.querySelector('input[name="price"][value="all"]').checked = true;
+            document.querySelector('select').value = 'popular';
+            
+            // Reset filters
+            filterGames();
+            updateActiveGenre();
+        }
+
+        // Play Game Function
+        function playGame(gameId) {
+            const game = gameData.find(g => g.id === gameId);
+            if (!game) return;
+            
+            // Check if game is playable in browser
+            if (game.platforms.includes('web')) {
+                // For web games, redirect to play page
+                window.location.href = `game-play.html?id=${gameId}`;
+            } else {
+                // For non-web games, show download/install modal
+                showGameInstallModal(game);
+            }
+        }
+
+        // Game Install Modal
+        function showGameInstallModal(game) {
+            const modalHTML = `
+                <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+                    <div class="glass-effect rounded-xl max-w-md w-full p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="fantasy-font text-xl text-white">Install ${game.title}</h3>
+                            <button onclick="closeModal()" class="text-gray-400 hover:text-white">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        
+                        <p class="text-gray-300 mb-6">
+                            Game ini tersedia untuk platform berikut:
+                        </p>
+                        
+                        <div class="space-y-3 mb-6">
+                            ${game.platforms.map(platform => `
+                                <div class="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+                                    <div class="flex items-center">
+                                        <i class="${getPlatformIcon(platform)} text-green-300 mr-3"></i>
+                                        <span class="text-white">${getPlatformName(platform)}</span>
+                                    </div>
+                                    <button onclick="downloadGame(${game.id}, '${platform}')" 
+                                            class="bg-gradient-to-r from-green-600 to-emerald-600 hover:opacity-90 text-white px-4 py-2 rounded-lg text-sm">
+                                        Download
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="text-sm text-gray-400">
+                            <p><i class="fas fa-info-circle mr-2"></i>Ukuran file: ${game.size}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            const modal = document.createElement('div');
+            modal.innerHTML = modalHTML;
+            document.body.appendChild(modal);
+            
+            // Prevent scrolling
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.querySelector('.fixed.inset-0.bg-black');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function downloadGame(gameId, platform) {
+            const game = gameData.find(g => g.id === gameId);
+            showNotification(`Memulai download ${game.title} untuk ${getPlatformName(platform)}`, 'success');
+            closeModal();
+            
+            // Simulate download
             setTimeout(() => {
-                const playerDamage = Math.floor(playerTotalAttack * (0.8 + Math.random() * 0.4));
-                const enemyDamage = Math.floor(enemyAttack * (0.7 + Math.random() * 0.6));
+                showNotification('Download berhasil! Instal game untuk mulai bermain.', 'success');
+            }, 2000);
+        }
 
-                addToBattleLog(`Your team deals ${playerDamage} damage to enemies!`);
-                addToBattleLog(`Enemies deal ${enemyDamage} damage to your team!`);
+        // Utility Functions
+        function getGenreClass(genre) {
+            const genreClasses = {
+                rpg: 'bg-green-900/30 text-green-300',
+                action: 'bg-red-900/30 text-red-300',
+                adventure: 'bg-yellow-900/30 text-yellow-300',
+                strategy: 'bg-purple-900/30 text-purple-300',
+                casual: 'bg-blue-900/30 text-blue-300',
+                simulation: 'bg-cyan-900/30 text-cyan-300',
+                puzzle: 'bg-pink-900/30 text-pink-300'
+            };
+            return genreClasses[genre] || 'bg-gray-700 text-gray-300';
+        }
 
-                playerTotalHP -= enemyDamage;
-                const remainingEnemyHP = Math.max(0, enemyHP - playerDamage);
+        function getGenreName(genre) {
+            const genreNames = {
+                rpg: 'RPG',
+                action: 'Action',
+                adventure: 'Adventure',
+                strategy: 'Strategy',
+                casual: 'Casual',
+                simulation: 'Simulation',
+                puzzle: 'Puzzle'
+            };
+            return genreNames[genre] || genre;
+        }
 
-                document.getElementById('playerScore').textContent = Math.max(0, playerTotalHP);
-                document.getElementById('enemyScore').textContent = remainingEnemyHP;
+        function getPlatformIcon(platform) {
+            const icons = {
+                web: 'fas fa-globe',
+                windows: 'fab fa-windows',
+                android: 'fab fa-android',
+                ios: 'fab fa-apple'
+            };
+            return icons[platform] || 'fas fa-question';
+        }
 
-                setTimeout(() => {
-                    if (playerTotalHP > 0 && remainingEnemyHP <= 0) {
-                        addToBattleLog('🎉 VICTORY! You defeated all enemies!');
-                        addToBattleLog('Level Complete! Ready for next stage...');
-                    } else if (playerTotalHP <= 0) {
-                        addToBattleLog('💀 DEFEAT! Your team was overwhelmed...');
-                    } else {
-                        addToBattleLog('Battle continues...');
-                    }
-                }, 1000);
+        function getPlatformName(platform) {
+            const names = {
+                web: 'Web Browser',
+                windows: 'Windows',
+                android: 'Android',
+                ios: 'iOS'
+            };
+            return names[platform] || platform;
+        }
 
+        // Load more games (infinite scroll simulation)
+        function loadMoreGames() {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            loadingIndicator.classList.remove('hidden');
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // In a real app, you would fetch more games from the server
+                loadingIndicator.classList.add('hidden');
+                showNotification('Game berhasil dimuat', 'success');
             }, 1500);
         }
 
-        // Reset Team
-        function resetTeam() {
-            playerTeam = [];
-            updateTeamDisplay();
-            updateTeamStats();
-            addToBattleLog('Team has been reset.');
-            document.getElementById('playerScore').textContent = '100';
-            document.getElementById('enemyScore').textContent = '100';
+        // Show Notification
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300 translate-x-full`;
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'} mr-3 
+                       ${type === 'success' ? 'text-green-400' : 'text-red-400'}"></i>
+                    <span class="text-white">${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+                notification.classList.add('translate-x-0');
+            }, 10);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('translate-x-0');
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
         }
 
-        // Add to Battle Log
-        function addToBattleLog(message) {
-            const battleLog = document.querySelector('.battle-log');
-            const logEntry = document.createElement('div');
-            logEntry.className = 'text-sm text-gray-300 mb-1';
-            logEntry.textContent = `• ${message}`;
-            battleLog.appendChild(logEntry);
-            battleLog.scrollTop = battleLog.scrollHeight;
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function () {
-            updateTeamDisplay();
-            updateTeamStats();
+        // Initialize infinite scroll
+        window.addEventListener('scroll', function() {
+            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+            
+            if (scrollTop + clientHeight >= scrollHeight - 100) {
+                // Near bottom of page
+                if (filteredGames.length > currentPage * gamesPerPage) {
+                    changePage(currentPage + 1);
+                }
+            }
         });
+
     </script>
 </body>
-
 </html>
