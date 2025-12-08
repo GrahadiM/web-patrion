@@ -1,4 +1,7 @@
 RewriteEngine On
+RewriteBase /
+
+# ========== BASIC REDIRECTS ==========
 
 # Hilangkan .html dari URL
 RewriteCond %{REQUEST_FILENAME}.html -f
@@ -7,3 +10,68 @@ RewriteRule ^([^/]+)/?$ $1.html [L]
 # Redirect otomatis dari file.html ke file tanpa ekstensi
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?]
 RewriteRule ^ %1 [R=301,L]
+
+# ========== ERROR PAGES CONFIGURATION ==========
+
+# Custom Error Pages
+ErrorDocument 400 /400.html
+ErrorDocument 401 /401.html
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+ErrorDocument 502 /500.html
+ErrorDocument 503 /500.html
+ErrorDocument 504 /500.html
+
+# ========== SEO FRIENDLY 404 HANDLING ==========
+
+# Handle missing pages - redirect to 404.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/404\.html$
+RewriteCond %{REQUEST_URI} !^/403\.html$
+RewriteCond %{REQUEST_URI} !^/500\.html$
+RewriteRule .* /404.html [L]
+
+# ========== PROTECT ERROR PAGES ==========
+
+# Prevent direct access to error pages from URLs
+RewriteCond %{ENV:REDIRECT_STATUS} !^$
+RewriteRule ^(403|404|500)\.html$ - [L]
+
+# ========== PERFORMANCE OPTIMIZATION ==========
+
+# Enable compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+</IfModule>
+
+# Browser caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/html "access plus 1 day"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
+
+# ========== SECURITY HEADERS ==========
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-XSS-Protection "1; mode=block"
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+# ========== REMOVE TRAILING SLASHES ==========
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [R=301,L]
+
+# ========== WWW TO NON-WWW (OPTIONAL) ==========
+# Uncomment if you want to redirect www to non-www
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
