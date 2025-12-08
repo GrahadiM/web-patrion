@@ -145,25 +145,6 @@
             color: #fbbf24;
         }
         
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        
         /* Comic bubbles */
         .comic-bubble {
             position: relative;
@@ -184,35 +165,6 @@
             border-left: 10px solid transparent;
             border-right: 10px solid transparent;
             border-top: 10px solid rgba(251, 191, 36, 0.3);
-        }
-        
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Aurora Effect */
-        .aurora {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(123, 97, 255, 0.1), rgba(251, 191, 36, 0.1), rgba(59, 130, 246, 0.1));
-            opacity: 0.3;
-            z-index: -1;
-            filter: blur(40px);
         }
         
         /* Pagination */
@@ -358,9 +310,6 @@
                         <div class="absolute left-[-80%] mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-fantasy-gold/20">
                             <div class="py-2">
                                 <a href="about.html" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">TENTANG PATRION</a>
-                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">KOMIK</a>
-                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">NOVEL</a>
-                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">GAME</a>
                             </div>
                         </div>
                     </div>
@@ -372,9 +321,9 @@
                         </a>
                         <div class="absolute left-[-100%] mt-2 w-48 glass-effect rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-fantasy-gold/20">
                             <div class="py-2">
-                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">NORMAL (Gaya realistis)</a>
-                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">MICU (Gaya anime)</a>
-                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">CHIBI (Gaya chibi)</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">KOMIK</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">NOVEL</a>
+                                <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-fantasy-purple/30 transition-colors">GAME</a>
                             </div>
                         </div>
                     </div>
@@ -434,18 +383,15 @@
                         <a href="javascript:void(0);" class="hover:text-fantasy-gold transition-colors font-semibold">INFORMASI</a>
                         <div class="mt-2 ml-4 flex flex-col space-y-2">
                             <a href="about.html" class="text-sm hover:text-fantasy-gold">TENTANG PATRION</a>
-                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">KOMIK</a>
-                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">NOVEL</a>
-                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">GAME</a>
                         </div>
                     </div>
                     
                     <div class="py-2">
                         <a href="javascript:void(0);" class="hover:text-fantasy-gold transition-colors font-semibold">LAINNYA</a>
                         <div class="mt-2 ml-4 flex flex-col space-y-2">
-                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">NORMAL (Gaya realistis)</a>
-                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">MICU (Gaya anime)</a>
-                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">CHIBI (Gaya chibi)</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">KOMIK</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">NOVEL</a>
+                            <a href="javascript:void(0);" class="text-sm hover:text-fantasy-gold">GAME</a>
                         </div>
                     </div>
                 </div>
