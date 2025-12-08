@@ -264,9 +264,9 @@
             <div class="flex flex-col sm:flex-row gap-4">
                 <button class="bg-gold-gradient hover:opacity-90 text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg"
                         onclick="
-                            const wahana = document.getElementById('wahana');
-                            const wahanaY = wahana.getBoundingClientRect().top + window.scrollY - 20;
-                            window.scrollTo({ top: wahanaY, behavior: 'smooth' });
+                            const program = document.getElementById('program');
+                            const programY = program.getBoundingClientRect().top + window.scrollY - 50;
+                            window.scrollTo({ top: programY, behavior: 'smooth' });
                         "
                     style="cursor: pointer;"
                 >
@@ -282,7 +282,7 @@
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2"
             onclick="
                 const characters = document.getElementById('characters');
-                const charactersY = characters.getBoundingClientRect().top + window.scrollY - 20;
+                const charactersY = characters.getBoundingClientRect().top + window.scrollY - 50;
                 window.scrollTo({ top: charactersY, behavior: 'smooth' });
             "
             style="cursor: pointer;">
