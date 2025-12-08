@@ -150,31 +150,6 @@
             font-family: 'Cinzel', serif;
         }
         
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
         /* Stats Counter */
         .stat-number {
             font-size: 3.5rem;
@@ -191,35 +166,6 @@
             border-radius: 20px;
             overflow: hidden;
             position: relative;
-        }
-        
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Aurora Effect */
-        .aurora {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(123, 97, 255, 0.1), rgba(251, 191, 36, 0.1), rgba(59, 130, 246, 0.1));
-            opacity: 0.3;
-            z-index: -1;
-            filter: blur(40px);
         }
     </style>
 </head>
@@ -794,23 +740,23 @@
                 <div>
                     <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="h-12 mb-4">
                     <p class="text-gray-400 text-sm">
-                        PATRIOT NUSANTARA - Ikon pahlawan yang mewakili citra Indonesia seutuhnya.
+                        Dunia fantasi Nusantara dengan kekuatan elemen dan petualangan epik.
                     </p>
                 </div>
                 
                 <div>
                     <h3 class="fantasy-font text-fantasy-gold mb-4">Eksplorasi</h3>
                     <div class="flex flex-col space-y-2">
-                        <a href="about.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Tentang</a>
                         <a href="characters.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Karakter</a>
                         <a href="program.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Program</a>
+                        <a href="index.html#wahana" class="text-gray-400 hover:text-fantasy-gold transition-colors">Wahana</a>
                     </div>
                 </div>
                 
                 <div>
                     <h3 class="fantasy-font text-fantasy-gold mb-4">Bantuan</h3>
                     <div class="flex flex-col space-y-2">
-                        <a href="javascript:void(0);" class="text-gray-400 hover:text-fantasy-gold transition-colors">FAQ</a>
+                        <a href="javascript:void(0);" class="text-gray-400 hover:text-fantasy-gold transition-colors">Pusat Bantuan</a>
                         <a href="javascript:void(0);" class="text-gray-400 hover:text-fantasy-gold transition-colors">Komunitas</a>
                         <a href="javascript:void(0);" class="text-gray-400 hover:text-fantasy-gold transition-colors">Kontak</a>
                     </div>
@@ -838,8 +784,7 @@
             
             <div class="border-t border-gray-700 pt-8 text-center">
                 <p class="text-gray-400 text-sm">
-                    "PATRION", "Patriot Nusantara" dan seluruh karakter adalah merek dagang dari 
-                    <span class="text-fantasy-gold">PATRION Universe</span>.
+                    "Karakter", "Artefak" dan "Alam Semesta Patrion" adalah merek dagang dari <span class="text-fantasy-gold">PATRION</span>.
                     © 2024 PATRION. All Rights Reserved.
                 </p>
             </div>
@@ -847,191 +792,11 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-2 px-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+    <button id="backToTop" class="back-to-top bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-bold py-1 px-3 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Scripts -->
-    <script>
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeAboutPage();
-            setupEventListeners();
-        });
-
-        function initializeAboutPage() {
-            setupMobileMenu();
-            initializeBackToTop();
-            initializeParticles();
-            initializeAnimations();
-        }
-
-        function setupEventListeners() {
-            // Mobile menu
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-            
-            // Smooth scroll untuk navigasi
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if(targetId !== '#') {
-                        const targetElement = document.querySelector(targetId);
-                        if(targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 100,
-                                behavior: 'smooth'
-                            });
-                            // Tutup mobile menu jika terbuka
-                            document.getElementById('mobile-menu').classList.add('hidden');
-                        }
-                    }
-                });
-            });
-        }
-
-        // Back to Top functionality
-        function initializeBackToTop() {
-            const backToTopBtn = document.getElementById('backToTop');
-            
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTopBtn.classList.add('show');
-                } else {
-                    backToTopBtn.classList.remove('show');
-                }
-            });
-            
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
-
-        // Particle background
-        function initializeParticles() {
-            const canvas = document.getElementById('particle-canvas');
-            if (!canvas) return;
-            
-            const ctx = canvas.getContext('2d');
-            
-            // Set canvas size
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            // Particle array
-            const particles = [];
-            const particleCount = 100;
-            
-            // Create particles
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 2 + 1,
-                    speedX: (Math.random() - 0.5) * 0.5,
-                    speedY: (Math.random() - 0.5) * 0.5,
-                    color: `rgba(${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 255)}, ${Math.random() * 0.5 + 0.2})`
-                });
-            }
-            
-            // Animation loop
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Update and draw particles
-                particles.forEach(particle => {
-                    particle.x += particle.speedX;
-                    particle.y += particle.speedY;
-                    
-                    // Wrap around edges
-                    if (particle.x < 0) particle.x = canvas.width;
-                    if (particle.x > canvas.width) particle.x = 0;
-                    if (particle.y < 0) particle.y = canvas.height;
-                    if (particle.y > canvas.height) particle.y = 0;
-                    
-                    // Draw particle
-                    ctx.beginPath();
-                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                    ctx.fillStyle = particle.color;
-                    ctx.fill();
-                });
-                
-                requestAnimationFrame(animate);
-            }
-            
-            animate();
-            
-            // Resize handler
-            window.addEventListener('resize', function() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
-        }
-
-        // Initialize animations
-        function initializeAnimations() {
-            // Intersection Observer untuk animasi fade-in
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in-up');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Observe semua elemen dengan class fade-in-up
-            document.querySelectorAll('.fade-in-up').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        // Setup mobile menu
-        function setupMobileMenu() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-            
-            // Smooth scroll untuk navigasi
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if(targetId !== '#') {
-                        const targetElement = document.querySelector(targetId);
-                        if(targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 100,
-                                behavior: 'smooth'
-                            });
-                            // Tutup mobile menu jika terbuka
-                            document.getElementById('mobile-menu').classList.add('hidden');
-                        }
-                    }
-                });
-            });
-        }
-    </script>
+    <script src="assets/js/main.js"></script>
+    
 </body>
 </html>

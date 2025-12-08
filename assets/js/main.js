@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     });
-    
+
     // Animate cards on scroll
     const observerOptions = {
         threshold: 0.1,
@@ -133,6 +133,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // Observe all character cards
     characterCards.forEach(card => {
         observer.observe(card);
+    });
+
+
+    // Intersection Observer untuk animasi fade-in
+    const observerFadeInUpOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observerFadeInUp = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+                observerFadeInUp.unobserve(entry.target);
+            }
+        });
+    }, observerFadeInUpOptions);
+
+    // Observe semua elemen dengan class fade-in-up
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+        observerFadeInUp.observe(el);
     });
 });
 
