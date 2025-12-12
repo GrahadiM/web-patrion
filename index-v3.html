@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PATRION - Dunia Fantasi Nusantara</title>
+  <meta name="author" content="PATRION, Abdurrahman GM" />
+  <meta name="description" content="Jelajahi dunia fantasi PATRION dengan karakter unik, game seru, dan wahana petualangan epik." />
+  <meta name="keywords" content="PATRION, Dunia Fantasi, Karakter, Artefak, Alam Semesta Patrion, Game, Wahana, Komik, Novel, Petualangan" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="PATRION - Dunia Fantasi Nusantara" />
+  <meta property="og:description" content="Jelajahi dunia fantasi dengan karakter unik dan petualangan epik" />
+  <meta property="og:image" content="assets/images/og-image.jpg" />
+  <meta property="og:url" content="https://patrion.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="assets/images/og-image.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
+
+  <!-- Performance: preconnect / preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="assets/images/logo-believe.png" as="image" />
+  <link rel="preload" href="assets/images/banner.webp" as="image" />
+  <link rel="preload" href="assets/fonts/cinzel-regular.woff2" as="font" crossorigin />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+  <!-- Tailwind (CDN for prototype; for production compile CSS local) -->
+  <script src="https://cdn.tailwindcss.com" defer></script>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Main stylesheet (minified production recommended) -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <!-- JSON-LD: SEO microdata (Organization + WebSite + SiteNavigation) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://patrion.com/#organization",
+        "name": "PATRION",
+        "url": "https://patrion.com",
+        "logo": "https://patrion.com/assets/images/logo-patrion.png",
+        "sameAs": [
+          "https://www.facebook.com/patrion.universe",
+          "https://www.instagram.com/patrionofficial",
+          "https://www.tiktok.com/@patrionofficial"
+        ],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "email": "info@patrion.com",
+            "contactType": "customer support",
+            "availableLanguage": "id"
+          }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://patrion.com/#website",
+        "url": "https://patrion.com",
+        "name": "PATRION - Dunia Fantasi Nusantara",
+        "publisher": { "@id": "https://patrion.com/#organization" }
+      },
+      {
+        "@type": "ItemList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": { "@id": "https://patrion.com/#home", "name": "Beranda" } },
+          { "@type": "ListItem", "position": 2, "item": { "@id": "https://patrion.com/characters.html", "name": "Karakter" } },
+          { "@type": "ListItem", "position": 3, "item": { "@id": "https://patrion.com/program.html", "name": "Program" } }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Minor inline critical CSS to avoid FOUC while Tailwind loads.
+       Keep as minimal as possible; move to external file for production. */
+    :root { color-scheme: dark; }
+    body { background: #000; color: #e2e8f0; font-family: 'Inter', sans-serif; }
+    /* Ensure canvas sits behind content */
+    #particle-canvas { position: fixed; inset: 0; z-index: -1; }
+  </style>
+</head>
+<body class="relative antialiased">
+
+  <!-- Accessibility Skip Link -->
+  <a class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 bg-fantasy-gold text-fantasy-dark px-3 py-2 rounded" href="#main">Lewati ke konten utama</a>
+
+  <!-- Particle background canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="aurora" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="glass-effect sticky top-0 z-50 shadow-lg" role="banner">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="index.html" title="PATRION - Beranda" aria-label="Beranda PATRION">
+            <img src="assets/images/logo-patrion.png"
+                 alt="Logo PATRION"
+                 class="h-12 w-auto"
+                 decoding="async"
+                 loading="eager" />
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav id="main-nav" class="hidden md:flex items-center gap-8" role="navigation" aria-label="Main Navigation">
+          <a class="nav-link text-white hover:text-fantasy-gold transition-colors" href="index.html">BERANDA</a>
+
+          <a class="nav-link text-white hover:text-fantasy-gold transition-colors" href="program.html">PROGRAM</a>
+
+          <!-- Accessible dropdown: Characters -->
+          <div class="relative" data-dropdown>
+            <button class="nav-link text-white flex items-center gap-2 focus:outline-none" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-characters" id="btn-characters">
+              KARAKTER <i class="fas fa-chevron-down text-xs" aria-hidden="true"></i>
+            </button>
+
+            <div id="dropdown-characters" class="dropdown-menu absolute left-0 mt-2 min-w-[220px] glass-effect rounded-md shadow-lg border border-fantasy-gold/20 opacity-0 invisible transform scale-95 transition-all duration-200"
+                 role="menu" aria-labelledby="btn-characters" tabindex="-1">
+              <div class="py-2 grid grid-cols-2 gap-1" role="none">
+                <!-- Prefer generate these items from JSON for maintainability; kept static here -->
+                <a role="menuitem" href="character-detail.html?character=kunna" class="px-4 py-2 hover:bg-fantasy-purple/30 block">KUNNA</a>
+                <a role="menuitem" href="character-detail.html?character=wabu" class="px-4 py-2 hover:bg-fantasy-purple/30 block">WABU</a>
+                <a role="menuitem" href="character-detail.html?character=asta" class="px-4 py-2 hover:bg-fantasy-purple/30 block">ASTA</a>
+                <a role="menuitem" href="character-detail.html?character=taran" class="px-4 py-2 hover:bg-fantasy-purple/30 block">TARAN</a>
+                <a role="menuitem" href="character-detail.html?character=sanu" class="px-4 py-2 hover:bg-fantasy-purple/30 block">SANU</a>
+                <a role="menuitem" href="character-detail.html?character=kabi" class="px-4 py-2 hover:bg-fantasy-purple/30 block">KABI</a>
+                <a role="menuitem" href="character-detail.html?character=arun" class="px-4 py-2 hover:bg-fantasy-purple/30 block">ARUN</a>
+                <a role="menuitem" href="character-detail.html?character=antis" class="px-4 py-2 hover:bg-fantasy-purple/30 block">ANTIS</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info Dropdown -->
+          <div class="relative" data-dropdown>
+            <button class="nav-link text-white flex items-center gap-2 focus:outline-none" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-info" id="btn-info">
+              INFORMASI <i class="fas fa-chevron-down text-xs" aria-hidden="true"></i>
+            </button>
+            <div id="dropdown-info" class="dropdown-menu absolute left-0 mt-2 min-w-[180px] glass-effect rounded-md shadow-lg border border-fantasy-gold/20 opacity-0 invisible transform scale-95 transition-all duration-200" role="menu" aria-labelledby="btn-info" tabindex="-1">
+              <div class="py-2" role="none">
+                <a role="menuitem" href="about.html" class="block px-4 py-2 hover:bg-fantasy-purple/30">TENTANG PATRION</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lainnya Dropdown -->
+          <div class="relative" data-dropdown>
+            <button class="nav-link text-white flex items-center gap-2 focus:outline-none" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-more" id="btn-more">
+              LAINNYA <i class="fas fa-chevron-down text-xs" aria-hidden="true"></i>
+            </button>
+            <div id="dropdown-more" class="dropdown-menu absolute left-0 mt-2 min-w-[180px] glass-effect rounded-md shadow-lg border border-fantasy-gold/20 opacity-0 invisible transform scale-95 transition-all duration-200" role="menu" aria-labelledby="btn-more" tabindex="-1">
+              <div class="py-2" role="none">
+                <a role="menuitem" href="komik.html" class="block px-4 py-2 hover:bg-fantasy-purple/30">KOMIK</a>
+                <a role="menuitem" href="novel.html" class="block px-4 py-2 hover:bg-fantasy-purple/30">NOVEL</a>
+                <a role="menuitem" href="game.html" class="block px-4 py-2 hover:bg-fantasy-purple/30">GAME</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Buka menu" class="text-white focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation (accordion) -->
+      <div id="mobile-menu" class="md:hidden mt-4 hidden glass-effect rounded-lg p-4 border border-fantasy-gold/20" role="navigation" aria-label="Mobile Navigation">
+        <nav class="flex flex-col gap-2">
+          <a href="index.html" class="py-2">BERANDA</a>
+          <a href="program.html" class="py-2">PROGRAM</a>
+
+          <details class="py-2" aria-label="Karakter">
+            <summary class="font-semibold cursor-pointer">KARAKTER</summary>
+            <div class="mt-2 ml-4 grid grid-cols-2 gap-2">
+              <a href="character-detail.html?character=kunna" class="text-sm">KUNNA</a>
+              <a href="character-detail.html?character=wabu" class="text-sm">WABU</a>
+              <a href="character-detail.html?character=asta" class="text-sm">ASTA</a>
+              <a href="character-detail.html?character=taran" class="text-sm">TARAN</a>
+              <a href="character-detail.html?character=sanu" class="text-sm">SANU</a>
+              <a href="character-detail.html?character=kabi" class="text-sm">KABI</a>
+              <a href="character-detail.html?character=arun" class="text-sm">ARUN</a>
+              <a href="character-detail.html?character=antis" class="text-sm">ANTIS</a>
+            </div>
+          </details>
+
+          <details class="py-2">
+            <summary class="font-semibold cursor-pointer">INFORMASI</summary>
+            <div class="mt-2 ml-4 flex flex-col space-y-2">
+              <a href="about.html" class="text-sm">TENTANG PATRION</a>
+            </div>
+          </details>
+
+          <details class="py-2">
+            <summary class="font-semibold cursor-pointer">LAINNYA</summary>
+            <div class="mt-2 ml-4 flex flex-col space-y-2">
+              <a href="komik.html" class="text-sm">KOMIK</a>
+              <a href="novel.html" class="text-sm">NOVEL</a>
+              <a href="game.html" class="text-sm">GAME</a>
+            </div>
+          </details>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main" role="main" class="relative">
+
+    <!-- HERO -->
+    <section id="hero" class="relative w-full h-screen overflow-hidden md:mt-[-70px]" aria-labelledby="hero-heading">
+      <!-- Use <picture> for webp fallback; mark hero as potential LCP -->
+      <picture>
+        <source srcset="assets/images/banner.webp" type="image/webp">
+        <source srcset="assets/images/banner.jpg" type="image/jpeg">
+        <img src="assets/images/banner.webp" alt="Banner Patrion" class="w-full h-full object-cover" loading="eager" decoding="async" />
+      </picture>
+
+      <!-- overlay for readability -->
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/70 to-black/30" aria-hidden="true"></div>
+
+      <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+        <div class="mb-8 floating">
+          <img src="assets/images/logo-believe.png" alt="PATRION" class="w-80 md:w-96 mx-auto drop-shadow-[0_0_20px_rgba(255,215,0,0.8)]" loading="lazy" />
+        </div>
+
+        <h1 id="hero-heading" class="fantasy-font text-4xl md:text-6xl font-bold text-white mb-4">
+          Jelajahi <span class="gold-text">Dunia Fantasi</span> Nusantara
+        </h1>
+
+        <p class="text-xl text-gray-200 mb-8 max-w-xl">
+          Temukan kekuatan elemen, petualangan epik, dan misteri tersembunyi dalam dunia PATRION
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button class="bg-gold-gradient hover:opacity-90 text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg"
+                  type="button"
+                  onclick="document.getElementById('program').scrollIntoView({behavior:'smooth', block:'start'})">
+            Mulai Petualangan
+          </button>
+
+          <button id="openVideo" class="border-2 border-fantasy-gold text-fantasy-gold hover:bg-fantasy-gold hover:text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105" aria-controls="videoModal" aria-expanded="false">
+            <i class="fas fa-play mr-2" aria-hidden="true"></i>Tonton Trailer
+          </button>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2" role="button" aria-label="Lihat Karakter" onclick="document.getElementById('characters').scrollIntoView({behavior:'smooth'});">
+        <div class="animate-bounce">
+          <i class="fas fa-angle-double-down text-fantasy-gold text-2xl" aria-hidden="true"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHARACTERS -->
+    <section id="characters" class="py-16 relative" aria-labelledby="characters-title">
+      <div class="absolute inset-0 bg-fantasy-dark opacity-30" aria-hidden="true"></div>
+      <div class="container mx-auto px-4 relative z-10">
+        <h2 id="characters-title" class="section-title fantasy-font text-3xl font-bold text-center text-white">KARAKTER</h2>
+
+        <!-- Swiper container (unique classes for stable init) -->
+        <div class="swiper characters-swiper" aria-roledescription="carousel" role="region" aria-label="Karakter Patrion">
+          <div class="swiper-wrapper">
+            <!-- Slide template repeated: use server-side or JS generation for maintainability -->
+            <div class="swiper-slide cursor-pointer">
+              <article class="character-card rounded-xl overflow-hidden shadow-lg w-full mx-auto h-full" role="article" aria-label="PATRION KUNNA" onclick="location.href='character-detail.html?character=kunna'">
+                <div class="relative w-full h-4/5 overflow-hidden">
+                  <picture class="block w-full h-full">
+                    <source srcset="assets/images/characters/chara-01.webp" type="image/webp">
+                    <img src="assets/images/characters/chara-01.png" alt="PATRION KUNNA" class="w-full h-full object-cover character-image" loading="lazy" decoding="async" />
+                  </picture>
+                </div>
+                <div class="p-4 bg-black/50 backdrop-blur-sm flex justify-center items-center h-1/5">
+                  <h3 class="text-lg font-bold text-white fantasy-font">PATRION KUNNA</h3>
+                </div>
+              </article>
+            </div>
+
+            <!-- Repeat slides for other characters; kept concise here -->
+            <div class="swiper-slide cursor-pointer">
+              <article class="character-card rounded-xl overflow-hidden shadow-lg" role="article" aria-label="PATRION WABU" onclick="location.href='character-detail.html?character=wabu'">
+                <div class="relative w-full h-4/5 overflow-hidden">
+                  <picture>
+                    <source srcset="assets/images/characters/chara-02.webp" type="image/webp">
+                    <img src="assets/images/characters/chara-02.png" alt="PATRION WABU" class="w-full h-full object-cover character-image" loading="lazy" decoding="async" />
+                  </picture>
+                </div>
+                <div class="p-4 bg-black/50 backdrop-blur-sm flex justify-center items-center h-1/5">
+                  <h3 class="text-lg font-bold text-white fantasy-font">PATRION WABU</h3>
+                </div>
+              </article>
+            </div>
+
+            <!-- Add remaining slides similarly -->
+            <!-- ... (ASTA, TARAN, SANU, KABI, ARUN, ANTIS) -->
+          </div>
+
+          <!-- Controls (unique to this swiper) -->
+          <div class="characters-pagination swiper-pagination" aria-hidden="true"></div>
+          <button class="characters-next swiper-button-next" aria-label="Slide berikutnya"></button>
+          <button class="characters-prev swiper-button-prev" aria-label="Slide sebelumnya"></button>
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="characters.html" class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+            🔎 Lihat Semua
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAM -->
+    <section id="program" class="py-16 relative overflow-hidden" aria-labelledby="program-title">
+      <div class="absolute inset-0 bg-fantasy-gradient opacity-90" aria-hidden="true"></div>
+      <div class="container mx-auto px-4 relative z-10 mb-5">
+        <h2 id="program-title" class="section-title fantasy-font text-3xl font-bold text-center text-white">PROGRAM HOLISTIK</h2>
+
+        <div class="swiper program-swiper" aria-roledescription="carousel" role="region" aria-label="Program Patrion">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide cursor-pointer">
+              <article class="program-card rounded-xl overflow-hidden w-full border border-fantasy-gold/20" onclick="location.href='program.html'">
+                <div class="relative h-4/5 overflow-hidden">
+                  <picture>
+                    <source srcset="assets/images/semesta/Thumbnail-Patrion-Movie.webp" type="image/webp">
+                    <img src="assets/images/semesta/Thumbnail-Patrion-Movie.png" alt="Film Cinema - Drama Live Action" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+                  </picture>
+                  <div class="absolute top-4 left-4">
+                    <span class="element-badge platform-badge platform-cinema">FILM & ANIMATION</span>
+                  </div>
+                </div>
+                <div class="p-4 flex justify-center items-center h-1/5">
+                  <h3 class="fantasy-font text-lg text-white">Film Cinema - Drama Live Action</h3>
+                </div>
+              </article>
+            </div>
+
+            <!-- Repeat other program slides similarly -->
+          </div>
+
+          <div class="program-pagination swiper-pagination" aria-hidden="true"></div>
+          <button class="program-next swiper-button-next" aria-label="Slide berikutnya"></button>
+          <button class="program-prev swiper-button-prev" aria-label="Slide sebelumnya"></button>
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="program.html" class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+            🔎 Lihat Semua
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAHANA -->
+    <section id="wahana" class="py-16 relative overflow-hidden" aria-labelledby="wahana-title">
+      <div class="absolute inset-0 bg-fantasy-dark opacity-95" aria-hidden="true"></div>
+      <div class="container mx-auto px-4 relative z-10">
+        <h2 id="wahana-title" class="section-title fantasy-font text-3xl font-bold text-center text-white">WAHANA PATRION</h2>
+
+        <div class="rounded-2xl overflow-hidden border-2 border-fantasy-gold/80 shadow-2xl">
+          <picture>
+            <source srcset="assets/images/wahana_patrion.webp" type="image/webp">
+            <img src="assets/images/wahana_patrion.png" alt="Peta Wahana Patrion" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="glass-effect py-12 border-t border-fantasy-gold/20" role="contentinfo">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <img src="assets/images/logo-patrion.png" alt="Logo PATRION" class="h-12 mb-4" loading="lazy" />
+          <p class="text-gray-400 text-sm">Dunia fantasi Nusantara dengan kekuatan elemen dan petualangan epik.</p>
+        </div>
+
+        <div>
+          <h3 class="fantasy-font text-fantasy-gold mb-4">Eksplorasi</h3>
+          <div class="flex flex-col space-y-2">
+            <a href="characters.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Karakter</a>
+            <a href="program.html" class="text-gray-400 hover:text-fantasy-gold transition-colors">Program</a>
+            <a href="index.html#wahana" class="text-gray-400 hover:text-fantasy-gold transition-colors">Wahana</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="fantasy-font text-fantasy-gold mb-4">Bantuan</h3>
+          <div class="flex flex-col space-y-2">
+            <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">Pusat Bantuan</a>
+            <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">Komunitas</a>
+            <a href="#" class="text-gray-400 hover:text-fantasy-gold transition-colors">Kontak</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="fantasy-font text-fantasy-gold mb-4">Terhubung</h3>
+          <div class="flex space-x-4 mb-4">
+            <a href="https://www.instagram.com/patrionofficial" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+              <i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span>
+            </a>
+            <a href="https://www.facebook.com/patrion.universe" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+              <i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+            </a>
+            <a href="https://www.tiktok.com/@patrionofficial" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-fantasy-gold transition-colors text-xl">
+              <i class="fab fa-tiktok" aria-hidden="true"></i><span class="sr-only">TikTok</span>
+            </a>
+          </div>
+          <div class="text-sm text-gray-400">
+            <p>Email: <a href="mailto:info@patrion.com" class="underline">info@patrion.com</a></p>
+            <p>Support: <a href="mailto:support@patrion.com" class="underline">support@patrion.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 pt-8 text-center">
+        <p class="text-gray-400 text-sm">
+          "Karakter", "Artefak" dan "Alam Semesta Patrion" adalah merek dagang dari <span class="text-fantasy-gold">PATRION</span>.
+          © 2024 PATRION. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="backToTop" class="back-to-top bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold py-1 px-3 rounded-full shadow-lg" aria-label="Kembali ke atas">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Video Modal -->
+  <div id="videoModal" class="fixed inset-0 bg-black/80 flex justify-center items-center hidden z-50" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="videoTitle">
+    <div class="relative w-[90%] md:w-[60%] shadow-2xl">
+      <button id="closeVideo" class="absolute -top-10 right-0 md:-top-10 md:-right-10 bg-red-600 hover:bg-red-700 text-white text-md md:text-xl w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full" aria-label="Tutup pemutar video">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <video id="patrionVideo" class="w-full h-auto" controls playsinline preload="metadata">
+        <source src="assets/video/patrion.mp4" type="video/mp4" />
+        Browser kamu tidak mendukung pemutaran video.
+      </video>
+    </div>
+  </div>
+
+  <!-- Scripts: load non-blocking, prefer local copies in production -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
+  <!-- Inline script: accessibility, small performance improvements, lazy-loading fallback & Swiper init -->
+  <script>
+    // -- DOM ready equivalent (defer scripts already) --
+    (function () {
+      // Mobile menu toggle
+      const mobileToggle = document.getElementById('mobile-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileToggle && mobileToggle.addEventListener('click', () => {
+        const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+        mobileToggle.setAttribute('aria-expanded', String(!expanded));
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Accessible dropdowns (desktop)
+      document.querySelectorAll('[data-dropdown]').forEach(container => {
+        const btn = container.querySelector('button[aria-haspopup="true"]');
+        const menu = container.querySelector('.dropdown-menu');
+
+        if (!btn || !menu) return;
+
+        function openMenu() {
+          btn.setAttribute('aria-expanded', 'true');
+          menu.classList.remove('opacity-0','invisible','scale-95');
+          menu.classList.add('opacity-100','visible','scale-100');
+          menu.focus();
+        }
+        function closeMenu() {
+          btn.setAttribute('aria-expanded', 'false');
+          menu.classList.add('opacity-0','invisible','scale-95');
+          menu.classList.remove('opacity-100','visible','scale-100');
+        }
+
+        btn.addEventListener('click', (e) => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          if (expanded) closeMenu(); else openMenu();
+        });
+
+        // close when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!container.contains(e.target)) closeMenu();
+        });
+
+        // keyboard support
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openMenu();
+          }
+          if (e.key === 'Escape') {
+            closeMenu();
+            btn.focus();
+          }
+        });
+
+        // allow Esc on menu
+        menu.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            closeMenu();
+            btn.focus();
+          }
+        });
+      });
+
+      // Back to top
+      const backToTop = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) backToTop.classList.add('visible'); else backToTop.classList.remove('visible');
+      });
+      backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+      // Video modal open/close
+      const openBtn = document.getElementById('openVideo');
+      const modal = document.getElementById('videoModal');
+      const closeBtn = document.getElementById('closeVideo');
+      const video = document.getElementById('patrionVideo');
+
+      if (openBtn && modal) {
+        openBtn.addEventListener('click', () => {
+          modal.classList.remove('hidden');
+          modal.setAttribute('aria-hidden','false');
+          openBtn.setAttribute('aria-expanded','true');
+          try { video.currentTime = 0; video.play(); } catch (err) {}
+        });
+      }
+      closeBtn && closeBtn.addEventListener('click', () => {
+        try { video.pause(); } catch (err) {}
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden','true');
+        openBtn && openBtn.setAttribute('aria-expanded','false');
+      });
+      modal && modal.addEventListener('click', (e) => { if (e.target === modal) { try { video.pause(); } catch (err) {} modal.classList.add('hidden'); } });
+
+      // Particle canvas: basic responsive implementation (regenerate on resize)
+      (function particleCanvas() {
+        const canvas = document.getElementById('particle-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let w = canvas.width = window.innerWidth;
+        let h = canvas.height = window.innerHeight;
+        const particleCount = Math.min(120, Math.floor((w*h) / 50000));
+
+        function createParticles() {
+          particles = [];
+          for (let i=0;i<particleCount;i++){
+            particles.push({
+              x: Math.random()*w,
+              y: Math.random()*h,
+              size: Math.random()*2 + 0.6,
+              speedX:(Math.random()-0.5)*0.4,
+              speedY:(Math.random()-0.5)*0.4,
+              color:`rgba(${Math.floor(Math.random()*100+155)},${Math.floor(Math.random()*100+155)},${Math.floor(Math.random()*255)},${Math.random()*0.35+0.15})`
+            });
+          }
+        }
+        function animate(){
+          ctx.clearRect(0,0,w,h);
+          particles.forEach(p => {
+            p.x += p.speedX; p.y += p.speedY;
+            if (p.x < -10) p.x = w+10;
+            if (p.x > w+10) p.x = -10;
+            if (p.y < -10) p.y = h+10;
+            if (p.y > h+10) p.y = -10;
+            ctx.beginPath();
+            ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+          });
+          requestAnimationFrame(animate);
+        }
+        createParticles();
+        animate();
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+            createParticles();
+          }, 200);
+        });
+      })();
+
+      // IntersectionObserver for fade-in elements (existing behavior)
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.character-card, .program-card').forEach(el => observer.observe(el));
+
+      // Lazy-loading fallback: ensure images with loading attribute present (modern browsers handle it)
+      // Swiper initialization (unique paginations & navigation to avoid cross-binding)
+      function initSwipers() {
+        const commonConfig = {
+          loop: true,
+          speed: 800,
+          grabCursor: true,
+          spaceBetween: 20,
+          autoplay: { delay: 3000, disableOnInteraction: false },
+          breakpoints: {
+            320: { slidesPerView: 1, spaceBetween: 15 },
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 4, spaceBetween: 25 }
+          }
+        };
+
+        // Characters
+        try {
+          const chars = new Swiper('.characters-swiper', Object.assign({}, commonConfig, {
+            autoplay: { delay: 2500 },
+            pagination: { el: '.characters-pagination', clickable: true },
+            navigation: { nextEl: '.characters-next', prevEl: '.characters-prev' }
+          }));
+          // Pause on hover
+          chars.el && chars.el.addEventListener('mouseenter', ()=>chars.autoplay.stop());
+          chars.el && chars.el.addEventListener('mouseleave', ()=>chars.autoplay.start());
+        } catch (e) { /* Swiper not available */ }
+
+        // Program
+        try {
+          const prog = new Swiper('.program-swiper', Object.assign({}, commonConfig, {
+            autoplay: { delay: 4000 },
+            pagination: { el: '.program-pagination', clickable: true },
+            navigation: { nextEl: '.program-next', prevEl: '.program-prev' }
+          }));
+          prog.el && prog.el.addEventListener('mouseenter', ()=>prog.autoplay.stop());
+          prog.el && prog.el.addEventListener('mouseleave', ()=>prog.autoplay.start());
+        } catch (e) {}
+      }
+
+      // Initialize swipers when Swiper lib loaded
+      if (typeof Swiper !== 'undefined') initSwipers(); else {
+        window.addEventListener('load', initSwipers);
+      }
+    })();
+  </script>
+
+  <!-- Defer loading of custom JS files (for production bundle, prefer single minified file) -->
+  <script src="assets/js/popup_video.js" defer></script>
+  <script src="assets/js/allSwipers.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Quiz Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .option {
+            transition: all 0.3s ease;
+        }
+        
+        .option:hover {
+            transform: translateY(-3px);
+        }
+        
+        .option.selected {
+            border-width: 3px;
+        }
+        
+        .correct {
+            background-color: #d1fae5;
+            border-color: #10b981;
+            color: #065f46;
+        }
+        
+        .incorrect {
+            background-color: #fee2e2;
+            border-color: #ef4444;
+            color: #7f1d1d;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+        
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2"><i class="fas fa-brain text-indigo-600 mr-3"></i>Trivia Quiz</h1>
+            <p class="text-gray-600">Uji pengetahuan umum Anda dengan 10 pertanyaan menarik!</p>
+        </header>
+
+        <!-- Main Container -->
+        <main class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <!-- Progress Section -->
+            <div class="px-8 py-6 bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold">Pertanyaan <span id="current-question">1</span>/10</h2>
+                        <p id="category" class="text-indigo-100">Ilmu Pengetahuan Umum</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-lg font-bold">Skor: <span id="score">0</span></p>
+                        <p id="timer" class="text-indigo-100">Waktu: <span id="time">100</span>s</p>
+                    </div>
+                </div>
+                <div class="w-full bg-indigo-300 rounded-full h-2.5">
+                    <div id="progress-bar" class="progress-bar bg-white" style="width: 10%;"></div>
+                </div>
+            </div>
+
+            <!-- Quiz Content -->
+            <div class="p-8">
+                <!-- Start Screen -->
+                <div id="start-screen" class="text-center fade-in">
+                    <div class="mb-8">
+                        <i class="fas fa-question-circle text-indigo-500 text-7xl mb-6"></i>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4">Selamat Datang di Trivia Quiz!</h3>
+                        <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+                            Anda akan ditantang dengan 10 pertanyaan dari berbagai kategori. 
+                            Setiap pertanyaan memiliki 4 pilihan jawaban. Anda memiliki waktu 100 detik 
+                            untuk menyelesaikan quiz ini. Semakin cepat Anda menjawab, semakin tinggi skor Anda!
+                        </p>
+                        
+                        <div class="bg-blue-50 p-6 rounded-xl mb-8 text-left max-w-2xl mx-auto">
+                            <h4 class="font-bold text-lg text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-info-circle text-blue-500 mr-2"></i> Aturan Permainan
+                            </h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> <span>Setiap pertanyaan bernilai 10 poin</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> <span>Jawaban benar dalam 5 detik pertama mendapatkan bonus 5 poin</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> <span>Jawaban salah tidak mengurangi poin</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> <span>Anda dapat melewatkan pertanyaan, tetapi tidak bisa kembali ke pertanyaan sebelumnya</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <button id="start-btn" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold text-xl py-4 px-12 rounded-full hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl pulse">
+                        <i class="fas fa-play mr-3"></i> Mulai Quiz
+                    </button>
+                </div>
+
+                <!-- Question Screen -->
+                <div id="question-screen" class="hidden fade-in">
+                    <h3 id="question-text" class="text-2xl font-bold text-gray-800 mb-8 leading-tight"></h3>
+                    
+                    <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                        <!-- Options will be inserted here by JavaScript -->
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="text-gray-500">
+                            <i class="fas fa-lightbulb mr-2"></i>
+                            <span id="hint">Pilih satu jawaban yang paling benar</span>
+                        </div>
+                        
+                        <div class="space-x-4">
+                            <button id="skip-btn" class="bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg hover:bg-gray-300 transition duration-300">
+                                <i class="fas fa-forward mr-2"></i> Lewati
+                            </button>
+                            <button id="next-btn" class="bg-indigo-500 text-white font-medium py-3 px-6 rounded-lg hover:bg-indigo-600 transition duration-300 hidden">
+                                <i class="fas fa-arrow-right mr-2"></i> Lanjut
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Screen -->
+                <div id="results-screen" class="hidden text-center fade-in">
+                    <div class="mb-8">
+                        <div id="result-icon" class="text-8xl mb-6">
+                            <i class="fas fa-trophy text-yellow-500"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4">Quiz Selesai!</h3>
+                        <p id="result-message" class="text-gray-600 max-w-2xl mx-auto mb-8"></p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto mb-10">
+                            <div class="bg-blue-50 p-6 rounded-xl">
+                                <div class="text-4xl font-bold text-blue-600 mb-2" id="final-score">0</div>
+                                <p class="text-gray-700">Skor Akhir</p>
+                            </div>
+                            <div class="bg-green-50 p-6 rounded-xl">
+                                <div class="text-4xl font-bold text-green-600 mb-2" id="correct-answers">0</div>
+                                <p class="text-gray-700">Jawaban Benar</p>
+                            </div>
+                            <div class="bg-purple-50 p-6 rounded-xl">
+                                <div class="text-4xl font-bold text-purple-600 mb-2" id="time-left">0</div>
+                                <p class="text-gray-700">Waktu Tersisa (s)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8 max-w-2xl mx-auto">
+                            <h4 class="font-bold text-lg text-gray-800 mb-4">Detail Jawaban</h4>
+                            <div id="answers-summary" class="space-y-4 text-left">
+                                <!-- Answers summary will be inserted here by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-x-4">
+                        <button id="restart-btn" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold text-lg py-3 px-8 rounded-lg hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-redo mr-3"></i> Main Lagi
+                        </button>
+                        <button id="share-btn" class="bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold text-lg py-3 px-8 rounded-lg hover:from-green-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-share-alt mr-3"></i> Bagikan Hasil
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            <p>Dibuat dengan <i class="fas fa-heart text-red-500"></i> menggunakan HTML, CSS, JavaScript, dan Tailwind CSS</p>
+        </footer>
+    </div>
+
+    <script>
+        // Quiz questions data
+        const questions = [
+            {
+                question: "Planet mana yang dikenal sebagai 'Planet Merah'?",
+                options: ["Venus", "Mars", "Jupiter", "Saturnus"],
+                correctAnswer: 1,
+                category: "Astronomi",
+                hint: "Planet ini memiliki permukaan yang berwarna kemerahan"
+            },
+            {
+                question: "Siapa penemu teori relativitas?",
+                options: ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Marie Curie"],
+                correctAnswer: 1,
+                category: "Fisika",
+                hint: "Ilmuwan dengan rambut khas dan berasal dari Jerman"
+            },
+            {
+                question: "Apa ibukota dari Jepang?",
+                options: ["Seoul", "Beijing", "Tokyo", "Bangkok"],
+                correctAnswer: 2,
+                category: "Geografi",
+                hint: "Kota metropolitan yang sangat padat di Asia Timur"
+            },
+            {
+                question: "Hewan apa yang memiliki kemampuan untuk mengubah warna kulitnya?",
+                options: ["Bunglon", "Ular", "Katak", "Kadal"],
+                correctAnswer: 0,
+                category: "Biologi",
+                hint: "Hewan reptil yang dikenal dengan lidahnya yang panjang"
+            },
+            {
+                question: "Siapa penulis novel 'Laskar Pelangi'?",
+                options: ["Andrea Hirata", "Tere Liye", "Dee Lestari", "Habiburrahman El Shirazy"],
+                correctAnswer: 0,
+                category: "Sastra Indonesia",
+                hint: "Penulis asal Belitung yang karya pertamanya menjadi sangat populer"
+            },
+            {
+                question: "Berapakah hasil dari 7 x 8?",
+                options: ["54", "56", "58", "60"],
+                correctAnswer: 1,
+                category: "Matematika",
+                hint: "Perkalian dari dua bilangan satu digit yang sering diujikan"
+            },
+            {
+                question: "Apa nama benua terbesar di dunia?",
+                options: ["Afrika", "Eropa", "Asia", "Amerika Utara"],
+                correctAnswer: 2,
+                category: "Geografi",
+                hint: "Benua dengan populasi terpadat di dunia"
+            },
+            {
+                question: "Siapa pelukis terkenal yang menciptakan karya 'Mona Lisa'?",
+                options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
+                correctAnswer: 2,
+                category: "Seni",
+                hint: "Seniman Renaisans yang juga seorang ilmuwan dan penemu"
+            },
+            {
+                question: "Apa elemen kimia dengan simbol 'O'?",
+                options: ["Osmium", "Oksigen", "Oganeson", "Olitium"],
+                correctAnswer: 1,
+                category: "Kimia",
+                hint: "Unsur yang paling banyak ditemukan di atmosfer bumi dan penting untuk pernapasan"
+            },
+            {
+                question: "Di tahun berapa Indonesia merdeka?",
+                options: ["1944", "1945", "1946", "1947"],
+                correctAnswer: 1,
+                category: "Sejarah Indonesia",
+                hint: "Setelah kekalahan Jepang dalam Perang Dunia II"
+            }
+        ];
+
+        // Game state variables
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timeLeft = 100;
+        let timerInterval;
+        let userAnswers = new Array(questions.length).fill(null);
+        let questionStartTime;
+        const timeBonusThreshold = 5; // Bonus jika jawaban di bawah 5 detik
+        const basePoints = 10;
+        const bonusPoints = 5;
+
+        // DOM elements
+        const startScreen = document.getElementById('start-screen');
+        const questionScreen = document.getElementById('question-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        const startBtn = document.getElementById('start-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const skipBtn = document.getElementById('skip-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const shareBtn = document.getElementById('share-btn');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const currentQuestionElement = document.getElementById('current-question');
+        const scoreElement = document.getElementById('score');
+        const timerElement = document.getElementById('time');
+        const progressBar = document.getElementById('progress-bar');
+        const categoryElement = document.getElementById('category');
+        const hintElement = document.getElementById('hint');
+        const finalScoreElement = document.getElementById('final-score');
+        const correctAnswersElement = document.getElementById('correct-answers');
+        const timeLeftElement = document.getElementById('time-left');
+        const resultMessageElement = document.getElementById('result-message');
+        const resultIconElement = document.getElementById('result-icon');
+        const answersSummaryElement = document.getElementById('answers-summary');
+
+        // Event Listeners
+        startBtn.addEventListener('click', startQuiz);
+        nextBtn.addEventListener('click', nextQuestion);
+        skipBtn.addEventListener('click', skipQuestion);
+        restartBtn.addEventListener('click', restartQuiz);
+        shareBtn.addEventListener('click', shareResults);
+
+        // Start the quiz
+        function startQuiz() {
+            // Reset game state
+            currentQuestionIndex = 0;
+            score = 0;
+            timeLeft = 100;
+            userAnswers.fill(null);
+            
+            // Update UI
+            startScreen.classList.add('hidden');
+            questionScreen.classList.remove('hidden');
+            resultsScreen.classList.add('hidden');
+            
+            // Start timer
+            startTimer();
+            
+            // Load first question
+            loadQuestion();
+        }
+
+        // Start the timer
+        function startTimer() {
+            clearInterval(timerInterval);
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                
+                // Change color when time is running out
+                if (timeLeft <= 20) {
+                    timerElement.parentElement.classList.add('text-red-300');
+                }
+                
+                // End quiz when time runs out
+                if (timeLeft <= 0) {
+                    endQuiz();
+                }
+            }, 1000);
+        }
+
+        // Load a question
+        function loadQuestion() {
+            // Reset UI state
+            nextBtn.classList.add('hidden');
+            skipBtn.classList.remove('hidden');
+            
+            // Record question start time for bonus calculation
+            questionStartTime = Date.now();
+            
+            // Get current question
+            const question = questions[currentQuestionIndex];
+            
+            // Update UI
+            questionText.textContent = question.question;
+            categoryElement.textContent = question.category;
+            hintElement.textContent = question.hint;
+            currentQuestionElement.textContent = currentQuestionIndex + 1;
+            scoreElement.textContent = score;
+            
+            // Update progress bar
+            const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Create option elements
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = `option bg-gray-50 border-2 border-gray-200 p-4 rounded-xl cursor-pointer font-medium flex items-center`;
+                optionElement.innerHTML = `
+                    <div class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-300 mr-4 font-bold text-gray-700">
+                        ${String.fromCharCode(65 + index)}
+                    </div>
+                    <span>${option}</span>
+                `;
+                
+                // Add click event
+                optionElement.addEventListener('click', () => selectOption(index));
+                
+                // If user already answered this question, show the result
+                if (userAnswers[currentQuestionIndex] !== null) {
+                    if (userAnswers[currentQuestionIndex] === index) {
+                        optionElement.classList.add('selected');
+                        if (index === question.correctAnswer) {
+                            optionElement.classList.add('correct');
+                        } else {
+                            optionElement.classList.add('incorrect');
+                        }
+                    } else if (index === question.correctAnswer) {
+                        optionElement.classList.add('correct');
+                    }
+                }
+                
+                optionsContainer.appendChild(optionElement);
+            });
+        }
+
+        // Select an option
+        function selectOption(optionIndex) {
+            // If already answered, ignore
+            if (userAnswers[currentQuestionIndex] !== null) return;
+            
+            // Mark as answered
+            userAnswers[currentQuestionIndex] = optionIndex;
+            
+            // Calculate time taken for this question
+            const timeTaken = (Date.now() - questionStartTime) / 1000;
+            
+            // Get current question
+            const question = questions[currentQuestionIndex];
+            
+            // Check if answer is correct
+            const isCorrect = optionIndex === question.correctAnswer;
+            
+            // Calculate points
+            let points = 0;
+            if (isCorrect) {
+                points = basePoints;
+                // Add bonus if answered quickly
+                if (timeTaken <= timeBonusThreshold) {
+                    points += bonusPoints;
+                }
+                score += points;
+                scoreElement.textContent = score;
+            }
+            
+            // Update UI to show correct/incorrect answer
+            const optionElements = document.querySelectorAll('.option');
+            
+            optionElements.forEach((element, index) => {
+                // Mark selected option
+                if (index === optionIndex) {
+                    element.classList.add('selected');
+                    if (isCorrect) {
+                        element.classList.add('correct');
+                    } else {
+                        element.classList.add('incorrect');
+                    }
+                }
+                
+                // Mark correct answer (if different from selected)
+                if (index === question.correctAnswer && index !== optionIndex) {
+                    element.classList.add('correct');
+                }
+                
+                // Disable further clicks
+                element.style.pointerEvents = 'none';
+            });
+            
+            // Show next button
+            nextBtn.classList.remove('hidden');
+            skipBtn.classList.add('hidden');
+            
+            // Update hint with feedback
+            if (isCorrect) {
+                hintElement.innerHTML = `<span class="text-green-600 font-bold">Benar! +${points} poin</span>`;
+            } else {
+                hintElement.innerHTML = `<span class="text-red-600 font-bold">Salah! Jawaban benar: ${question.options[question.correctAnswer]}</span>`;
+            }
+        }
+
+        // Skip the current question
+        function skipQuestion() {
+            // Mark as skipped
+            userAnswers[currentQuestionIndex] = -1;
+            
+            // Move to next question or end quiz
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                endQuiz();
+            }
+        }
+
+        // Go to next question
+        function nextQuestion() {
+            // Move to next question or end quiz
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                endQuiz();
+            }
+        }
+
+        // End the quiz
+        function endQuiz() {
+            clearInterval(timerInterval);
+            
+            // Calculate results
+            const correctCount = userAnswers.reduce((count, answer, index) => {
+                return answer === questions[index].correctAnswer ? count + 1 : count;
+            }, 0);
+            
+            // Update results screen
+            finalScoreElement.textContent = score;
+            correctAnswersElement.textContent = `${correctCount}/${questions.length}`;
+            timeLeftElement.textContent = timeLeft;
+            
+            // Determine message based on score
+            let message = "";
+            let icon = "";
+            
+            if (correctCount === questions.length) {
+                message = "Luar biasa! Anda menjawab semua pertanyaan dengan benar! Anda benar-benar jenius!";
+                icon = '<i class="fas fa-crown text-yellow-500"></i>';
+            } else if (correctCount >= questions.length * 0.7) {
+                message = "Bagus sekali! Pengetahuan Anda cukup luas. Pertahankan!";
+                icon = '<i class="fas fa-star text-yellow-400"></i>';
+            } else if (correctCount >= questions.length * 0.5) {
+                message = "Hasil yang cukup baik! Masih ada ruang untuk meningkatkan pengetahuan Anda.";
+                icon = '<i class="fas fa-thumbs-up text-blue-500"></i>';
+            } else {
+                message = "Jangan menyerah! Teruslah belajar dan coba lagi untuk hasil yang lebih baik.";
+                icon = '<i class="fas fa-book-reader text-green-500"></i>';
+            }
+            
+            resultMessageElement.textContent = message;
+            resultIconElement.innerHTML = icon;
+            
+            // Generate answers summary
+            answersSummaryElement.innerHTML = '';
+            questions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correctAnswer;
+                const isSkipped = userAnswer === -1;
+                
+                const summaryItem = document.createElement('div');
+                summaryItem.className = `p-4 rounded-lg ${isCorrect ? 'bg-green-50' : isSkipped ? 'bg-gray-100' : 'bg-red-50'}`;
+                
+                let answerStatus = '';
+                if (isCorrect) {
+                    answerStatus = '<span class="text-green-600 font-bold">Benar</span>';
+                } else if (isSkipped) {
+                    answerStatus = '<span class="text-gray-600 font-bold">Dilewati</span>';
+                } else {
+                    answerStatus = '<span class="text-red-600 font-bold">Salah</span>';
+                }
+                
+                let userAnswerText = isSkipped ? 'Tidak dijawab' : question.options[userAnswer];
+                let correctAnswerText = question.options[question.correctAnswer];
+                
+                summaryItem.innerHTML = `
+                    <div class="font-bold text-gray-800 mb-1">Pertanyaan ${index + 1}: ${question.question}</div>
+                    <div class="flex justify-between text-sm">
+                        <div>
+                            <span class="font-medium">Jawaban Anda:</span> 
+                            <span class="${isCorrect ? 'text-green-700' : isSkipped ? 'text-gray-700' : 'text-red-700'}">${userAnswerText}</span>
+                        </div>
+                        <div>
+                            <span class="font-medium">Status:</span> ${answerStatus}
+                        </div>
+                    </div>
+                    ${!isCorrect && !isSkipped ? `<div class="mt-2 text-sm"><span class="font-medium">Jawaban benar:</span> <span class="text-green-700">${correctAnswerText}</span></div>` : ''}
+                `;
+                
+                answersSummaryElement.appendChild(summaryItem);
+            });
+            
+            // Switch to results screen
+            questionScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+        }
+
+        // Restart the quiz
+        function restartQuiz() {
+            startQuiz();
+        }
+
+        // Share results
+        function shareResults() {
+            const correctCount = userAnswers.reduce((count, answer, index) => {
+                return answer === questions[index].correctAnswer ? count + 1 : count;
+            }, 0);
+            
+            const shareText = `Saya baru saja menyelesaikan Trivia Quiz dengan skor ${score} poin! Saya menjawab ${correctCount} dari ${questions.length} pertanyaan dengan benar. Coba tantang dirimu di: ${window.location.href}`;
+            
+            // Check if Web Share API is available
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Hasil Trivia Quiz Saya',
+                    text: shareText,
+                    url: window.location.href,
+                })
+                .then(() => console.log('Berhasil membagikan'))
+                .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback: Copy to clipboard
+                navigator.clipboard.writeText(shareText)
+                    .then(() => {
+                        alert('Hasil telah disalin ke clipboard!');
+                    })
+                    .catch(err => {
+                        console.error('Gagal menyalin: ', err);
+                        alert('Gagal menyalin hasil ke clipboard.');
+                    });
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial timer display
+            timerElement.textContent = timeLeft;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Matematika Dinamis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --purple: #8b5cf6;
+        }
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .math-font {
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            color: white;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+        }
+        
+        .option-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+        }
+        
+        .option-card.selected {
+            border-color: var(--primary);
+            background-color: #eff6ff;
+            transform: scale(1.02);
+        }
+        
+        .option-card.correct {
+            border-color: var(--secondary);
+            background-color: #d1fae5;
+            animation: pulseCorrect 1s;
+        }
+        
+        .option-card.incorrect {
+            border-color: var(--danger);
+            background-color: #fee2e2;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #e5e7eb;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--purple) 100%);
+        }
+        
+        .difficulty-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .difficulty-easy {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        
+        .difficulty-medium {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        
+        .difficulty-hard {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .difficulty-expert {
+            background-color: #f3e8ff;
+            color: #5b21b6;
+        }
+        
+        .score-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .streak-counter {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #92400e;
+        }
+        
+        .streak-fire {
+            color: #f59e0b;
+            margin-right: 8px;
+            animation: flame 1.5s infinite alternate;
+        }
+        
+        .timer-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .timer-normal {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .timer-warning {
+            border-color: var(--warning);
+            color: var(--warning);
+            animation: pulseWarning 1s infinite;
+        }
+        
+        .timer-danger {
+            border-color: var(--danger);
+            color: var(--danger);
+            animation: pulseDanger 0.8s infinite;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        .bounce-in {
+            animation: bounceIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulseCorrect {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        
+        @keyframes flame {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+        
+        @keyframes pulseWarning {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+        }
+        
+        @keyframes pulseDanger {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+        }
+        
+        .question-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .math-expression {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border: 2px dashed #cbd5e1;
+        }
+        
+        .language-switch {
+            display: flex;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #e5e7eb;
+            width: fit-content;
+        }
+        
+        .language-btn {
+            padding: 10px 24px;
+            background: white;
+            color: #6b7280;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .language-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .language-btn:not(.active):hover {
+            background: #f9fafb;
+        }
+        
+        .hint-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .formula-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .reward-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5rem;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            animation: rewardFloat 2s ease-out forwards;
+        }
+        
+        @keyframes rewardFloat {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            20% { transform: translate(-50%, -60%) scale(1); opacity: 1; }
+            80% { transform: translate(-50%, -100%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -120%) scale(0.8); opacity: 0; }
+        }
+        
+        .adaptive-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            color: #5b21b6;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .level-up-animation {
+            animation: levelUp 0.8s ease-out;
+        }
+        
+        @keyframes levelUp {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="py-8 px-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-10 fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                <span class="text-blue-600">Kuis</span> 
+                <span class="text-green-600">Matematika</span> 
+                <span class="text-purple-600">Dinamis</span>
+            </h1>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                Tantang kemampuan matematikamu dengan sistem level adaptif yang menyesuaikan kesulitan berdasarkan performa!
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center mt-8 gap-6">
+                <div class="language-switch">
+                    <button id="lang-indo" class="language-btn active">
+                        <i class="fas fa-flag mr-2"></i> Bahasa Indonesia
+                    </button>
+                    <button id="lang-eng" class="language-btn">
+                        <i class="fas fa-globe mr-2"></i> English
+                    </button>
+                </div>
+                
+                <div class="adaptive-indicator">
+                    <i class="fas fa-brain mr-2"></i> Sistem Level Adaptif
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Game Container -->
+        <main class="card p-6 md:p-8 slide-up">
+            <!-- Start Screen -->
+            <div id="start-screen" class="text-center fade-in">
+                <div class="mb-10">
+                    <div class="inline-flex items-center justify-center w-28 h-28 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 mb-8">
+                        <i class="fas fa-calculator text-6xl text-blue-600"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                        <span id="start-title">Selamat Datang di Kuis Matematika!</span>
+                    </h2>
+                    <p id="start-description" class="text-gray-600 max-w-3xl mx-auto mb-8 text-lg">
+                        Kuis ini akan menguji kemampuan matematika Anda dengan 10 pertanyaan. 
+                        Sistem akan secara otomatis menyesuaikan tingkat kesulitan berdasarkan jawaban Anda. 
+                        Semakin baik performa Anda, semakin sulit pertanyaan yang akan diberikan!
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-2xl border border-blue-100">
+                            <div class="text-4xl text-blue-600 mb-4">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2" id="feature1-title">Level Adaptif</h3>
+                            <p id="feature1-desc" class="text-gray-600 text-sm">
+                                Tingkat kesulitan akan naik atau turun berdasarkan jawaban Anda.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-2xl border border-green-100">
+                            <div class="text-4xl text-green-600 mb-4">
+                                <i class="fas fa-stopwatch"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2" id="feature2-title">Batasan Waktu</h3>
+                            <p id="feature2-desc" class="text-gray-600 text-sm">
+                                Setiap pertanyaan memiliki batas waktu untuk meningkatkan tantangan.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-2xl border border-purple-100">
+                            <div class="text-4xl text-purple-600 mb-4">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2" id="feature3-title">Sistem Bonus</h3>
+                            <p id="feature3-desc" class="text-gray-600 text-sm">
+                                Dapatkan bonus poin untuk jawaban cepat dan streak jawaban benar.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="max-w-2xl mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl mb-10">
+                        <h4 class="font-bold text-xl text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-sliders-h text-blue-500 mr-3"></i> 
+                            <span id="settings-title">Pengaturan Kuis</span>
+                        </h4>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 text-left mb-3 font-medium" id="category-label">Kategori Matematika:</label>
+                                <div class="flex flex-col space-y-3">
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" id="cat-arithmetic" checked>
+                                        <span class="ml-3 text-gray-700" id="cat-arithmetic-label">Aritmatika Dasar</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600 rounded" id="cat-algebra" checked>
+                                        <span class="ml-3 text-gray-700" id="cat-algebra-label">Aljabar</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox h-5 w-5 text-purple-600 rounded" id="cat-geometry">
+                                        <span class="ml-3 text-gray-700" id="cat-geometry-label">Geometri</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 text-left mb-3 font-medium" id="time-label">Waktu per Pertanyaan:</label>
+                                <div class="flex space-x-4">
+                                    <button id="time-short" class="time-btn flex-1 py-3 px-4 rounded-lg border-2 border-blue-500 bg-blue-50 text-blue-700 font-medium">
+                                        15 <span id="time-short-label">detik</span>
+                                    </button>
+                                    <button id="time-medium" class="time-btn flex-1 py-3 px-4 rounded-lg border-2 border-gray-300 bg-white text-gray-700 font-medium">
+                                        30 <span id="time-medium-label">detik</span>
+                                    </button>
+                                    <button id="time-long" class="time-btn flex-1 py-3 px-4 rounded-lg border-2 border-gray-300 bg-white text-gray-700 font-medium">
+                                        45 <span id="time-long-label">detik</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h5 class="font-bold text-gray-800 mb-2" id="initial-level-label">Level Awal:</h5>
+                                    <div class="flex items-center">
+                                        <span id="initial-level-value" class="text-2xl font-bold text-blue-600 mr-3">1</span>
+                                        <div class="difficulty-badge difficulty-easy">
+                                            <i class="fas fa-seedling mr-2"></i>
+                                            <span id="initial-level-text">Mudah</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-right">
+                                    <h5 class="font-bold text-gray-800 mb-2" id="max-level-label">Level Maksimum:</h5>
+                                    <div class="flex items-center justify-end">
+                                        <div class="difficulty-badge difficulty-expert mr-3">
+                                            <i class="fas fa-crown mr-2"></i>
+                                            <span id="max-level-text">Expert</span>
+                                        </div>
+                                        <span id="max-level-value" class="text-2xl font-bold text-purple-600">5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="start-btn" class="btn-primary text-lg px-12 py-4 bounce-in">
+                    <i class="fas fa-play-circle mr-3"></i> 
+                    <span id="start-button-text">Mulai Kuis</span>
+                </button>
+            </div>
+
+            <!-- Game Screen -->
+            <div id="game-screen" class="hidden">
+                <!-- Game Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
+                    <div>
+                        <div class="flex items-center mb-2">
+                            <h2 id="game-title" class="text-2xl font-bold text-gray-800 mr-4">Pertanyaan Matematika</h2>
+                            <div id="current-difficulty-badge" class="difficulty-badge difficulty-easy">
+                                <i class="fas fa-chart-line mr-2"></i>
+                                <span id="current-difficulty">Level 1: Mudah</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <span id="question-category" class="text-gray-600 bg-gray-100 px-3 py-1 rounded-full text-sm">Aritmatika</span>
+                            <span class="mx-3 text-gray-400">•</span>
+                            <span id="adaptive-status" class="text-sm text-blue-600 font-medium">
+                                <i class="fas fa-adjust mr-1"></i> Sistem Adaptif Aktif
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-6">
+                        <div class="text-center">
+                            <div class="text-sm text-gray-500 mb-1" id="score-label">Skor</div>
+                            <div id="score" class="score-badge bg-gradient-to-br from-blue-500 to-indigo-600 text-white">0</div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="text-sm text-gray-500 mb-1" id="question-label">Pertanyaan</div>
+                            <div class="score-badge bg-gradient-to-br from-green-500 to-emerald-600 text-white">
+                                <span id="current-question">1</span>/10
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="text-sm text-gray-500 mb-1" id="timer-label">Waktu</div>
+                            <div id="timer-circle" class="timer-circle timer-normal">30</div>
+                        </div>
+                        
+                        <div id="streak-container" class="hidden">
+                            <div class="text-sm text-gray-500 mb-1 text-center" id="streak-label">Streak</div>
+                            <div class="streak-counter">
+                                <i class="fas fa-fire streak-fire"></i>
+                                <span id="streak-count">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="flex justify-between text-sm text-gray-600 mb-2">
+                        <span id="progress-label">Progress</span>
+                        <span><span id="progress-percent">10</span>%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill" style="width: 10%;"></div>
+                    </div>
+                    <div class="flex justify-between mt-1 text-xs text-gray-500">
+                        <span id="level-progress-label">Level: <span id="current-level">1</span>/5</span>
+                        <span id="performance-label">Performansi: <span id="performance-value">0</span>%</span>
+                    </div>
+                </div>
+                
+                <!-- Question Content -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                    <!-- Question Box -->
+                    <div class="lg:col-span-2">
+                        <div class="question-box">
+                            <div id="question-type" class="text-sm font-medium text-blue-600 mb-4 uppercase tracking-wide">
+                                <i class="fas fa-calculator mr-2"></i>
+                                <span id="question-type-text">Soal Matematika</span>
+                            </div>
+                            <div id="question-text" class="text-xl text-gray-700 mb-6">
+                                <span id="question-instruction">Selesaikan soal berikut:</span>
+                            </div>
+                            <div id="math-expression" class="math-expression math-font">15 + 27 = ?</div>
+                            
+                            <!-- Hint Box -->
+                            <div id="hint-box" class="hint-box mt-6 hidden">
+                                <div class="flex items-start">
+                                    <i class="fas fa-lightbulb text-yellow-600 mt-1 mr-3"></i>
+                                    <div>
+                                        <div class="font-bold text-gray-800 mb-1" id="hint-title">Petunjuk:</div>
+                                        <p id="hint-text" class="text-gray-700">Tambahkan angka satuan terlebih dahulu, lalu angka puluhan.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Formula Box (for algebra/geometry) -->
+                            <div id="formula-box" class="formula-box mt-6 hidden">
+                                <div class="flex items-start">
+                                    <i class="fas fa-square-root-alt text-blue-600 mt-1 mr-3"></i>
+                                    <div>
+                                        <div class="font-bold text-gray-800 mb-1" id="formula-title">Rumus:</div>
+                                        <p id="formula-text" class="text-gray-700 math-font">a² + b² = c²</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Options -->
+                    <div class="lg:col-span-1">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6" id="options-title">Pilih jawaban:</h3>
+                        
+                        <div id="options-container" class="space-y-4">
+                            <!-- Options will be inserted here by JavaScript -->
+                        </div>
+                        
+                        <!-- Feedback Message -->
+                        <div id="feedback-message" class="mt-8 p-5 rounded-xl hidden">
+                            <div class="flex items-start">
+                                <div id="feedback-icon" class="text-3xl mr-4 mt-1"></div>
+                                <div>
+                                    <h4 id="feedback-title" class="font-bold text-lg mb-2"></h4>
+                                    <p id="feedback-text" class="text-gray-700"></p>
+                                    <div id="feedback-details" class="mt-3 text-sm text-gray-600"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Level Change Notification -->
+                        <div id="level-change-notification" class="mt-6 p-4 rounded-xl bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 hidden">
+                            <div class="flex items-center">
+                                <i class="fas fa-chart-line text-purple-600 text-2xl mr-3"></i>
+                                <div>
+                                    <div class="font-bold text-gray-800" id="level-change-title">Level meningkat!</div>
+                                    <p id="level-change-text" class="text-sm text-gray-700">Tingkat kesulitan telah disesuaikan.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game Controls -->
+                <div class="flex justify-between items-center pt-6 border-t border-gray-200">
+                    <div class="text-gray-500">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <span id="hint-label">Pilih jawaban yang benar sebelum waktu habis</span>
+                    </div>
+                    
+                    <div class="space-x-4">
+                        <button id="hint-btn" class="py-3 px-6 rounded-lg border-2 border-yellow-500 text-yellow-700 font-medium hover:bg-yellow-50">
+                            <i class="fas fa-lightbulb mr-2"></i> 
+                            <span id="hint-button-text">Petunjuk</span>
+                        </button>
+                        <button id="skip-btn" class="py-3 px-6 rounded-lg border-2 border-gray-300 text-gray-700 font-medium hover:bg-gray-50">
+                            <i class="fas fa-forward mr-2"></i> 
+                            <span id="skip-button-text">Lewati</span>
+                        </button>
+                        <button id="next-btn" class="btn-success py-3 px-8 hidden">
+                            <i class="fas fa-arrow-right mr-2"></i> 
+                            <span id="next-button-text">Lanjut</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="results-screen" class="hidden text-center">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-10">
+                        <div id="result-icon" class="inline-flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br from-green-100 to-emerald-100 mb-8">
+                            <i class="fas fa-trophy text-6xl text-yellow-500"></i>
+                        </div>
+                        <h2 class="text-4xl font-bold text-gray-800 mb-6" id="results-title">Kuis Selesai!</h2>
+                        <p id="result-message" class="text-gray-600 text-xl mb-10 max-w-2xl mx-auto"></p>
+                        
+                        <!-- Result Stats -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                            <div class="bg-blue-50 p-6 rounded-2xl">
+                                <div class="text-4xl font-bold text-blue-600 mb-2" id="final-score">0</div>
+                                <p class="text-gray-700 font-medium" id="final-score-label">Skor Akhir</p>
+                            </div>
+                            <div class="bg-green-50 p-6 rounded-2xl">
+                                <div class="text-4xl font-bold text-green-600 mb-2" id="correct-answers">0</div>
+                                <p class="text-gray-700 font-medium" id="correct-answers-label">Jawaban Benar</p>
+                            </div>
+                            <div class="bg-yellow-50 p-6 rounded-2xl">
+                                <div class="text-4xl font-bold text-yellow-600 mb-2" id="max-level-reached">1</div>
+                                <p class="text-gray-700 font-medium" id="max-level-label2">Level Tertinggi</p>
+                            </div>
+                            <div class="bg-purple-50 p-6 rounded-2xl">
+                                <div class="text-4xl font-bold text-purple-600 mb-2" id="accuracy">0%</div>
+                                <p class="text-gray-700 font-medium" id="accuracy-label">Akurasi</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Performance Summary -->
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl mb-10">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center justify-center">
+                                <i class="fas fa-chart-bar text-blue-500 mr-3"></i> 
+                                <span id="performance-summary-title">Ringkasan Performa</span>
+                            </h3>
+                            
+                            <!-- Level Progression Chart -->
+                            <div class="mb-10">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h4 class="font-bold text-lg text-gray-800" id="level-progression-title">Progres Level</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <span id="level-start-label">Awal:</span> <span id="level-start" class="font-bold">1</span> → 
+                                        <span id="level-end-label">Akhir:</span> <span id="level-end" class="font-bold">1</span>
+                                    </div>
+                                </div>
+                                <div class="h-6 bg-gray-200 rounded-full overflow-hidden">
+                                    <div id="level-progression-bar" class="h-full bg-gradient-to-r from-green-400 via-yellow-400 to-red-500 rounded-full" style="width: 20%;"></div>
+                                </div>
+                                <div class="flex justify-between mt-2 text-sm text-gray-600">
+                                    <span>Mudah</span>
+                                    <span>Menengah</span>
+                                    <span>Sulit</span>
+                                    <span>Expert</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Answers Summary -->
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800 mb-6" id="answers-summary-title">Detail Jawaban</h4>
+                                <div id="answers-summary" class="space-y-4 max-h-80 overflow-y-auto pr-2">
+                                    <!-- Answers summary will be inserted here by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-x-6">
+                        <button id="restart-btn" class="btn-primary px-10 py-4 text-lg">
+                            <i class="fas fa-redo mr-3"></i> 
+                            <span id="restart-button-text">Main Lagi</span>
+                        </button>
+                        <button id="review-btn" class="py-4 px-10 rounded-lg border-2 border-blue-500 text-blue-600 font-medium text-lg hover:bg-blue-50">
+                            <i class="fas fa-book-open mr-3"></i> 
+                            <span id="review-button-text">Review Materi</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-gray-500 text-sm">
+            <p id="footer-text">Kuis Matematika Dinamis | Sistem Level Adaptif | © 2023</p>
+        </footer>
+    </div>
+
+    <!-- Reward Animation Container -->
+    <div id="reward-container"></div>
+
+    <script>
+        // Game configuration
+        const CONFIG = {
+            totalQuestions: 10,
+            levels: 5,
+            timePerQuestion: 30, // default
+            categories: {
+                arithmetic: true,
+                algebra: true,
+                geometry: false
+            }
+        };
+
+        // Language resources
+        const LANGUAGES = {
+            indonesia: {
+                title: "Kuis Matematika Dinamis",
+                description: "Kuis ini akan menguji kemampuan matematika Anda dengan 10 pertanyaan. Sistem akan secara otomatis menyesuaikan tingkat kesulitan berdasarkan jawaban Anda. Semakin baik performa Anda, semakin sulit pertanyaan yang akan diberikan!",
+                feature1: "Level Adaptif",
+                feature1Desc: "Tingkat kesulitan akan naik atau turun berdasarkan jawaban Anda.",
+                feature2: "Batasan Waktu",
+                feature2Desc: "Setiap pertanyaan memiliki batas waktu untuk meningkatkan tantangan.",
+                feature3: "Sistem Bonus",
+                feature3Desc: "Dapatkan bonus poin untuk jawaban cepat dan streak jawaban benar.",
+                settings: "Pengaturan Kuis",
+                categoryLabel: "Kategori Matematika:",
+                catArithmetic: "Aritmatika Dasar",
+                catAlgebra: "Aljabar",
+                catGeometry: "Geometri",
+                timeLabel: "Waktu per Pertanyaan:",
+                timeShort: "detik",
+                timeMedium: "detik",
+                timeLong: "detik",
+                initialLevel: "Level Awal:",
+                initialLevelText: "Mudah",
+                maxLevel: "Level Maksimum:",
+                maxLevelText: "Expert",
+                startButton: "Mulai Kuis",
+                gameTitle: "Pertanyaan Matematika",
+                score: "Skor",
+                question: "Pertanyaan",
+                timer: "Waktu",
+                streak: "Streak",
+                progress: "Progress",
+                levelProgress: "Level:",
+                performance: "Performansi:",
+                questionType: "Soal Matematika",
+                instruction: "Selesaikan soal berikut:",
+                optionsTitle: "Pilih jawaban:",
+                hintDefault: "Pilih jawaban yang benar sebelum waktu habis",
+                hintButton: "Petunjuk",
+                skipButton: "Lewati",
+                nextButton: "Lanjut",
+                resultsTitle: "Kuis Selesai!",
+                finalScore: "Skor Akhir",
+                correctAnswers: "Jawaban Benar",
+                maxLevel2: "Level Tertinggi",
+                accuracy: "Akurasi",
+                performanceSummary: "Ringkasan Performa",
+                levelProgression: "Progres Level",
+                levelStart: "Awal:",
+                levelEnd: "Akhir:",
+                answersSummary: "Detail Jawaban",
+                restartButton: "Main Lagi",
+                reviewButton: "Review Materi",
+                footer: "Kuis Matematika Dinamis | Sistem Level Adaptif | © 2023",
+                difficultyLevels: ["Mudah", "Menengah", "Sedang", "Sulit", "Expert"],
+                correctFeedback: ["Luar biasa!", "Hebat!", "Benar!", "Tepat sekali!"],
+                incorrectFeedback: ["Hampir benar!", "Coba lagi!", "Masih belum tepat", "Jawaban salah"],
+                levelUp: "Level meningkat!",
+                levelDown: "Level menurun!",
+                timeUp: "Waktu habis!"
+            },
+            english: {
+                title: "Dynamic Math Quiz",
+                description: "This quiz will test your math skills with 10 questions. The system will automatically adjust the difficulty level based on your performance. The better you perform, the harder the questions will become!",
+                feature1: "Adaptive Level",
+                feature1Desc: "Difficulty level will increase or decrease based on your answers.",
+                feature2: "Time Limit",
+                feature2Desc: "Each question has a time limit to increase the challenge.",
+                feature3: "Bonus System",
+                feature3Desc: "Earn bonus points for quick answers and correct answer streaks.",
+                settings: "Quiz Settings",
+                categoryLabel: "Math Categories:",
+                catArithmetic: "Basic Arithmetic",
+                catAlgebra: "Algebra",
+                catGeometry: "Geometry",
+                timeLabel: "Time per Question:",
+                timeShort: "seconds",
+                timeMedium: "seconds",
+                timeLong: "seconds",
+                initialLevel: "Initial Level:",
+                initialLevelText: "Easy",
+                maxLevel: "Maximum Level:",
+                maxLevelText: "Expert",
+                startButton: "Start Quiz",
+                gameTitle: "Math Question",
+                score: "Score",
+                question: "Question",
+                timer: "Time",
+                streak: "Streak",
+                progress: "Progress",
+                levelProgress: "Level:",
+                performance: "Performance:",
+                questionType: "Math Problem",
+                instruction: "Solve the following:",
+                optionsTitle: "Choose answer:",
+                hintDefault: "Select the correct answer before time runs out",
+                hintButton: "Hint",
+                skipButton: "Skip",
+                nextButton: "Next",
+                resultsTitle: "Quiz Complete!",
+                finalScore: "Final Score",
+                correctAnswers: "Correct Answers",
+                maxLevel2: "Highest Level",
+                accuracy: "Accuracy",
+                performanceSummary: "Performance Summary",
+                levelProgression: "Level Progression",
+                levelStart: "Start:",
+                levelEnd: "End:",
+                answersSummary: "Answer Details",
+                restartButton: "Play Again",
+                reviewButton: "Review Material",
+                footer: "Dynamic Math Quiz | Adaptive Level System | © 2023",
+                difficultyLevels: ["Easy", "Medium", "Intermediate", "Hard", "Expert"],
+                correctFeedback: ["Excellent!", "Great job!", "Correct!", "Perfect!"],
+                incorrectFeedback: ["Almost right!", "Try again!", "Not quite", "Wrong answer"],
+                levelUp: "Level increased!",
+                levelDown: "Level decreased!",
+                timeUp: "Time's up!"
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'indonesia';
+        let lang = LANGUAGES[currentLanguage];
+
+        // Game state
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let streak = 0;
+        let bestStreak = 0;
+        let correctAnswers = 0;
+        let currentLevel = 1;
+        let maxLevelReached = 1;
+        let performance = 0;
+        let timer;
+        let timeLeft;
+        let questions = [];
+        let userAnswers = new Array(CONFIG.totalQuestions).fill(null);
+        let answerTimes = new Array(CONFIG.totalQuestions).fill(0);
+        let questionStartTime;
+
+        // DOM elements
+        const startScreen = document.getElementById('start-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        
+        // Language buttons
+        const langIndoBtn = document.getElementById('lang-indo');
+        const langEngBtn = document.getElementById('lang-eng');
+        
+        // Start screen elements
+        const startTitle = document.getElementById('start-title');
+        const startDescription = document.getElementById('start-description');
+        const feature1Title = document.getElementById('feature1-title');
+        const feature1Desc = document.getElementById('feature1-desc');
+        const feature2Title = document.getElementById('feature2-title');
+        const feature2Desc = document.getElementById('feature2-desc');
+        const feature3Title = document.getElementById('feature3-title');
+        const feature3Desc = document.getElementById('feature3-desc');
+        const settingsTitle = document.getElementById('settings-title');
+        const categoryLabel = document.getElementById('category-label');
+        const catArithmeticLabel = document.getElementById('cat-arithmetic-label');
+        const catAlgebraLabel = document.getElementById('cat-algebra-label');
+        const catGeometryLabel = document.getElementById('cat-geometry-label');
+        const timeLabel = document.getElementById('time-label');
+        const timeShortLabel = document.getElementById('time-short-label');
+        const timeMediumLabel = document.getElementById('time-medium-label');
+        const timeLongLabel = document.getElementById('time-long-label');
+        const initialLevelLabel = document.getElementById('initial-level-label');
+        const initialLevelText = document.getElementById('initial-level-text');
+        const maxLevelLabel = document.getElementById('max-level-label');
+        const maxLevelText = document.getElementById('max-level-text');
+        const startButtonText = document.getElementById('start-button-text');
+        
+        // Game screen elements
+        const gameTitle = document.getElementById('game-title');
+        const currentDifficulty = document.getElementById('current-difficulty');
+        const scoreLabel = document.getElementById('score-label');
+        const questionLabel = document.getElementById('question-label');
+        const timerLabel = document.getElementById('timer-label');
+        const streakLabel = document.getElementById('streak-label');
+        const progressLabel = document.getElementById('progress-label');
+        const levelProgressLabel = document.getElementById('level-progress-label');
+        const performanceLabel = document.getElementById('performance-label');
+        const performanceValue = document.getElementById('performance-value');
+        const questionTypeText = document.getElementById('question-type-text');
+        const questionInstruction = document.getElementById('question-instruction');
+        const optionsTitle = document.getElementById('options-title');
+        const hintLabel = document.getElementById('hint-label');
+        const hintButtonText = document.getElementById('hint-button-text');
+        const skipButtonText = document.getElementById('skip-button-text');
+        const nextButtonText = document.getElementById('next-button-text');
+        
+        // Results screen elements
+        const resultsTitle = document.getElementById('results-title');
+        const finalScoreLabel = document.getElementById('final-score-label');
+        const correctAnswersLabel = document.getElementById('correct-answers-label');
+        const maxLevelLabel2 = document.getElementById('max-level-label2');
+        const accuracyLabel = document.getElementById('accuracy-label');
+        const performanceSummaryTitle = document.getElementById('performance-summary-title');
+        const levelProgressionTitle = document.getElementById('level-progression-title');
+        const levelStartLabel = document.getElementById('level-start-label');
+        const levelEndLabel = document.getElementById('level-end-label');
+        const answersSummaryTitle = document.getElementById('answers-summary-title');
+        const restartButtonText = document.getElementById('restart-button-text');
+        const reviewButtonText = document.getElementById('review-button-text');
+        const footerText = document.getElementById('footer-text');
+        
+        // Buttons
+        const startBtn = document.getElementById('start-btn');
+        const hintBtn = document.getElementById('hint-btn');
+        const skipBtn = document.getElementById('skip-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const reviewBtn = document.getElementById('review-btn');
+        
+        // Time buttons
+        const timeShortBtn = document.getElementById('time-short');
+        const timeMediumBtn = document.getElementById('time-medium');
+        const timeLongBtn = document.getElementById('time-long');
+        
+        // Game elements
+        const scoreElement = document.getElementById('score');
+        const currentQuestionElement = document.getElementById('current-question');
+        const timerCircle = document.getElementById('timer-circle');
+        const streakCount = document.getElementById('streak-count');
+        const streakContainer = document.getElementById('streak-container');
+        const progressFill = document.getElementById('progress-fill');
+        const progressPercent = document.getElementById('progress-percent');
+        const currentLevelElement = document.getElementById('current-level');
+        const mathExpression = document.getElementById('math-expression');
+        const optionsContainer = document.getElementById('options-container');
+        const feedbackMessage = document.getElementById('feedback-message');
+        const feedbackIcon = document.getElementById('feedback-icon');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackText = document.getElementById('feedback-text');
+        const feedbackDetails = document.getElementById('feedback-details');
+        const hintBox = document.getElementById('hint-box');
+        const formulaBox = document.getElementById('formula-box');
+        const levelChangeNotification = document.getElementById('level-change-notification');
+        const levelChangeTitle = document.getElementById('level-change-title');
+        const levelChangeText = document.getElementById('level-change-text');
+        
+        // Results elements
+        const finalScoreElement = document.getElementById('final-score');
+        const correctAnswersElement = document.getElementById('correct-answers');
+        const maxLevelReachedElement = document.getElementById('max-level-reached');
+        const accuracyElement = document.getElementById('accuracy');
+        const resultMessageElement = document.getElementById('result-message');
+        const resultIcon = document.getElementById('result-icon');
+        const levelStartElement = document.getElementById('level-start');
+        const levelEndElement = document.getElementById('level-end');
+        const levelProgressionBar = document.getElementById('level-progression-bar');
+        const answersSummaryElement = document.getElementById('answers-summary');
+
+        // Event Listeners
+        startBtn.addEventListener('click', startGame);
+        hintBtn.addEventListener('click', showHint);
+        skipBtn.addEventListener('click', skipQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', restartGame);
+        reviewBtn.addEventListener('click', reviewMaterial);
+        
+        // Language switching
+        langIndoBtn.addEventListener('click', () => switchLanguage('indonesia'));
+        langEngBtn.addEventListener('click', () => switchLanguage('english'));
+        
+        // Time selection
+        timeShortBtn.addEventListener('click', () => selectTime(15));
+        timeMediumBtn.addEventListener('click', () => selectTime(30));
+        timeLongBtn.addEventListener('click', () => selectTime(45));
+
+        // Switch language
+        function switchLanguage(language) {
+            currentLanguage = language;
+            lang = LANGUAGES[language];
+            
+            // Update language buttons
+            if (language === 'indonesia') {
+                langIndoBtn.classList.add('active');
+                langEngBtn.classList.remove('active');
+            } else {
+                langEngBtn.classList.add('active');
+                langIndoBtn.classList.remove('active');
+            }
+            
+            // Update UI text
+            updateUIText();
+        }
+
+        // Update all UI text based on current language
+        function updateUIText() {
+            // Start screen
+            startTitle.textContent = lang.title;
+            startDescription.textContent = lang.description;
+            feature1Title.textContent = lang.feature1;
+            feature1Desc.textContent = lang.feature1Desc;
+            feature2Title.textContent = lang.feature2;
+            feature2Desc.textContent = lang.feature2Desc;
+            feature3Title.textContent = lang.feature3;
+            feature3Desc.textContent = lang.feature3Desc;
+            settingsTitle.textContent = lang.settings;
+            categoryLabel.textContent = lang.categoryLabel;
+            catArithmeticLabel.textContent = lang.catArithmetic;
+            catAlgebraLabel.textContent = lang.catAlgebra;
+            catGeometryLabel.textContent = lang.catGeometry;
+            timeLabel.textContent = lang.timeLabel;
+            timeShortLabel.textContent = lang.timeShort;
+            timeMediumLabel.textContent = lang.timeMedium;
+            timeLongLabel.textContent = lang.timeLong;
+            initialLevelLabel.textContent = lang.initialLevel;
+            initialLevelText.textContent = lang.initialLevelText;
+            maxLevelLabel.textContent = lang.maxLevel;
+            maxLevelText.textContent = lang.maxLevelText;
+            startButtonText.textContent = lang.startButton;
+            
+            // Game screen
+            gameTitle.textContent = lang.gameTitle;
+            scoreLabel.textContent = lang.score;
+            questionLabel.textContent = lang.question;
+            timerLabel.textContent = lang.timer;
+            streakLabel.textContent = lang.streak;
+            progressLabel.textContent = lang.progress;
+            levelProgressLabel.textContent = lang.levelProgress;
+            performanceLabel.textContent = lang.performance;
+            questionTypeText.textContent = lang.questionType;
+            questionInstruction.textContent = lang.instruction;
+            optionsTitle.textContent = lang.optionsTitle;
+            hintLabel.textContent = lang.hintDefault;
+            hintButtonText.textContent = lang.hintButton;
+            skipButtonText.textContent = lang.skipButton;
+            nextButtonText.textContent = lang.nextButton;
+            
+            // Results screen
+            resultsTitle.textContent = lang.resultsTitle;
+            finalScoreLabel.textContent = lang.finalScore;
+            correctAnswersLabel.textContent = lang.correctAnswers;
+            maxLevelLabel2.textContent = lang.maxLevel2;
+            accuracyLabel.textContent = lang.accuracy;
+            performanceSummaryTitle.textContent = lang.performanceSummary;
+            levelProgressionTitle.textContent = lang.levelProgression;
+            levelStartLabel.textContent = lang.levelStart;
+            levelEndLabel.textContent = lang.levelEnd;
+            answersSummaryTitle.textContent = lang.answersSummary;
+            restartButtonText.textContent = lang.restartButton;
+            reviewButtonText.textContent = lang.reviewButton;
+            footerText.textContent = lang.footer;
+            
+            // Update difficulty badge if game is running
+            updateDifficultyBadge();
+            
+            // Update result message if results screen is active
+            if (!resultsScreen.classList.contains('hidden')) {
+                updateResultMessage();
+            }
+        }
+
+        // Select time per question
+        function selectTime(seconds) {
+            CONFIG.timePerQuestion = seconds;
+            
+            // Update UI for time buttons
+            timeShortBtn.classList.remove('border-blue-500', 'bg-blue-50', 'text-blue-700');
+            timeMediumBtn.classList.remove('border-blue-500', 'bg-blue-50', 'text-blue-700');
+            timeLongBtn.classList.remove('border-blue-500', 'bg-blue-50', 'text-blue-700');
+            
+            timeShortBtn.classList.add('border-gray-300', 'bg-white', 'text-gray-700');
+            timeMediumBtn.classList.add('border-gray-300', 'bg-white', 'text-gray-700');
+            timeLongBtn.classList.add('border-gray-300', 'bg-white', 'text-gray-700');
+            
+            if (seconds === 15) {
+                timeShortBtn.classList.add('border-blue-500', 'bg-blue-50', 'text-blue-700');
+                timeShortBtn.classList.remove('border-gray-300', 'bg-white', 'text-gray-700');
+            } else if (seconds === 30) {
+                timeMediumBtn.classList.add('border-blue-500', 'bg-blue-50', 'text-blue-700');
+                timeMediumBtn.classList.remove('border-gray-300', 'bg-white', 'text-gray-700');
+            } else {
+                timeLongBtn.classList.add('border-blue-500', 'bg-blue-50', 'text-blue-700');
+                timeLongBtn.classList.remove('border-gray-300', 'bg-white', 'text-gray-700');
+            }
+        }
+
+        // Start the game
+        function startGame() {
+            // Reset game state
+            currentQuestionIndex = 0;
+            score = 0;
+            streak = 0;
+            bestStreak = 0;
+            correctAnswers = 0;
+            currentLevel = 1;
+            maxLevelReached = 1;
+            performance = 0;
+            userAnswers.fill(null);
+            answerTimes.fill(0);
+            
+            // Get selected categories
+            CONFIG.categories.arithmetic = document.getElementById('cat-arithmetic').checked;
+            CONFIG.categories.algebra = document.getElementById('cat-algebra').checked;
+            CONFIG.categories.geometry = document.getElementById('cat-geometry').checked;
+            
+            // If no categories selected, default to arithmetic
+            if (!CONFIG.categories.arithmetic && !CONFIG.categories.algebra && !CONFIG.categories.geometry) {
+                CONFIG.categories.arithmetic = true;
+                document.getElementById('cat-arithmetic').checked = true;
+            }
+            
+            // Generate questions
+            generateQuestions();
+            
+            // Update UI
+            startScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            resultsScreen.classList.add('hidden');
+            
+            // Reset timer display
+            timeLeft = CONFIG.timePerQuestion;
+            timerCircle.textContent = timeLeft;
+            timerCircle.className = 'timer-circle timer-normal';
+            
+            // Load first question
+            loadQuestion();
+        }
+
+        // Generate questions based on current level and categories
+        function generateQuestions() {
+            questions = [];
+            
+            for (let i = 0; i < CONFIG.totalQuestions; i++) {
+                // Determine category for this question
+                let availableCategories = [];
+                if (CONFIG.categories.arithmetic) availableCategories.push('arithmetic');
+                if (CONFIG.categories.algebra) availableCategories.push('algebra');
+                if (CONFIG.categories.geometry) availableCategories.push('geometry');
+                
+                const category = availableCategories[Math.floor(Math.random() * availableCategories.length)];
+                
+                // Generate question based on category and level
+                let question;
+                switch (category) {
+                    case 'arithmetic':
+                        question = generateArithmeticQuestion(currentLevel);
+                        break;
+                    case 'algebra':
+                        question = generateAlgebraQuestion(currentLevel);
+                        break;
+                    case 'geometry':
+                        question = generateGeometryQuestion(currentLevel);
+                        break;
+                }
+                
+                // Add category and level info
+                question.category = category;
+                question.level = currentLevel;
+                
+                questions.push(question);
+            }
+        }
+
+        // Generate arithmetic question based on level
+        function generateArithmeticQuestion(level) {
+            let num1, num2, operation, answer, expression;
+            let options = [];
+            
+            // Define operations based on level
+            const operations = ['+', '-', '×', '÷'];
+            
+            // Adjust difficulty based on level
+            let maxNumber = 10 + (level * 10);
+            let operationIndex;
+            
+            switch (level) {
+                case 1: // Easy: addition and subtraction with small numbers
+                    operationIndex = Math.floor(Math.random() * 2); // + or -
+                    num1 = Math.floor(Math.random() * 20) + 1;
+                    num2 = Math.floor(Math.random() * 20) + 1;
+                    break;
+                case 2: // Medium: all operations with medium numbers
+                    operationIndex = Math.floor(Math.random() * 4);
+                    num1 = Math.floor(Math.random() * 50) + 1;
+                    num2 = Math.floor(Math.random() * 50) + 1;
+                    break;
+                case 3: // Intermediate: larger numbers and decimals
+                    operationIndex = Math.floor(Math.random() * 4);
+                    num1 = Math.floor(Math.random() * 100) + 1;
+                    num2 = Math.floor(Math.random() * 100) + 1;
+                    if (operationIndex === 3) { // For division, ensure integer result
+                        num2 = Math.floor(Math.random() * 10) + 1;
+                        num1 = num2 * (Math.floor(Math.random() * 10) + 1);
+                    }
+                    break;
+                case 4: // Hard: mixed operations with larger numbers
+                    operationIndex = Math.floor(Math.random() * 4);
+                    num1 = Math.floor(Math.random() * 200) + 1;
+                    num2 = Math.floor(Math.random() * 200) + 1;
+                    if (operationIndex === 3) { // For division, ensure integer result
+                        num2 = Math.floor(Math.random() * 15) + 1;
+                        num1 = num2 * (Math.floor(Math.random() * 15) + 1);
+                    }
+                    break;
+                case 5: // Expert: complex operations including percentages
+                    operationIndex = Math.floor(Math.random() * 5); // Includes percentage
+                    if (operationIndex === 4) {
+                        // Percentage question
+                        num1 = Math.floor(Math.random() * 200) + 1;
+                        num2 = Math.floor(Math.random() * 100) + 1;
+                        expression = `${num1} × ${num2}%`;
+                        answer = Math.round((num1 * num2 / 100) * 100) / 100;
+                    } else {
+                        num1 = Math.floor(Math.random() * 500) + 1;
+                        num2 = Math.floor(Math.random() * 500) + 1;
+                        if (operationIndex === 3) { // For division, ensure integer result
+                            num2 = Math.floor(Math.random() * 20) + 1;
+                            num1 = num2 * (Math.floor(Math.random() * 25) + 1);
+                        }
+                    }
+                    break;
+            }
+            
+            // If not percentage question
+            if (!expression) {
+                operation = operations[operationIndex];
+                expression = `${num1} ${operation} ${num2}`;
+                
+                // Calculate answer
+                switch (operation) {
+                    case '+': answer = num1 + num2; break;
+                    case '-': answer = num1 - num2; break;
+                    case '×': answer = num1 * num2; break;
+                    case '÷': answer = num1 / num2; break;
+                }
+            }
+            
+            // Generate wrong options
+            while (options.length < 3) {
+                let wrongAnswer;
+                if (level <= 2) {
+                    wrongAnswer = answer + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 5) + 1);
+                } else {
+                    wrongAnswer = answer * (0.8 + Math.random() * 0.4); // 80% to 120% of correct answer
+                    wrongAnswer = Math.round(wrongAnswer * 100) / 100;
+                }
+                
+                // Ensure wrong answer is different from correct answer and other wrong answers
+                if (wrongAnswer !== answer && !options.includes(wrongAnswer)) {
+                    options.push(wrongAnswer);
+                }
+            }
+            
+            // Add correct answer to options and shuffle
+            options.push(answer);
+            shuffleArray(options);
+            
+            // Generate hint based on operation
+            let hint = "";
+            switch (operations[operationIndex]) {
+                case '+': hint = lang.currentLanguage === 'indonesia' ? "Tambahkan kedua angka." : "Add the two numbers."; break;
+                case '-': hint = lang.currentLanguage === 'indonesia' ? "Kurangkan angka kedua dari angka pertama." : "Subtract the second number from the first."; break;
+                case '×': hint = lang.currentLanguage === 'indonesia' ? "Kalikan kedua angka." : "Multiply the two numbers."; break;
+                case '÷': hint = lang.currentLanguage === 'indonesia' ? "Bagi angka pertama dengan angka kedua." : "Divide the first number by the second."; break;
+            }
+            
+            return {
+                expression: expression,
+                answer: answer,
+                options: options,
+                hint: hint,
+                type: 'arithmetic'
+            };
+        }
+
+        // Generate algebra question based on level
+        function generateAlgebraQuestion(level) {
+            let question, answer, options = [];
+            
+            switch (level) {
+                case 1: // Easy: simple equations like x + 5 = 10
+                    const num1 = Math.floor(Math.random() * 10) + 1;
+                    const num2 = Math.floor(Math.random() * 10) + 1;
+                    const operation = Math.random() > 0.5 ? '+' : '-';
+                    
+                    if (operation === '+') {
+                        question = `x + ${num1} = ${num1 + num2}`;
+                        answer = num2;
+                    } else {
+                        question = `x - ${num1} = ${num2}`;
+                        answer = num1 + num2;
+                    }
+                    break;
+                    
+                case 2: // Medium: equations with multiplication
+                    const a = Math.floor(Math.random() * 5) + 1;
+                    const b = Math.floor(Math.random() * 10) + 1;
+                    question = `${a}x = ${a * b}`;
+                    answer = b;
+                    break;
+                    
+                case 3: // Intermediate: two-step equations
+                    const c = Math.floor(Math.random() * 5) + 1;
+                    const d = Math.floor(Math.random() * 10) + 1;
+                    const e = Math.floor(Math.random() * 10) + 1;
+                    question = `${c}x + ${d} = ${c * e + d}`;
+                    answer = e;
+                    break;
+                    
+                case 4: // Hard: equations with fractions
+                    const f = Math.floor(Math.random() * 5) + 1;
+                    const g = Math.floor(Math.random() * 10) + 1;
+                    question = `x/${f} = ${g}`;
+                    answer = f * g;
+                    break;
+                    
+                case 5: // Expert: quadratic equations (simple ones)
+                    const h = Math.floor(Math.random() * 3) + 1;
+                    question = `x² = ${h * h}`;
+                    answer = h;
+                    break;
+            }
+            
+            // Generate wrong options
+            while (options.length < 3) {
+                let wrongAnswer;
+                if (level <= 2) {
+                    wrongAnswer = answer + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 3) + 1);
+                } else {
+                    wrongAnswer = answer + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 5) + 1);
+                }
+                
+                if (wrongAnswer !== answer && !options.includes(wrongAnswer)) {
+                    options.push(wrongAnswer);
+                }
+            }
+            
+            options.push(answer);
+            shuffleArray(options);
+            
+            const hint = lang.currentLanguage === 'indonesia' 
+                ? "Selesaikan persamaan untuk mencari nilai x." 
+                : "Solve the equation to find the value of x.";
+                
+            const formula = lang.currentLanguage === 'indonesia'
+                ? "Untuk ax = b, maka x = b/a"
+                : "For ax = b, then x = b/a";
+            
+            return {
+                expression: question,
+                answer: answer,
+                options: options,
+                hint: hint,
+                formula: formula,
+                type: 'algebra'
+            };
+        }
+
+        // Generate geometry question based on level
+        function generateGeometryQuestion(level) {
+            let question, answer, options = [];
+            let formula = "";
+            
+            switch (level) {
+                case 1: // Easy: area of square
+                    const side = Math.floor(Math.random() * 10) + 1;
+                    question = lang.currentLanguage === 'indonesia' 
+                        ? `Luas persegi dengan sisi ${side} adalah?` 
+                        : `Area of a square with side ${side} is?`;
+                    answer = side * side;
+                    formula = "s × s";
+                    break;
+                    
+                case 2: // Medium: area of rectangle
+                    const length = Math.floor(Math.random() * 10) + 1;
+                    const width = Math.floor(Math.random() * 10) + 1;
+                    question = lang.currentLanguage === 'indonesia'
+                        ? `Luas persegi panjang dengan panjang ${length} dan lebar ${width} adalah?`
+                        : `Area of a rectangle with length ${length} and width ${width} is?`;
+                    answer = length * width;
+                    formula = "p × l";
+                    break;
+                    
+                case 3: // Intermediate: circumference of circle
+                    const radius = Math.floor(Math.random() * 10) + 1;
+                    question = lang.currentLanguage === 'indonesia'
+                        ? `Keliling lingkaran dengan jari-jari ${radius} (gunakan π = 3.14) adalah?`
+                        : `Circumference of a circle with radius ${radius} (use π = 3.14) is?`;
+                    answer = Math.round(2 * 3.14 * radius * 100) / 100;
+                    formula = "2πr";
+                    break;
+                    
+                case 4: // Hard: area of triangle
+                    const base = Math.floor(Math.random() * 10) + 1;
+                    const height = Math.floor(Math.random() * 10) + 1;
+                    question = lang.currentLanguage === 'indonesia'
+                        ? `Luas segitiga dengan alas ${base} dan tinggi ${height} adalah?`
+                        : `Area of a triangle with base ${base} and height ${height} is?`;
+                    answer = (base * height) / 2;
+                    formula = "½ × a × t";
+                    break;
+                    
+                case 5: // Expert: volume of cube
+                    const edge = Math.floor(Math.random() * 10) + 1;
+                    question = lang.currentLanguage === 'indonesia'
+                        ? `Volume kubus dengan rusuk ${edge} adalah?`
+                        : `Volume of a cube with edge ${edge} is?`;
+                    answer = edge * edge * edge;
+                    formula = "s³";
+                    break;
+            }
+            
+            // Generate wrong options
+            while (options.length < 3) {
+                let wrongAnswer;
+                if (level <= 2) {
+                    wrongAnswer = answer + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 5) + 1);
+                } else {
+                    wrongAnswer = answer * (0.7 + Math.random() * 0.6); // 70% to 130% of correct answer
+                    wrongAnswer = Math.round(wrongAnswer * 100) / 100;
+                }
+                
+                if (wrongAnswer !== answer && !options.includes(wrongAnswer)) {
+                    options.push(wrongAnswer);
+                }
+            }
+            
+            options.push(answer);
+            shuffleArray(options);
+            
+            const hint = lang.currentLanguage === 'indonesia'
+                ? "Gunakan rumus geometri yang tepat."
+                : "Use the correct geometry formula.";
+            
+            return {
+                expression: question,
+                answer: answer,
+                options: options,
+                hint: hint,
+                formula: formula,
+                type: 'geometry'
+            };
+        }
+
+        // Load a question
+        function loadQuestion() {
+            // Reset UI state
+            nextBtn.classList.add('hidden');
+            hintBtn.classList.remove('hidden');
+            skipBtn.classList.remove('hidden');
+            feedbackMessage.classList.add('hidden');
+            hintBox.classList.add('hidden');
+            formulaBox.classList.add('hidden');
+            levelChangeNotification.classList.add('hidden');
+            
+            // Reset hint button
+            hintBtn.disabled = false;
+            hintBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            
+            // Record question start time
+            questionStartTime = Date.now();
+            
+            // Update streak display
+            if (streak > 1) {
+                streakContainer.classList.remove('hidden');
+                streakCount.textContent = streak;
+            } else {
+                streakContainer.classList.add('hidden');
+            }
+            
+            // Get current question
+            const question = questions[currentQuestionIndex];
+            
+            // Update question display
+            mathExpression.textContent = question.expression;
+            
+            // Update category badge
+            let categoryText = "";
+            if (question.category === 'arithmetic') {
+                categoryText = currentLanguage === 'indonesia' ? 'Aritmatika' : 'Arithmetic';
+            } else if (question.category === 'algebra') {
+                categoryText = currentLanguage === 'indonesia' ? 'Aljabar' : 'Algebra';
+            } else {
+                categoryText = currentLanguage === 'indonesia' ? 'Geometri' : 'Geometry';
+            }
+            document.getElementById('question-category').textContent = categoryText;
+            
+            // Update difficulty badge
+            updateDifficultyBadge();
+            
+            // Update progress
+            const progress = ((currentQuestionIndex + 1) / CONFIG.totalQuestions) * 100;
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = Math.round(progress);
+            
+            // Update counters
+            currentQuestionElement.textContent = currentQuestionIndex + 1;
+            scoreElement.textContent = score;
+            currentLevelElement.textContent = currentLevel;
+            performanceValue.textContent = performance;
+            
+            // Generate answer options
+            generateOptions(question);
+            
+            // Start timer
+            startTimer();
+        }
+
+        // Update difficulty badge
+        function updateDifficultyBadge() {
+            // Update difficulty badge
+            const difficultyLevels = lang.difficultyLevels;
+            currentDifficulty.textContent = `${currentLanguage === 'indonesia' ? 'Level' : 'Level'} ${currentLevel}: ${difficultyLevels[currentLevel - 1]}`;
+            
+            // Update badge color
+            const badge = document.getElementById('current-difficulty-badge');
+            badge.className = 'difficulty-badge';
+            
+            if (currentLevel === 1) badge.classList.add('difficulty-easy');
+            else if (currentLevel === 2) badge.classList.add('difficulty-medium');
+            else if (currentLevel === 3) badge.classList.add('difficulty-medium');
+            else if (currentLevel === 4) badge.classList.add('difficulty-hard');
+            else badge.classList.add('difficulty-expert');
+        }
+
+        // Generate answer options
+        function generateOptions(question) {
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionCard = document.createElement('div');
+                optionCard.className = 'option-card';
+                optionCard.innerHTML = `
+                    <div class="flex items-center w-full">
+                        <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-600 font-bold text-lg mr-4">
+                            ${String.fromCharCode(65 + index)}
+                        </div>
+                        <div class="text-xl font-medium math-font">${option}</div>
+                    </div>
+                `;
+                
+                // Add click event
+                optionCard.addEventListener('click', () => selectAnswer(option, question.answer, optionCard, question));
+                
+                // If user already answered this question, show the result
+                if (userAnswers[currentQuestionIndex] !== null) {
+                    if (userAnswers[currentQuestionIndex] === option) {
+                        optionCard.classList.add('selected');
+                        if (option === question.answer) {
+                            optionCard.classList.add('correct');
+                        } else {
+                            optionCard.classList.add('incorrect');
+                        }
+                    } else if (option === question.answer) {
+                        optionCard.classList.add('correct');
+                    }
+                }
+                
+                optionsContainer.appendChild(optionCard);
+            });
+        }
+
+        // Start timer for current question
+        function startTimer() {
+            clearInterval(timer);
+            timeLeft = CONFIG.timePerQuestion;
+            timerCircle.textContent = timeLeft;
+            timerCircle.className = 'timer-circle timer-normal';
+            
+            timer = setInterval(() => {
+                timeLeft--;
+                timerCircle.textContent = timeLeft;
+                
+                // Update timer color based on remaining time
+                if (timeLeft <= 10) {
+                    timerCircle.className = 'timer-circle timer-warning';
+                }
+                
+                if (timeLeft <= 5) {
+                    timerCircle.className = 'timer-circle timer-danger';
+                }
+                
+                // Time's up
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timeUp();
+                }
+            }, 1000);
+        }
+
+        // Handle time up
+        function timeUp() {
+            // Mark as unanswered
+            userAnswers[currentQuestionIndex] = null;
+            answerTimes[currentQuestionIndex] = CONFIG.timePerQuestion;
+            
+            // Disable all option cards
+            const allOptionCards = document.querySelectorAll('.option-card');
+            allOptionCards.forEach(card => {
+                card.style.pointerEvents = 'none';
+            });
+            
+            // Show correct answer
+            const question = questions[currentQuestionIndex];
+            const allOptionCardsArray = Array.from(allOptionCards);
+            allOptionCardsArray.forEach(card => {
+                const optionText = card.querySelector('.math-font').textContent;
+                if (parseFloat(optionText) === question.answer) {
+                    card.classList.add('correct');
+                }
+            });
+            
+            // Reset streak
+            streak = 0;
+            
+            // Show feedback
+            showFeedback(false, null, question.answer, 0, true);
+            
+            // Show next button
+            nextBtn.classList.remove('hidden');
+            hintBtn.classList.add('hidden');
+            skipBtn.classList.add('hidden');
+        }
+
+        // Select an answer
+        function selectAnswer(selectedOption, correctAnswer, optionCard, question) {
+            // If already answered, ignore
+            if (userAnswers[currentQuestionIndex] !== null) return;
+            
+            // Stop timer
+            clearInterval(timer);
+            
+            // Calculate time taken
+            const timeTaken = (Date.now() - questionStartTime) / 1000;
+            answerTimes[currentQuestionIndex] = timeTaken;
+            
+            // Mark as answered
+            userAnswers[currentQuestionIndex] = selectedOption;
+            
+            // Disable all option cards
+            const allOptionCards = document.querySelectorAll('.option-card');
+            allOptionCards.forEach(card => {
+                card.style.pointerEvents = 'none';
+            });
+            
+            // Check if answer is correct
+            const isCorrect = parseFloat(selectedOption) === correctAnswer;
+            
+            // Update streak
+            if (isCorrect) {
+                streak++;
+                if (streak > bestStreak) bestStreak = streak;
+                correctAnswers++;
+            } else {
+                streak = 0;
+            }
+            
+            // Calculate points
+            let points = calculatePoints(isCorrect, timeTaken, currentLevel);
+            if (isCorrect) {
+                score += points;
+                scoreElement.textContent = score;
+                
+                // Show reward animation for good performance
+                if (points >= 20) {
+                    showRewardAnimation('star');
+                } else if (points >= 15) {
+                    showRewardAnimation('fire');
+                }
+            }
+            
+            // Mark selected option
+            optionCard.classList.add('selected');
+            
+            // Show hint or formula if available
+            if (question.hint && isCorrect) {
+                hintBox.classList.remove('hidden');
+                document.getElementById('hint-text').textContent = question.hint;
+            }
+            
+            if (question.formula && question.type !== 'arithmetic') {
+                formulaBox.classList.remove('hidden');
+                document.getElementById('formula-text').textContent = question.formula;
+            }
+            
+            // Show feedback
+            showFeedback(isCorrect, selectedOption, correctAnswer, points);
+            
+            // Adjust level based on performance
+            adjustLevel(isCorrect, timeTaken);
+            
+            // Show next button
+            nextBtn.classList.remove('hidden');
+            hintBtn.classList.add('hidden');
+            skipBtn.classList.add('hidden');
+        }
+
+        // Calculate points for answer
+        function calculatePoints(isCorrect, timeTaken, level) {
+            if (!isCorrect) return 0;
+            
+            // Base points based on level
+            let points = level * 5;
+            
+            // Time bonus (faster answers get more points)
+            const timeRatio = timeTaken / CONFIG.timePerQuestion;
+            if (timeRatio < 0.3) points += 10; // Very fast
+            else if (timeRatio < 0.6) points += 5; // Fast
+            else if (timeRatio < 0.8) points += 2; // Moderate
+            
+            // Streak bonus
+            if (streak >= 3) points += 5;
+            if (streak >= 5) points += 10;
+            
+            return points;
+        }
+
+        // Adjust level based on performance
+        function adjustLevel(isCorrect, timeTaken) {
+            const previousLevel = currentLevel;
+            
+            // Calculate performance metric (0-100)
+            const timeScore = Math.max(0, 100 - (timeTaken / CONFIG.timePerQuestion) * 100);
+            const correctnessScore = isCorrect ? 100 : 0;
+            const newPerformance = (timeScore + correctnessScore) / 2;
+            
+            // Update performance with smoothing
+            performance = Math.round((performance * 0.7) + (newPerformance * 0.3));
+            
+            // Adjust level based on performance
+            if (performance >= 80 && currentLevel < CONFIG.levels) {
+                // Level up
+                currentLevel++;
+                if (currentLevel > maxLevelReached) maxLevelReached = currentLevel;
+                
+                // Show level up notification
+                levelChangeNotification.classList.remove('hidden');
+                levelChangeTitle.textContent = lang.levelUp;
+                levelChangeText.textContent = currentLanguage === 'indonesia' 
+                    ? `Naik ke Level ${currentLevel}! Pertanyaan akan lebih sulit.` 
+                    : `Increased to Level ${currentLevel}! Questions will be harder.`;
+                    
+                // Animate level badge
+                const badge = document.getElementById('current-difficulty-badge');
+                badge.classList.add('level-up-animation');
+                setTimeout(() => badge.classList.remove('level-up-animation'), 800);
+                
+            } else if (performance <= 40 && currentLevel > 1) {
+                // Level down
+                currentLevel--;
+                
+                // Show level down notification
+                levelChangeNotification.classList.remove('hidden');
+                levelChangeTitle.textContent = lang.levelDown;
+                levelChangeText.textContent = currentLanguage === 'indonesia'
+                    ? `Turun ke Level ${currentLevel}. Pertanyaan akan lebih mudah.`
+                    : `Decreased to Level ${currentLevel}. Questions will be easier.`;
+            }
+            
+            // Update difficulty badge if level changed
+            if (previousLevel !== currentLevel) {
+                updateDifficultyBadge();
+            }
+        }
+
+        // Show feedback after answer
+        function showFeedback(isCorrect, selectedOption, correctAnswer, points, timeUp = false) {
+            feedbackMessage.classList.remove('hidden');
+            
+            if (timeUp) {
+                feedbackMessage.className = 'mt-8 p-5 rounded-xl bg-red-50 border border-red-200';
+                feedbackIcon.className = 'fas fa-hourglass-end text-red-600';
+                feedbackTitle.textContent = lang.timeUp;
+                feedbackTitle.className = 'font-bold text-lg text-red-800';
+                feedbackText.textContent = currentLanguage === 'indonesia'
+                    ? `Waktu habis! Jawaban yang benar adalah ${correctAnswer}.`
+                    : `Time's up! The correct answer is ${correctAnswer}.`;
+                feedbackDetails.innerHTML = '';
+                return;
+            }
+            
+            if (isCorrect) {
+                feedbackMessage.className = 'mt-8 p-5 rounded-xl bg-green-50 border border-green-200';
+                feedbackIcon.className = 'fas fa-check-circle text-green-600';
+                feedbackTitle.textContent = lang.correctFeedback[Math.floor(Math.random() * lang.correctFeedback.length)];
+                feedbackTitle.className = 'font-bold text-lg text-green-800';
+                
+                let feedback = currentLanguage === 'indonesia'
+                    ? `Jawaban Anda <span class="font-bold">${selectedOption}</span> benar!`
+                    : `Your answer <span class="font-bold">${selectedOption}</span> is correct!`;
+                    
+                if (points > 0) {
+                    feedback += currentLanguage === 'indonesia'
+                        ? ` Anda mendapatkan <span class="font-bold">${points} poin</span>!`
+                        : ` You earned <span class="font-bold">${points} points</span>!`;
+                }
+                
+                feedbackText.innerHTML = feedback;
+                
+                let details = '';
+                if (streak >= 3) {
+                    details += currentLanguage === 'indonesia'
+                        ? `🔥 <span class="font-bold">Streak ${streak} berturut-turut!</span>`
+                        : `🔥 <span class="font-bold">${streak} answer streak!</span>`;
+                }
+                
+                feedbackDetails.innerHTML = details;
+            } else {
+                feedbackMessage.className = 'mt-8 p-5 rounded-xl bg-red-50 border border-red-200';
+                feedbackIcon.className = 'fas fa-times-circle text-red-600';
+                feedbackTitle.textContent = lang.incorrectFeedback[Math.floor(Math.random() * lang.incorrectFeedback.length)];
+                feedbackTitle.className = 'font-bold text-lg text-red-800';
+                
+                const feedback = currentLanguage === 'indonesia'
+                    ? `Jawaban yang benar adalah <span class="font-bold">${correctAnswer}</span>.`
+                    : `The correct answer is <span class="font-bold">${correctAnswer}</span>.`;
+                    
+                feedbackText.innerHTML = feedback;
+                feedbackDetails.innerHTML = '';
+            }
+        }
+
+        // Show hint
+        function showHint() {
+            const question = questions[currentQuestionIndex];
+            
+            // Show hint box
+            hintBox.classList.remove('hidden');
+            document.getElementById('hint-text').textContent = question.hint;
+            
+            // Show formula box for algebra/geometry
+            if (question.formula && question.type !== 'arithmetic') {
+                formulaBox.classList.remove('hidden');
+                document.getElementById('formula-text').textContent = question.formula;
+            }
+            
+            // Disable hint button
+            hintBtn.disabled = true;
+            hintBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            // Reduce score for using hint
+            score = Math.max(0, score - 10);
+            scoreElement.textContent = score;
+        }
+
+        // Skip question
+        function skipQuestion() {
+            // Mark as skipped
+            userAnswers[currentQuestionIndex] = null;
+            answerTimes[currentQuestionIndex] = CONFIG.timePerQuestion;
+            
+            // Reset streak
+            streak = 0;
+            
+            // Move to next question or end game
+            if (currentQuestionIndex < CONFIG.totalQuestions - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        // Go to next question
+        function nextQuestion() {
+            // Move to next question or end game
+            if (currentQuestionIndex < CONFIG.totalQuestions - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        // End the game
+        function endGame() {
+            // Stop timer
+            clearInterval(timer);
+            
+            // Calculate accuracy
+            const accuracy = Math.round((correctAnswers / CONFIG.totalQuestions) * 100);
+            
+            // Update results screen
+            finalScoreElement.textContent = score;
+            correctAnswersElement.textContent = `${correctAnswers}/${CONFIG.totalQuestions}`;
+            maxLevelReachedElement.textContent = maxLevelReached;
+            accuracyElement.textContent = `${accuracy}%`;
+            levelStartElement.textContent = 1;
+            levelEndElement.textContent = maxLevelReached;
+            
+            // Update level progression bar
+            const progression = ((maxLevelReached - 1) / (CONFIG.levels - 1)) * 100;
+            levelProgressionBar.style.width = `${progression}%`;
+            
+            // Update result message
+            updateResultMessage();
+            
+            // Generate answers summary
+            generateAnswersSummary();
+            
+            // Switch to results screen
+            gameScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+        }
+
+        // Update result message based on performance
+        function updateResultMessage() {
+            const accuracy = Math.round((correctAnswers / CONFIG.totalQuestions) * 100);
+            let message = "";
+            
+            if (accuracy === 100) {
+                message = currentLanguage === 'indonesia'
+                    ? "Sempurna! Anda benar-benar menguasai matematika! 🎉"
+                    : "Perfect! You truly master mathematics! 🎉";
+            } else if (accuracy >= 80) {
+                message = currentLanguage === 'indonesia'
+                    ? "Hebat! Hasil yang sangat mengesankan! 💪"
+                    : "Excellent! Very impressive results! 💪";
+            } else if (accuracy >= 60) {
+                message = currentLanguage === 'indonesia'
+                    ? "Bagus! Kemampuan matematika Anda solid. 👍"
+                    : "Good job! Your math skills are solid. 👍";
+            } else if (accuracy >= 40) {
+                message = currentLanguage === 'indonesia'
+                    ? "Cukup baik! Terus berlatih untuk meningkatkan kemampuan. 📚"
+                    : "Not bad! Keep practicing to improve your skills. 📚";
+            } else {
+                message = currentLanguage === 'indonesia'
+                    ? "Jangan menyerah! Matematika membutuhkan latihan. Coba lagi! 💪"
+                    : "Don't give up! Math takes practice. Try again! 💪";
+            }
+            
+            resultMessageElement.textContent = message;
+        }
+
+        // Generate answers summary
+        function generateAnswersSummary() {
+            answersSummaryElement.innerHTML = '';
+            
+            questions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const correctAnswer = question.answer;
+                const isCorrect = userAnswer !== null && parseFloat(userAnswer) === correctAnswer;
+                const isSkipped = userAnswer === null;
+                const timeTaken = answerTimes[index];
+                
+                const summaryItem = document.createElement('div');
+                summaryItem.className = `p-5 rounded-xl ${isCorrect ? 'bg-green-100 border-green-200' : isSkipped ? 'bg-gray-100 border-gray-200' : 'bg-red-100 border-red-200'} border`;
+                
+                // Format question text
+                let questionText = question.expression;
+                if (question.type === 'geometry' && currentLanguage === 'english') {
+                    // For geometry questions in English, we need to adjust the text
+                    // The expression already contains the English question
+                    questionText = question.expression;
+                }
+                
+                // Determine status text
+                let statusText = "";
+                let statusColor = "";
+                if (isCorrect) {
+                    statusText = currentLanguage === 'indonesia' ? "Benar" : "Correct";
+                    statusColor = "text-green-800 bg-green-200";
+                } else if (isSkipped) {
+                    statusText = currentLanguage === 'indonesia' ? "Dilewati" : "Skipped";
+                    statusColor = "text-gray-800 bg-gray-200";
+                } else {
+                    statusText = currentLanguage === 'indonesia' ? "Salah" : "Wrong";
+                    statusColor = "text-red-800 bg-red-200";
+                }
+                
+                // Format time
+                const timeText = timeTaken === CONFIG.timePerQuestion 
+                    ? (currentLanguage === 'indonesia' ? "Waktu habis" : "Time's up") 
+                    : `${Math.round(timeTaken)}s`;
+                
+                // Determine level
+                const levelText = currentLanguage === 'indonesia' 
+                    ? `Level ${question.level}` 
+                    : `Level ${question.level}`;
+                
+                summaryItem.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="font-bold text-gray-800">${currentLanguage === 'indonesia' ? 'Pertanyaan' : 'Question'} ${index + 1}: ${questionText}</div>
+                        <div class="flex space-x-2">
+                            <span class="text-xs font-medium px-2 py-1 rounded-full ${statusColor}">
+                                ${statusText}
+                            </span>
+                            <span class="text-xs font-medium px-2 py-1 rounded-full bg-blue-100 text-blue-800">
+                                ${timeText}
+                            </span>
+                            <span class="text-xs font-medium px-2 py-1 rounded-full bg-purple-100 text-purple-800">
+                                ${levelText}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-sm text-gray-700 mb-1">
+                        <span class="font-medium">${currentLanguage === 'indonesia' ? 'Jawaban Anda' : 'Your answer'}:</span> 
+                        <span class="${isCorrect ? 'text-green-700 font-medium' : 'text-red-700'}">${userAnswer !== null ? userAnswer : (currentLanguage === 'indonesia' ? 'Tidak dijawab' : 'Not answered')}</span>
+                    </div>
+                    ${!isCorrect && !isSkipped ? `
+                        <div class="text-sm text-gray-700 mb-2">
+                            <span class="font-medium">${currentLanguage === 'indonesia' ? 'Jawaban benar' : 'Correct answer'}:</span> 
+                            <span class="text-green-700 font-medium">${correctAnswer}</span>
+                        </div>
+                    ` : ''}
+                    <div class="text-xs text-gray-500">
+                        ${currentLanguage === 'indonesia' ? 'Kategori' : 'Category'}: ${question.category === 'arithmetic' ? (currentLanguage === 'indonesia' ? 'Aritmatika' : 'Arithmetic') : question.category === 'algebra' ? (currentLanguage === 'indonesia' ? 'Aljabar' : 'Algebra') : (currentLanguage === 'indonesia' ? 'Geometri' : 'Geometry')} 
+                        | ${currentLanguage === 'indonesia' ? 'Tipe' : 'Type'}: ${question.type}
+                    </div>
+                `;
+                
+                answersSummaryElement.appendChild(summaryItem);
+            });
+        }
+
+        // Show reward animation
+        function showRewardAnimation(type) {
+            const container = document.getElementById('reward-container');
+            const reward = document.createElement('div');
+            reward.className = 'reward-animation';
+            
+            if (type === 'star') {
+                reward.innerHTML = '<i class="fas fa-star text-yellow-500"></i>';
+            } else {
+                reward.innerHTML = '<i class="fas fa-fire text-orange-500"></i>';
+            }
+            
+            container.appendChild(reward);
+            
+            // Remove animation after it completes
+            setTimeout(() => {
+                container.removeChild(reward);
+            }, 2000);
+        }
+
+        // Restart game
+        function restartGame() {
+            startGame();
+        }
+
+        // Review material (go back to start screen)
+        function reviewMaterial() {
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+
+        // Utility function to shuffle an array
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // Initialize
+        function init() {
+            // Set default time
+            selectTime(30);
+            
+            // Initialize language
+            switchLanguage('indonesia');
+            
+            // Set up category checkboxes
+            document.getElementById('cat-arithmetic').checked = true;
+            document.getElementById('cat-algebra').checked = true;
+            document.getElementById('cat-geometry').checked = false;
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

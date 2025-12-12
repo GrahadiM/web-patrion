@@ -1,27 +1,9 @@
 // Mobile menu toggle
-document.getElementById('mobile-menu-button').addEventListener('click', function () {
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenu.classList.toggle('hidden');
-});
-
-// Smooth scroll untuk navigasi
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId !== '#') {
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-                // Tutup mobile menu jika terbuka
-                document.getElementById('mobile-menu').classList.add('hidden');
-            }
-        }
-    });
-});
+const mobBtn = document.getElementById('mobile-menu-button');
+const mobMenu = document.getElementById('mobile-menu');
+if(mobBtn && mobMenu){
+mobBtn.addEventListener('click', function(){ const expanded = mobBtn.getAttribute('aria-expanded') === 'true'; mobBtn.setAttribute('aria-expanded', String(!expanded)); mobMenu.classList.toggle('hidden'); });
+}
 
 // Particle background effect
 document.addEventListener('DOMContentLoaded', function () {
