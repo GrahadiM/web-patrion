@@ -912,12 +912,14 @@
                             p.status === "upcoming" ||
                             p.platform === "cinema" ||
                             p.platform === "tv" ||
+                            p.platform === "streaming" ||
+                            p.platform === "youtube" ||
                             p.platform === "ott" ||
                             p.platform === "movie" ||
                             p.platform === "digital" ||
                             p.platform === "podcast")
                 )
-                .slice(0, 9); // Limit to 6 trailers
+                .slice(0, 9); // Limit to 9 trailers
 
             const swiperContainer = document.querySelector(
                 ".trailers-swiper .swiper-wrapper"
