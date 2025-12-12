@@ -1215,7 +1215,7 @@
                 return isNaN(num) ? 0 : num;
                 
             } catch (error) {
-                console.warn('Error parsing views:', viewData, error);
+                // console.warn('Error parsing views:', viewData, error);
                 return 0;
             }
         }
@@ -1239,7 +1239,7 @@
                     }, 0)
                 };
                 
-                console.log('Program stats calculated:', stats);
+                // console.log('Program stats calculated:', stats);
                 
                 // Find stat elements more robustly
                 const statsSection = document.querySelector('.py-12.glass-effect');
@@ -1254,27 +1254,27 @@
                 }
                 
             } catch (error) {
-                console.warn('Failed to update program stats:', error);
+                // console.warn('Failed to update program stats:', error);
                 // Don't crash the whole app if stats fail
             }
         }
 
         // Debug function untuk melihat data API
         function debugProgramData(programs) {
-            console.log('=== DEBUG: Program Data from API ===');
-            programs.forEach((program, index) => {
-                console.log(`Program ${index + 1}:`, {
-                    id: program.id,
-                    title: program.title,
-                    platform: program.platform,
-                    status: program.status,
-                    views: program.views,
-                    episodes: program.episodes,
-                    viewsType: typeof program.views,
-                    viewsValue: program.views
-                });
-            });
-            console.log('===================================');
+            // console.log('=== DEBUG: Program Data from API ===');
+            // programs.forEach((program, index) => {
+                // console.log(`Program ${index + 1}:`, {
+                    // id: program.id,
+                    // title: program.title,
+                    // platform: program.platform,
+                    // status: program.status,
+                    // views: program.views,
+                    // episodes: program.episodes,
+                    // viewsType: typeof program.views,
+                    // viewsValue: program.views
+                // });
+            // });
+            // console.log('===================================');
         }
 
         function formatViews(views) {
@@ -1287,7 +1287,7 @@
                 }
                 return views.toString();
             } catch (error) {
-                console.warn('Error formatting views:', views, error);
+                // console.warn('Error formatting views:', views, error);
                 return '0';
             }
         }
@@ -1319,7 +1319,7 @@
             modal.classList.remove("hidden");
 
             video.play().catch((e) => {
-                console.error("Failed to play video:", e);
+                // console.error("Failed to play video:", e);
                 alert("Unable to play trailer. Please try again.");
             });
         }
@@ -1462,10 +1462,10 @@
                 if (data.data && Array.isArray(data.data)) return data.data;
                 if (data.programs && Array.isArray(data.programs)) return data.programs;
 
-                console.warn("Unknown API response format:", data);
+                // console.warn("Unknown API response format:", data);
                 return [];
             } catch (error) {
-                console.error("Failed to fetch programs:", error);
+                // console.error("Failed to fetch programs:", error);
                 return null;
             }
         }
@@ -1473,14 +1473,14 @@
         // Main initialization function
         async function initializeProgramPage() {
             try {
-                console.log('Loading programs from API...');
+                // console.log('Loading programs from API...');
                 
                 // Fetch programs from API
                 const programs = await fetchPrograms();
                 
                 if (!programs) {
                     // Use hardcoded data as fallback
-                    console.log('Using hardcoded data as fallback');
+                    // console.log('Using hardcoded data as fallback');
                     renderProgramCards(window.programs || []);
                     initializeTrailersSwiper(window.programs || []);
                     initializeRoadmapTimeline();
@@ -1493,19 +1493,19 @@
                     return;
                 }
                 
-                console.log(`Loaded ${programs.length} programs from API`);
+                // console.log(`Loaded ${programs.length} programs from API`);
                 
                 // Debug detailed data structure
-                console.log('Full API response sample:', JSON.stringify(programs[0], null, 2));
+                // console.log('Full API response sample:', JSON.stringify(programs[0], null, 2));
                 
                 // Check views property
                 programs.forEach((p, i) => {
-                    console.log(`Program ${i} views:`, {
-                        value: p.views,
-                        type: typeof p.views,
-                        isNull: p.views === null,
-                        isUndefined: p.views === undefined
-                    });
+                    // console.log(`Program ${i} views:`, {
+                        // value: p.views,
+                        // type: typeof p.views,
+                        // isNull: p.views === null,
+                        // isUndefined: p.views === undefined
+                    // });
                 });
                 
                 // Store globally for filtering/sorting
@@ -1532,11 +1532,11 @@
                 try {
                     updateProgramStats(programs);
                 } catch (statsError) {
-                    console.warn('Stats update failed, but continuing:', statsError);
+                    // console.warn('Stats update failed, but continuing:', statsError);
                 }
                 
             } catch (error) {
-                console.error('Failed to initialize program page:', error);
+                // console.error('Failed to initialize program page:', error);
                 showErrorState();
             }
         }
