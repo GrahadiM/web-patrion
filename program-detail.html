@@ -834,7 +834,7 @@
                 initializeGalleryTab(program);
                 
             } catch (error) {
-                console.error('Failed to load additional data:', error);
+                // console.error('Failed to load additional data:', error);
             }
         }
 
@@ -1018,7 +1018,7 @@
                     `;
                 }
             } catch (error) {
-                console.error('Failed to load related programs:', error);
+                // console.error('Failed to load related programs:', error);
                 relatedProgramsContainer.innerHTML = `
                     <div class="col-span-full text-center py-8 text-gray-400">
                         <p>Unable to load related programs</p>
@@ -1291,7 +1291,7 @@
             video.src = trailerUrl;
             modal.classList.remove('hidden');
             video.play().catch(e => {
-                console.error('Failed to play video:', e);
+                // console.error('Failed to play video:', e);
                 alert('Unable to play trailer. Please try again.');
             });
         }
@@ -1303,7 +1303,7 @@
             video.src = videoUrl;
             modal.classList.remove('hidden');
             video.play().catch(e => {
-                console.error('Failed to play episode:', e);
+                // console.error('Failed to play episode:', e);
                 alert('Unable to play episode. Please try again.');
             });
         }
@@ -1369,14 +1369,14 @@
         // Main initialization
         document.addEventListener('DOMContentLoaded', async function () {
             try {
-                console.log('Initializing program detail page...');
+                // console.log('Initializing program detail page...');
                 
                 // Get program identifier from URL
                 const urlParams = new URLSearchParams(window.location.search);
                 const programId = urlParams.get('id');
                 let programSlug = urlParams.get('slug');
                 
-                console.log('URL Parameters:', { id: programId, slug: programSlug });
+                // console.log('URL Parameters:', { id: programId, slug: programSlug });
                 
                 let program = null;
                 
@@ -1390,12 +1390,12 @@
                 }
                 
                 if (!program) {
-                    console.log('Program not found, showing not found state');
+                    // console.log('Program not found, showing not found state');
                     showNotFoundState();
                     return;
                 }
                 
-                console.log('Found program:', program.title);
+                // console.log('Found program:', program.title);
                 
                 // Store program globally
                 window.currentProgram = program;
@@ -1410,10 +1410,10 @@
                 setupEventListeners();
                 initializeBackToTop();
                 
-                console.log('Program detail page initialized successfully');
+                // console.log('Program detail page initialized successfully');
                 
             } catch (error) {
-                console.error('Failed to initialize program detail:', error);
+                // console.error('Failed to initialize program detail:', error);
                 showErrorState();
             }
         });
