@@ -821,7 +821,7 @@
                         <div class="flex justify-between">
                             ${program.trailer
                     ? `
-                                <button onclick="event.stopPropagation(); playTrailerBtn('${program.id}')" 
+                                <button onclick="event.stopPropagation(); playTrailerBtn('${program.slug || program.id}')" 
                                         class="text-fantasy-gold hover:text-yellow-300 text-sm font-medium">
                                     <i class="fas fa-play-circle mr-1"></i> Trailer
                                 </button>
@@ -833,7 +833,7 @@
                             `
                 }
                             
-                            <a href="program-detail.html?id=${program.id}" 
+                            <a href="program-detail.html?slug=${program.slug || program.id}" 
                             class="text-white hover:text-fantasy-gold text-sm font-medium">
                                 Details <i class="fas fa-arrow-right ml-1"></i>
                             </a>
@@ -845,7 +845,7 @@
             // Click event for card
             card.addEventListener("click", (e) => {
                 if (!e.target.closest("button") && !e.target.closest("a")) {
-                    window.location.href = `program-detail.html?id=${program.id}`;
+                    window.location.href = `program-detail.html?slug=${program.slug || program.id}`;
                 }
             });
 

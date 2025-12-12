@@ -586,184 +586,50 @@
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- <script src="assets/js/main.js"></script>
-    <script src="assets/js/characterDetail.js"></script> -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" rel="noopener noreferrer"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" rel="noopener noreferrer"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/shared-api.js"></script>
+    <!-- Ganti script program-detail.html dengan ini -->
 
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Back to top button
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Program Data (same as in program.html)
-        const programs = [
-            {
-                id: 1,
-                title: "Film Cinema - Drama Live Action",
-                description: "Film epik live action yang mengangkat mitologi Nusantara dengan teknologi visual effects terkini.",
-                synopsis: `Film ini mengisahkan petualangan epik para Guardian Elements dalam mempertahankan keseimbangan alam semesta PATRION dari ancaman Dark Void. Dengan visual effects mengagumkan dan cerita yang mendalam, film ini menghadirkan pengalaman cinematic yang belum pernah ada sebelumnya di Indonesia.
-
-                Berlatar di berbagai lokasi eksotis Nusantara, film ini menggabungkan teknologi Hollywood dengan kearifan lokal, menciptakan sebuah masterpiece yang akan mengangkat standar industri film Indonesia.`,
-                image: "assets/images/semesta/Thumbnail-Patrion Movie.png",
-                platform: "cinema",
-                status: "upcoming",
-                releaseDate: "Q4 2024",
-                duration: "120 menit",
-                rating: "PG-13",
-                director: "Abdurrahman GM",
-                budget: "$15M",
-                trailer: "assets/video/trailer-cinema.mp4",
-                episodes: 1,
-                views: "0",
-                characters: ["kunna", "wabu", "asta", "taran"],
-                platforms: [
-                    { name: "Cinema 21", type: "cinema", icon: "fas fa-film" },
-                    { name: "Netflix", type: "ott", icon: "fas fa-tv" }
-                ],
-                production: {
-                    studio: "Nusantara Cinema",
-                    timeline: "18 months",
-                    locations: ["Bali", "Yogyakarta", "Raja Ampat"],
-                    vfx: "Industrial Light & Magic"
-                },
-                gallery: [
-                    { src: "assets/images/gallery/cinema-1.jpg", type: "stills", caption: "Kunna in battle" },
-                    { src: "assets/images/gallery/cinema-2.jpg", type: "behind", caption: "Behind the scenes" },
-                    { src: "assets/images/gallery/cinema-3.jpg", type: "concept", caption: "Concept art" }
-                ]
-            },
-            // ... other programs data (same structure)
-        ];
-
-        // Characters Data
-        const characters = {
-            kunna: {
-                name: "KUNNA",
-                region: "Jawa Tengah",
-                element: "fire",
-                image: "assets/images/characters/chara-01.png",
-                description: "Guardian of Fire, passionate and courageous"
-            },
-            wabu: {
-                name: "WABU",
-                region: "Jakarta",
-                element: "wind",
-                image: "assets/images/characters/chara-02.png",
-                description: "Guardian of Wind, swift and strategic"
-            },
-            asta: {
-                name: "ASTA",
-                region: "Bali",
-                element: "water",
-                image: "assets/images/characters/chara-03.png",
-                description: "Guardian of Water, wise and adaptable"
-            },
-            taran: {
-                name: "TARAN",
-                region: "Sumatra",
-                element: "earth",
-                image: "assets/images/characters/chara-04.png",
-                description: "Guardian of Earth, strong and dependable"
-            },
-            sanu: {
-                name: "SANU",
-                region: "Sulawesi",
-                element: "thunder",
-                image: "assets/images/characters/chara-05.png",
-                description: "Guardian of Thunder, energetic and unpredictable"
-            },
-            kabi: {
-                name: "KABI",
-                region: "Papua",
-                element: "nature",
-                image: "assets/images/characters/chara-06.png",
-                description: "Guardian of Nature, nurturing and intuitive"
-            },
-            arun: {
-                name: "ARUN",
-                region: "Kalimantan",
-                element: "light",
-                image: "assets/images/characters/chara-07.png",
-                description: "Guardian of Light, hopeful and inspiring"
-            },
-            antis: {
-                name: "ANTIS",
-                region: "Atlantis",
-                element: "dark",
-                image: "assets/images/characters/chara-08.png",
-                description: "Guardian of Darkness, mysterious and powerful"
-            }
-        };
-
-        // Episodes Data
-        const episodes = {
-            1: [ // Season 1 episodes for program 2 (Animasi 3D)
-                { number: 1, title: "The Awakening", duration: "22:15", description: "Kunna discovers his elemental powers", aired: "2024-07-01" },
-                { number: 2, title: "Wind's Whisper", duration: "21:45", description: "Wabu joins the journey", aired: "2024-07-08" },
-                { number: 3, title: "Water's Wisdom", duration: "23:10", description: "Asta reveals ancient secrets", aired: "2024-07-15" },
-                { number: 4, title: "Earth's Strength", duration: "22:30", description: "Taran defends the village", aired: "2024-07-22" },
-                { number: 5, title: "Thunder's Call", duration: "24:05", description: "Sanu's energetic entrance", aired: "2024-07-29" }
-            ]
-        };
-
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeProgramDetail();
-        });
-
-        function initializeProgramDetail() {
-            // Get program ID from URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const programId = parseInt(urlParams.get('id')) || 1;
+        // Deklarasikan semua fungsi terlebih dahulu
+        function updatePageContent(program) {
+            // Update page title
+            document.title = `${program.title} - Program Detail | PATRION`;
             
-            const program = programs.find(p => p.id === programId) || programs[0];
-            
-            // Set page title
-            document.title = `${program.title} - PATRION Universe`;
+            // Update meta tags for SEO
+            updateMetaTags(program);
             
             // Update hero section
             updateHeroSection(program);
             
             // Update overview tab
             updateOverviewTab(program);
+        }
+
+        function updateMetaTags(program) {
+            // Update Open Graph tags
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            const ogDescription = document.querySelector('meta[property="og:description"]');
+            const ogImage = document.querySelector('meta[property="og:image"]');
             
-            // Update episodes tab
-            updateEpisodesTab(program);
+            if (ogTitle) ogTitle.setAttribute('content', `${program.title} - PATRION Universe`);
+            if (ogDescription) ogDescription.setAttribute('content', program.description || 'PATRION Program Details');
             
-            // Update characters tab
-            updateCharactersTab(program);
+            const imageUrl = PatrionAPI.getImageUrl(program.thumbnail || program.image);
+            if (ogImage && imageUrl) ogImage.setAttribute('content', imageUrl);
             
-            // Update production tab
-            updateProductionTab(program);
+            // Update Twitter cards
+            const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+            const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+            const twitterImage = document.querySelector('meta[name="twitter:image"]');
             
-            // Update gallery tab
-            updateGalleryTab(program);
-            
-            // Update related programs
-            updateRelatedPrograms(program);
-            
-            // Setup event listeners
-            setupEventListeners(program);
+            if (twitterTitle) twitterTitle.setAttribute('content', `${program.title} - PATRION Universe`);
+            if (twitterDescription) twitterDescription.setAttribute('content', program.description || 'PATRION Program Details');
+            if (twitterImage && imageUrl) twitterImage.setAttribute('content', imageUrl);
         }
 
         function updateHeroSection(program) {
@@ -776,32 +642,59 @@
             const playTrailerBtn = document.getElementById('playTrailerBtn');
             const watchNowBtn = document.getElementById('watchNowBtn');
             
-            if (heroImage) heroImage.src = program.image;
+            // Set hero image
+            const imageUrl = PatrionAPI.getImageUrl(program.thumbnail || program.image);
+            if (heroImage) {
+                heroImage.src = imageUrl;
+                heroImage.alt = program.title;
+                heroImage.onerror = function() {
+                    this.src = 'assets/images/default-program.png';
+                };
+            }
+            
             if (programTitle) programTitle.textContent = program.title;
-            if (programDescription) programDescription.textContent = program.description;
+            if (programDescription) programDescription.textContent = program.description || '';
             
             // Platform badge
             let platformClass = '';
-            let platformText = '';
-            switch(program.platform) {
-                case 'cinema': platformClass = 'bg-red-900/30 text-red-300'; platformText = 'CINEMA'; break;
-                case 'ott': platformClass = 'bg-green-900/30 text-green-300'; platformText = 'OTT'; break;
-                case 'digital': platformClass = 'bg-blue-900/30 text-blue-300'; platformText = 'DIGITAL'; break;
-                case 'tv': platformClass = 'bg-purple-900/30 text-purple-300'; platformText = 'TV'; break;
+            let platformText = program.platform || 'Digital';
+            switch ((program.platform || '').toLowerCase()) {
+                case 'cinema': platformClass = 'bg-red-900/30 text-red-300'; break;
+                case 'ott':
+                case 'streaming': platformClass = 'bg-green-900/30 text-green-300'; break;
+                case 'digital':
+                case 'web': platformClass = 'bg-blue-900/30 text-blue-300'; break;
+                case 'tv': platformClass = 'bg-purple-900/30 text-purple-300'; break;
+                default: platformClass = 'bg-gray-800/30 text-gray-300';
             }
+            
             if (platformBadge) {
                 platformBadge.className = `${platformClass} px-4 py-1 rounded-full text-sm font-semibold`;
-                platformBadge.textContent = platformText;
+                platformBadge.textContent = platformText.toUpperCase();
             }
             
             // Status badge
             let statusClass = '';
             let statusText = '';
-            switch(program.status) {
-                case 'upcoming': statusClass = 'bg-yellow-900/30 text-yellow-300'; statusText = 'COMING SOON'; break;
-                case 'released': statusClass = 'bg-green-900/30 text-green-300'; statusText = 'AVAILABLE'; break;
-                case 'production': statusClass = 'bg-blue-900/30 text-blue-300'; statusText = 'IN PRODUCTION'; break;
+            switch ((program.status || '').toLowerCase()) {
+                case 'upcoming':
+                    statusClass = 'bg-yellow-900/30 text-yellow-300';
+                    statusText = 'COMING SOON';
+                    break;
+                case 'released':
+                case 'completed':
+                    statusClass = 'bg-green-900/30 text-green-300';
+                    statusText = 'AVAILABLE';
+                    break;
+                case 'production':
+                    statusClass = 'bg-blue-900/30 text-blue-300';
+                    statusText = 'IN PRODUCTION';
+                    break;
+                default:
+                    statusClass = 'bg-gray-800/30 text-gray-300';
+                    statusText = 'TBA';
             }
+            
             if (statusBadge) {
                 statusBadge.className = `${statusClass} px-4 py-1 rounded-full text-sm font-semibold`;
                 statusBadge.textContent = statusText;
@@ -809,18 +702,32 @@
             
             // Rating badge
             if (ratingBadge) {
-                ratingBadge.textContent = program.rating;
+                ratingBadge.textContent = program.rating || 'PG';
             }
             
-            // Buttons
+            // Play trailer button
             if (playTrailerBtn) {
-                playTrailerBtn.onclick = () => playVideo(program.trailer);
+                if (program.trailer) {
+                    playTrailerBtn.onclick = () => playTrailerModal(program);
+                    playTrailerBtn.innerHTML = '<i class="fas fa-play mr-2"></i> Play Trailer';
+                    playTrailerBtn.disabled = false;
+                } else {
+                    playTrailerBtn.innerHTML = '<i class="fas fa-ban mr-2"></i> No Trailer';
+                    playTrailerBtn.disabled = true;
+                }
             }
             
+            // Watch now button
             if (watchNowBtn) {
-                if (program.status === 'released') {
+                if (program.status === 'released' || program.status === 'completed') {
                     watchNowBtn.innerHTML = '<i class="fas fa-eye mr-2"></i> Watch Now';
-                    watchNowBtn.onclick = () => window.open(getWatchLink(program), '_blank');
+                    watchNowBtn.onclick = () => {
+                        if (program.watch_url) {
+                            window.open(program.watch_url, '_blank');
+                        } else {
+                            alert('Watch link not available yet.');
+                        }
+                    };
                 } else {
                     watchNowBtn.innerHTML = '<i class="far fa-bell mr-2"></i> Notify Me';
                     watchNowBtn.onclick = () => notifyMe(program);
@@ -836,109 +743,291 @@
             const detailEpisodes = document.getElementById('detailEpisodes');
             const detailBudget = document.getElementById('detailBudget');
             const platforms = document.getElementById('platforms');
-            const featuredCharacters = document.getElementById('featuredCharacters');
             
-            if (synopsis) synopsis.innerHTML = program.synopsis.split('\n').map(p => `<p class="mb-4">${p}</p>`).join('');
-            if (detailTrailer) {
-                detailTrailer.src = program.trailer;
-                detailTrailer.poster = program.image;
+            // Synopsis
+            if (synopsis) {
+                synopsis.innerHTML = program.synopsis ?
+                    program.synopsis.split('\n').map(p => `<p class="mb-4">${p}</p>`).join('') :
+                    `<p class="text-gray-400 italic">No synopsis available yet.</p>`;
             }
-            if (detailReleaseDate) detailReleaseDate.textContent = program.releaseDate;
-            if (detailDuration) detailDuration.textContent = program.duration;
-            if (detailEpisodes) detailEpisodes.textContent = program.episodes;
-            if (detailBudget) detailBudget.textContent = program.budget;
+            
+            // Trailer video
+            if (detailTrailer) {
+                if (program.trailer) {
+                    const trailerUrl = PatrionAPI.getTrailerUrl(program.trailer);
+                    const imageUrl = PatrionAPI.getImageUrl(program.thumbnail || program.image);
+                    
+                    detailTrailer.src = trailerUrl;
+                    detailTrailer.poster = imageUrl;
+                    detailTrailer.innerHTML = `
+                        <source src="${trailerUrl}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    `;
+                    detailTrailer.style.display = 'block';
+                } else {
+                    detailTrailer.style.display = 'none';
+                }
+            }
+            
+            // Details
+            if (detailReleaseDate) detailReleaseDate.textContent = program.release_date || program.releaseDate || 'TBA';
+            if (detailDuration) detailDuration.textContent = program.duration || 'N/A';
+            if (detailEpisodes) detailEpisodes.textContent = program.episodes || '1';
+            if (detailBudget) detailBudget.textContent = program.budget || 'N/A';
             
             // Platforms
-            if (platforms && program.platforms) {
-                platforms.innerHTML = program.platforms.map(p => `
-                    <div class="flex items-center space-x-3">
-                        <div class="platform-${p.type} platform-icon text-white">
-                            <i class="${p.icon}"></i>
+            if (platforms) {
+                if (program.platforms && program.platforms.length > 0) {
+                    platforms.innerHTML = program.platforms.map(p => `
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="platform-${p.type || 'digital'} platform-icon text-white">
+                                <i class="${p.icon || 'fas fa-globe'}"></i>
+                            </div>
+                            <div>
+                                <div class="text-white font-medium">${p.name}</div>
+                                <div class="text-gray-400 text-sm">${(p.type || 'digital').toUpperCase()}</div>
+                            </div>
                         </div>
-                        <div>
-                            <div class="text-white font-medium">${p.name}</div>
-                            <div class="text-gray-400 text-sm">${p.type.toUpperCase()}</div>
-                        </div>
-                    </div>
-                `).join('');
-            }
-            
-            // Featured Characters
-            if (featuredCharacters && program.characters) {
-                featuredCharacters.innerHTML = program.characters.slice(0, 4).map(charKey => {
-                    const char = characters[charKey];
-                    if (!char) return '';
+                    `).join('');
+                } else {
+                    // Default platform based on program type
+                    let platformType = program.platform || 'digital';
+                    let platformIcon = 'fas fa-globe';
+                    let platformName = program.platform || 'Digital Platform';
                     
-                    return `
-                        <div class="character-card rounded-lg overflow-hidden">
-                            <img src="${char.image}" alt="${char.name}" class="w-full h-40 object-cover">
-                            <div class="p-3">
-                                <h4 class="fantasy-font text-white text-sm">${char.name}</h4>
-                                <p class="text-gray-400 text-xs mt-1">${char.description}</p>
+                    switch (platformType.toLowerCase()) {
+                        case 'cinema': platformIcon = 'fas fa-film'; break;
+                        case 'ott':
+                        case 'streaming': platformIcon = 'fas fa-tv'; break;
+                        case 'tv': platformIcon = 'fas fa-satellite-dish'; break;
+                    }
+                    
+                    platforms.innerHTML = `
+                        <div class="flex items-center space-x-3">
+                            <div class="platform-${platformType} platform-icon text-white">
+                                <i class="${platformIcon}"></i>
+                            </div>
+                            <div>
+                                <div class="text-white font-medium">${platformName}</div>
+                                <div class="text-gray-400 text-sm">${platformType.toUpperCase()}</div>
                             </div>
                         </div>
                     `;
-                }).join('');
+                }
             }
         }
 
-        function updateEpisodesTab(program) {
-            const episodesList = document.getElementById('episodesList');
+        async function loadAdditionalData(program) {
+            try {
+                // Load characters
+                const characters = await PatrionAPI.getCharacters();
+                updateCharactersContent(program, characters);
+                
+                // Load episodes if available
+                updateEpisodesContent(program);
+                
+                // Load related programs
+                await loadRelatedPrograms(program);
+                
+                // Initialize other tabs
+                initializeProductionTab(program);
+                initializeGalleryTab(program);
+                
+            } catch (error) {
+                console.error('Failed to load additional data:', error);
+            }
+        }
+
+        function updateCharactersContent(program, allCharacters) {
+            const featuredCharacters = document.getElementById('featuredCharacters');
+            const allCharactersContainer = document.getElementById('allCharacters');
             
-            if (episodesList && episodes[program.id]) {
-                episodesList.innerHTML = episodes[program.id].map(ep => `
-                    <div class="episode-card p-4 rounded-lg cursor-pointer hover:shadow-lg transition-all" 
-                         onclick="playEpisode(${program.id}, ${ep.number})">
-                        <div class="flex items-start justify-between">
-                            <div class="flex items-start space-x-4">
-                                <div class="flex-shrink-0 w-12 h-12 bg-fantasy-gold/10 rounded-lg flex items-center justify-center">
-                                    <span class="fantasy-font text-fantasy-gold font-bold">${ep.number}</span>
+            // Filter characters related to this program
+            const programCharacterIds = program.characters || [];
+            const relatedCharacters = allCharacters.filter(char =>
+                programCharacterIds.includes(char.id) ||
+                programCharacterIds.includes(char.slug) ||
+                (program.character_ids && program.character_ids.includes(char.id))
+            );
+            
+            // Featured characters (first 4)
+            if (featuredCharacters) {
+                if (relatedCharacters.length > 0) {
+                    featuredCharacters.innerHTML = relatedCharacters.slice(0, 4).map(char => {
+                        const imageUrl = PatrionAPI.getImageUrl(char.image);
+                        return `
+                            <div class="character-card rounded-lg overflow-hidden cursor-pointer"
+                                onclick="window.location.href='character-detail.html?character=${char.slug || char.id}'">
+                                <img src="${imageUrl}" 
+                                    alt="${char.name}" 
+                                    class="w-full h-40 object-cover"
+                                    loading="lazy"
+                                    onerror="this.src='assets/images/default-character.png'">
+                                <div class="p-3">
+                                    <h4 class="fantasy-font text-white text-sm">${char.name}</h4>
+                                    <p class="text-gray-400 text-xs mt-1">${char.region || 'Nusantara'}</p>
                                 </div>
-                                <div>
-                                    <h4 class="text-white font-medium mb-1">${ep.title}</h4>
-                                    <p class="text-gray-400 text-sm">${ep.description}</p>
-                                    <div class="flex items-center space-x-4 mt-2">
-                                        <span class="text-gray-500 text-xs"><i class="far fa-clock mr-1"></i>${ep.duration}</span>
-                                        <span class="text-gray-500 text-xs"><i class="far fa-calendar mr-1"></i>${ep.aired}</span>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    featuredCharacters.innerHTML = `
+                        <div class="col-span-full text-center py-8 text-gray-400">
+                            <i class="fas fa-users text-3xl mb-2"></i>
+                            <p>Character information coming soon</p>
+                        </div>
+                    `;
+                }
+            }
+            
+            // All characters
+            if (allCharactersContainer) {
+                if (relatedCharacters.length > 0) {
+                    allCharactersContainer.innerHTML = relatedCharacters.map(char => {
+                        const imageUrl = PatrionAPI.getImageUrl(char.image);
+                        return `
+                            <div class="character-card rounded-lg overflow-hidden text-center cursor-pointer"
+                                onclick="window.location.href='character-detail.html?character=${char.slug || char.id}'">
+                                <img src="${imageUrl}" 
+                                    alt="${char.name}" 
+                                    class="w-full h-48 object-cover"
+                                    loading="lazy"
+                                    onerror="this.src='assets/images/default-character.png'">
+                                <div class="p-3">
+                                    <h4 class="fantasy-font text-white">${char.name}</h4>
+                                    <div class="flex items-center justify-center mt-2">
+                                        <span class="element-badge ${char.element || 'fire'} px-3 py-1 rounded-full text-xs">
+                                            ${(char.element || 'fire').toUpperCase()}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
-                            <button class="text-fantasy-gold hover:text-yellow-300">
-                                <i class="fas fa-play-circle text-xl"></i>
-                            </button>
+                        `;
+                    }).join('');
+                } else {
+                    allCharactersContainer.innerHTML = `
+                        <div class="col-span-full text-center py-8 text-gray-400">
+                            <i class="fas fa-users text-3xl mb-2"></i>
+                            <p>No characters assigned to this program yet</p>
                         </div>
-                    </div>
-                `).join('');
+                    `;
+                }
             }
         }
 
-        function updateCharactersTab(program) {
-            const allCharacters = document.getElementById('allCharacters');
+        function updateEpisodesContent(program) {
+            const episodesList = document.getElementById('episodesList');
             
-            if (allCharacters) {
-                const programChars = program.characters || Object.keys(characters);
-                allCharacters.innerHTML = programChars.map(charKey => {
-                    const char = characters[charKey];
-                    if (!char) return '';
-                    
-                    return `
-                        <div class="character-card rounded-lg overflow-hidden text-center">
-                            <img src="${char.image}" alt="${char.name}" class="w-full h-48 object-cover">
-                            <div class="p-3">
-                                <h4 class="fantasy-font text-white">${char.name}</h4>
-                                <div class="flex items-center justify-center mt-2">
-                                    <span class="element-badge ${char.element} px-3 py-1 rounded-full text-xs">
-                                        ${char.element.toUpperCase()}
-                                    </span>
+            if (episodesList) {
+                if (program.episodes_data && program.episodes_data.length > 0) {
+                    episodesList.innerHTML = program.episodes_data.map((ep, index) => `
+                        <div class="episode-card p-4 rounded-lg cursor-pointer hover:shadow-lg transition-all">
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0 w-12 h-12 bg-fantasy-gold/10 rounded-lg flex items-center justify-center">
+                                        <span class="fantasy-font text-fantasy-gold font-bold">${index + 1}</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-medium mb-1">${ep.title || `Episode ${index + 1}`}</h4>
+                                        <p class="text-gray-400 text-sm">${ep.description || 'No description available'}</p>
+                                        <div class="flex items-center space-x-4 mt-2">
+                                            <span class="text-gray-500 text-xs">
+                                                <i class="far fa-clock mr-1"></i>${ep.duration || 'N/A'}
+                                            </span>
+                                            ${ep.aired_date ? `
+                                                <span class="text-gray-500 text-xs">
+                                                    <i class="far fa-calendar mr-1"></i>${ep.aired_date}
+                                                </span>
+                                            ` : ''}
+                                        </div>
+                                    </div>
                                 </div>
+                                ${ep.video_url ? `
+                                    <button class="text-fantasy-gold hover:text-yellow-300" onclick="playEpisode('${ep.video_url}')">
+                                        <i class="fas fa-play-circle text-xl"></i>
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `).join('');
+                } else if (program.episodes && program.episodes > 1) {
+                    // Generate placeholder episodes
+                    episodesList.innerHTML = `
+                        <div class="text-center py-8 text-gray-400">
+                            <i class="fas fa-list-ol text-3xl mb-2"></i>
+                            <p>Episode list will be available soon</p>
+                        </div>
+                    `;
+                } else {
+                    // Single episode/movie
+                    episodesList.innerHTML = `
+                        <div class="episode-card p-4 rounded-lg">
+                            <div class="text-center py-8">
+                                <i class="fas fa-film text-3xl text-fantasy-gold mb-2"></i>
+                                <h4 class="text-white font-medium mb-1">Feature Length Program</h4>
+                                <p class="text-gray-400 text-sm">This is a single feature-length program</p>
                             </div>
                         </div>
                     `;
-                }).join('');
+                }
             }
         }
 
-        function updateProductionTab(program) {
+        async function loadRelatedPrograms(program) {
+            const relatedProgramsContainer = document.getElementById('relatedPrograms');
+            if (!relatedProgramsContainer) return;
+            
+            try {
+                const allPrograms = await PatrionAPI.getPrograms();
+                
+                // Filter related programs (same platform or category, exclude current)
+                const related = allPrograms
+                    .filter(p => p.id !== program.id &&
+                        (p.platform === program.platform ||
+                            p.category === program.category))
+                    .slice(0, 4);
+                
+                if (related.length > 0) {
+                    relatedProgramsContainer.innerHTML = related.map(p => {
+                        const imageUrl = PatrionAPI.getImageUrl(p.thumbnail || p.image);
+                        return `
+                            <div class="glass-effect rounded-lg overflow-hidden hover:shadow-xl transition-all cursor-pointer" 
+                                onclick="window.location.href='program-detail.html?slug=${p.slug || p.id}'">
+                                <img src="${imageUrl}" 
+                                    alt="${p.title}" 
+                                    class="w-full h-40 object-cover"
+                                    loading="lazy"
+                                    onerror="this.src='assets/images/default-program.png'">
+                                <div class="p-4">
+                                    <h4 class="fantasy-font text-white text-lg mb-2 line-clamp-2">${p.title}</h4>
+                                    <p class="text-gray-400 text-sm mb-3 line-clamp-2">${p.description || ''}</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-fantasy-gold text-sm font-medium">${(p.platform || 'digital').toUpperCase()}</span>
+                                        <span class="text-gray-500 text-sm">${p.release_date || 'TBA'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    relatedProgramsContainer.innerHTML = `
+                        <div class="col-span-full text-center py-8 text-gray-400">
+                            <i class="fas fa-film text-3xl mb-2"></i>
+                            <p>No related programs found</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Failed to load related programs:', error);
+                relatedProgramsContainer.innerHTML = `
+                    <div class="col-span-full text-center py-8 text-gray-400">
+                        <p>Unable to load related programs</p>
+                    </div>
+                `;
+            }
+        }
+
+        function initializeProductionTab(program) {
             const productionDetails = document.getElementById('productionDetails');
             const productionTimeline = document.getElementById('productionTimeline');
             const crewList = document.getElementById('crewList');
@@ -947,19 +1036,19 @@
                 productionDetails.innerHTML = `
                     <div class="glass-effect p-4 rounded-lg">
                         <h4 class="text-white font-semibold mb-2">Studio</h4>
-                        <p class="text-gray-300">${program.production?.studio || 'Patrion Animation Studio'}</p>
+                        <p class="text-gray-300">${program.production_studio || 'Patrion Animation Studio'}</p>
                     </div>
                     <div class="glass-effect p-4 rounded-lg">
                         <h4 class="text-white font-semibold mb-2">Director</h4>
-                        <p class="text-gray-300">${program.director}</p>
+                        <p class="text-gray-300">${program.director || 'Abdurrahman GM'}</p>
                     </div>
                     <div class="glass-effect p-4 rounded-lg">
                         <h4 class="text-white font-semibold mb-2">Budget</h4>
-                        <p class="text-gray-300">${program.budget}</p>
+                        <p class="text-gray-300">${program.budget || 'N/A'}</p>
                     </div>
                     <div class="glass-effect p-4 rounded-lg">
                         <h4 class="text-white font-semibold mb-2">Production Timeline</h4>
-                        <p class="text-gray-300">${program.production?.timeline || '12 months'}</p>
+                        <p class="text-gray-300">${program.production_timeline || 'In development'}</p>
                     </div>
                 `;
             }
@@ -979,21 +1068,21 @@
                                 </div>
                             </div>
                             <div class="flex items-start">
-                                <div class="w-8 h-8 rounded-full bg-fantasy-gold flex-shrink-0 mr-4 flex items-center justify-center">
-                                    <i class="fas fa-spinner text-black text-sm"></i>
+                                <div class="w-8 h-8 rounded-full ${program.status === 'released' || program.status === 'completed' ? 'bg-fantasy-gold' : program.status === 'production' ? 'bg-yellow-500' : 'bg-gray-700'} flex-shrink-0 mr-4 flex items-center justify-center">
+                                    <i class="fas ${program.status === 'released' || program.status === 'completed' ? 'fa-check' : program.status === 'production' ? 'fa-spinner' : 'fa-clock'} text-black text-sm"></i>
                                 </div>
                                 <div>
                                     <h4 class="text-white font-semibold">Production</h4>
-                                    <p class="text-gray-400 text-sm">Filming, Voice Recording</p>
+                                    <p class="text-gray-400 text-sm">${program.status === 'released' || program.status === 'completed' ? 'Completed' : program.status === 'production' ? 'In Progress' : 'Scheduled'}</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
-                                <div class="w-8 h-8 rounded-full bg-gray-700 flex-shrink-0 mr-4 flex items-center justify-center">
-                                    <i class="fas fa-clock text-gray-400 text-sm"></i>
+                                <div class="w-8 h-8 rounded-full ${program.status === 'released' || program.status === 'completed' ? 'bg-fantasy-gold' : 'bg-gray-700'} flex-shrink-0 mr-4 flex items-center justify-center">
+                                    <i class="fas ${program.status === 'released' || program.status === 'completed' ? 'fa-check' : 'fa-clock'} text-black text-sm"></i>
                                 </div>
                                 <div>
                                     <h4 class="text-white font-semibold">Post-production</h4>
-                                    <p class="text-gray-400 text-sm">Editing, VFX, Sound Design</p>
+                                    <p class="text-gray-400 text-sm">${program.status === 'released' || program.status === 'completed' ? 'Completed' : 'Pending'}</p>
                                 </div>
                             </div>
                         </div>
@@ -1002,79 +1091,57 @@
             }
             
             if (crewList) {
-                crewList.innerHTML = `
+                const crew = program.crew || [
+                    { role: 'Director', name: program.director || 'Abdurrahman GM' },
+                    { role: 'Producer', name: 'Siti Nurhaliza' },
+                    { role: 'Music Composer', name: 'Tulus' },
+                    { role: 'Art Director', name: 'Budi Santoso' },
+                    { role: 'VFX Supervisor', name: 'Citra Kirana' },
+                    { role: 'Lead Writer', name: 'Dewi Lestari' }
+                ];
+                
+                crewList.innerHTML = crew.map(member => `
                     <div class="glass-effect p-4 rounded-lg">
-                        <h4 class="text-white font-semibold mb-2">Director</h4>
-                        <p class="text-gray-300">${program.director}</p>
+                        <h4 class="text-white font-semibold mb-2">${member.role}</h4>
+                        <p class="text-gray-300">${member.name}</p>
                     </div>
-                    <div class="glass-effect p-4 rounded-lg">
-                        <h4 class="text-white font-semibold mb-2">Producer</h4>
-                        <p class="text-gray-300">Siti Nurhaliza</p>
-                    </div>
-                    <div class="glass-effect p-4 rounded-lg">
-                        <h4 class="text-white font-semibold mb-2">Music Composer</h4>
-                        <p class="text-gray-300">Tulus</p>
-                    </div>
-                    <div class="glass-effect p-4 rounded-lg">
-                        <h4 class="text-white font-semibold mb-2">Art Director</h4>
-                        <p class="text-gray-300">Budi Santoso</p>
-                    </div>
-                    <div class="glass-effect p-4 rounded-lg">
-                        <h4 class="text-white font-semibold mb-2">VFX Supervisor</h4>
-                        <p class="text-gray-300">Citra Kirana</p>
-                    </div>
-                    <div class="glass-effect p-4 rounded-lg">
-                        <h4 class="text-white font-semibold mb-2">Lead Writer</h4>
-                        <p class="text-gray-300">Dewi Lestari</p>
-                    </div>
-                `;
+                `).join('');
             }
         }
 
-        function updateGalleryTab(program) {
+        function initializeGalleryTab(program) {
             const galleryGrid = document.getElementById('galleryGrid');
             
             if (galleryGrid) {
-                const galleryItems = program.gallery || [
-                    { src: program.image, type: 'stills', caption: program.title }
-                ];
-                
-                galleryGrid.innerHTML = galleryItems.map((item, index) => `
-                    <div class="gallery-item cursor-pointer" data-type="${item.type}" onclick="openImageModal('${item.src}', '${item.caption}')">
-                        <img src="${item.src}" alt="${item.caption}" class="w-full h-48 object-cover rounded-lg hover:scale-105 transition-transform duration-300">
-                        <p class="text-gray-400 text-sm mt-2 truncate">${item.caption}</p>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function updateRelatedPrograms(program) {
-            const relatedPrograms = document.getElementById('relatedPrograms');
-            
-            if (relatedPrograms) {
-                // Filter programs by same platform or status
-                const related = programs
-                    .filter(p => p.id !== program.id && (p.platform === program.platform || p.status === program.status))
-                    .slice(0, 4);
-                
-                relatedPrograms.innerHTML = related.map(p => `
-                    <div class="glass-effect rounded-lg overflow-hidden hover:shadow-xl transition-all cursor-pointer" 
-                         onclick="window.location.href='program-detail.html?id=${p.id}'">
-                        <img src="${p.image}" alt="${p.title}" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h4 class="fantasy-font text-white text-lg mb-2 line-clamp-2">${p.title}</h4>
-                            <p class="text-gray-400 text-sm mb-3 line-clamp-2">${p.description}</p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-fantasy-gold text-sm font-medium">${p.platform.toUpperCase()}</span>
-                                <span class="text-gray-500 text-sm">${p.releaseDate}</span>
+                if (program.gallery && program.gallery.length > 0) {
+                    galleryGrid.innerHTML = program.gallery.map((item, index) => {
+                        const imageUrl = PatrionAPI.getImageUrl(item.image || item.src);
+                        return `
+                            <div class="gallery-item cursor-pointer" data-type="${item.type || 'stills'}">
+                                <img src="${imageUrl}" 
+                                    alt="${item.caption || program.title}" 
+                                    class="w-full h-48 object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                                    loading="lazy"
+                                    onerror="this.src='assets/images/default-program.png'"
+                                    onclick="window.openImageModal('${imageUrl}', '${item.caption || program.title}')">
+                                <p class="text-gray-400 text-sm mt-2 truncate">${item.caption || `Image ${index + 1}`}</p>
                             </div>
+                        `;
+                    }).join('');
+                } else {
+                    // Default gallery with program image
+                    const imageUrl = PatrionAPI.getImageUrl(program.thumbnail || program.image);
+                    galleryGrid.innerHTML = `
+                        <div class="col-span-full text-center py-8 text-gray-400">
+                            <i class="fas fa-images text-3xl mb-2"></i>
+                            <p>Gallery coming soon</p>
                         </div>
-                    </div>
-                `).join('');
+                    `;
+                }
             }
         }
 
-        function setupEventListeners(program) {
+        function setupEventListeners() {
             // Tab switching
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.addEventListener('click', function() {
@@ -1101,39 +1168,36 @@
             });
             
             // Gallery filtering
-            document.querySelectorAll('.filter-gallery').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const filter = this.dataset.filter;
-                    
-                    // Update active filter button
-                    document.querySelectorAll('.filter-gallery').forEach(b => {
-                        b.classList.remove('active', 'bg-fantasy-gold/20', 'text-fantasy-gold');
-                        b.classList.add('glass-effect', 'text-gray-400');
-                    });
-                    this.classList.add('active', 'bg-fantasy-gold/20', 'text-fantasy-gold');
-                    this.classList.remove('glass-effect', 'text-gray-400');
-                    
-                    // Filter gallery items
-                    document.querySelectorAll('.gallery-item').forEach(item => {
-                        if (filter === 'all' || item.dataset.type === filter) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
+            const filterGalleryBtns = document.querySelectorAll('.filter-gallery');
+            if (filterGalleryBtns.length > 0) {
+                filterGalleryBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const filter = this.dataset.filter;
+                        
+                        // Update active filter button
+                        filterGalleryBtns.forEach(b => {
+                            b.classList.remove('active', 'bg-fantasy-gold/20', 'text-fantasy-gold');
+                            b.classList.add('glass-effect', 'text-gray-400');
+                        });
+                        this.classList.add('active', 'bg-fantasy-gold/20', 'text-fantasy-gold');
+                        this.classList.remove('glass-effect', 'text-gray-400');
+                        
+                        // Filter gallery items
+                        document.querySelectorAll('.gallery-item').forEach(item => {
+                            if (filter === 'all' || item.dataset.type === filter) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
                     });
                 });
-            });
-            
-            // Share button
-            const shareBtn = document.getElementById('shareBtn');
-            if (shareBtn) {
-                shareBtn.addEventListener('click', () => shareProgram(program));
             }
             
             // Add to list button
             const addToListBtn = document.getElementById('addToListBtn');
             if (addToListBtn) {
-                addToListBtn.addEventListener('click', () => toggleWatchlist(program));
+                addToListBtn.addEventListener('click', toggleWatchlist);
             }
             
             // Video modal
@@ -1157,57 +1221,51 @@
                     imageModal.classList.add('hidden');
                 });
             }
-        }
-
-        // Utility functions
-        function playVideo(videoSrc) {
-            const modal = document.getElementById('videoModal');
-            const video = document.getElementById('modalVideo');
             
-            video.src = videoSrc;
-            modal.classList.remove('hidden');
-            video.play();
-        }
-
-        function openImageModal(imageSrc, caption) {
-            const modal = document.getElementById('imageModal');
-            const image = document.getElementById('modalImage');
-            const imageCaption = document.getElementById('imageCaption');
-            
-            image.src = imageSrc;
-            imageCaption.textContent = caption;
-            modal.classList.remove('hidden');
-        }
-
-        function getWatchLink(program) {
-            switch(program.platform) {
-                case 'cinema': return '#';
-                case 'ott': return 'https://netflix.com';
-                case 'digital': return 'https://youtube.com';
-                case 'tv': return '#';
-                default: return '#';
+            // Close modals on background click
+            if (videoModal) {
+                videoModal.addEventListener('click', (e) => {
+                    if (e.target === videoModal) {
+                        const video = document.getElementById('modalVideo');
+                        video.pause();
+                        videoModal.classList.add('hidden');
+                    }
+                });
             }
+            
+            if (imageModal) {
+                imageModal.addEventListener('click', (e) => {
+                    if (e.target === imageModal) {
+                        imageModal.classList.add('hidden');
+                    }
+                });
+            }
+        }
+
+        function initializeBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
         }
 
         function notifyMe(program) {
             alert(`You'll be notified when "${program.title}" is released!`);
         }
 
-        function shareProgram(program) {
-            if (navigator.share) {
-                navigator.share({
-                    title: program.title,
-                    text: program.description,
-                    url: window.location.href
-                });
-            } else {
-                // Fallback for browsers that don't support Web Share API
-                navigator.clipboard.writeText(window.location.href);
-                alert('Link copied to clipboard!');
-            }
-        }
-
-        function toggleWatchlist(program) {
+        function toggleWatchlist() {
             const btn = document.getElementById('addToListBtn');
             if (btn.innerHTML.includes('bookmark')) {
                 btn.innerHTML = '<i class="fas fa-bookmark mr-2"></i> Added to List';
@@ -1220,15 +1278,146 @@
             }
         }
 
-        function playEpisode(programId, episodeNumber) {
-            alert(`Playing Episode ${episodeNumber} of Program ${programId}`);
-            // In real implementation, this would load and play the episode
+        function playTrailerModal(program) {
+            const trailerUrl = PatrionAPI.getTrailerUrl(program.trailer);
+            if (!trailerUrl) {
+                alert('Trailer not available');
+                return;
+            }
+            
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            
+            video.src = trailerUrl;
+            modal.classList.remove('hidden');
+            video.play().catch(e => {
+                console.error('Failed to play video:', e);
+                alert('Unable to play trailer. Please try again.');
+            });
+        }
+
+        function playEpisode(videoUrl) {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            
+            video.src = videoUrl;
+            modal.classList.remove('hidden');
+            video.play().catch(e => {
+                console.error('Failed to play episode:', e);
+                alert('Unable to play episode. Please try again.');
+            });
+        }
+
+        function openImageModal(imageSrc, caption) {
+            const modal = document.getElementById('imageModal');
+            const image = document.getElementById('modalImage');
+            const imageCaption = document.getElementById('imageCaption');
+            
+            image.src = imageSrc;
+            imageCaption.textContent = caption;
+            modal.classList.remove('hidden');
+        }
+
+        function showNotFoundState() {
+            const mainContent = document.querySelector('main');
+            if (mainContent) {
+                mainContent.innerHTML = `
+                    <div class="container mx-auto px-4 py-16 text-center">
+                        <i class="fas fa-exclamation-circle text-6xl text-yellow-500 mb-4"></i>
+                        <h1 class="fantasy-font text-3xl text-white mb-4">Program Not Found</h1>
+                        <p class="text-gray-400 mb-8">The program you're looking for doesn't exist or has been moved.</p>
+                        <a href="program.html" class="bg-fantasy-gold hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full inline-block">
+                            <i class="fas fa-arrow-left mr-2"></i> Back to Programs
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        function showErrorState() {
+            const mainContent = document.querySelector('main');
+            if (mainContent) {
+                mainContent.innerHTML = `
+                    <div class="container mx-auto px-4 py-16 text-center">
+                        <i class="fas fa-exclamation-triangle text-6xl text-red-500 mb-4"></i>
+                        <h1 class="fantasy-font text-3xl text-white mb-4">Loading Error</h1>
+                        <p class="text-gray-400 mb-8">Failed to load program details. Please check your connection and try again.</p>
+                        <div class="flex gap-4 justify-center">
+                            <button onclick="location.reload()" class="bg-fantasy-gold hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full">
+                                <i class="fas fa-redo mr-2"></i> Try Again
+                            </button>
+                            <a href="program.html" class="border border-fantasy-gold text-fantasy-gold hover:bg-fantasy-gold hover:text-black font-bold py-3 px-8 rounded-full">
+                                <i class="fas fa-arrow-left mr-2"></i> Back to Programs
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
         }
 
         // Make functions globally available
-        window.playVideo = playVideo;
-        window.openImageModal = openImageModal;
+        window.playTrailerModal = playTrailerModal;
         window.playEpisode = playEpisode;
+        window.openImageModal = openImageModal;
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Main initialization
+        document.addEventListener('DOMContentLoaded', async function () {
+            try {
+                console.log('Initializing program detail page...');
+                
+                // Get program identifier from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const programId = urlParams.get('id');
+                let programSlug = urlParams.get('slug');
+                
+                console.log('URL Parameters:', { id: programId, slug: programSlug });
+                
+                let program = null;
+                
+                // Cari program berdasarkan ID atau slug
+                if (programSlug) {
+                    // Coba dengan slug
+                    program = await PatrionAPI.getProgramBySlug(programSlug);
+                } else if (programId) {
+                    // Coba dengan ID
+                    program = await PatrionAPI.getProgramById(programId);
+                }
+                
+                if (!program) {
+                    console.log('Program not found, showing not found state');
+                    showNotFoundState();
+                    return;
+                }
+                
+                console.log('Found program:', program.title);
+                
+                // Store program globally
+                window.currentProgram = program;
+                
+                // Update page with program data
+                updatePageContent(program);
+                
+                // Load additional data
+                await loadAdditionalData(program);
+                
+                // Setup UI components
+                setupEventListeners();
+                initializeBackToTop();
+                
+                console.log('Program detail page initialized successfully');
+                
+            } catch (error) {
+                console.error('Failed to initialize program detail:', error);
+                showErrorState();
+            }
+        });
     </script>
+
 </body>
 </html>
