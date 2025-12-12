@@ -455,7 +455,7 @@
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <button onclick="
                                 const programList = document.getElementById('program-list');
-                                const programListY = programList.getBoundingClientRect().top + window.scrollY - 20;
+                                const programListY = programList.getBoundingClientRect().top + window.scrollY - 60;
                                 window.scrollTo({ top: programListY, behavior: 'smooth' });
                             "
                             class="bg-gold-gradient hover:opacity-90 text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg">
@@ -463,7 +463,7 @@
                     </button>
                     <button onclick="
                                 const trailer = document.getElementById('trailers');
-                                const trailerY = trailer.getBoundingClientRect().top + window.scrollY - 20;
+                                const trailerY = trailer.getBoundingClientRect().top + window.scrollY - 60;
                                 window.scrollTo({ top: trailerY, behavior: 'smooth' });
                             "
                             class="border-2 border-fantasy-gold text-fantasy-gold hover:bg-fantasy-gold hover:text-fantasy-dark font-bold py-3 px-8 rounded-full transition-all">
@@ -689,342 +689,293 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" rel="noopener noreferrer"></script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" rel="noopener noreferrer"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/shared-api.js"></script>
     <script>
-        // Program Data
-        const programs = [
-            {
-                id: 1,
-                title: "Film Cinema - Drama Live Action",
-                description: "Menceritakan background masing-masing patrion dari daerah mereka. Bagaimana mereka bisa menjadi patrion dengan masalah yang dihadapi mereka.",
-                image: "assets/images/semesta/Thumbnail-Patrion Movie.png",
-                platform: "cinema",
-                status: "upcoming",
-                releaseDate: "Q4 2024",
-                duration: "120 menit",
-                rating: "PG-13",
-                director: "Abdurrahman GM",
-                budget: "$15M",
-                trailer: "assets/video/program/01_Live_action.mp4",
-                episodes: 1,
-                views: "0"
-            },
-            {
-                id: 2,
-                title: "Film Cinema - Animation",
-                description: "Patrion dengan aksinya dan masalah yang mereka hadapi. Menghadapi musuh dan bagaimana patrion menyelesaikan masalah, menyelamatkan bumi dari penjahat yang mau menghancurkan mereka. Teaser menampilkan awal kemunculan Patrion sampai mereka bersatu dan bersama menhadapi masalah utama menyelamatkan Bumi.",
-                image: "assets/images/semesta/Thumbnail-Animasi 2D.png",
-                platform: "cinema",
-                status: "upcoming",
-                releaseDate: "Q4 2024",
-                duration: "120 menit",
-                rating: "PG-13",
-                director: "Abdurrahman GM",
-                budget: "$15M",
-                trailer: "assets/video/program/02-animasi-2d.mp4",
-                episodes: 1,
-                views: "0"
-            },
-            {
-                id: 3,
-                title: "Animasi 3D",
-                description: "Tayangan animasi anak yang menceritakan tentang para patrion dari wilayah masing-masing. Bagaimana mereka berpetualang untuk menyelesaikan persoalan yang terjadi di Nusantara.",
-                image: "assets/images/semesta/Thumbnail-Animasi 3D.png",
-                platform: "ott",
-                status: "released",
-                releaseDate: "Q3 2024",
-                duration: "22 menit/episode",
-                rating: "PG",
-                director: "Siti Nurhaliza",
-                budget: "$8M",
-                trailer: "assets/video/program/03-animasi-3d.mp4",
-                episodes: 24,
-                views: "2.5M"
-            },
-            {
-                id: 4,
-                title: "Kunna Bercerita",
-                description: "Event Patrion Goes to school Kunna Bercerita.",
-                image: "assets/images/semesta/Thumbnail-Kunna Bercerita.png",
-                platform: "digital",
-                status: "released",
-                releaseDate: "Q2 2024",
-                duration: "10-15 menit",
-                rating: "G",
-                director: "Budi Santoso",
-                budget: "$500K",
-                trailer: "assets/video/program/04-kunna-bercerita.mp4",
-                episodes: 36,
-                views: "1.2M"
-            },
-            {
-                id: 5,
-                title: "Travel Show",
-                description: "Program yang fokus pada destinasi wisata, budaya, kuliner dan memberikan panduan serta tips perjalanan. Ada host bersama dengan salah satu Patrion yang memandu perjalanan.",
-                image: "assets/images/semesta/Thumbnail-Travel Show.png",
-                platform: "tv",
-                status: "production",
-                releaseDate: "Q1 2025",
-                duration: "45 menit",
-                rating: "PG",
-                director: "Ahmad Rizki",
-                budget: "$3M",
-                trailer: "assets/video/program/05-travel-show.mp4",
-                episodes: 12,
-                views: "0"
-            },
-            {
-                id: 6,
-                title: "Filler Value",
-                description: "Membuat cerita tentang seseorang yang punya jiwa nusantara dan cara hidupnya memiliki jiwa nasionalisme. Humanis.",
-                image: "assets/images/semesta/Thumbnail-Filler.png",
-                platform: "ott",
-                status: "released",
-                releaseDate: "Q3 2024",
-                duration: "5-8 menit",
-                rating: "PG",
-                director: "Dewi Lestari",
-                budget: "$1.2M",
-                trailer: "assets/video/program/06-filler-value.mp4",
-                episodes: 48,
-                views: "800K"
-            },
-            {
-                id: 7,
-                title: "Motiongraphic 2D",
-                description: "Penjelasan/edukasi tentang nusantara. Video graphic real yang menceritakan tentang info nusantara dengan narasi. Dan disampaikan dengan gaya edukasi versi patrion. Yang cepat dan mudah dimengerti.",
-                image: "assets/images/semesta/Thumbnail-Motion Graphics 2d.png",
-                platform: "digital",
-                status: "released",
-                releaseDate: "Q2 2024",
-                duration: "3-5 menit",
-                rating: "G",
-                director: "Citra Kirana",
-                budget: "$300K",
-                trailer: "assets/video/program/07-motiongraphic-2d.mp4",
-                episodes: 24,
-                views: "500K"
-            },
-            {
-                id: 8,
-                title: "Podcast Patronia",
-                description: "Penjelasan/edukasi tentang nusantara. Video graphic real yang menceritakan tentang info nusantara dengan narasi. Dan disampaikan dengan gaya edukasi versi patrion. Yang cepat dan mudah dimengerti.",
-                image: "assets/images/semesta/Thumbnail-Podcast Patrionia.png",
-                platform: "digital",
-                status: "released",
-                releaseDate: "Q1 2024",
-                duration: "60-90 menit",
-                rating: "PG-13",
-                director: "Rizky Febian",
-                budget: "$200K",
-                trailer: "assets/video/program/08-patrionia-podcast.mp4",
-                episodes: 52,
-                views: "300K"
-            },
-            {
-                id: 9,
-                title: "Motion Comic",
-                description: "Komik Patrion yang menjelaskan perjalanan Patrion dengan superheronya. Format Concept komk yang dibuat versi video untuk market anak-anak dan dewasa. Level-level patrion ada di sini seiring petualangan tokoh Patrion.",
-                image: "assets/images/semesta/Thumbnail-Motion Comics.png",
-                platform: "digital",
-                status: "production",
-                releaseDate: "Q4 2024",
-                duration: "15-20 menit",
-                rating: "PG",
-                director: "Eko Sutrisno",
-                budget: "$750K",
-                trailer: "assets/video/program/09-motion-comic.mp4",
-                episodes: 18,
-                views: "0"
-            }
-        ];
-
-        // Timeline Data
-        const timelineData = [
-            { quarter: "Q1 2024", title: "Launch: Podcast Patrionia", status: "completed", progress: 100 },
-            { quarter: "Q2 2024", title: "Release: Kunna Bercerita & Motion Graphics", status: "completed", progress: 100 },
-            { quarter: "Q3 2024", title: "Launch: Animasi 3D Season 1 & Filler Series", status: "completed", progress: 100 },
-            { quarter: "Q4 2024", title: "Release: Film Cinema & Motion Comics", status: "in-progress", progress: 65 },
-            { quarter: "Q1 2025", title: "Launch: Travel Show & Animasi 3D Season 2", status: "upcoming", progress: 15 },
-            { quarter: "Q2 2025", title: "Production: AR Experience & Mobile Game", status: "upcoming", progress: 0 }
-        ];
-
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeProgramPage();
-            setupEventListeners();
-            initializeTrailersSwiper();
-            initializeBackToTop();
-            setupMobileMenu();
-            initializeParticles();
-        });
-
-        function initializeProgramPage() {
-            renderProgramCards(programs);
-            renderTimeline();
-            updateStats();
-        }
-
         function renderProgramCards(programsToRender) {
-            const container = document.querySelector('.program-container');
+            const container = document.querySelector(".program-container");
             if (!container) return;
-            
-            container.innerHTML = '';
-            
-            programsToRender.forEach(program => {
+
+            container.innerHTML = "";
+
+            programsToRender.forEach((program) => {
                 const card = createProgramCard(program);
                 container.appendChild(card);
             });
-            
+
             // Add animation
-            const cards = container.querySelectorAll('.program-card');
+            const cards = container.querySelectorAll(".program-card");
             cards.forEach((card, index) => {
                 card.style.animationDelay = `${index * 0.1}s`;
-                card.classList.add('fade-in');
+                card.classList.add("fade-in");
             });
         }
 
         function createProgramCard(program) {
-            const card = document.createElement('div');
-            card.className = `program-card rounded-xl overflow-hidden cursor-pointer program-${program.platform}`;
+            const card = document.createElement("div");
+            card.className = `program-card rounded-xl overflow-hidden cursor-pointer program-${program.platform || "digital"
+                }`;
             card.dataset.id = program.id;
-            card.dataset.platform = program.platform;
-            
-            // Status badge color
-            let statusClass = '';
-            let statusText = '';
-            switch(program.status) {
-                case 'upcoming': statusClass = 'status-upcoming'; statusText = 'Coming Soon'; break;
-                case 'released': statusClass = 'status-released'; statusText = 'Released'; break;
-                case 'production': statusClass = 'status-production'; statusText = 'In Production'; break;
+            card.dataset.platform = program.platform || "digital";
+            card.dataset.status = program.status || "upcoming";
+
+            // Status badge
+            let statusClass = "";
+            let statusText = "";
+            switch ((program.status || "").toLowerCase()) {
+                case "upcoming":
+                    statusClass = "status-upcoming";
+                    statusText = "Coming Soon";
+                    break;
+                case "released":
+                    statusClass = "status-released";
+                    statusText = "Released";
+                    break;
+                case "production":
+                    statusClass = "status-production";
+                    statusText = "In Production";
+                    break;
+                case "completed":
+                    statusClass = "status-released";
+                    statusText = "Completed";
+                    break;
+                default:
+                    statusClass = "status-upcoming";
+                    statusText = "Coming Soon";
             }
-            
-            // Platform badge color
-            let platformClass = '';
-            switch(program.platform) {
-                case 'cinema': platformClass = 'platform-cinema'; break;
-                case 'ott': platformClass = 'platform-ott'; break;
-                case 'digital': platformClass = 'platform-digital'; break;
-                case 'tv': platformClass = 'platform-tv'; break;
+
+            // Platform badge
+            let platformClass = "";
+            let platformText = program.platform || "digital";
+            switch ((program.platform || "").toLowerCase()) {
+                case "cinema":
+                    platformClass = "platform-cinema";
+                    break;
+                case "ott":
+                case "streaming":
+                    platformClass = "platform-ott";
+                    break;
+                case "digital":
+                case "web":
+                    platformClass = "platform-digital";
+                    break;
+                case "tv":
+                    platformClass = "platform-tv";
+                    break;
+                default:
+                    platformClass = "platform-digital";
             }
-            
+
+            // Get image URL
+            const imageUrl = program.image
+                ? program.image.startsWith("http")
+                    ? program.image
+                    : `https://cms.patrion.id/storage/${program.image}`
+                : "assets/images/default-program.png";
+
             card.innerHTML = `
                 <div class="video-thumbnail">
-                    <img src="${program.image}" alt="${program.title}" class="w-full h-full object-cover">
+                    <img src="${imageUrl}" 
+                        alt="${program.title || "Program PATRION"}" 
+                        class="w-full h-48 object-cover"
+                        loading="lazy"
+                        onerror="this.src='assets/images/default-program.png'">
                 </div>
                 <div class="p-4">
                     <div class="flex justify-between items-start mb-3">
-                        <span class="${platformClass} platform-badge">${program.platform.toUpperCase()}</span>
+                        <span class="${platformClass} platform-badge">${platformText.toUpperCase()}</span>
                         <span class="${statusClass} status-badge">${statusText}</span>
                     </div>
                     
-                    <h3 class="fantasy-font text-lg text-white mb-2 line-clamp-2">${program.title}</h3>
-                    <!-- <p class="text-gray-400 text-sm mb-4 line-clamp-2">${program.description}</p>
+                    <h3 class="fantasy-font text-lg text-white mb-2 line-clamp-2">${program.title || "Untitled Program"
+                }</h3>
                     
-                    <div class="flex items-center justify-between text-sm text-gray-500">
-                        <div class="flex items-center">
-                            <i class="far fa-clock mr-1"></i>
-                            <span>${program.duration}</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="far fa-eye mr-1"></i>
-                            <span>${program.views}</span>
-                        </div>
-                    </div> -->
+                    ${program.description
+                    ? `
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">${program.description}</p>
+                    `
+                    : ""
+                }
                     
-                    <div class="mt-4 pt-4 border-t border-gray-800">
+                    <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                        <div class="flex items-center">
+                            <i class="far fa-calendar-alt mr-1"></i>
+                            <span>${program.release_date ||
+                program.releaseDate ||
+                "Coming Soon"
+                }</span>
+                        </div>
+                        ${program.episodes
+                    ? `
+                            <div class="flex items-center">
+                                <i class="fas fa-list-ol mr-1"></i>
+                                <span>${program.episodes} episode${program.episodes > 1 ? "s" : ""
+                    }</span>
+                            </div>
+                        `
+                    : ""
+                }
+                    </div>
+                    
+                    <div class="pt-4 border-t border-gray-800">
                         <div class="flex justify-between">
-                            <button onclick="event.stopPropagation(); playTrailer(${program.id})" 
-                                    class="text-fantasy-gold hover:text-yellow-300 text-sm font-medium">
-                                <i class="fas fa-play-circle mr-1"></i> Trailer
-                            </button>
+                            ${program.trailer
+                    ? `
+                                <button onclick="event.stopPropagation(); playTrailerBtn('${program.id}')" 
+                                        class="text-fantasy-gold hover:text-yellow-300 text-sm font-medium">
+                                    <i class="fas fa-play-circle mr-1"></i> Trailer
+                                </button>
+                            `
+                    : `
+                                <button class="text-gray-500 text-sm font-medium cursor-not-allowed" disabled>
+                                    <i class="fas fa-play-circle mr-1"></i> No Trailer
+                                </button>
+                            `
+                }
+                            
                             <a href="program-detail.html?id=${program.id}" 
-                               class="text-white hover:text-fantasy-gold text-sm font-medium">
+                            class="text-white hover:text-fantasy-gold text-sm font-medium">
                                 Details <i class="fas fa-arrow-right ml-1"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             `;
-            
+
             // Click event for card
-            card.addEventListener('click', (e) => {
-                if (!e.target.closest('button') && !e.target.closest('a')) {
+            card.addEventListener("click", (e) => {
+                if (!e.target.closest("button") && !e.target.closest("a")) {
                     window.location.href = `program-detail.html?id=${program.id}`;
                 }
             });
-            
+
             return card;
         }
 
-        function renderTimeline() {
-            const timelineContainer = document.querySelector('.timeline');
-            if (!timelineContainer) return;
-            
-            timelineContainer.innerHTML = '';
-            
-            timelineData.forEach(item => {
-                const timelineItem = document.createElement('div');
-                timelineItem.className = 'timeline-item';
-                
-                timelineItem.innerHTML = `
-                    <div class="bg-fantasy-dark/50 p-6 rounded-xl">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="fantasy-font text-fantasy-gold font-bold">${item.quarter}</span>
-                            <span class="text-sm px-3 py-1 rounded-full ${item.status === 'completed' ? 'bg-green-900/30 text-green-400' : 
-                                                                       item.status === 'in-progress' ? 'bg-yellow-900/30 text-yellow-400' : 
-                                                                       'bg-blue-900/30 text-blue-400'}">
-                                ${item.status === 'completed' ? '✅ Selesai' : 
-                                  item.status === 'in-progress' ? '⏳ Dalam Proses' : '🗓️ Mendatang'}
-                            </span>
-                        </div>
-                        <h4 class="text-white font-semibold mb-3">${item.title}</h4>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${item.progress}%"></div>
-                        </div>
-                        <div class="text-right text-sm text-gray-400 mt-1">${item.progress}%</div>
-                    </div>
-                `;
-                
-                timelineContainer.appendChild(timelineItem);
+        function setupEventListeners() {
+            // Filter buttons
+            document.querySelectorAll(".filter-btn").forEach((btn) => {
+                btn.addEventListener("click", function () {
+                    // Remove active class from all buttons
+                    document
+                        .querySelectorAll(".filter-btn")
+                        .forEach((b) => b.classList.remove("active"));
+
+                    // Add active class to clicked button
+                    this.classList.add("active");
+
+                    const filter = this.dataset.filter;
+                    filterPrograms(filter);
+                });
             });
+
+            // Sort select
+            const sortSelect = document.getElementById("sortSelect");
+            if (sortSelect) {
+                sortSelect.addEventListener("change", function () {
+                    sortPrograms(this.value);
+                });
+            }
+
+            // Video modal
+            const videoModal = document.getElementById("videoModal");
+            const closeModal = document.getElementById("closeModal");
+
+            if (closeModal) {
+                closeModal.addEventListener("click", () => {
+                    const video = document.getElementById("modalVideo");
+                    video.pause();
+                    videoModal.classList.add("hidden");
+                });
+            }
+
+            // Close modal on background click
+            if (videoModal) {
+                videoModal.addEventListener("click", (e) => {
+                    if (e.target === videoModal) {
+                        const video = document.getElementById("modalVideo");
+                        video.pause();
+                        videoModal.classList.add("hidden");
+                    }
+                });
+            }
         }
 
-        // DIPERBARUI: Trailer Swiper dengan hover effect
-        function initializeTrailersSwiper() {
-            const trailerPrograms = programs.filter(p => p.status !== 'upcoming' || p.platform === 'cinema');
-            
-            const swiperContainer = document.querySelector('.trailers-swiper .swiper-wrapper');
+        async function initializeTrailersSwiper(programs) {
+            const trailerPrograms = programs
+                .filter(
+                    (p) =>
+                        p.trailer &&
+                        (p.status === "released" ||
+                            p.status === "completed" ||
+                            p.status === "ongoing" ||
+                            p.status === "upcoming" ||
+                            p.platform === "cinema" ||
+                            p.platform === "tv" ||
+                            p.platform === "ott" ||
+                            p.platform === "movie" ||
+                            p.platform === "digital" ||
+                            p.platform === "podcast")
+                )
+                .slice(0, 9); // Limit to 6 trailers
+
+            const swiperContainer = document.querySelector(
+                ".trailers-swiper .swiper-wrapper"
+            );
             if (!swiperContainer) return;
-            
-            swiperContainer.innerHTML = '';
-            
-            trailerPrograms.slice(0, 5).forEach(program => {
-                const slide = document.createElement('div');
-                slide.className = 'swiper-slide trailer-slide';
-                
+
+            if (trailerPrograms.length === 0) {
+                swiperContainer.innerHTML = `
+                    <div class="text-center py-12 text-gray-400">
+                        <i class="fas fa-film text-4xl mb-4"></i>
+                        <p>No trailers available yet</p>
+                    </div>
+                `;
+                return;
+            }
+
+            swiperContainer.innerHTML = "";
+
+            trailerPrograms.forEach((program) => {
+                const slide = document.createElement("div");
+                slide.className = "swiper-slide trailer-slide";
+
+                const imageUrl = program.image
+                    ? program.image.startsWith("http")
+                        ? program.image
+                        : `https://cms.patrion.id/storage/${program.image}`
+                    : "assets/images/default-program.png";
+
                 slide.innerHTML = `
                     <div class="relative rounded-xl overflow-hidden h-full">
-                        <img src="${program.image}" alt="${program.title}" class="w-full h-full object-cover">
+                        <img src="${imageUrl}" 
+                            alt="${program.title}" 
+                            class="w-full h-64 object-cover"
+                            loading="lazy"
+                            onerror="this.src='assets/images/default-program.png'">
                         
-                        <!-- Play overlay icon - hanya muncul saat hover -->
-                        <!-- <div class="trailer-play-overlay">
-                            <i class="fas fa-play"></i>
-                        </div> -->
-                        
-                        <!-- Info panel - tersembunyi default, muncul saat hover -->
                         <div class="trailer-info">
-                            <h3 class="fantasy-font text-white text-lg mb-3">${program.title}</h3>
-                            <p class="text-gray-300 text-sm mb-4 line-clamp-2">${program.description}</p>
+                            <h3 class="fantasy-font text-white text-lg mb-3 line-clamp-1">${program.title
+                    }</h3>
+                            <p class="text-gray-300 text-sm mb-4 line-clamp-2">${program.description || ""
+                    }</p>
                             <div class="flex justify-between items-center">
                                 <div class="flex items-center space-x-2">
                                     <span class="text-xs px-2 py-1 rounded bg-gray-800/70 text-gray-300">
-                                        ${program.platform.toUpperCase()}
+                                        ${program.platform
+                        ? program.platform.toUpperCase()
+                        : "DIGITAL"
+                    }
                                     </span>
                                     <span class="text-xs text-gray-400">
-                                        <i class="far fa-clock mr-1"></i>${program.duration}
+                                        <i class="far fa-calendar mr-1"></i>${program.release_date ||
+                    program.releaseDate ||
+                    "TBA"
+                    }
                                     </span>
                                 </div>
-                                <button onclick="event.stopPropagation(); playTrailer(${program.id})" 
+                                <button onclick="event.stopPropagation(); playTrailerBtn('${program.id
+                    }')" 
                                         class="trailer-play-btn bg-fantasy-gold hover:bg-yellow-500 text-fantasy-dark font-bold py-2 px-4 rounded-full transition-all text-sm">
                                     <i class="fas fa-play mr-1"></i> Play
                                 </button>
@@ -1032,20 +983,20 @@
                         </div>
                     </div>
                 `;
-                
+
                 // Click event untuk seluruh slide
-                slide.addEventListener('click', function(e) {
-                    if (!e.target.closest('button')) {
-                        playTrailer(program.id);
+                slide.addEventListener("click", function (e) {
+                    if (!e.target.closest("button")) {
+                        playTrailerBtn(program.id);
                     }
                 });
-                
+
                 swiperContainer.appendChild(slide);
             });
-            
+
             // Initialize Swiper
-            const trailersSwiper = new Swiper('.trailers-swiper', {
-                loop: true,
+            const trailersSwiper = new Swiper(".trailers-swiper", {
+                loop: trailerPrograms.length > 3,
                 autoplay: {
                     delay: 5000,
                     disableOnInteraction: false,
@@ -1054,144 +1005,399 @@
                 grabCursor: true,
                 spaceBetween: 20,
                 pagination: {
-                    el: '.swiper-pagination',
+                    el: ".swiper-pagination",
                     clickable: true,
                 },
                 navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
                 },
                 breakpoints: {
                     320: { slidesPerView: 1 },
                     640: { slidesPerView: 2 },
                     1024: { slidesPerView: 3 },
-                    1280: { slidesPerView: 4 }
-                }
+                    1280: { slidesPerView: 4 },
+                },
             });
 
             // Pause autoplay saat hover
-            trailersSwiper.el.addEventListener('mouseenter', () => {
+            trailersSwiper.el.addEventListener("mouseenter", () => {
                 trailersSwiper.autoplay.stop();
             });
 
-            trailersSwiper.el.addEventListener('mouseleave', () => {
+            trailersSwiper.el.addEventListener("mouseleave", () => {
                 trailersSwiper.autoplay.start();
             });
         }
 
-        function setupEventListeners() {
-            // Filter buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    const filter = this.dataset.filter;
-                    filterPrograms(filter);
-                });
-            });
-            
-            // Sort select
-            const sortSelect = document.getElementById('sortSelect');
-            if (sortSelect) {
-                sortSelect.addEventListener('change', function() {
-                    sortPrograms(this.value);
-                });
-            }
-            
-            // Video modal
-            const videoModal = document.getElementById('videoModal');
-            const closeModal = document.getElementById('closeModal');
-            
-            if (closeModal) {
-                closeModal.addEventListener('click', () => {
-                    const video = document.getElementById('modalVideo');
-                    video.pause();
-                    videoModal.classList.add('hidden');
-                });
-            }
-            
-            // Close modal on background click
-            if (videoModal) {
-                videoModal.addEventListener('click', (e) => {
-                    if (e.target === videoModal) {
-                        const video = document.getElementById('modalVideo');
-                        video.pause();
-                        videoModal.classList.add('hidden');
+        function initializeRoadmapTimeline(programs) {
+            const timelineContainer = document.querySelector(".timeline");
+            if (!timelineContainer) return;
+
+            timelineContainer.innerHTML = "";
+
+            // Hardcoded timeline data sebagai fallback
+            const timelineData = [
+                {
+                    quarter: "Q1 2024",
+                    title: "Launch: Podcast Patrionia",
+                    status: "completed",
+                    progress: 100,
+                },
+                {
+                    quarter: "Q2 2024",
+                    title: "Release: Kunna Bercerita & Motion Graphics",
+                    status: "completed",
+                    progress: 100,
+                },
+                {
+                    quarter: "Q3 2024",
+                    title: "Launch: Animasi 3D Season 1 & Filler Series",
+                    status: "completed",
+                    progress: 100,
+                },
+                {
+                    quarter: "Q4 2024",
+                    title: "Release: Film Cinema & Motion Comics",
+                    status: "in-progress",
+                    progress: 65,
+                },
+                {
+                    quarter: "Q1 2025",
+                    title: "Launch: Travel Show & Animasi 3D Season 2",
+                    status: "upcoming",
+                    progress: 15,
+                },
+                {
+                    quarter: "Q2 2025",
+                    title: "Production: AR Experience & Mobile Game",
+                    status: "upcoming",
+                    progress: 0,
+                },
+            ];
+
+            // Render timeline
+            timelineData.forEach((item) => {
+                const timelineItem = document.createElement("div");
+                timelineItem.className = "timeline-item";
+
+                timelineItem.innerHTML = `
+                    <div class="bg-fantasy-dark/50 p-6 rounded-xl">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="fantasy-font text-fantasy-gold font-bold">${item.quarter
+                    }</span>
+                            <span class="text-sm px-3 py-1 rounded-full ${item.status === "completed"
+                        ? "bg-green-900/30 text-green-400"
+                        : item.status === "in-progress"
+                            ? "bg-yellow-900/30 text-yellow-400"
+                            : "bg-blue-900/30 text-blue-400"
+                    }">
+                                ${item.status === "completed"
+                        ? "✅ Selesai"
+                        : item.status === "in-progress"
+                            ? "⏳ Dalam Proses"
+                            : "🗓️ Mendatang"
                     }
-                });
+                            </span>
+                        </div>
+                        <h4 class="text-white font-semibold mb-3">${item.title}</h4>
+                        <div class="mt-4">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${item.progress
+                    }%"></div>
+                            </div>
+                            <div class="text-right text-sm text-gray-400 mt-1">${item.progress
+                    }%</div>
+                        </div>
+                    </div>
+                `;
+
+                timelineContainer.appendChild(timelineItem);
+            });
+        }
+
+        function filterPrograms(filter) {
+            if (!window.allPrograms) return;
+
+            let filteredPrograms;
+
+            if (filter === "all") {
+                filteredPrograms = window.allPrograms;
+            } else {
+                filteredPrograms = window.allPrograms.filter(
+                    (program) => program.platform?.toLowerCase() === filter.toLowerCase()
+                );
+            }
+
+            renderProgramCards(filteredPrograms);
+        }
+
+        function sortPrograms(sortBy) {
+            if (!window.allPrograms) return;
+
+            let sortedPrograms = [...window.allPrograms];
+
+            switch (sortBy) {
+                case "release":
+                    sortedPrograms.sort((a, b) => {
+                        const dateA = a.release_date
+                            ? new Date(a.release_date)
+                            : new Date("9999-12-31");
+                        const dateB = b.release_date
+                            ? new Date(b.release_date)
+                            : new Date("9999-12-31");
+                        return dateA - dateB;
+                    });
+                    break;
+
+                case "popularity":
+                    sortedPrograms.sort((a, b) => {
+                        const viewsA = parseViews(a.views || "0");
+                        const viewsB = parseViews(b.views || "0");
+                        return viewsB - viewsA;
+                    });
+                    break;
+
+                case "az":
+                    sortedPrograms.sort((a, b) =>
+                        (a.title || "").localeCompare(b.title || "")
+                    );
+                    break;
+
+                case "za":
+                    sortedPrograms.sort((a, b) =>
+                        (b.title || "").localeCompare(a.title || "")
+                    );
+                    break;
+            }
+
+            const activeFilter =
+                document.querySelector(".filter-btn.active").dataset.filter;
+            if (activeFilter !== "all") {
+                sortedPrograms = sortedPrograms.filter(
+                    (p) => p.platform?.toLowerCase() === activeFilter.toLowerCase()
+                );
+            }
+
+            renderProgramCards(sortedPrograms);
+        }
+
+        function parseViews(viewData) {
+            try {
+                // Jika null/undefined
+                if (viewData == null) return 0;
+                
+                // Jika sudah number
+                if (typeof viewData === 'number') return viewData;
+                
+                // Jika string
+                if (typeof viewData === 'string') {
+                    // Remove any commas, spaces
+                    const clean = viewData.replace(/,/g, '').replace(/\s/g, '');
+                    
+                    // Check for M (million) or K (thousand)
+                    if (clean.toLowerCase().includes('m')) {
+                        return parseFloat(clean) * 1000000;
+                    }
+                    if (clean.toLowerCase().includes('k')) {
+                        return parseFloat(clean) * 1000;
+                    }
+                    
+                    // Try to parse as number
+                    const num = parseFloat(clean);
+                    return isNaN(num) ? 0 : num;
+                }
+                
+                // Untuk tipe data lain
+                const num = Number(viewData);
+                return isNaN(num) ? 0 : num;
+                
+            } catch (error) {
+                console.warn('Error parsing views:', viewData, error);
+                return 0;
             }
         }
 
-        // Back to Top functionality
+        function updateProgramStats(programs) {
+            try {
+                // Update stats based on loaded programs
+                const stats = {
+                    active: programs.length,
+                    platforms: new Set(programs.map(p => {
+                        if (p.platform) return p.platform;
+                        if (p.category) return p.category;
+                        return 'digital';
+                    }).filter(Boolean)).size,
+                    episodes: programs.reduce((sum, p) => {
+                        const eps = parseInt(p.episodes);
+                        return sum + (isNaN(eps) ? 0 : eps);
+                    }, 0),
+                    totalViews: programs.reduce((sum, p) => {
+                        return sum + parseViews(p.views);
+                    }, 0)
+                };
+                
+                console.log('Program stats calculated:', stats);
+                
+                // Find stat elements more robustly
+                const statsSection = document.querySelector('.py-12.glass-effect');
+                if (statsSection) {
+                    const statDivs = statsSection.querySelectorAll('.text-center');
+                    if (statDivs.length >= 4) {
+                        statDivs[0].querySelector('.text-4xl').textContent = `${stats.active}+`;
+                        statDivs[1].querySelector('.text-4xl').textContent = stats.platforms;
+                        statDivs[2].querySelector('.text-4xl').textContent = `${stats.episodes}+`;
+                        statDivs[3].querySelector('.text-4xl').textContent = `${formatViews(stats.totalViews)}+`;
+                    }
+                }
+                
+            } catch (error) {
+                console.warn('Failed to update program stats:', error);
+                // Don't crash the whole app if stats fail
+            }
+        }
+
+        // Debug function untuk melihat data API
+        function debugProgramData(programs) {
+            console.log('=== DEBUG: Program Data from API ===');
+            programs.forEach((program, index) => {
+                console.log(`Program ${index + 1}:`, {
+                    id: program.id,
+                    title: program.title,
+                    platform: program.platform,
+                    status: program.status,
+                    views: program.views,
+                    episodes: program.episodes,
+                    viewsType: typeof program.views,
+                    viewsValue: program.views
+                });
+            });
+            console.log('===================================');
+        }
+
+        function formatViews(views) {
+            try {
+                if (views >= 1000000) {
+                    return `${(views / 1000000).toFixed(1)}M`;
+                }
+                if (views >= 1000) {
+                    return `${(views / 1000).toFixed(1)}K`;
+                }
+                return views.toString();
+            } catch (error) {
+                console.warn('Error formatting views:', views, error);
+                return '0';
+            }
+        }
+
+        function playTrailerBtn(programId) {
+            // Find program by ID from window.allPrograms
+            const program = window.allPrograms?.find((p) => p.id == programId);
+
+            if (!program || !program.trailer) {
+                alert("Trailer not available for this program.");
+                return;
+            }
+
+            const modal = document.getElementById("videoModal");
+            const video = document.getElementById("modalVideo");
+            const videoTitle = document.getElementById("videoTitle");
+            const videoDesc = document.getElementById("videoDesc");
+            const videoInfo = document.getElementById("videoInfo");
+
+            const trailerUrl = program.trailer.startsWith("http")
+                ? program.trailer
+                : `https://cms.patrion.id/storage/${program.trailer}`;
+
+            video.src = trailerUrl;
+            videoTitle.textContent = program.title;
+            videoDesc.textContent = program.description || "";
+
+            videoInfo.classList.remove("hidden");
+            modal.classList.remove("hidden");
+
+            video.play().catch((e) => {
+                console.error("Failed to play video:", e);
+                alert("Unable to play trailer. Please try again.");
+            });
+        }
+
+        function showEmptyState() {
+            const container = document.querySelector(".program-container");
+            if (container) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <i class="fas fa-film text-6xl text-gray-600 mb-4"></i>
+                        <h3 class="fantasy-font text-2xl text-white mb-2">No Programs Yet</h3>
+                        <p class="text-gray-400 mb-6">Stay tuned for upcoming PATRION programs!</p>
+                        <button onclick="location.reload()" class="bg-fantasy-gold hover:bg-yellow-500 text-black font-bold py-2 px-6 rounded-full">
+                            <i class="fas fa-sync-alt mr-2"></i> Refresh
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        function showErrorState() {
+            const container = document.querySelector(".program-container");
+            if (container) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <i class="fas fa-exclamation-triangle text-6xl text-red-500 mb-4"></i>
+                        <h3 class="fantasy-font text-2xl text-white mb-2">Failed to Load Programs</h3>
+                        <p class="text-gray-400 mb-6">Unable to connect to the server. Please check your connection.</p>
+                        <button onclick="location.reload()" class="bg-fantasy-gold hover:bg-yellow-500 text-black font-bold py-2 px-6 rounded-full">
+                            <i class="fas fa-redo mr-2"></i> Try Again
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
         function initializeBackToTop() {
-            const backToTopBtn = document.getElementById('backToTop');
-            
-            window.addEventListener('scroll', () => {
+            const backToTopBtn = document.getElementById("backToTop");
+
+            window.addEventListener("scroll", () => {
                 if (window.pageYOffset > 300) {
-                    backToTopBtn.classList.add('show');
+                    backToTopBtn.classList.add("show");
                 } else {
-                    backToTopBtn.classList.remove('show');
+                    backToTopBtn.classList.remove("show");
                 }
             });
-            
-            backToTopBtn.addEventListener('click', () => {
+
+            backToTopBtn.addEventListener("click", () => {
                 window.scrollTo({
                     top: 0,
-                    behavior: 'smooth'
+                    behavior: "smooth",
                 });
             });
         }
 
-        // Mobile menu functionality
         function setupMobileMenu() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
+            const mobileMenuButton = document.getElementById("mobile-menu-button");
+            const mobileMenu = document.getElementById("mobile-menu");
+
             if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.addEventListener("click", function () {
+                    mobileMenu.classList.toggle("hidden");
                 });
             }
-            
-            // Smooth scroll untuk navigasi
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if(targetId !== '#') {
-                        const targetElement = document.querySelector(targetId);
-                        if(targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 100,
-                                behavior: 'smooth'
-                            });
-                            // Tutup mobile menu jika terbuka
-                            document.getElementById('mobile-menu').classList.add('hidden');
-                        }
-                    }
-                });
-            });
         }
 
-        // Particle background
         function initializeParticles() {
-            const canvas = document.getElementById('particle-canvas');
+            const canvas = document.getElementById("particle-canvas");
             if (!canvas) return;
-            
-            const ctx = canvas.getContext('2d');
-            
+
+            const ctx = canvas.getContext("2d");
+
             // Set canvas size
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            
+
             // Particle array
             const particles = [];
             const particleCount = 100;
-            
+
             // Create particles
             for (let i = 0; i < particleCount; i++) {
                 particles.push({
@@ -1200,136 +1406,149 @@
                     size: Math.random() * 2 + 1,
                     speedX: (Math.random() - 0.5) * 0.5,
                     speedY: (Math.random() - 0.5) * 0.5,
-                    color: `rgba(${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 255)}, ${Math.random() * 0.5 + 0.2})`
+                    color: `rgba(${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(
+                        Math.random() * 100 + 155
+                    )}, ${Math.floor(Math.random() * 255)}, ${Math.random() * 0.5 + 0.2})`,
                 });
             }
-            
+
             // Animation loop
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
+
                 // Update and draw particles
-                particles.forEach(particle => {
+                particles.forEach((particle) => {
                     particle.x += particle.speedX;
                     particle.y += particle.speedY;
-                    
+
                     // Wrap around edges
                     if (particle.x < 0) particle.x = canvas.width;
                     if (particle.x > canvas.width) particle.x = 0;
                     if (particle.y < 0) particle.y = canvas.height;
                     if (particle.y > canvas.height) particle.y = 0;
-                    
+
                     // Draw particle
                     ctx.beginPath();
                     ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
                     ctx.fillStyle = particle.color;
                     ctx.fill();
                 });
-                
+
                 requestAnimationFrame(animate);
             }
-            
+
             animate();
-            
+
             // Resize handler
-            window.addEventListener('resize', function() {
+            window.addEventListener("resize", function () {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             });
         }
 
-        function filterPrograms(filter) {
-            let filteredPrograms;
-            
-            if (filter === 'all') {
-                filteredPrograms = programs;
-            } else {
-                filteredPrograms = programs.filter(program => program.platform === filter);
+        // API Functions
+        async function fetchPrograms() {
+            try {
+                const response = await fetch(
+                    "https://cms.patrion.id/api/v1/public/programs"
+                );
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+
+                // Extract data from response
+                if (Array.isArray(data)) return data;
+                if (data.data && Array.isArray(data.data)) return data.data;
+                if (data.programs && Array.isArray(data.programs)) return data.programs;
+
+                console.warn("Unknown API response format:", data);
+                return [];
+            } catch (error) {
+                console.error("Failed to fetch programs:", error);
+                return null;
             }
-            
-            renderProgramCards(filteredPrograms);
         }
 
-        function sortPrograms(sortBy) {
-            let sortedPrograms = [...programs];
-            
-            switch(sortBy) {
-                case 'release':
-                    sortedPrograms.sort((a, b) => {
-                        // Simple quarter comparison (Q1 < Q2 < Q3 < Q4)
-                        const getQuarterValue = (date) => {
-                            const [q, year] = date.split(' ');
-                            const qNum = parseInt(q.substring(1));
-                            return parseInt(year) * 10 + qNum;
-                        };
-                        return getQuarterValue(a.releaseDate) - getQuarterValue(b.releaseDate);
+        // Main initialization function
+        async function initializeProgramPage() {
+            try {
+                console.log('Loading programs from API...');
+                
+                // Fetch programs from API
+                const programs = await fetchPrograms();
+                
+                if (!programs) {
+                    // Use hardcoded data as fallback
+                    console.log('Using hardcoded data as fallback');
+                    renderProgramCards(window.programs || []);
+                    initializeTrailersSwiper(window.programs || []);
+                    initializeRoadmapTimeline();
+                    setupEventListeners();
+                    return;
+                }
+                
+                if (programs.length === 0) {
+                    showEmptyState();
+                    return;
+                }
+                
+                console.log(`Loaded ${programs.length} programs from API`);
+                
+                // Debug detailed data structure
+                console.log('Full API response sample:', JSON.stringify(programs[0], null, 2));
+                
+                // Check views property
+                programs.forEach((p, i) => {
+                    console.log(`Program ${i} views:`, {
+                        value: p.views,
+                        type: typeof p.views,
+                        isNull: p.views === null,
+                        isUndefined: p.views === undefined
                     });
-                    break;
-                    
-                case 'popularity':
-                    sortedPrograms.sort((a, b) => {
-                        const viewsA = parseFloat(a.views.replace('M', '')) * 1000000 || 
-                                     parseFloat(a.views.replace('K', '')) * 1000 || 
-                                     parseInt(a.views);
-                        const viewsB = parseFloat(b.views.replace('M', '')) * 1000000 || 
-                                     parseFloat(b.views.replace('K', '')) * 1000 || 
-                                     parseInt(b.views);
-                        return viewsB - viewsA;
-                    });
-                    break;
-                    
-                case 'az':
-                    sortedPrograms.sort((a, b) => a.title.localeCompare(b.title));
-                    break;
-                    
-                case 'za':
-                    sortedPrograms.sort((a, b) => b.title.localeCompare(a.title));
-                    break;
-            }
-            
-            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-            if (activeFilter !== 'all') {
-                sortedPrograms = sortedPrograms.filter(p => p.platform === activeFilter);
-            }
-            
-            renderProgramCards(sortedPrograms);
-        }
-
-        function updateStats() {
-            // Update dynamic stats if needed
-        }
-
-        // Global functions
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
+                });
+                
+                // Store globally for filtering/sorting
+                window.allPrograms = programs;
+                
+                // Render programs
+                renderProgramCards(programs);
+                
+                // Setup event listeners
+                setupEventListeners();
+                
+                // Initialize trailers swiper with API data
+                initializeTrailersSwiper(programs);
+                
+                // Initialize roadmap timeline
+                initializeRoadmapTimeline(programs);
+                
+                // Setup UI components
+                initializeBackToTop();
+                setupMobileMenu();
+                initializeParticles();
+                
+                // Update stats dynamically (with try-catch)
+                try {
+                    updateProgramStats(programs);
+                } catch (statsError) {
+                    console.warn('Stats update failed, but continuing:', statsError);
+                }
+                
+            } catch (error) {
+                console.error('Failed to initialize program page:', error);
+                showErrorState();
             }
         }
 
-        function playTrailer(programId) {
-            const program = programs.find(p => p.id === programId);
-            if (!program) return;
-            
-            const modal = document.getElementById('videoModal');
-            const video = document.getElementById('modalVideo');
-            const videoTitle = document.getElementById('videoTitle');
-            const videoDesc = document.getElementById('videoDesc');
-            const videoInfo = document.getElementById('videoInfo');
-            
-            video.src = program.trailer;
-            videoTitle.textContent = program.title;
-            videoDesc.textContent = program.description;
-            
-            videoInfo.classList.remove('hidden');
-            modal.classList.remove('hidden');
-            
-            video.play();
-        }
+        // Event Listeners untuk fungsi global
+        window.filterPrograms = filterPrograms;
+        window.sortPrograms = sortPrograms;
+        window.playTrailerBtn = playTrailerBtn;
 
-        // Make functions globally available
-        window.scrollToSection = scrollToSection;
-        window.playTrailer = playTrailer;
+        // Initialize when DOM is loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            initializeProgramPage();
+        });
     </script>
+    
 </body>
 </html>
