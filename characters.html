@@ -259,118 +259,17 @@
     <section class="py-16 relative">
         <div class="absolute inset-0 bg-fantasy-dark opacity-30"></div>
         <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl mx-auto mb-12">
+                <input 
+                    id="searchBar"
+                    type="text"
+                    placeholder="Cari karakter berdasarkan nama, asal, wilayah, atau pulau..."
+                    class="w-full px-6 py-4 rounded-xl bg-black/40 border border-fantasy-gold/30 text-white placeholder-gray-400 focus:outline-none focus:border-fantasy-gold transition"
+                >
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="characters-grid">
-                <!-- Character 1 - KUNNA -->
-                <a href="character-detail.html?character=kunna" class="character-card character-element fire rounded-xl overflow-hidden fade-in block">
-                    <div class="relative h-4/5 overflow-hidden">
-                        <img src="assets/images/characters/chara-01.png" alt="PATRION KUNNA" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <!-- <div class="absolute top-4 left-4">
-                            <span class="element-badge text-fire border-fire/50">Api</span>
-                        </div> -->
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/80 px-2 py-1 rounded">Jawa</div>
-                    </div>
-                    <div class="h-1/5 p-6 bg-black/50 backdrop-blur-sm justify-center text-center">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">PATRION KUNNA</h3>
-                    </div>
-                </a>
-
-                <!-- Character 2 - WABU -->
-                <a href="character-detail.html?character=wabu" class="character-card character-element wind rounded-xl overflow-hidden fade-in block">
-                    <div class="relative h-4/5 overflow-hidden">
-                        <img src="assets/images/characters/chara-02.png" alt="PATRION WABU" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <!-- <div class="absolute top-4 left-4">
-                            <span class="element-badge text-wind border-wind/50">Angin</span>
-                        </div> -->
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/80 px-2 py-1 rounded">Jakarta</div>
-                    </div>
-                    <div class="h-1/5 p-6 bg-black/50 backdrop-blur-sm justify-center text-center">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">PATRION WABU</h3>
-                    </div>
-                </a>
-
-                <!-- Character 3 - ASTA -->
-                <a href="character-detail.html?character=asta" class="character-card character-element water rounded-xl overflow-hidden fade-in block">
-                    <div class="relative h-4/5 overflow-hidden">
-                        <img src="assets/images/characters/chara-03.png" alt="PATRION ASTA" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <!-- <div class="absolute top-4 left-4">
-                            <span class="element-badge text-water border-water/50">Air</span>
-                        </div> -->
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/80 px-2 py-1 rounded">Bali</div>
-                    </div>
-                    <div class="h-1/5 p-6 bg-black/50 backdrop-blur-sm justify-center text-center">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">PATRION ASTA</h3>
-                    </div>
-                </a>
-
-                <!-- Character 4 - TARAN -->
-                <a href="character-detail.html?character=taran" class="character-card character-element earth rounded-xl overflow-hidden fade-in block">
-                    <div class="relative h-4/5 overflow-hidden">
-                        <img src="assets/images/characters/chara-04.png" alt="PATRION TARAN" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <!-- <div class="absolute top-4 left-4">
-                            <span class="element-badge text-earth border-earth/50">Tanah</span>
-                        </div> -->
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/80 px-2 py-1 rounded">Sumatera</div>
-                    </div>
-                    <div class="h-1/5 p-6 bg-black/50 backdrop-blur-sm justify-center text-center">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">PATRION TARAN</h3>
-                    </div>
-                </a>
-
-                <!-- Character 5 - SANU -->
-                <a href="character-detail.html?character=sanu" class="character-card character-element thunder rounded-xl overflow-hidden fade-in block">
-                    <div class="relative h-4/5 overflow-hidden">
-                        <img src="assets/images/characters/chara-05.png" alt="PATRION SANU" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <!-- <div class="absolute top-4 left-4">
-                            <span class="element-badge text-thunder border-thunder/50">Petir</span>
-                        </div> -->
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/80 px-2 py-1 rounded">Sulawesi</div>
-                    </div>
-                    <div class="h-1/5 p-6 bg-black/50 backdrop-blur-sm justify-center text-center">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">PATRION SANU</h3>
-                    </div>
-                </a>
-
-                <!-- Character 6 - KABI -->
-                <a href="character-detail.html?character=kabi" class="character-card character-element nature rounded-xl overflow-hidden fade-in block">
-                    <div class="relative h-4/5 overflow-hidden">
-                        <img src="assets/images/characters/chara-06.png" alt="PATRION KABI" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <!-- <div class="absolute top-4 left-4">
-                            <span class="element-badge text-nature border-nature/50">Alam</span>
-                        </div> -->
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/80 px-2 py-1 rounded">Papua</div>
-                    </div>
-                    <div class="h-1/5 p-6 bg-black/50 backdrop-blur-sm justify-center text-center">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">PATRION KABI</h3>
-                    </div>
-                </a>
-
-                <!-- Character 7 - ARUN -->
-                <a href="character-detail.html?character=arun" class="character-card character-element light rounded-xl overflow-hidden fade-in block">
-                    <div class="relative h-4/5 overflow-hidden">
-                        <img src="assets/images/characters/chara-07.png" alt="PATRION ARUN" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <!-- <div class="absolute top-4 left-4">
-                            <span class="element-badge text-light border-light/50 text-gray-800">Cahaya</span>
-                        </div> -->
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/80 px-2 py-1 rounded">Kalimantan</div>
-                    </div>
-                    <div class="h-1/5 p-6 bg-black/50 backdrop-blur-sm justify-center text-center">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">PATRION ARUN</h3>
-                    </div>
-                </a>
-
-                <!-- Character 8 - ANTIS -->
-                <a href="character-detail.html?character=antis" class="character-card character-element dark rounded-xl overflow-hidden fade-in block">
-                    <div class="relative h-4/5 overflow-hidden">
-                        <img src="assets/images/characters/chara-08.png" alt="PATRION ANTIS" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                        <!-- <div class="absolute top-4 left-4">
-                            <span class="element-badge text-dark border-dark/50">Kegelapan</span>
-                        </div> -->
-                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/80 px-2 py-1 rounded">Atlantis</div>
-                    </div>
-                    <div class="h-1/5 p-6 bg-black/50 backdrop-blur-sm justify-center text-center">
-                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">PATRION ANTIS</h3>
-                    </div>
-                </a>
+                <!-- AUTO GENERATE BY AJAX -->
             </div>
         </div>
     </section>
@@ -438,8 +337,126 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Custom Scripts -->
     <script src="assets/js/main.js"></script>
+    <script>
+        const API_BASE = "https://cms.patrion.id/api/v1/public";
+        const IMG_BASE  = "https://cms.patrion.id/storage";
+
+        $(document).ready(function () {
+            // GLOBAL OBSERVER (load dulu sebelum AJAX dipanggil)
+            window.observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // UTILS — standarisasi response API
+            function extractList(response) {
+                if (Array.isArray(response)) return response;
+                if (response.data && Array.isArray(response.data)) return response.data;
+                if (response.characters && Array.isArray(response.characters)) return response.characters;
+
+                console.warn("Unknown characters API response:", response);
+                return [];
+            }
+
+            // LOAD CHARACTERS
+            function loadCharacters() {
+
+                $.ajax({
+                    url: `${API_BASE}/characters`,
+                    method: "GET",
+                    success: function (response) {
+
+                        const data = extractList(response);
+                        window.allCharacters = data; // simpan global
+                        renderCharacters(data);      // pakai fungsi baru untuk render
+                        function renderCharacters(list) {
+                            let html = "";
+
+                            list.forEach(c => {
+                                const img = c.image
+                                    ? `${IMG_BASE}/${c.image}`
+                                    : "assets/images/default-character.png";
+
+                                const region = c.region ?? "Nusantara";
+                                const element = c.power ? c.power.toLowerCase() : "unknown";
+
+                                html += `
+                                <a href="character-detail.html?character=${c.slug}"
+                                class="character-card rounded-xl overflow-hidden block character-element-${element}">
+
+                                    <div class="relative h-4/5 overflow-hidden">
+                                        <img src="${img}" alt="PATRION ${c.name}"
+                                            class="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                                            loading="lazy">
+
+                                        <div class="absolute bottom-4 right-4 text-white text-sm bg-black/80 px-2 py-1 rounded">
+                                            ${region}
+                                        </div>
+                                    </div>
+
+                                    <div class="h-1/5 p-6 bg-black/50 backdrop-blur-sm text-center">
+                                        <h3 class="text-xl font-bold mb-2 text-white fantasy-font">
+                                            PATRION ${c.name}
+                                        </h3>
+                                    </div>
+                                </a>`;
+                            });
+
+                            $("#characters-grid").html(html);
+
+                            // Re-activate fade-in animation
+                            document.querySelectorAll('.character-card').forEach(card => {
+                                window.observer.observe(card);
+                            });
+                        }
+
+                        // LIVE SEARCH
+                        $("#searchBar").on("input", function () {
+                            const keyword = $(this).val().toLowerCase().trim();
+
+                            if (!keyword) {
+                                renderCharacters(window.allCharacters);
+                                return;
+                            }
+
+                            const filtered = window.allCharacters.filter(c => {
+                                return (
+                                    (c.name && c.name.toLowerCase().includes(keyword)) ||
+                                    (c.full_name && c.full_name.toLowerCase().includes(keyword)) ||
+                                    (c.origin && c.origin.toLowerCase().includes(keyword)) ||
+                                    (c.region && c.region.toLowerCase().includes(keyword)) ||
+                                    (c.island && c.island.toLowerCase().includes(keyword))
+                                );
+                            });
+
+                            renderCharacters(filtered);
+                        });
+
+                    },
+                    error: function (err) {
+                        console.error("LOAD CHARACTERS ERROR:", err);
+                        $("#characters-grid").html(`
+                            <div class="col-span-4 text-center text-red-400 py-10">
+                                Gagal memuat data karakter.
+                            </div>
+                        `);
+                    }
+                });
+            }
+
+            loadCharacters();
+        });
+        </script>
     
 </body>
 </html>
